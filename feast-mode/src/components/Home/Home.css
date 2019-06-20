@@ -1,0 +1,70 @@
+.home {
+    background-color: whitesmoke;
+}
+
+.navbar{
+    padding: 5px;
+}
+
+.navbar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+}
+
+.navbar li button {
+    font-size: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+.navbar li button:hover {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+.navbar li button:active {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.app_window{
+    overflow: auto;
+    margin: auto;
+    width: 30%;
+    padding: 25px;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    max-width: 10%;
+    object-fit: contain;
+}
+
+.food {
+    max-width: 50%;
+    object-fit: contain;
+}
+
+
+.home_title {
+    text-align: center;
+    margin-bottom: 50px;
+}
