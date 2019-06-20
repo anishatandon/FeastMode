@@ -16,6 +16,7 @@ import * as ROUTES from '../../constants/routes';
 const App = () => (
   <Router>
     <div>
+
       <Navigation />
 
       <hr />
@@ -25,6 +26,7 @@ const App = () => (
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
+
     </div>
   </Router>
 );

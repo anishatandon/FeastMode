@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import firebase, { auth, provider } from '../Firebase/firebase.js';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+
+import HomePage from '../Home';
+
 
 class SignIn extends Component {
 
@@ -23,77 +30,33 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className='app'>
-        <header>
-         <div className="wrapper">
-           <h1>Fun Food Friends</h1>
-           {this.state.user ?
-             <button onClick={this.logout}>Logout</button>
-             :
-             <button onClick={this.login}>Log In</button>
-           }
-          </div>
-        </header>
+      <div>
 
+        <div className='app'>
+          <header>
+           <div className="wrapper">
+             <h1>Sign In</h1>
+            </div>
+          </header>
 
-
-
-
-        {this.state.user ?
-         <div>
-           <div className='user-profile'>
-             <img src={this.state.user.photoURL}/>
-           </div>
-
-           <div className='container'>
-             <section className='add-item'>
-               <form onSubmit={this.handleSubmit}>
-                 <input type="text" name="username" placeholder="What's your name?" value={this.state.user.displayName || this.state.user.email} />
-                 <input type="text" name="currentItem" placeholder="What are you bringing?" onChange={this.handleChange} value={this.state.currentItem} />
-                 <button>Add Item</button>
-               </form>
-             </section>
-
-             <section className='display-item'>
-               <div className="wrapper">
-                 <ul>
-                   {this.state.items.map((item) => {
-                     return (
-                       <li key={item.id}>
-                         <h3>{item.title}</h3>
-                         <p>brought by: {item.user}
-                            {item.user === this.state.user.displayName || item.user === this.state.user.email ?
-                              <button onClick={() => this.removeItem(item.id)}>Remove Item</button> : null}
-                         </p>
-                       </li>
-                     )
-                   })}
-                 </ul>
+          {this.state.user ?
+             <div>
+               <Router>
+                   <Route path={ROUTES.HOME} component={HomePage} />
+               </Router>
+               <button onClick={this.logout}>Logout</button>
                </div>
-             </section>
-
-           </div>
-         </div>
-         :
-         <div className='wrapper'>
-           <p>You must be logged in to see the potluck list and submit to it.</p>
-         </div>
-       }
+             :
+             <div className='wrapper'>
+               <p>Please sign in.</p>
+               <button onClick={this.login}>Log In</button>
+             </div>
+          }
 
 
-
-
-
-
-
-
+        </div>
 
       </div>
-
-
-
-
-
 
 
 
