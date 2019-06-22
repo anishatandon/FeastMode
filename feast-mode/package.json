@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^6.2.1",
     "react": "^16.8.6",
     "react-avatar-edit": "^0.8.2",
     "react-dom": "^16.8.6",
+    "react-google-login": "^5.0.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "recompose": "^0.30.0"
   },
   "scripts": {
     "start": "react-scripts start",

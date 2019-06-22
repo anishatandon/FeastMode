@@ -20,9 +20,6 @@ const Navigation = () => (
       <Link to={ROUTES.SIGN_OUT}>Sign Out</Link>
     </li>
     <li>
-      <Link to={ROUTES.AUTH}>Auth</Link>
-    </li>
-    <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
     </ul>

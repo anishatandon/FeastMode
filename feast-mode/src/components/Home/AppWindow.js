@@ -11,10 +11,10 @@ class AppWindow extends Component {
         console.log(this.props.name)
         return (
             <div className = "app_window">
-                <img src = {this.props.app.logo} className = "logo"/>
+                <img src = {this.props.app.logo} className = "logo" alt = {this.props.app.name}/>
                 <span> {this.props.app.name} </span>
                 <hr />
-                <img src = {food} className = "food"/>
+                <img src = {food} className = "food" alt = "Food"/>
             </div>
         )
     }
