@@ -11,6 +11,8 @@ import SignInPage from '../SignIn';
 import SignOutPage from '../SignOut';
 import AuthPage from '../Auth';
 import HomePage from '../Home';
+import Success from '../SignUp';
+
 
 import * as ROUTES from '../../constants/routes';
 
@@ -28,6 +30,7 @@ const App = () => (
       <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.AUTH} component={AuthPage} />
+      <Route path={ROUTES.SUCCESS} component={Success} />
       
     </div>
   </Router>
