@@ -2,6 +2,11 @@
     background-color: whitesmoke;
 }
 
+.home_title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .navbar{
     padding: 5px;
 }
@@ -61,10 +66,4 @@
 .food {
     max-width: 50%;
     object-fit: contain;
-}
-
-
-.home_title {
-    text-align: center;
-    margin-bottom: 50px;
 }
