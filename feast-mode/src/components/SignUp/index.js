@@ -10,7 +10,6 @@ import "./SignUp.css";
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
     <SignUpForm />
   </div>
 );
@@ -90,7 +89,7 @@ class SignUpFormBase extends Component {
     return (
       <div className = "sign-up-form">
         <h2>Sign Up!</h2>
-        <ImageUpload />
+        {/* <ImageUpload /> */}
         {/* <div className="image-cropper">
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div> */}
