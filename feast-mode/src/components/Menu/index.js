@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from './Header.js'
+import Profile from './Profile.js'
+import './Menu.css'
 
 const Menu = () => (
-    <div>
-      <h1> Menu </h1>
+    <div className = "menu">
+      <Header />
+      <Profile />
     </div>
   
 );

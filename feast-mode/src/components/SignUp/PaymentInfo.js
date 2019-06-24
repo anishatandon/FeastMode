@@ -77,7 +77,7 @@ class PaymentInfo extends Component{
           </div>
         );
       }
-    }
+}
 
 
 export default PaymentInfo

@@ -1,0 +1,18 @@
+.menu {
+    margin-left: 20px;
+}
+
+.menu img {
+    height: 76px;
+    margin-right:2%;
+    float: left;
+}
+
+.info {
+    width:42%;
+    float: left;
+}
+
+.clearfix {
+    clear:both
+}
