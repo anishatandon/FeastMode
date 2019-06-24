@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Avatar_App from "./Avatar_App";
+// import Avatar_App from "./Avatar_App";
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 
@@ -25,28 +25,70 @@ const INITIAL_STATE = {
   error: null,
 };
 
-export class SignUpFormBase extends Component {
+class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+    // this.handleChange=this.handleChange.bind(this)
+    // this.handleSubmit=this.handleSubmit.bind(this)
   }
 
 
   handleSubmit = event => {
-    console.log("submitted")
-    event.preventDefault()
+
+
+    const { username, email, phone, passwordOne } = this.state;
+
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase
+          .user(authUser.user.uid)
+          .set({
+            username,
+            email,
+            phone,
+          });
+      })
+      .then(authUser => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push('/pay');
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+
+      console.log("submitted")
+      event.preventDefault();
     //the next button is clicked, go to the billing info page
   }
 
   handleChange = event => {
-    const {name, value, type, checked} = event.target
-    type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
+    this.setState({ [event.target.name]: event.target.value });
+    // const {name, value, type, checked} = event.target
+    // type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
   };
 
 
   render() {
+
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      phone,
+      error,
+    } = this.state;
+
+    const isInvalid =
+      passwordOne !== passwordTwo ||
+      passwordOne === '' ||
+      email === '' ||
+      username === '';
+
+
     return (
       <div className = "sign-up-form">
         <h2>Sign Up!</h2>
@@ -54,10 +96,10 @@ export class SignUpFormBase extends Component {
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div> */}
 
-        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/pay')}}>
+        <form onSubmit={this.handleSubmit}>
           <input
             name="username"
-            value={this.state.username}
+            value={username}
             onChange={this.handleChange}
             type="text"
             placeholder="Full Name"
@@ -66,7 +108,7 @@ export class SignUpFormBase extends Component {
           <br/>
           <input
             name="email"
-            value={this.state.email}
+            value={email}
             onChange={this.handleChange}
             type="text"
             placeholder="Email Address"
@@ -75,7 +117,7 @@ export class SignUpFormBase extends Component {
           <br/>
           <input
             name="phone"
-            value={this.state.phone}
+            value={phone}
             onChange={this.handleChange}
             type="text"
             placeholder="Phone Number"
@@ -84,7 +126,7 @@ export class SignUpFormBase extends Component {
           <br/>
           <input
             name="passwordOne"
-            value={this.state.passwordOne}
+            value={passwordOne}
             onChange={this.handleChange}
             type="password"
             placeholder="Password"
@@ -93,15 +135,15 @@ export class SignUpFormBase extends Component {
           <br/>
           <input
             name="passwordTwo"
-            value={this.state.passwordTwo}
+            value={passwordTwo}
             onChange={this.handleChange}
             type="password"
             placeholder="Confirm Password"
           />
           <br/>
           <br/>
-            <button type="submit" className = "button">Next</button>
-          {this.state.error && <p>{this.state.error.message}</p>}
+            <button type="submit" className = "button" >Next</button>
+          {error && <p>{error.message}</p>}
         </form>
       </div>
     );
