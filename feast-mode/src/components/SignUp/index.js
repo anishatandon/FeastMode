@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Success from './Success';
-import "./SignUp.css";
+import { Link, withRouter } from 'react-router-dom';
 import Avatar_App from "./Avatar_App";
+import { compose } from 'recompose';
+import { withFirebase } from '../Firebase';
 
 import * as ROUTES from '../../constants/routes'; //EDITS
+import Success from './Success';
+import "./SignUp.css";
 
 const SignUpPage = () => (
   <div>
@@ -23,7 +25,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
-export class SignUpForm extends Component {
+export class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -112,6 +114,11 @@ const SignUpLink = () => (
   </p>
 );
 
-export default SignUpForm;
+const SignUpForm = compose(
+  withRouter,
+  withFirebase,
+)(SignUpFormBase);
 
-export { SignUpPage, SignUpLink };
+export default SignUpPage;
+
+export { SignUpForm, SignUpLink };
