@@ -4,7 +4,7 @@ import Success from './Success';
 import "./SignUp.css";
 import Avatar_App from "./Avatar_App";
 
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../../constants/routes'; //EDITS
 
 const SignUpPage = () => (
   <div>
@@ -51,14 +51,14 @@ export class SignUpForm extends Component {
 
 
   render() {
-    return (  
+    return (
       <div className = "sign-up-form">
         <h1>Sign Up!</h1>
         {/* <Avatar_App/> */}
         <div className="image-cropper">
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div>
-        
+
         <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success')}}>
           <input
             name="username"
