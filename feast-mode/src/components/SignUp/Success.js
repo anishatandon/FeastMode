@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 function Success(){
     return(
         <div>
-            <p>Success!</p>
+            <h1>Success! You are ready to feast!</h1>
         </div>
     )
 }

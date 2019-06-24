@@ -14,16 +14,11 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  step: 1,
   username: '',
   passwordOne: '',
   passwordTwo: '',
   email: '',
   phone: '',
-  creditCardNum: '',
-  creditCardType: '',
-  expirationDate: '',
-  billAddress: '',
   image: "http://placekitten.com/400/300",
   error: null,
 };
@@ -41,7 +36,6 @@ export class SignUpForm extends Component {
     console.log("submitted")
     event.preventDefault()
     //the next button is clicked, go to the billing info page
-
   }
 
   handleChange = event => {
@@ -53,13 +47,12 @@ export class SignUpForm extends Component {
   render() {
     return (
       <div className = "sign-up-form">
-        <h1>Sign Up!</h1>
-        {/* <Avatar_App/> */}
-        <div className="image-cropper">
+        <h2>Sign Up!</h2>
+        {/* <div className="image-cropper">
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
-        </div>
+        </div> */}
 
-        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success')}}>
+        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/pay')}}>
           <input
             name="username"
             value={this.state.username}
@@ -105,10 +98,7 @@ export class SignUpForm extends Component {
           />
           <br/>
           <br/>
-          {/* <Link to={ROUTES.HOME}>  */}
             <button type="submit" className = "button">Next</button>
-          {/* </Link> */}
-
           {this.state.error && <p>{this.state.error.message}</p>}
         </form>
       </div>
