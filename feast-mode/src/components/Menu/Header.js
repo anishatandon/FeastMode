@@ -1,8 +1,13 @@
 import React from 'react'
+import BackButton from './BackButton.js'
 
 function Header() {
     return (
-        <h1> Menu </h1>
+        <div>
+            <BackButton />
+            <h1> Menu </h1>
+        </div>
+        
     )
 }
 
