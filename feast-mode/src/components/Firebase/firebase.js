@@ -1,8 +1,7 @@
 import app from 'firebase/app';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/storage';
-
 
 const config = {
   apiKey: "AIzaSyA2GpyDPNZxR9u5_iA425p-3XLKrPwjAyA",
@@ -20,6 +19,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
+    this.storage = app.storage(); 
   }
 
   // *** Auth API ***
@@ -43,10 +43,10 @@ class Firebase {
 }
 
 
-// firebase.initializeApp(config);
+//   firebase.initializeApp(config);
 //
 //   export const provider = new firebase.auth.GoogleAuthProvider();
 //   export const auth = firebase.auth();
-export const storage = firebase.storage();
+export const storage = Firebase.storage;
 
-  export default Firebase;
+export default Firebase;
