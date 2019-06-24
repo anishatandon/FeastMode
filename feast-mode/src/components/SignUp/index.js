@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Success from './Success';
+import ImageUpload from "./ImageUpload";
 import "./SignUp.css";
-import Avatar_App from "./Avatar_App";
+// import Avatar_App from "./Avatar_App";
 
-import * as ROUTES from '../../constants/routes'; //EDITS
+import * as ROUTES from '../../constants/routes'; 
 
 const SignUpPage = () => (
   <div>
@@ -48,6 +48,7 @@ export class SignUpForm extends Component {
     return (
       <div className = "sign-up-form">
         <h2>Sign Up!</h2>
+        <ImageUpload />
         {/* <div className="image-cropper">
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div> */}

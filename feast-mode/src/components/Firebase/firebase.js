@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import firebase from 'firebase'
 import 'firebase/auth';
+import 'firebase/storage';
 
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
     authDomain: "feast-mode.firebaseapp.com",
     databaseURL: "https://feast-mode.firebaseio.com",
     projectId: "feast-mode",
-    storageBucket: "",
+    storageBucket: "feast-mode.appspot.com", // added storage in firebase - AL
     messagingSenderId: "824628144237",
     appId: "1:824628144237:web:e2171ef9638afce7",
 }
@@ -41,5 +42,6 @@ firebase.initializeApp(config);
 
   export const provider = new firebase.auth.GoogleAuthProvider();
   export const auth = firebase.auth();
+  export const storage = firebase.storage();
 
   export default firebase;
