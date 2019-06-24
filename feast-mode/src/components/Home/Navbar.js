@@ -5,7 +5,7 @@ class Navbar extends Component{
         return(
             <div className = "navbar">
                 <ul>
-                    <li> <button> Menu </button></li>
+                    <li> <button onClick = {(e) => {e.preventDefault(); this.props.history.push('/menu')}}> Menu </button></li>
                     <li style = {{float: "right"}}> <button> Look for </button> </li>
                 </ul>
             </div>
