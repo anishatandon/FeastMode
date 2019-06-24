@@ -6,11 +6,11 @@ import {
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
+import SignUpPage from '../SignUp/index.js';
 import SignInPage from '../SignIn';
 import SignOutPage from '../SignOut';
 import HomePage from '../Home';
-import Success from '../SignUp';
+import Success from '../SignUp/Success';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -28,6 +28,7 @@ const App = () => (
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.SUCCESS} component={Success} />
     </div>
   </Router>
 );

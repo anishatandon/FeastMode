@@ -14,15 +14,15 @@ class Avatar_App extends React.Component {
     this.onCrop = this.onCrop.bind(this)
     this.onClose = this.onClose.bind(this)
   }
-  
+
   onClose() {
     this.setState({preview: null})
   }
-  
+
   onCrop(preview) {
     this.setState({preview})
   }
-  
+
   render () {
     return (
       <div>
