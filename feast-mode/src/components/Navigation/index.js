@@ -25,16 +25,10 @@ const NavigationAuth = () => (
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
     <li>
-      <Link to={ROUTES.SIGN_OUT}>Sign Out</Link>
-    </li>
-    <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
     <li>
       <Link to={ROUTES.MENU}>Menu</Link>
-    </li>
-    <li>
-      <SignOutButton />
     </li>
     </ul>
   </div>
