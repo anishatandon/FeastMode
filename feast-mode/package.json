@@ -3,8 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "firebase": "^6.2.2",
+=======
+    "firebase": "^6.2.1",
+    "prop-types": "^15.7.2",
+>>>>>>> 9e6f723553db6bf95284bfa512de8df7966701a8
     "react": "^16.8.6",
+    "react-avatar": "^3.6.0",
     "react-avatar-edit": "^0.8.2",
     "react-avatar-editor": "^11.0.7",
     "react-dom": "^16.8.6",

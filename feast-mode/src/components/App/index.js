@@ -11,7 +11,12 @@ import SignInPage from '../SignIn';
 import SignOutPage from '../SignOut';
 import HomePage from '../Home';
 import Success from '../SignUp/Success';
+<<<<<<< HEAD
 import PaymentInfo from '../SignUp/PaymentInfo';
+=======
+import Menu from '../Menu';
+
+>>>>>>> 9e6f723553db6bf95284bfa512de8df7966701a8
 
 import * as ROUTES from '../../constants/routes';
 
@@ -29,7 +34,11 @@ const App = () => (
       <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SUCCESS} component={Success} />
+<<<<<<< HEAD
       <Route path={ROUTES.PAY} component={PaymentInfo} />
+=======
+      <Route path={ROUTES.MENU} component={Menu} />
+>>>>>>> 9e6f723553db6bf95284bfa512de8df7966701a8
     </div>
   </Router>
 );
