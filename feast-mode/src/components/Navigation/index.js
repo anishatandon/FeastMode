@@ -22,6 +22,10 @@ const Navigation = () => (
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
+    <li>
+      <Link to={ROUTES.MENU}>Menu</Link>
+    </li>
+
     </ul>
   </div>
 );
