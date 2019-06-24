@@ -8,6 +8,7 @@
     "react": "^16.8.6",
     "react-avatar": "^3.6.0",
     "react-avatar-edit": "^0.8.2",
+    "react-avatar-editor": "^11.0.7",
     "react-dom": "^16.8.6",
     "react-google-login": "^5.0.4",
     "react-router-dom": "^5.0.1",
