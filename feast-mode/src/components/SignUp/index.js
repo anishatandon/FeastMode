@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 // import Avatar_App from "./Avatar_App";
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
+import ImageUpload from "./ImageUpload";
 
 import * as ROUTES from '../../constants/routes'; 
 import "./SignUp.css";
