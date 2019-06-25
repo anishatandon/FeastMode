@@ -40,6 +40,11 @@ body {
     padding: 10px;
 }
 
+.button-dark {
+    border: none;
+    border-radius: 20px;
+}
+
 .image-cropper {
     width: 100px;
     height: 100px;

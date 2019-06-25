@@ -1,7 +1,8 @@
 import React from 'react'
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar.js'
+import SearchBar from './SearchBar.js';
+import "../SignUp/SignUp.css";
 
 function Navbar() {
     return(
@@ -9,7 +10,7 @@ function Navbar() {
             <ul>
                 <li> 
                     <Link to = {ROUTES.MENU} >
-                        <button> Menu </button>
+                        <button className="button-dark"> Menu </button>
                     </Link>
                 </li>
                 <li style = {{float: "right"}}> 
