@@ -17,7 +17,6 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     align-items: center;
     text-align: center;
-    
 }
 
 .button {
@@ -67,4 +66,26 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #60666d;
+}
+
+
+
+.sign-up-form-2{
+    overflow: auto;
+    background-color: whitesmoke;
+    margin: auto;
+    width: 30%;
+    padding: 5px 15px 25px 15px;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    color:  #333;
+    font-family: Helvetica, Arial, sans-serif;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    max-width: 10%;
+    object-fit: contain;
 }

@@ -16,8 +16,8 @@ class PaymentInfo extends Component{
       }
     
       handleSubmit = event => {
-        console.log("submitted")
         event.preventDefault()
+        this.props.history.push('/appsyouhave')
         //the next button is clicked, go to success page
       }
     
@@ -32,7 +32,7 @@ class PaymentInfo extends Component{
           <div className = "sign-up-form">
             <h2>Payment Info</h2>
     
-            <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success')}}>
+            <form onSubmit={this.handleSubmit}>
                 <input
                     name="creditCardNum"
                     value={this.state.creditCardNum}
@@ -72,7 +72,7 @@ class PaymentInfo extends Component{
                 </label>
                 <br/>
                 <br />
-                <button type="submit" className = "button">Submit</button>
+                <button type="submit" className = "button">Next</button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>
