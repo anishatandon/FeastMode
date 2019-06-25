@@ -77,6 +77,7 @@ class AppsYouHave extends Component{
                 <img src={ubereats} className="logo"/>
                 <br/>
                 <br />
+                <button type="submit" className = "button">Next</button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>
