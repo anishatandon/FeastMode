@@ -11,10 +11,10 @@ class AppWindow extends Component {
         console.log(this.props.name)
         return (
             <div className = "app_window">
-                <img src = {this.props.app.logo} className = "logo" alt = {this.props.app.name}/>
-                <span> {this.props.app.name} </span>
+                <img src = {this.props.logo} className = "logo" alt = {this.props.name}/>
+                <span> {this.props.name} </span>
                 <hr />
-                <img src = {food} className = "food" alt = "Food"/>
+                <iframe name="Framename" src="http://allwebco-templates.com/support/S_script_IFrame.htm" width="550" height="550" frameborder="0" scrolling="yes" style={{ width: "100%" }}> </iframe> 
             </div>
         )
     }

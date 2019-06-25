@@ -11,7 +11,7 @@ const appsData = [
     },
     {
         id: 1,
-        name: "UberEats",
+        name: "UberEATS",
         logo: ubereats
     },
     {
