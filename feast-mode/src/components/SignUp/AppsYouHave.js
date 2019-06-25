@@ -19,8 +19,8 @@ class AppsYouHave extends Component{
       }
     
       handleSubmit = event => {
-        event.preventDefault()
-        this.props.history.push('/success')
+        event.preventDefault();
+        this.props.history.push('/success');
       }
     
       handleChange = event => {
@@ -35,7 +35,7 @@ class AppsYouHave extends Component{
           <div className = "sign-up-form-2">
             <h2>Which delivery apps do you have?</h2>
     
-            <form onSubmit={this.handle}>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     <input 
                         type="checkbox" 
@@ -77,7 +77,6 @@ class AppsYouHave extends Component{
                 <img src={ubereats} className="logo"/>
                 <br/>
                 <br />
-                <button type="submit" className = "button">Submit</button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>
