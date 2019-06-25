@@ -34,6 +34,9 @@ const NavigationAuth = () => (
       <Link to={ROUTES.MENU}>Menu</Link>
     </li>
     <li>
+      <Link to={ROUTES.PASSWORD_CHANGE}>Password Change</Link>
+    </li>
+    <li>
       <SignOutButton />
     </li>
     </ul>

@@ -13,6 +13,7 @@ import HomePage from '../Home';
 import Success from '../SignUp/Success';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
+import PasswordChangePage from '../Profile/password_change.js';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -34,6 +35,7 @@ const App = () => (
       <Route path={ROUTES.SUCCESS} component={Success} />
       <Route path={ROUTES.PAY} component={PaymentInfo} />
       <Route path={ROUTES.MENU} component={Menu} />
+      <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
     </div>
   </Router>
 );

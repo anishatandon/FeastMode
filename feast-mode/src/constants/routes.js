@@ -6,3 +6,4 @@ export const HOME = '/home';
 export const SUCCESS = '/success';
 export const PAY = '/pay';
 export const MENU = '/menu';
+export const PASSWORD_CHANGE = '/settings/password_change.js';
