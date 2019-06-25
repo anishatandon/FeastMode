@@ -14,6 +14,7 @@ import Success from '../SignUp/Success';
 import AppsYouHave from '../SignUp/AppsYouHave';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
+import Restaurants from '../Restaurants'
 
 
 import * as ROUTES from '../../constants/routes';
@@ -36,6 +37,8 @@ const App = () => (
       <Route path={ROUTES.PAY} component={PaymentInfo} />
       <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
       <Route path={ROUTES.MENU} component={Menu} />
+      <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
+
     </div>
   </Router>
 );

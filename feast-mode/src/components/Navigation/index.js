@@ -29,6 +29,9 @@ const NavigationAuth = () => (
     <li>
       <Link to={ROUTES.MENU}>Menu</Link>
     </li>
+    <li>
+      <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
+    </li>
     </ul>
   </div>
 );

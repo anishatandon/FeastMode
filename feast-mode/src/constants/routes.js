@@ -7,3 +7,4 @@ export const SUCCESS = '/success';
 export const PAY = '/pay';
 export const MENU = '/menu';
 export const APPS_YOU_HAVE = '/appsyouhave';
+export const RESTAURANTS = '/restaurants'
