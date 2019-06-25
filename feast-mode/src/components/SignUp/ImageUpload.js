@@ -13,10 +13,19 @@ class ImageUpload extends Component {
         this.handleUpload = this.handleUpload.bind(this);
     }
 
-    handleChange = e => {
+    handleChange(e){
         if(e.target.files[0]) {
             const image = e.target.files[0];
             this.setState(() => ({image}));
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.image !== prevProps.image){
+            console.log("upload worked")
+        }
+        else{
+            console.log("upload failed")
         }
     }
 
@@ -47,7 +56,7 @@ class ImageUpload extends Component {
             <div>
                 <progress value={this.state.progress} max="100"/>
 
-                <input type="file" onChange={this.handleChange}/>
+                <input type="file" onChange={(e) => this.handleChange(e)}/>
                 <button onClick={this.handleUpload}>Upload</button>
                 <br/>
                 <img src={this.state.url} alt="Uploaded images"/>

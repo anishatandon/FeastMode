@@ -11,6 +11,7 @@ import SignInPage from '../SignIn';
 import SignOutPage from '../SignOut';
 import HomePage from '../Home';
 import Success from '../SignUp/Success';
+import AppsYouHave from '../SignUp/AppsYouHave';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
 
@@ -33,6 +34,7 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SUCCESS} component={Success} />
       <Route path={ROUTES.PAY} component={PaymentInfo} />
+      <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
       <Route path={ROUTES.MENU} component={Menu} />
     </div>
   </Router>
