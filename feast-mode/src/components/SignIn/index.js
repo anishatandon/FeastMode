@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   image: null,
 }
 
+const USER = null;
 
 class SignInFormBase extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class SignInFormBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
+        USER = this.props.firebase.userID();
       })
       .catch(error => {
         this.setState({ error });
@@ -86,4 +88,4 @@ const SignInForm = compose(
 )(SignInFormBase);
 
 
-export default SignInForm;
+export { SignInForm, USER };
