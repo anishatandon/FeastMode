@@ -1,9 +1,27 @@
-.landing {
-    text-align: center;
-    
+
+.landing-box {
+    background-color: white;
+    padding: 30px 0px 30px 0px; /* Padding around content */
+
+    /* Items perfectly centered in box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 50px 800px; /* Box dimensions */
+
+    /* Shadow effect  */
+    border: 1px solid #efefef;
+    box-shadow:
+        0 1px 5px rgba(0,0,0,0.15),
+        0 10px 0 -5px #eee;
 }
 
-.logo {
+.landing-logo {
+    width: 100px; /* Size */
+
+    /* Animation supported in multiple browsers */
     -webkit-transition: transform 1s ease;
     -moz-transition: transform 1s ease;
     -ms-transition: transform 1s ease;
@@ -11,13 +29,21 @@
     transition: transform 1s ease;
 }
 
-.logo:hover {
+.landing-logo:hover {
     transform: translateX( -1px ) rotateY( 180deg ); /* ALSO EXTRA TRANSFORM PROPERTIES ADDED FOR COMPATIBILITY*/
     -ms-transform: translateX( -1px ) rotateY(180deg); /* IE 9 */
     -webkit-transform: translateX( -1px ) rotateY(180deg); /* Chrome, Sa fari, Opera */
 }
 
-.button {
+.landing h1 {
+    color: #2C3E50;
+}
+
+.landing-link {
+    text-align: center;
+}
+
+.landing button {
     border: none;
     border-radius: 20px;
     font-family: Helvetica, Arial, sans-serif;
