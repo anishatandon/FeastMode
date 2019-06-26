@@ -4,23 +4,7 @@ body {
 }
 
 
-.sign-up-form{
-    overflow: auto;
-    background-color: whitesmoke;
-    margin: auto;
-    width: 30%;
-    padding: 5px 15px 25px 15px;
-    border: 3px solid black;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    color:  #333;
-    font-family: Helvetica, Arial, sans-serif;
-    align-items: center;
-    text-align: center;
-}
-
-
-.landing-box {
+.sign-up-form {
     overflow: auto;
     background-color: white;
     padding: 30px 0px 30px 0px; /* Padding around content */
