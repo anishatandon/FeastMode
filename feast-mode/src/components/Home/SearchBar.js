@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './SearchBar.css'
 
 class SearchBar extends Component {
     constructor() {
@@ -15,7 +16,7 @@ class SearchBar extends Component {
 
     render() {
         return(
-            <form className = "search" /* onSubmit = {this.handleSubmit} */> 
+            <form className = "search" /* onSubmit = {this.handleSubmit} */ className = "search-bar"> 
                 <input 
                     type = "text"
                     name = "search"

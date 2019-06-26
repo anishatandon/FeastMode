@@ -4,7 +4,7 @@
 }
 
 .landing-box {
-    overflow: auto;
+    overflow: auto; /* Control screen resizing */
     background-color: white;
     padding: 30px 0px 30px 0px; /* Padding around content */
 
@@ -46,13 +46,4 @@
 
 .landing-link {
     text-align: center;
-}
-
-.landing button {
-    border: none;
-    border-radius: 20px;
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: white;
-    background:#2C3E50;
 }
