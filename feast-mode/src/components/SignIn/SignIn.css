@@ -18,11 +18,11 @@
 .signin-form input[type=text], .signin-form input[type=password]{
     font-size: 15px;
     color: #2C3E50;
-    padding-left: 3%;
+    padding-left: 10px;
     outline: none;
 
     /* Box design */
-    margin: 3% 1% 30px 1%;
+    margin: 3% 1% 10% 1%;
     width: 290px;
     height: 35px;
     border-radius: 5px;
