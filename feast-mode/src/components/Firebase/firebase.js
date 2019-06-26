@@ -19,7 +19,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
-    this.storage = app.storage(); 
+    this.storage = app.storage();
   }
 
   // *** Auth API ***
@@ -32,10 +32,20 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = email =>
+    this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
+
+  doEmailUpdate = email =>
+    this.auth.currentUser.updateEmail(email);
+
+  doProfileUpdate = dictionary =>
+    this.auth.currentUser.updateProfile(dictionary);
+
+  doDeleteUser = () =>
+    this.auth.delete()
 
   user = uid => this.db.ref(`users/${uid}`);
 

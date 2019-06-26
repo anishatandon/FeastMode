@@ -14,6 +14,8 @@ import Success from '../SignUp/Success';
 import AppsYouHave from '../SignUp/AppsYouHave';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
+import PasswordChangePage from '../Profile/password_change.js';
+import ProfileChangePage from '../Profile/profile_change.js';
 import Restaurants from '../Restaurants'
 
 
@@ -37,6 +39,8 @@ const App = () => (
       <Route path={ROUTES.PAY} component={PaymentInfo} />
       <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
       <Route path={ROUTES.MENU} component={Menu} />
+      <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+      <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
       <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
 
     </div>
