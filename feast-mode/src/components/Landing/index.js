@@ -8,7 +8,7 @@ const Landing = () => (
   <div className = "landing">
     <img className = "logo" src = {logo} alt = "Logo" />
     <h1> Join the Feast! </h1>
-    <Link to = {ROUTES.SIGN_IN}><button className="button"> Sign In </button></Link> 
+    <Link to = {ROUTES.SIGN_IN}><button className="button"> Log In </button></Link> 
     <br />
     <br />
     <Link to = {ROUTES.SIGN_UP}><button className="button"> Sign Up </button></Link>
