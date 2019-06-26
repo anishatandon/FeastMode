@@ -63,7 +63,7 @@ class PaymentInfo extends Component{
                 <label>
                     Card Type: 
                     <select className="select-box" value={this.state.creditCardType} onChange={this.handleChange} name="creditCardType">
-                    <option value="amex">American Express</option>
+                    <option value="none">-- Choose One --</option>
                         <option value="amex">American Express</option>
                         <option value="visa">Visa</option>
                         <option value="mastercard">Mastercard</option>
