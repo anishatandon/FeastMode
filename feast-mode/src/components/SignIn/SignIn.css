@@ -1,0 +1,37 @@
+.signin-form {
+    margin: 0 auto;
+    margin-top: 20px;
+    
+}
+
+.signin-form label {
+    margin-left: 10px;
+    color: #2C3E50;
+    font-size: 14px;
+}
+
+.signin-form input {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    outline: none;
+}
+
+.signin-form input[type=text],
+input[type=password] {
+    
+    padding-left: 8px;
+    color: #566573;
+    font-size: 15px;
+    margin: 7px 10px 30px 10px;
+    width: 280px;
+    height: 35px;
+
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: white;
+    background-color: #F4F6F6;
+}
+
+.signin-form button {
+    margin-left: 132px;
+}

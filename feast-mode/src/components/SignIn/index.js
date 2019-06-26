@@ -1,18 +1,10 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
+import { compose } from 'recompose'
 
-import { SignUpLink } from '../SignUp';
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-
-const SignInPage = () => (
-  <div>
-    <h1>Log In</h1>
-    <SignInForm />
-    <SignUpLink />
-  </div>
-);
+import { withFirebase } from '../Firebase'
+import './SignIn.css'
 
 
 const INITIAL_STATE = {
@@ -22,13 +14,12 @@ const INITIAL_STATE = {
   friends: [],
   orders: [],
   image: null,
-};
+}
 
 
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
-
     this.state = { ...INITIAL_STATE }
   }
 
@@ -59,36 +50,37 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className = "signin-form">
+
+        <label> Email </label>
         <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
+          name = "email"
+          value = {email}
+          onChange = {this.onChange}
+          type = "text"
         />
+
+        <label> Password </label>
         <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
+          name = "password"
+          value = {password}
+          onChange = {this.onChange}
+          type = "password"
         />
-        <button disabled={isInvalid} type="submit">
-          Log In
-        </button>
+        
+        <button disabled={isInvalid} type = "submit"> Log In </button>
 
         {error && <p>{error.message}</p>}
-      </form>
 
+      </form>
     );
   }
 }
+
 const SignInForm = compose(
   withRouter,
   withFirebase,
 )(SignInFormBase);
 
-export default SignInPage;
 
-export { SignInForm };
+export default SignInForm;

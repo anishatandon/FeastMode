@@ -1,18 +1,27 @@
 import React from 'react'
 import './Landing.css'
-import logo from './logo.png'
-import * as ROUTES from '../../constants/routes'
-import { Link } from 'react-router-dom'
+
+import SignInForm from '../SignIn/index.js'
+import { SignUpLink } from '../SignUp/index.js'
+import logo from './images/logo.png'
+
 
 const Landing = () => (
-  <div className = "landing">
-    <img className = "logo" src = {logo} alt = "Logo" />
-    <h1> Join the Feast! </h1>
-    <Link to = {ROUTES.SIGN_IN}><button className="button"> Log In </button></Link> 
-    <br />
-    <br />
-    <Link to = {ROUTES.SIGN_UP}><button className="button"> Sign Up </button></Link>
+  <div className = "landing"> 
+
+    <div className = "landing-box">
+      <img className = "landing-logo" src = {logo} alt = "Logo" />
+      <h1> Join the Feast! </h1>
+      <SignInForm />
+    </div>
+
+    
+
+    <div className = "landing-link"> 
+      <SignUpLink />
+    </div>
+
   </div>
-);
+)
 
 export default Landing
