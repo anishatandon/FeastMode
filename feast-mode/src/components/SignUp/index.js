@@ -30,29 +30,45 @@ class SignUpFormBase extends Component {
 
 
   handleSubmit = event => {
-    const { username, email, phone, passwordOne } = this.state;
+    const { username, email, phone, passwordOne, passwordTwo } = this.state;
+    
+    const isInvalid =
+    passwordOne !== passwordTwo ||
+    passwordOne === '' ||
+    email === '' ||
+    phone === '' ||
+    username === '';
 
-    this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        return this.props.firebase
-          .user(authUser.user.uid)
-          .set({
-            username,
-            email,
-            phone,
-          })
-      })
-      .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push('/pay');
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
+    event.preventDefault();
 
-      event.preventDefault();
+    if (isInvalid===true) {
+      if (passwordOne === '' || email === '' || phone === '' || username === ''){
+        alert("Please fill out all fields")
+      }else{
+        alert("Passwords must match")
+      }
+    }
+    else {
+      this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, passwordOne)
+        .then(authUser => {
+          // Create a user in your Firebase realtime database
+          return this.props.firebase
+            .user(authUser.user.uid)
+            .set({
+              username,
+              email,
+              phone,
+            })
+        })
+        .then(authUser => {
+          this.setState({ ...INITIAL_STATE });
+          this.props.history.push('/pay');
+        })
+        .catch(error => {
+          this.setState({ error });
+        });
+    }
   }
 
   handleChange = event => {
@@ -130,14 +146,8 @@ class SignUpFormBase extends Component {
           />
           <br/>
           <br/>
-          <button disabled={isInvalid} type="submit" className ="button">Next</button>
-          
-          {/* can't figure out how to get these to only pop up after ou click next */}
-          {email === '' && <p>please provide email</p>}
-          {phone === '' && <p>please provide phone</p>}
-          {username === '' && <p>please provide username</p>}
-          {passwordOne === '' && <p>please provide password</p>}
-          {passwordOne !== passwordTwo && <p>passwords must match</p>}
+          <button onMouseOver={this.handleClick} type="submit" className ="button">Next</button>
+          {/* disabled={isInvalid} */}
           {error && <p>{error.message}</p>}
         </form>
       </div>
