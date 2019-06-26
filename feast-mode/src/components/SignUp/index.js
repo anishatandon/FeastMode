@@ -3,13 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 // import Avatar_App from "./Avatar_App";
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
+import ImageUpload from "./ImageUpload";
 
 import * as ROUTES from '../../constants/routes';
 import "./SignUp.css";
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
     <SignUpForm />
   </div>
 );
@@ -90,6 +90,7 @@ class SignUpFormBase extends Component {
     return (
       <div className = "sign-up-form">
         <h2>Sign Up!</h2>
+        {/* <ImageUpload /> */}
         {/* <div className="image-cropper">
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div> */}

@@ -14,7 +14,7 @@ import Success from '../SignUp/Success';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
 import PasswordChangePage from '../Profile/password_change.js';
-
+import ProfileChangePage from '../Profile/profile_change.js';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -36,6 +36,7 @@ const App = () => (
       <Route path={ROUTES.PAY} component={PaymentInfo} />
       <Route path={ROUTES.MENU} component={Menu} />
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+      <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
     </div>
   </Router>
 );

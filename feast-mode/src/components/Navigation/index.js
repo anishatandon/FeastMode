@@ -25,9 +25,6 @@ const NavigationAuth = () => (
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
     <li>
-      <Link to={ROUTES.SIGN_OUT}>Sign Out</Link>
-    </li>
-    <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
     <li>
@@ -35,6 +32,9 @@ const NavigationAuth = () => (
     </li>
     <li>
       <Link to={ROUTES.PASSWORD_CHANGE}>Password Change</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.PROFILE_CHANGE}>Profile Change</Link>
     </li>
     <li>
       <SignOutButton />
