@@ -88,4 +88,4 @@ const SignInForm = compose(
 )(SignInFormBase);
 
 
-export { SignInForm, USER };
+export default SignInForm
