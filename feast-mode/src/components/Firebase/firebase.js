@@ -50,6 +50,8 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  userID = () => this.auth.currentUser
 }
 
 
