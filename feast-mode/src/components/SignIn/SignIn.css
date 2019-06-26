@@ -39,17 +39,33 @@
     border: 1px solid orange;
 }
 
-/* Highlight effects press */
+/* Highlight effects writing */
 .signin-form input[type=text]:focus, .signin-form input[type=password]:focus { 
     border-bottom: 1px solid orange;
     background-color:  #eef1f1;
 }
 
 .signin-form button {
+    background:#2C3E50;
     border: none;
     border-radius: 10px;
+    padding: 5px 14px 5px 14px;
+
     font-size: 17px;
     letter-spacing: 1px;
+    font-weight: 500;
     color: white;
-    background:#2C3E50;
+
+    /* Transitions */
+    transition: background-color 0.10s;
+}
+
+/* Highlight effects hover */
+.signin-form button:hover {
+    background-color: #1f2b38;
+}
+
+/* Highlight effects click */
+.signin-form button:active {
+    background-color: #3d5771;
 }
