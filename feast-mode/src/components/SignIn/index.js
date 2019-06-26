@@ -5,10 +5,11 @@ import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import "../SignUp/SignUp.css";
 
 const SignInPage = () => (
   <div>
-    <h1>Log In</h1>
+    <h1>Login</h1>
     <SignInForm />
     <SignUpLink />
   </div>
@@ -74,8 +75,8 @@ class SignInFormBase extends Component {
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
-          Log In
+        <button disabled={isInvalid} type="submit" className="button">
+          Login
         </button>
 
         {error && <p>{error.message}</p>}
