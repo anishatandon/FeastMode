@@ -8,7 +8,7 @@
     overflow: auto; /* Control screen resizing */
     position: relative;
     background-color: white;
-    padding: 2% 0% 2% 0%; /* Padding around content */
+    padding: 30px 0px 30px 0px; /* Padding around content */
 
     /* Items perfectly centered in box */
     display: flex;
