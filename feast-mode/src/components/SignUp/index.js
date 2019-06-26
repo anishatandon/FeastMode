@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import ImageUpload from "./ImageUpload";
 
-import * as ROUTES from '../../constants/routes'; 
+import * as ROUTES from '../../constants/routes';
 import "./SignUp.css";
 
 const SignUpPage = () => (
@@ -46,7 +46,7 @@ class SignUpFormBase extends Component {
             username,
             email,
             phone,
-          });
+          })
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
@@ -72,10 +72,11 @@ class SignUpFormBase extends Component {
 
     const {
       username,
-      email,
       passwordOne,
       passwordTwo,
+      email,
       phone,
+      image,
       error,
     } = this.state;
 
@@ -140,7 +141,7 @@ class SignUpFormBase extends Component {
           />
           <br/>
           <br/>
-            <button type="submit" className = "button" >Next</button>
+            <button disabled={isInvalid} type="submit" className = "button" >Next</button>
           {error && <p>{error.message}</p>}
         </form>
       </div>
@@ -161,4 +162,4 @@ const SignUpForm = compose(
 
 export default SignUpPage;
 
-export { SignUpForm, SignUpLink };
+export { SignUpForm, SignUpLink, INITIAL_STATE };

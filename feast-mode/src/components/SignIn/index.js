@@ -19,6 +19,9 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
+  friends: [],
+  orders: [],
+  image: null,
 };
 
 
