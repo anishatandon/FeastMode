@@ -28,6 +28,10 @@ body {
     color: #2C3E50;
 }
 
+.sign-up-form button {
+    background: #2C3E50;
+}
+
 .button {
     border: none;
     border-radius: 20px;
