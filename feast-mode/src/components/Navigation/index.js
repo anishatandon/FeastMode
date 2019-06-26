@@ -34,7 +34,6 @@ const NavigationAuth = () => (
       <Link to={ROUTES.PROFILE_CHANGE}>Profile Change</Link>
     </li>
     <li>
-      <SignOutButton />
       <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
     </li>
     </ul>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Landing.css'
-import logo from './dinner.png' // Font is Monserrat
+import logo from './logo.png'
 import * as ROUTES from '../../constants/routes'
 import { Link } from 'react-router-dom'
 
