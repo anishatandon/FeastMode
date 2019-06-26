@@ -43,7 +43,6 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-
   render() {
     const { email, password, error } = this.state;
 
@@ -52,21 +51,21 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit} className = "signin-form">
 
-        <label> Email </label>
+        <label> Email </label> <br />
         <input
           name = "email"
           value = {email}
           onChange = {this.onChange}
           type = "text"
-        />
+        /> <br />
 
-        <label> Password </label>
+        <label> Password </label> <br />
         <input
           name = "password"
           value = {password}
           onChange = {this.onChange}
           type = "password"
-        />
+        /> <br />
         
         <button disabled={isInvalid} type = "submit"> Log In </button>
 

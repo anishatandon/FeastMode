@@ -15,8 +15,6 @@ const Landing = () => (
       <SignInForm />
     </div>
 
-    
-
     <div className = "landing-link"> 
       <SignUpLink />
     </div>
