@@ -1,5 +1,10 @@
 
+.landing {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
 .landing-box {
+    overflow: auto;
     background-color: white;
     padding: 30px 0px 30px 0px; /* Padding around content */
 
@@ -46,9 +51,8 @@
 .landing button {
     border: none;
     border-radius: 20px;
-    font-family: Helvetica, Arial, sans-serif;
     font-size: 15px;
     letter-spacing: 1px;
     color: white;
-    background:#333;
+    background:#2C3E50;
 }
