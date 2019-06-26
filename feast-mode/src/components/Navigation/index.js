@@ -22,9 +22,6 @@ const NavigationAuth = () => (
   <div>
     <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
     <li>
@@ -38,6 +35,7 @@ const NavigationAuth = () => (
     </li>
     <li>
       <SignOutButton />
+      <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
     </li>
     </ul>
   </div>

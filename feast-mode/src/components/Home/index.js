@@ -4,7 +4,7 @@ import Navbar from './Navbar.js'
 import AppWindow from './AppWindow.js'
 import appsData from './appsData.js'
 
-const appWindowComponents = appsData.map(app => <AppWindow key = {app.id} app = {app} />)
+const appWindowComponents = appsData.map(app => <AppWindow key = {app.id} {...app} />)
 
 function Home() {
   return (

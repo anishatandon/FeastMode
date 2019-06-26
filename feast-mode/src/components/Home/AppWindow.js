@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import food from './images/food.jpg'
+import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom';
 
 class AppWindow extends Component {
     constructor(props) {
@@ -10,12 +12,15 @@ class AppWindow extends Component {
     render() {
         console.log(this.props.name)
         return (
-            <div className = "app_window">
-                <img src = {this.props.app.logo} className = "logo" alt = {this.props.app.name}/>
-                <span> {this.props.app.name} </span>
-                <hr />
-                <img src = {food} className = "food" alt = "Food"/>
-            </div>
+            <Link to = {ROUTES.RESTAURANTS}>
+                <div className = "app_window">
+                    <img src = {this.props.logo} className = "logo" alt = {this.props.name}/>
+                    <span> {this.props.name} </span>
+                    <hr />
+                    <img src = {food} alt = "food" style = {{ width: "100%" }}/> 
+                </div>
+            </Link>
+            
         )
     }
 }

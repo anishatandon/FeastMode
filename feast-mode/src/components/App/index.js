@@ -11,10 +11,13 @@ import SignInPage from '../SignIn';
 import SignOutPage from '../SignOut';
 import HomePage from '../Home';
 import Success from '../SignUp/Success';
+import AppsYouHave from '../SignUp/AppsYouHave';
 import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
 import PasswordChangePage from '../Profile/password_change.js';
 import ProfileChangePage from '../Profile/profile_change.js';
+import Restaurants from '../Restaurants'
+
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -34,9 +37,12 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SUCCESS} component={Success} />
       <Route path={ROUTES.PAY} component={PaymentInfo} />
+      <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
       <Route path={ROUTES.MENU} component={Menu} />
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
       <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
+      <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
+
     </div>
   </Router>
 );
