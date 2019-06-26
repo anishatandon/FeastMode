@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   image: null,
 }
 
+const USER = null;
 
 class SignInFormBase extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class SignInFormBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
+        USER = this.props.firebase.userID();
       })
       .catch(error => {
         this.setState({ error });
@@ -51,21 +53,25 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit} className = "signin-form">
 
-        <label> Email </label> <br />
-        <input
-          name = "email"
-          value = {email}
-          onChange = {this.onChange}
-          type = "text"
-        /> <br />
-
-        <label> Password </label> <br />
-        <input
-          name = "password"
-          value = {password}
-          onChange = {this.onChange}
-          type = "password"
-        /> <br />
+        <div>
+          <label> Email </label> <br />
+          <input
+            name = "email"
+            value = {email}
+            onChange = {this.onChange}
+            type = "text"
+          /> <br />
+        </div>
+        
+        <div>
+          <label> Password </label> <br />
+          <input
+            name = "password"
+            value = {password}
+            onChange = {this.onChange}
+            type = "password"
+          /> <br />
+        </div>
         
         <button disabled={isInvalid} type = "submit"> Log In </button>
 
@@ -82,4 +88,4 @@ const SignInForm = compose(
 )(SignInFormBase);
 
 
-export default SignInForm;
+export default SignInForm
