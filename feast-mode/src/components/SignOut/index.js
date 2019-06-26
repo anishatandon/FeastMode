@@ -6,7 +6,7 @@ import "../SignUp/SignUp.css";
 
 const SignOutButton = ({ firebase }) => (
   <Link to = {ROUTES.LANDING}>
-    <button type="button" onClick={firebase.doSignOut} className="button"> Log Out </button>
+    <button type="button" onClick={firebase.doSignOut} className="button"> Logout </button>
   </Link>
 );
 

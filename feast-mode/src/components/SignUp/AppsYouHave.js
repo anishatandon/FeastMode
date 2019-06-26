@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import "./SignUp.css";
-import postmates from '../Home/images/postmates.jpg';
-import doordash from '../Home/images/doordash.jpg';
-import grubhub from '../Home/images/grubhub.png';
-import ubereats from '../Home/images/ubereats.jpeg';
+
+import AppImgs from "./AppImgs";
 
 class AppsYouHave extends Component{
     constructor() {
@@ -32,7 +30,7 @@ class AppsYouHave extends Component{
     
       render() {
         return (
-          <div className = "sign-up-form-2">
+          <div className = "sign-up-form">
             <h2>Which delivery apps do you have?</h2>
     
             <form onSubmit={this.handleSubmit}>
@@ -44,8 +42,8 @@ class AppsYouHave extends Component{
                         onChange={this.handleChange}
                     /> Postmates
                 </label>
-                <img src={postmates} className="logo"/>
-                <br/>
+                
+                {" "}
                 <label>
                     <input 
                         type="checkbox" 
@@ -54,8 +52,8 @@ class AppsYouHave extends Component{
                         onChange={this.handleChange}
                     /> GrubHub
                 </label>
-                <img src={grubhub} className="logo"/>
-                <br/>
+                
+                {" "}
                 <label>
                     <input 
                         type="checkbox" 
@@ -64,8 +62,8 @@ class AppsYouHave extends Component{
                         onChange={this.handleChange}
                     /> DoorDash
                 </label>
-                <img src={doordash} className="logo"/>
-                <br/>
+                
+                {" "}
                 <label>
                     <input 
                         type="checkbox" 
@@ -74,8 +72,9 @@ class AppsYouHave extends Component{
                         onChange={this.handleChange}
                     /> UberEats
                 </label>
-                <img src={ubereats} className="logo"/>
-                <br/>
+                <br />
+                <br />
+                <AppImgs />
                 <br />
                 <button type="submit" className = "button">Next</button>
     
