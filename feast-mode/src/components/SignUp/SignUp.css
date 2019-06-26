@@ -24,6 +24,9 @@ body {
         0 10px 0 -5px #eee;
 }
 
+.sign-up-form h2 {
+    color: #2C3E50;
+}
 
 .button {
     border: none;
@@ -32,7 +35,7 @@ body {
     font-size: 15px;
     letter-spacing: 1px;
     color: white;
-    background:#333;
+    background:#2C3E50;
 }
 
 .button-success {
@@ -42,7 +45,7 @@ body {
     font-size: 15px;
     letter-spacing: 1px;
     color: white;
-    background:#333;
+    background: #2C3E50;
     padding: 10px;
 }
 
