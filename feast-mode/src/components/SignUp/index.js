@@ -86,8 +86,7 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    // When the form is invalid, the submit button is disabled. 
-    // Here is when the button is disabled: 
+    // When the form is invalid:
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -147,7 +146,6 @@ class SignUpFormBase extends Component {
           <br/>
           <br/>
           <button onMouseOver={this.handleClick} type="submit" className ="button">Next</button>
-          {/* disabled={isInvalid} */}
           {error && <p>{error.message}</p>}
         </form>
       </div>
