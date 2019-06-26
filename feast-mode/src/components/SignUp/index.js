@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-// import Avatar_App from "./Avatar_App";
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
-import ImageUpload from "./ImageUpload";
-
 import * as ROUTES from '../../constants/routes';
 import "./SignUp.css";
 
@@ -20,7 +17,6 @@ const INITIAL_STATE = {
   passwordTwo: '',
   email: '',
   phone: '',
-  image: "http://placekitten.com/400/300",
   error: null,
 };
 
@@ -56,17 +52,12 @@ class SignUpFormBase extends Component {
         this.setState({ error });
       });
 
-      console.log("submitted")
       event.preventDefault();
-    //the next button is clicked, go to the billing info page
   }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    // const {name, value, type, checked} = event.target
-    // type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
   };
-
 
   render() {
 
@@ -76,24 +67,22 @@ class SignUpFormBase extends Component {
       passwordTwo,
       email,
       phone,
-      image,
       error,
     } = this.state;
 
+    // When the form is invalid, the submit button is disabled. 
+    // Here is when the button is disabled: 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
+      phone === '' ||
       username === '';
 
 
     return (
       <div className = "sign-up-form">
         <h2>Sign Up!</h2>
-        {/* <ImageUpload /> */}
-        {/* <div className="image-cropper">
-          <img src="http://placekitten.com/400/300" className="profile-pic"/>
-        </div> */}
 
         <form onSubmit={this.handleSubmit}>
           <input
@@ -141,7 +130,14 @@ class SignUpFormBase extends Component {
           />
           <br/>
           <br/>
-            <button disabled={isInvalid} type="submit" className = "button" >Next</button>
+          <button disabled={isInvalid} type="submit" className ="button">Next</button>
+          
+          {/* can't figure out how to get these to only pop up after ou click next */}
+          {email === '' && <p>please provide email</p>}
+          {phone === '' && <p>please provide phone</p>}
+          {username === '' && <p>please provide username</p>}
+          {passwordOne === '' && <p>please provide password</p>}
+          {passwordOne !== passwordTwo && <p>passwords must match</p>}
           {error && <p>{error.message}</p>}
         </form>
       </div>
