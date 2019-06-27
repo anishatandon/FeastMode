@@ -13,7 +13,8 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
+  first_name: '',
+  last_name: '',
   passwordOne: '',
   passwordTwo: '',
   email: '',
@@ -31,19 +32,20 @@ class SignUpFormBase extends Component {
 
 
   handleSubmit = event => {
-    const { username, email, phone, passwordOne, passwordTwo } = this.state;
-    
+    const { first_name, last_name, email, phone, passwordOne, passwordTwo } = this.state;
+
     const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
     email === '' ||
     phone === '' ||
-    username === '';
+    first_name === '' ||
+    last_name === '';
 
     event.preventDefault();
 
     if (isInvalid===true) {
-      if (passwordOne === '' || email === '' || phone === '' || username === ''){
+      if (passwordOne === '' || email === '' || phone === '' || first_name === '' || last_name === ''){
         alert("Please fill out all fields")
       }else{
         alert("Passwords must match")
@@ -57,7 +59,8 @@ class SignUpFormBase extends Component {
           return this.props.firebase
             .user(authUser.user.uid)
             .set({
-              username,
+              first_name,
+              last_name,
               email,
               phone,
             })
@@ -79,7 +82,8 @@ class SignUpFormBase extends Component {
   render() {
 
     const {
-      username,
+      first_name,
+      last_name,
       passwordOne,
       passwordTwo,
       email,
@@ -87,14 +91,15 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    // When the form is invalid, the submit button is disabled. 
-    // Here is when the button is disabled: 
+    // When the form is invalid, the submit button is disabled.
+    // Here is when the button is disabled:
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
       phone === '' ||
-      username === '';
+      first_name === '' ||
+      last_name === '';
 
 
     return (
@@ -105,16 +110,32 @@ class SignUpFormBase extends Component {
         <form onSubmit={this.handleSubmit} className = "classic-form">
 
           <div>
-            <label> Full Name </label> <br />
-            <input
-              name = "username"
-              value = {username}
-              onChange = {this.handleChange}
-              type = "text"
-            /> <br/>
+            <table>
+              <tr>
+                <th>
+                  <label> First Name </label> <br />
+                  <input
+                    name = "first_name"
+                    value = {first_name}
+                    onChange = {this.handleChange}
+                    type = "text"
+                  />
+                </th>
+                <th>
+                  <label> Last Name </label> <br />
+                  <input
+                    name = "last_name"
+                    value = {last_name}
+                    onChange = {this.handleChange}
+                    type = "text"
+                  />
+                </th>
+              </tr>
+            </table>
+            <br/>
           </div>
-          
-          <div> 
+
+          <div>
             <label> Email </label> <br />
             <input
               name = "email"
@@ -123,7 +144,7 @@ class SignUpFormBase extends Component {
               type = "text"
             /> <br/>
           </div>
-          
+
           <div>
             <label> Phone Number </label> <br />
             <input
@@ -133,7 +154,7 @@ class SignUpFormBase extends Component {
               type = "text"
             /> <br/>
           </div>
-          
+
           <div>
             <label> Password </label> <br />
             <input
@@ -143,7 +164,7 @@ class SignUpFormBase extends Component {
               type = "password"
             /> <br/>
           </div>
-         
+
          <div>
            <label> Confirm Password </label> <br />
            <input

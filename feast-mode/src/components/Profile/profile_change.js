@@ -5,6 +5,18 @@ import { withFirebase } from '../Firebase';
 const INITIAL_STATE = {
   loading: false,
   users: [],
+  user: {
+    id: "", //email
+    username: "",
+    phone: NaN,
+    friends: [],
+    orders: [],
+    creditCardNum: NaN,
+    creditCardType: '',
+    expirationDate: '',
+    securityCode: NaN,
+    billAddress: '',
+  },
 };
 
 
@@ -14,11 +26,10 @@ class ProfileChangeForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+    // this.updateProfile = this.updateProfile.bind(this); //new
   }
 
-  componentWillUnmount() {
-    this.props.firebase.users().off();
-  }
+
 
 
   componentDidMount() {
@@ -38,6 +49,24 @@ class ProfileChangeForm extends Component {
       });
     });
   }
+
+  // new
+  // updateProfile(profile){
+  //   const user = {...this.state.user};
+  //   user[profile.id] = profile;
+  // }
+  //
+  // componentWillMount() {
+  //   this.usersRef = this.props.firebase.db.syncState('users', {
+  //     context: this,
+  //     state: 'users',
+  //   })
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.props.db.removeBinding(this.usersRef);
+  // }
+  //new
 
 
 

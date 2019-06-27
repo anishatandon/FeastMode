@@ -61,4 +61,5 @@ class Firebase {
 
 export const storage = Firebase.storage;
 
+
 export default Firebase;
