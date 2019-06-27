@@ -49,6 +49,10 @@ export class SignUpForm extends Component {
     type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
   };
 
+  test(event){
+    console.log("pass")
+  }
+
 
   render() {
     return (
@@ -59,7 +63,7 @@ export class SignUpForm extends Component {
           <img src="http://placekitten.com/400/300" className="profile-pic"/>
         </div>
 
-        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success')}}>
+        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success'); this.test()}}>
           <input
             name="username"
             value={this.state.username}
