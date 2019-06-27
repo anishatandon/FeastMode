@@ -9,8 +9,8 @@ const Menu = () => (
     <div className = "menu">
       <Header />
       <Profile />
+      <br/>
       <SignOutButton />
-      {/* <ImageUpload /> */}
 
     </div>
   

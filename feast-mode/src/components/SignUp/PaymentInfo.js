@@ -11,60 +11,6 @@ class PaymentInfo extends Component{
           securityCode: '',
           billAddress: ''
       };
-<<<<<<< HEAD
-    
-    
-      render() {
-        return (
-          <div className = "sign-up">
-            <img className = "main-logo" src = {logo} alt = "Logo" />
-            <h1>Payment Info</h1>
-    
-            <form onSubmit={this.handleSubmit} className = "classic-form">
-                <input
-                    name="creditCardNum"
-                    value={this.state.creditCardNum}
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Card Number"
-                />
-                <br/>
-                <input
-                    name="expirationDate"
-                    value={this.state.expirationDate}
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Exp Date"
-                />
-                <br/>
-                <input
-                    name="securityCode"
-                    value={this.state.securityCode}
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="Security Code"
-                />
-                <br />
-                <label>
-                    Card Type: 
-                    <select className="select-box" value={this.state.creditCardType} onChange={this.handleChange} name="creditCardType">
-                    <option value="none">-- Choose One --</option>
-                        <option value="amex">American Express</option>
-                        <option value="visa">Visa</option>
-                        <option value="mastercard">Mastercard</option>
-                        <option value="amex">Discover</option>
-                    </select>
-                </label>
-                <br/>
-                <br />
-                <button type="submit" className = "classic-button">Next</button>
-    
-              {this.state.error && <p>{this.state.error.message}</p>}
-            </form>
-          </div>
-        );
-      }
-=======
     }
   
     handleSubmit = event => {
@@ -130,7 +76,6 @@ class PaymentInfo extends Component{
         </div>
       );
     }
->>>>>>> 94d2c1c1ab642c710cb825ae50bb8645e96b370b
 }
 
 
