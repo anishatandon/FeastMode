@@ -1,8 +1,9 @@
 import React from 'react';
-import postmates from '../Home/images/postmates.jpg';
-import doordash from '../Home/images/doordash.jpg';
-import grubhub from '../Home/images/grubhub.png';
-import ubereats from '../Home/images/ubereats.jpeg';
+
+import postmates from '../../images/postmates.jpg';
+import doordash from '../../images/doordash.jpg';
+import grubhub from '../../images/grubhub.png';
+import ubereats from '../../images/ubereats.jpeg';
 
 function AppImgs() {
     return(

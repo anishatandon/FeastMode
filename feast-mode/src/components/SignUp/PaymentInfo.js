@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./SignUp.css";
 
 class PaymentInfo extends Component{
     constructor() {
@@ -29,10 +28,10 @@ class PaymentInfo extends Component{
     
       render() {
         return (
-          <div className = "sign-up-form">
-            <h2>Payment Info</h2>
+          <div className = "sign-up">
+            <h1>Payment Info</h1>
     
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className = "classic-form">
                 <input
                     name="creditCardNum"
                     value={this.state.creditCardNum}
@@ -72,7 +71,7 @@ class PaymentInfo extends Component{
                 </label>
                 <br/>
                 <br />
-                <button type="submit" className = "button">Next</button>
+                <button type="submit" className = "classic-button">Next</button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>

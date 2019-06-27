@@ -4,8 +4,6 @@ import * as ROUTES from '../../constants/routes'
 import { compose } from 'recompose'
 
 import { withFirebase } from '../Firebase'
-import './SignIn.css'
-
 
 const INITIAL_STATE = {
   email: '',
@@ -14,6 +12,7 @@ const INITIAL_STATE = {
   friends: [],
   orders: [],
   image: null,
+  user: null,
 }
 
 const USER = null;
@@ -23,6 +22,17 @@ class SignInFormBase extends Component {
     super(props);
     this.state = { ...INITIAL_STATE }
   }
+
+  // conponentWillMount() {
+  //   this.songsRef = base.syncState('users', {
+  //     context: this,
+  //     state: 'users'
+  //   })
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.
+  // }
 
   onSubmit = event => {
     const { email, password } = this.state;
@@ -49,7 +59,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className = "signin-form">
+      <form onSubmit={this.onSubmit} className = "classic-form">
 
         <div>
           <label> Email </label> <br />
@@ -71,7 +81,7 @@ class SignInFormBase extends Component {
           /> <br />
         </div>
 
-        <button disabled={isInvalid} type = "submit"> Log In </button>
+        <button disabled={isInvalid} type = "submit" className = "classic-button"> Log In </button>
 
         {error && <p>{error.message}</p>}
 
