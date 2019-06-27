@@ -1,16 +1,24 @@
-import React, {Component} from 'react'
+import React from 'react'
+import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar.js';
+import "../SignUp/SignUp.css";
 
-class Navbar extends Component{
-    render() {
-        return(
-            <div className = "navbar">
-                <ul>
-                    <li> <button> Menu </button></li>
-                    <li style = {{float: "right"}}> <button> Look for </button> </li>
-                </ul>
-            </div>
-        )
-    }
+function Navbar() {
+    return(
+        <div className = "navbar">
+            <ul>
+                <li> 
+                    <Link to = {ROUTES.MENU} >
+                        <button className="button-dark"> Menu </button>
+                    </Link>
+                </li>
+                <li style = {{float: "right"}}> 
+                    <SearchBar />
+                </li>
+            </ul>
+        </div>
+    )
 }
 
 export default Navbar

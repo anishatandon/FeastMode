@@ -1,72 +1,109 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Success from './Success';
+import { Link, withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { withFirebase } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 import "./SignUp.css";
-import Avatar_App from "./Avatar_App";
-
-import * as ROUTES from '../../constants/routes'; //EDITS
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
     <SignUpForm />
   </div>
 );
 
 const INITIAL_STATE = {
-  step: 1,
   username: '',
   passwordOne: '',
   passwordTwo: '',
   email: '',
   phone: '',
-  creditCardNum: '',
-  creditCardType: '',
-  expirationDate: '',
-  billAddress: '',
-  image: "http://placekitten.com/400/300",
   error: null,
 };
 
-export class SignUpForm extends Component {
+class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+    // this.handleChange=this.handleChange.bind(this)
+    // this.handleSubmit=this.handleSubmit.bind(this)
   }
 
 
   handleSubmit = event => {
-    console.log("submitted")
-    event.preventDefault()
-    //the next button is clicked, go to the billing info page
+    const { username, email, phone, passwordOne, passwordTwo } = this.state;
 
+    const isInvalid =
+    passwordOne !== passwordTwo ||
+    passwordOne === '' ||
+    email === '' ||
+    phone === '' ||
+    username === '';
+
+    event.preventDefault();
+
+    if (isInvalid===true) {
+      if (passwordOne === '' || email === '' || phone === '' || username === ''){
+        alert("Please fill out all fields")
+      }else{
+        alert("Passwords must match")
+      }
+    }
+    else {
+      this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, passwordOne)
+        .then(authUser => {
+          // Create a user in your Firebase realtime database
+          return this.props.firebase
+            .user(authUser.user.uid)
+            .set({
+              username,
+              email,
+              phone,
+            })
+        })
+        .then(authUser => {
+          this.setState({ ...INITIAL_STATE });
+          this.props.history.push('/pay');
+        })
+        .catch(error => {
+          this.setState({ error });
+        });
+    }
   }
 
   handleChange = event => {
-    const {name, value, type, checked} = event.target
-    type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  test(event){
-    console.log("pass")
-  }
-
-
   render() {
+
+    const {
+      username,
+      passwordOne,
+      passwordTwo,
+      email,
+      phone,
+      error,
+    } = this.state;
+
+    // When the form is invalid, the submit button is disabled.
+    // Here is when the button is disabled:
+    const isInvalid =
+      passwordOne !== passwordTwo ||
+      passwordOne === '' ||
+      email === '' ||
+      phone === '' ||
+      username === '';
+
+
     return (
       <div className = "sign-up-form">
-        <h1>Sign Up!</h1>
-        {/* <Avatar_App/> */}
-        <div className="image-cropper">
-          <img src="http://placekitten.com/400/300" className="profile-pic"/>
-        </div>
+        <h2>Sign Up!</h2>
 
-        <form onSubmit={(e) => {e.preventDefault(); this.props.history.push('/success'); this.test()}}>
+        <form onSubmit={this.handleSubmit}>
           <input
             name="username"
-            value={this.state.username}
+            value={username}
             onChange={this.handleChange}
             type="text"
             placeholder="Full Name"
@@ -75,7 +112,7 @@ export class SignUpForm extends Component {
           <br/>
           <input
             name="email"
-            value={this.state.email}
+            value={email}
             onChange={this.handleChange}
             type="text"
             placeholder="Email Address"
@@ -84,7 +121,7 @@ export class SignUpForm extends Component {
           <br/>
           <input
             name="phone"
-            value={this.state.phone}
+            value={phone}
             onChange={this.handleChange}
             type="text"
             placeholder="Phone Number"
@@ -93,7 +130,7 @@ export class SignUpForm extends Component {
           <br/>
           <input
             name="passwordOne"
-            value={this.state.passwordOne}
+            value={passwordOne}
             onChange={this.handleChange}
             type="password"
             placeholder="Password"
@@ -102,18 +139,16 @@ export class SignUpForm extends Component {
           <br/>
           <input
             name="passwordTwo"
-            value={this.state.passwordTwo}
+            value={passwordTwo}
             onChange={this.handleChange}
             type="password"
             placeholder="Confirm Password"
           />
           <br/>
           <br/>
-          {/* <Link to={ROUTES.HOME}>  */}
-            <button type="submit" className = "button">Next</button>
-          {/* </Link> */}
-
-          {this.state.error && <p>{this.state.error.message}</p>}
+          <button onMouseOver={this.handleClick} type="submit" className ="button">Next</button>
+          {/* disabled={isInvalid} */}
+          {error && <p>{error.message}</p>}
         </form>
       </div>
     );
@@ -122,10 +157,15 @@ export class SignUpForm extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    New to FeastMode? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );
 
-export default SignUpForm;
+const SignUpForm = compose(
+  withRouter,
+  withFirebase,
+)(SignUpFormBase);
 
-export { SignUpPage, SignUpLink };
+export default SignUpPage;
+
+export { SignUpForm, SignUpLink, INITIAL_STATE };
