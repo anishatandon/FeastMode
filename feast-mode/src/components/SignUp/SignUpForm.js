@@ -5,6 +5,8 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 
 const INITIAL_STATE = {
+    firstName: '',
+    lastName: '',
     username: '',
     passwordOne: '',
     passwordTwo: '',
@@ -12,7 +14,7 @@ const INITIAL_STATE = {
     phone: '',
     error: null,
 };
-  
+
 class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
@@ -67,6 +69,8 @@ class SignUpFormBase extends Component {
     render() {
 
         const {
+            firstName,
+            lastName,
             username,
             passwordOne,
             passwordTwo,
@@ -88,7 +92,29 @@ class SignUpFormBase extends Component {
         return (
             <form onSubmit={this.handleSubmit} className = "classic-form">
 
-                <div>
+                <div className = "aligned-inputs"> 
+                    <div>
+                        <label> First Name </label> <br />
+                        <input
+                        name = "firstName"
+                        value = {firstName}
+                        onChange = {this.handleChange}
+                        type = "text"
+                        /> <br />
+                    </div>
+
+                    <div>
+                        <label> Last Name </label> <br />
+                        <input
+                        name = "lastName"
+                        value = {lastName}
+                        onChange = {this.handleChange}
+                        type = "text"
+                        /> <br/>
+                    </div>
+                </div>
+
+                <div className = "compensate-input">
                     <label> Username </label> <br />
                     <input
                     name = "username"
@@ -98,7 +124,7 @@ class SignUpFormBase extends Component {
                     /> <br/>
                 </div>
                 
-                <div> 
+                <div className = "compensate-input"> 
                     <label> Email </label> <br />
                     <input
                     name = "email"
@@ -108,7 +134,7 @@ class SignUpFormBase extends Component {
                     /> <br/>
                 </div>
                 
-                <div>
+                <div className = "compensate-input">
                     <label> Phone Number </label> <br />
                     <input
                     name = "phone"
@@ -118,24 +144,26 @@ class SignUpFormBase extends Component {
                     /> <br/>
                 </div>
                 
-                <div>
-                    <label> Password </label> <br />
-                    <input
-                    name = "passwordOne"
-                    value = {passwordOne}
-                    onChange ={ this.handleChange}
-                    type = "password"
-                    /> <br/>
-                </div>
-                
-                <div>
-                    <label> Confirm Password </label> <br />
-                    <input
-                    name = "passwordTwo"
-                    value = {passwordTwo}
-                    onChange = {this.handleChange}
-                    type = "password"
-                    /> <br/>
+                <div className = "aligned-inputs"> 
+                    <div>
+                        <label> Password </label> <br />
+                        <input
+                        name = "passwordOne"
+                        value = {passwordOne}
+                        onChange ={ this.handleChange}
+                        type = "password"
+                        /> <br/>
+                    </div>
+                    
+                    <div>
+                        <label> Confirm Password </label> <br />
+                        <input
+                        name = "passwordTwo"
+                        value = {passwordTwo}
+                        onChange = {this.handleChange}
+                        type = "password"
+                        /> <br/>
+                    </div>
                 </div>
 
                 <button onMouseOver = {this.handleClick} type = "submit" className = "classic-button"> Next </button>
