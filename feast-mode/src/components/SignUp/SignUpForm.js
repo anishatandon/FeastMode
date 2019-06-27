@@ -155,7 +155,7 @@ const SignUpForm = compose(
 
 const SignUpLink = () => (
     <pre className = "link-text">
-      New to FeastMode?   <Link to={ROUTES.LANDING} className = "link">Sign Up</Link>
+      New to FeastMode?   <Link to={ROUTES.SIGN_UP} className = "link">Sign Up</Link>
     </pre>
 );
 
