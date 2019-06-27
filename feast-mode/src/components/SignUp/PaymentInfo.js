@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../images/logo.png';
 
 class PaymentInfo extends Component{
   constructor() {

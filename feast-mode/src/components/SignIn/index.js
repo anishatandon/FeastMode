@@ -86,7 +86,7 @@ const SignInForm = compose(
 
 const SignInLink = () => (
   <pre className = "link-text">
-    New to FeastMode?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
+    Already have an account?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
   </pre>
 );
 
