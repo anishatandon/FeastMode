@@ -2,11 +2,10 @@ import React from 'react';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
-import "../SignUp/SignUp.css";
 
 const SignOutButton = ({ firebase }) => (
   <Link to = {ROUTES.LANDING}>
-    <button type="button" onClick={firebase.doSignOut} className="button"> Logout </button>
+    <button type="button" onClick={firebase.doSignOut} className="classic-button"> Logout </button>
   </Link>
 );
 

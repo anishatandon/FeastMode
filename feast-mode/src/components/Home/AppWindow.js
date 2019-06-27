@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import food from './images/food.jpg'
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
+
+import food from '../../images/food.jpg'
 
 class AppWindow extends Component {
     constructor(props) {

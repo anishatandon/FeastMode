@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
-
 
 const Navigation = () => (
   <div>
@@ -14,8 +12,6 @@ const Navigation = () => (
     </AuthUserContext.Consumer>
   </div>
 );
-
-
 
 const NavigationAuth = () => (
   <div>
@@ -37,6 +33,12 @@ const NavigationAuth = () => (
     </li>
     <li>
       <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.APPS_YOU_HAVE}>Apps you have</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.PAY}>Payment</Link>
     </li>
     </ul>
   </div>

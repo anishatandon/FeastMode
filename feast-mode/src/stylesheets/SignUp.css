@@ -1,13 +1,9 @@
-body {
-    margin: 0;
-    background-color: whitesmoke;
-}
 
-
-.sign-up-form {
+.sign-up {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
     overflow: auto;
     background-color: white;
-    padding: 30px 0px 30px 0px; /* Padding around content */
+    padding: 30px 0px 0px 0px; /* Padding around content */
 
     /* Items perfectly centered in box */
     display: flex;
@@ -15,33 +11,13 @@ body {
     justify-content: center;
     align-items: center;
 
-    margin: 50px 800px; /* Box dimensions */
+    margin: 3% 41% 0%; /* Box dimensions */
 
     /* Shadow effect  */
     border: 1px solid #efefef;
     box-shadow:
         0 1px 5px rgba(0,0,0,0.15),
         0 10px 0 -5px #eee;
-}
-
-.sign-up-form h2 {
-    color: #2C3E50;
-}
-
-.sign-up-form button {
-    background: #2C3E50;
-}
-
-.button {
-    border: none;
-    border-radius: 20px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: white;
-    background:#2C3E50;
-    justify-content: center;
-    align-items: center;
 }
 
 .button-success {
@@ -79,4 +55,22 @@ body {
     max-width: 10%;
     object-fit: contain;
     
+}
+
+.signup-text {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#sign-up-link {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+
+    /* Transitions */
+    transition: text-decoration 2s;
+}
+
+/* Highlight effects hover */
+#sign-up-link:hover {
+    text-decoration: underline;
 }

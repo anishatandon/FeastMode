@@ -22,6 +22,17 @@ import Restaurants from '../Restaurants'
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
+import '../../stylesheets/Landing.css'
+import '../../stylesheets/main-logo.css'
+import '../../stylesheets/titles.css'
+import '../../stylesheets/SignUp.css'
+import '../../stylesheets/button.css'
+import '../../stylesheets/form.css'
+import '../../stylesheets/Restaurants.css'
+import '../../stylesheets/Menu.css'
+import '../../stylesheets/Home.css'
+import '../../stylesheets/SearchBar.css'
+
 const App = () => (
   <Router>
     <div>
