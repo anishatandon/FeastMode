@@ -20,17 +20,6 @@
         0 10px 0 -5px #eee;
 }
 
-.button-success {
-    border: none;
-    border-radius: 20px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: white;
-    background: #2C3E50;
-    padding: 10px;
-}
-
 .button-dark {
     border: none;
     border-radius: 20px;
@@ -54,23 +43,4 @@
 .logo {
     max-width: 10%;
     object-fit: contain;
-    
-}
-
-.signup-text {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-#sign-up-link {
-    color: black;
-    text-decoration: none;
-    font-weight: 600;
-
-    /* Transitions */
-    transition: text-decoration 2s;
-}
-
-/* Highlight effects hover */
-#sign-up-link:hover {
-    text-decoration: underline;
 }
