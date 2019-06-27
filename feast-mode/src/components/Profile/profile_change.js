@@ -43,6 +43,9 @@ class ProfileChangeForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+    const user = this.props.firebase.userID();
+    console.log(user)
+
     const { username, email, phone } = this.state;
 
     this.props.firebase
@@ -77,12 +80,11 @@ class ProfileChangeForm extends Component {
   };
 
   render() {
-    // const { username, email, phone, error } = this.state;
+    const { username, email, phone, error } = this.state;
     const { users, loading } = this.state;
-    const user = this.props.firebase.userID();
-    console.log(user)
 
-    // const isInvalid =
+
+    const isInvalid = false
     //   username === '' &&
     //   email === '' &&
     //   phone === '';
@@ -94,35 +96,37 @@ class ProfileChangeForm extends Component {
         {loading && <div>Loading ...</div>}
 
         <UserList users={users} />
+
+      <form onSubmit={this.onSubmit}>
+        <input
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New Username"
+        />
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New email"
+        />
+        <input
+          name="phone"
+          value={phone}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New Phone"
+        />
+        <button disabled={isInvalid} type="submit">
+          Save
+        </button>
+
+        {error && <p>{error.message}</p>}
+      </form>
+
       </div>
-      // <form onSubmit={this.onSubmit}>
-      //   <input
-      //     name="username"
-      //     value={username}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.username
-      //   />
-      //   <input
-      //     name="email"
-      //     value={email}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.email
-      //   />
-      //   <input
-      //     name="phone"
-      //     value={phone}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.phone
-      //   />
-      //   <button disabled={isInvalid} type="submit">
-      //     Save
-      //   </button>
-      //
-      //   {error && <p>{error.message}</p>}
-      // </form>
     );
   }
 }
