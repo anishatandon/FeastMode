@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
 import { compose } from 'recompose'
-
 import { withFirebase } from '../Firebase'
 
 const INITIAL_STATE = {
@@ -95,5 +94,11 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
+const SignInLink = () => (
+  <pre className = "link-text">
+    New to FeastMode?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
+  </pre>
+);
 
 export default SignInForm
+export { SignInLink }

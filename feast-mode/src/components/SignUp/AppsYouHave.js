@@ -75,7 +75,7 @@ class AppsYouHave extends Component{
                 <br />
                 <AppImgs />
                 <br />
-                <button type="submit" className = "classic-button">Next</button>
+                <button type="submit" className = "classic-button"> Next </button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>
