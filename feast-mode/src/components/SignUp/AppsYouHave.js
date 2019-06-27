@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./SignUp.css";
 
 import AppImgs from "./AppImgs";
 
@@ -30,10 +29,10 @@ class AppsYouHave extends Component{
     
       render() {
         return (
-          <div className = "sign-up-form">
-            <h2>Which delivery apps do you have?</h2>
+          <div className = "sign-up">
+            <h1>Which delivery apps do you have?</h1>
     
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className = "classic-form">
                 <label>
                     <input 
                         type="checkbox" 
@@ -76,7 +75,7 @@ class AppsYouHave extends Component{
                 <br />
                 <AppImgs />
                 <br />
-                <button type="submit" className = "button">Next</button>
+                <button type="submit" className = "classic-button">Next</button>
     
               {this.state.error && <p>{this.state.error.message}</p>}
             </form>

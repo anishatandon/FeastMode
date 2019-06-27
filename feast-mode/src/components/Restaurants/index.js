@@ -1,6 +1,6 @@
 import React from 'react'
+
 import Navbar from '../Home/Navbar.js'
-import './Restaurants.css'
 
 function Restaurants() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
-import * as ROUTES from '../../constants/routes';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar.js';
-import "../SignUp/SignUp.css";
+import * as ROUTES from '../../constants/routes'
+import { Link } from 'react-router-dom'
+
+import SearchBar from './SearchBar.js'
 
 function Navbar() {
     return(
