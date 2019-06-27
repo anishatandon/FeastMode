@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../images/logo.png';
 
 class PaymentInfo extends Component{
     constructor() {
@@ -29,6 +30,7 @@ class PaymentInfo extends Component{
       render() {
         return (
           <div className = "sign-up">
+            <img className = "main-logo" src = {logo} alt = "Logo" />
             <h1>Payment Info</h1>
     
             <form onSubmit={this.handleSubmit} className = "classic-form">
@@ -40,7 +42,6 @@ class PaymentInfo extends Component{
                     placeholder="Card Number"
                 />
                 <br/>
-                <br/>
                 <input
                     name="expirationDate"
                     value={this.state.expirationDate}
@@ -49,7 +50,6 @@ class PaymentInfo extends Component{
                     placeholder="Exp Date"
                 />
                 <br/>
-                <br/>
                 <input
                     name="securityCode"
                     value={this.state.securityCode}
@@ -57,7 +57,6 @@ class PaymentInfo extends Component{
                     type="text"
                     placeholder="Security Code"
                 />
-                <br/>
                 <br />
                 <label>
                     Card Type: 
