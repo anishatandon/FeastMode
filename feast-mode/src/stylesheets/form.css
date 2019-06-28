@@ -57,6 +57,24 @@
     width: 536px;
 }
 
+.error input[type=text], .error input[type=password] {
+    border: 1px solid red; 
+    margin: 7px 10px 0px 10px;
+}
+
+.error label {
+    color: red;
+}
+
+.error-text {
+    margin-left: 11px;
+    font-size: 13px;
+    color: red;
+    margin-bottom: 30px;
+
+    display: none;
+}
+
 .link-area {
     width: 100%;
     background-color: #ff9933;
