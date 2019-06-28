@@ -17,6 +17,7 @@ import Menu from '../Menu';
 import PasswordChangePage from '../Profile/password_change.js';
 import ProfileChangePage from '../Profile/profile_change.js';
 import Restaurants from '../Restaurants'
+import About from '../About'
 
 
 import * as ROUTES from '../../constants/routes';
@@ -34,7 +35,7 @@ import '../../stylesheets/button.css'
 import '../../stylesheets/form.css'
 
 import Toolbar from '../Navigation/Toolbar' //test
-import SideDrawer from '../Sidebar/SideDrawer'
+import SideDrawer from '../SideDrawer/SideDrawer'
 import Backdrop from '../Backdrop/Backdrop'
 
 class App extends Component {
@@ -65,7 +66,7 @@ class App extends Component {
       <div style={{height: '100%'}}>
 
         <Router>
-
+          
           <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer show={this.state.sideDrawerOpen} />
           {backdrop}
@@ -85,7 +86,7 @@ class App extends Component {
             <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
             <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
             <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
-
+            <Route path={ROUTES.ABOUT} component={About} />
         </Router>
       </div>
 
@@ -93,32 +94,5 @@ class App extends Component {
     )
   }
 }
-
-// export default App
-
-// const App = () => (
-//   <Router>
-//     <div>
-//
-//       <Navigation />
-//
-//       <hr />
-//
-//       <Route exact path={ROUTES.LANDING} component={LandingPage} />
-//       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-//       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-//       <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
-//       <Route path={ROUTES.HOME} component={HomePage} />
-//       <Route path={ROUTES.SUCCESS} component={Success} />
-//       <Route path={ROUTES.PAY} component={PaymentInfo} />
-//       <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
-//       <Route path={ROUTES.MENU} component={Menu} />
-//       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
-//       <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
-//       <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
-//
-//     </div>
-//   </Router>
-// );
 
 export default withAuthentication(App);

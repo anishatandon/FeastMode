@@ -24,7 +24,7 @@
     /* Box design */
     margin: 7px 10px 30px 10px;
     width: 290px;
-    height: 35px;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid;
     border-color: white;
@@ -43,6 +43,18 @@
 .classic-form input[type=text]:focus, .classic-form input[type=password]:focus { 
     border-bottom: 1px solid orange;
     background-color:  #eef1f1;
+}
+
+.aligned-inputs{
+    display: flex; /* Display side by side */
+}
+
+.aligned-inputs input[type=text], .aligned-inputs input[type=password]{
+    width: 250px;
+}
+
+.compensate-input input[type=text], .compensate-input input[type=password] {
+    width: 536px;
 }
 
 .link-area {
@@ -71,3 +83,4 @@
 .link:hover {
     text-decoration: underline;
 }
+
