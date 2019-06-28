@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Navigation from '../Navigation/index.js';
+
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp/index.js';
 import SignInPage from '../SignIn';
@@ -66,7 +66,7 @@ class App extends Component {
       <div style={{height: '100%'}}>
 
         <Router>
-          
+
           <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer show={this.state.sideDrawerOpen} />
           {backdrop}
