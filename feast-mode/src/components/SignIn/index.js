@@ -41,6 +41,9 @@ class SignInFormBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
+      // .then( () => {
+      //   this.props.history.push(ROUTES.HOME); // Can't perform a React state update on an unmounted component
+      // })
       .catch(error => {
         this.setState({ error });
       });

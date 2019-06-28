@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import React from 'react';
+
+import SignUpForm from './SignUpForm.js'
+import { SignInLink } from '../SignIn/index.js'
 
 import logo from '../../images/logo.png'
 
+const SignUpPage = () => (
+  <div className = "sign-up">
 
-const SignUpLink = () => (
-  <pre className = "signup-text">
-    New to FeastMode?   <Link to={ROUTES.SIGN_UP} id = "sign-up-link">Sign Up</Link>
-  </pre>
+    <img className = "main-logo" src = {logo} alt = "Logo" />
+    <h1> Sign Up! </h1>
+    <SignUpForm />
+
+    <div className = "link-area">
+      <SignInLink />
+    </div>
+
+  </div>
 );
 
-const SignUpForm = compose(
-  withRouter,
-  withFirebase,
-)(SignUpFormBase);
-
-export default SignUpPage;
-export { SignUpForm, SignUpLink, INITIAL_STATE };
+export default SignUpPage
