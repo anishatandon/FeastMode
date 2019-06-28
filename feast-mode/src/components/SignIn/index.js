@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   friends: [],
   orders: [],
   image: null,
+  user: null,
 }
 
 const USER = null;
@@ -21,6 +22,17 @@ class SignInFormBase extends Component {
     this.state = { ...INITIAL_STATE }
   }
 
+  // conponentWillMount() {
+  //   this.songsRef = base.syncState('users', {
+  //     context: this,
+  //     state: 'users'
+  //   })
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.
+  // }
+
   onSubmit = event => {
     const { email, password } = this.state;
 
@@ -28,9 +40,10 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
-        USER = this.props.firebase.userID();
       })
+      // .then( () => {
+      //   this.props.history.push(ROUTES.HOME); // Can't perform a React state update on an unmounted component
+      // })
       .catch(error => {
         this.setState({ error });
       });
@@ -59,7 +72,7 @@ class SignInFormBase extends Component {
             type = "text"
           /> <br />
         </div>
-        
+
         <div>
           <label> Password </label> <br />
           <input
@@ -69,7 +82,7 @@ class SignInFormBase extends Component {
             type = "password"
           /> <br />
         </div>
-        
+
         <button disabled={isInvalid} type = "submit" className = "classic-button"> Log In </button>
 
         {error && <p>{error.message}</p>}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function BackButton() {
     return (
-        <Link to = {ROUTES.HOME}> 
+        <Link to = {ROUTES.HOME}>
             <button className="classic-button"> Back </button>
         </Link>
     )

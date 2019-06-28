@@ -10,3 +10,4 @@ export const PASSWORD_CHANGE = '/settings/password_change';
 export const PROFILE_CHANGE = '/settings/profile_change';
 export const APPS_YOU_HAVE = '/appsyouhave';
 export const RESTAURANTS = '/restaurants'
+export const ABOUT = '/about'

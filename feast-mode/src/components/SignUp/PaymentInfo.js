@@ -12,23 +12,23 @@ class PaymentInfo extends Component{
           billAddress: ''
       };
     }
-  
+
     handleSubmit = event => {
       event.preventDefault()
       this.props.history.push('/appsyouhave')
       //the next button is clicked, go to success page
     }
-  
+
     handleChange = event => {
       const {name, value, type, checked} = event.target
       type === "checkbox" ? this.setState({[name]: checked}) : this.setState({[name]: value}) //can now handle checkboxes, too
     };
-  
+
     render() {
       return (
         <div className = "sign-up">
           <h1>Payment Info</h1>
-  
+
           <form onSubmit={this.handleSubmit} className = "classic-form">
               <input
                   name="creditCardNum"
@@ -58,7 +58,7 @@ class PaymentInfo extends Component{
               <br/>
               <br />
               <label>
-                  Card Type: 
+                  Card Type:
                   <select className="select-box" value={this.state.creditCardType} onChange={this.handleChange} name="creditCardType">
                   <option value="none">-- Choose One --</option>
                       <option value="amex">American Express</option>
@@ -70,7 +70,7 @@ class PaymentInfo extends Component{
               <br/>
               <br />
               <button type="submit" className = "classic-button"> Next </button>
-  
+
             {this.state.error && <p>{this.state.error.message}</p>}
           </form>
         </div>

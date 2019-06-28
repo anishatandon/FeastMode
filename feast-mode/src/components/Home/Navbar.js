@@ -8,12 +8,12 @@ function Navbar() {
     return(
         <div className = "navbar">
             <ul>
-                <li> 
+                <li>
                     <Link to = {ROUTES.MENU} >
                         <button className="button-dark"> Menu </button>
                     </Link>
                 </li>
-                <li style = {{float: "right"}}> 
+                <li style = {{float: "right"}}>
                     <SearchBar />
                 </li>
             </ul>

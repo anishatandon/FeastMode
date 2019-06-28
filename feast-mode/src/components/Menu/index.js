@@ -14,7 +14,7 @@ const Menu = () => (
       {/* <ImageUpload /> */}
 
     </div>
-  
+
 );
 
 export default Menu
