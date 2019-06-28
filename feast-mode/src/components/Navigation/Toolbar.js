@@ -11,18 +11,22 @@ const Toolbar = props => (
 
     <header className="toolbar">
       <nav className="toolbar_navigation">
+
         <AuthUserContext.Consumer>
           {authUser =>
             authUser ?
-              <div className="toolbar__toggle-button">
-                <DrawerToggleButton click={props.drawerClickHandler} />
+              <div className="toolbar_navigation">
+                <div className="toolbar__toggle-button">
+                  <DrawerToggleButton click={props.drawerClickHandler} />
+                </div>
+                <div className="toolbar__logo"><Link to={ROUTES.HOME}>The Logo</Link></div>
               </div>
              :
-             <div/>
+             <div className="toolbar__logo"><Link to={ROUTES.LANDING}>The Logo</Link></div>
           }
         </AuthUserContext.Consumer>
 
-        <div className="toolbar__logo"><Link to={ROUTES.HOME}>The Logo</Link></div>
+
         <div className="spacer"> </div>
         <div className="toolbar_navigation-items">
         <AuthUserContext.Consumer>
