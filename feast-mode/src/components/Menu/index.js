@@ -11,6 +11,7 @@ const Menu = () => (
       <Profile />
       <br/>
       <SignOutButton />
+      {/* <ImageUpload /> */}
 
     </div>
   
