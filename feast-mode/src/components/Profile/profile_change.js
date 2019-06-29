@@ -5,9 +5,8 @@ import { withFirebase } from '../Firebase';
 const INITIAL_STATE = {
   loading: false,
   users: [],
+  user: null,
 };
-
-
 
 class ProfileChangeForm extends Component {
   constructor(props) {
@@ -20,9 +19,11 @@ class ProfileChangeForm extends Component {
     this.props.firebase.users().off();
   }
 
-
   componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({
+      loading: true,
+      user: this.props.firebase.userID(),
+    });
 
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
@@ -39,7 +40,59 @@ class ProfileChangeForm extends Component {
     });
   }
 
+  render() {
+    // const { username, email, phone, error } = this.state;
+    const { users, loading, user } = this.state;
+    // const user = this.props.firebase.userID();
+    // console.log(user)
 
+    return (
+      <div>
+        {this.state.loading?
+          null
+          :
+          <div>
+            <h1>Profile Change</h1>
+            <p>{this.state.user.uid}</p>
+          </div>
+        }
+
+
+
+      </div>
+      // {loading && <div>Loading ...</div>}
+      //
+      // <UserList users={users} />
+      // <form onSubmit={this.onSubmit}>
+      //   <input
+      //     name="username"
+      //     value={username}
+      //     onChange={this.onChange}
+      //     type="text"
+      //     placeholder=user.username
+      //   />
+      //   <input
+      //     name="email"
+      //     value={email}
+      //     onChange={this.onChange}
+      //     type="text"
+      //     placeholder=user.email
+      //   />
+      //   <input
+      //     name="phone"
+      //     value={phone}
+      //     onChange={this.onChange}
+      //     type="text"
+      //     placeholder=user.phone
+      //   />
+      //   <button disabled={isInvalid} type="submit">
+      //     Save
+      //   </button>
+      //
+      //   {error && <p>{error.message}</p>}
+      // </form>
+    );
+  }
 
   onSubmit = event => {
     event.preventDefault();
@@ -75,56 +128,6 @@ class ProfileChangeForm extends Component {
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  render() {
-    // const { username, email, phone, error } = this.state;
-    const { users, loading } = this.state;
-    const user = this.props.firebase.userID();
-    console.log(user)
-
-    // const isInvalid =
-    //   username === '' &&
-    //   email === '' &&
-    //   phone === '';
-
-    return (
-      <div>
-        <h1>Profile Change</h1>
-
-        {loading && <div>Loading ...</div>}
-
-        <UserList users={users} />
-      </div>
-      // <form onSubmit={this.onSubmit}>
-      //   <input
-      //     name="username"
-      //     value={username}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.username
-      //   />
-      //   <input
-      //     name="email"
-      //     value={email}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.email
-      //   />
-      //   <input
-      //     name="phone"
-      //     value={phone}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.phone
-      //   />
-      //   <button disabled={isInvalid} type="submit">
-      //     Save
-      //   </button>
-      //
-      //   {error && <p>{error.message}</p>}
-      // </form>
-    );
-  }
 }
 
 const UserList = ({ users }) => (
