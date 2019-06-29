@@ -8,14 +8,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} 
 
-.classic-form label {
+.text-input label {
     margin-left: 11px;
     font-size: 13px;
 }
 
-.classic-form input[type=text], .classic-form input[type=password]{
+.text-input input {
     font-size: 15px;
     color: #2C3E50;
     padding-left: 8px;
@@ -35,44 +35,42 @@
 }
 
 /* Highlight effects hover */
-.classic-form input[type=text]:hover, .classic-form input[type=password]:hover {
-    border: 1px solid orange;
+.text-input input:hover {
+    border: 1px solid #ff9933;
 }
 
 /* Highlight effects writing */
-.classic-form input[type=text]:focus, .classic-form input[type=password]:focus { 
-    border-bottom: 1px solid orange;
+.text-input input:focus { 
+    border-bottom: 1px solid #ff9933;
     background-color:  #eef1f1;
 }
 
-.aligned-inputs{
+.aligned-inputs {
     display: flex; /* Display side by side */
 }
 
-.aligned-inputs input[type=text], .aligned-inputs input[type=password]{
+.aligned-inputs input {
     width: 250px;
 }
 
-.compensate-input input[type=text], .compensate-input input[type=password] {
+.compensate-input input {
     width: 536px;
 }
 
-.error input[type=text], .error input[type=password] {
-    border: 1px solid red; 
+.text-error input {
+    border: 1px solid #ff9933; 
     margin: 7px 10px 0px 10px;
 }
 
-.error label {
-    color: red;
+.text-error label {
+    color: #ff9933;
 }
 
-.error-text {
+.error-msg {
     margin-left: 11px;
     font-size: 13px;
-    color: red;
+    color: #ff9933;
     margin-bottom: 30px;
-
-    display: none;
 }
 
 .link-area {

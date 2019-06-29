@@ -50,7 +50,7 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit} className = "classic-form">
 
-        <div>
+        <div className = "text-input">
           <label> Email </label> <br />
           <input
             name = "email"
@@ -60,7 +60,7 @@ class SignInFormBase extends Component {
           /> <br />
         </div>
         
-        <div>
+        <div className = "text-input">
           <label> Password </label> <br />
           <input
             name = "password"
