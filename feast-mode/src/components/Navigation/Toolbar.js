@@ -84,6 +84,9 @@ const ToolbarAuth = () => (
     <li>
       <Link to={ROUTES.PAY}>Payment</Link>
     </li>
+    <li>
+      <Link to={ROUTES.ABOUT}>About</Link>
+    </li>
   </ul>
 );
 
