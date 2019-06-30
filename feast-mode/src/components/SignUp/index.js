@@ -12,7 +12,7 @@ const SignUpPage = () => (
     <h1> Sign Up! </h1>
     <SignUpForm />
 
-    <div className = "link-area"> 
+    <div className = "link-area">
       <SignInLink />
     </div>
 

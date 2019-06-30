@@ -11,7 +11,7 @@ function Profile() {
                 <p> <b> Some other info: </b> A really cool app you should get </p>
             </div>
             <div className = "clearfix"></div>
-        </div> 
+        </div>
     )
 }
 

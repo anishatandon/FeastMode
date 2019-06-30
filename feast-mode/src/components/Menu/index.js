@@ -13,7 +13,7 @@ const Menu = () => (
       <SignOutButton />
 
     </div>
-  
+
 );
 
 export default Menu

@@ -91,24 +91,24 @@ const FormikForm = withFormik({
     handleSubmit(values, { resetForm, setSubmitting }) {
         const { username, email, phone, passwordOne} = values
 
-        Firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
-            .then(authUser => {
-            // Create a user in your Firebase realtime database
-            return Firebase
-                .user(authUser.user.uid)
-                .set({
-                username,
-                email,
-                phone,
-                })
-            })
-            .then(() => {
-            this.setState({ ...INITIAL_STATE })
-            this.props.history.push('/pay')
-            })
-            .catch(error => {
-            this.setState({ error })
-        })
+        // Firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
+        //     .then(authUser => {
+        //     // Create a user in your Firebase realtime database
+        //     return Firebase
+        //         .user(authUser.user.uid)
+        //         .set({
+        //         username,
+        //         email,
+        //         phone,
+        //         })
+        //     })
+        //     .then(() => {
+        //     this.setState({ ...INITIAL_STATE })
+        //     this.props.history.push('/pay')
+        //     })
+        //     .catch(error => {
+        //     this.setState({ error })
+        // })
 
         setTimeout(() => {
             console.log("Submitted") 
@@ -145,7 +145,7 @@ class SignUpFormBase extends Component {
 
     handleSubmit = event => {
         const { username, email, phone, passwordOne, passwordTwo } = this.state;
-        
+
         event.preventDefault();
 
         this.props.firebase
