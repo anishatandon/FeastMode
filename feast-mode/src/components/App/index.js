@@ -23,7 +23,7 @@ import SideDrawer from '../SideDrawer/SideDrawer'
 import Backdrop from '../Backdrop/Backdrop'
 
 import * as ROUTES from '../../constants/routes';
-import { withAuthentication } from '../Session';
+import { withAuthentication } from '../../backend/Session';
 
 import '../../stylesheets/Landing.css'
 import '../../stylesheets/SignUp.css'
@@ -39,6 +39,8 @@ import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
 import '../../stylesheets/form.css'
+import '../../stylesheets/about.css'
+import { format } from 'path';
 
 
 class App extends Component {
@@ -95,4 +97,5 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(App);
+// export default withAuthentication(App);
+export default App

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from '../../backend/Session';
 
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
