@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from '../../backend/Session';
 
-import './Toolbar.css';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
 const Toolbar = props => (
   <div>
 
-    <header className="toolbar">
+    <header className = "toolbar">
       <nav className="toolbar_navigation">
 
         <AuthUserContext.Consumer>
@@ -31,25 +30,19 @@ const Toolbar = props => (
         <div className="toolbar_navigation-items">
         <AuthUserContext.Consumer>
           {authUser =>
-            authUser ? <ToolbarAuth /> : <div />
+            authUser ? 
+            <ToolbarAuth /> 
+            : 
+            <div className="toolbar_navigation-about">
+            <ul>
+              <li>
+                <Link to={ROUTES.ABOUT}>About</Link>
+              </li>
+            </ul>
+            </div>
           }
         </AuthUserContext.Consumer>
         </div>
-
-          <AuthUserContext.Consumer>
-            {authUser =>
-              authUser ? <div /> :
-              <div className="toolbar_navigation-about">
-                <ul>
-                  <li>
-                    <Link to={ROUTES.ABOUT}>About</Link>
-                  </li>
-                </ul>
-              </div>
-            }
-          </AuthUserContext.Consumer>
-
-
 
       </nav>
     </header>
@@ -83,6 +76,9 @@ const ToolbarAuth = () => (
     </li>
     <li>
       <Link to={ROUTES.PAY}>Payment</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.ABOUT}>About</Link>
     </li>
   </ul>
 );

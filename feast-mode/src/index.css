@@ -9,10 +9,6 @@ body {
   background-color: whitesmoke;
 }
 
-#root {
-  margin: 0px 0px 50px 0px;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

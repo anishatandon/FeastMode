@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect
 } from 'react-router-dom';
-
 
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp/index.js';
@@ -18,10 +18,12 @@ import PasswordChangePage from '../Profile/password_change.js';
 import ProfileChangePage from '../Profile/profile_change.js';
 import Restaurants from '../Restaurants'
 import About from '../About'
-
+import Toolbar from '../Navigation/Toolbar' //test
+import SideDrawer from '../SideDrawer/SideDrawer'
+import Backdrop from '../Backdrop/Backdrop'
 
 import * as ROUTES from '../../constants/routes';
-import { withAuthentication } from '../Session';
+import { withAuthentication } from '../../backend/Session';
 
 import '../../stylesheets/Landing.css'
 import '../../stylesheets/SignUp.css'
@@ -29,14 +31,17 @@ import '../../stylesheets/Restaurants.css'
 import '../../stylesheets/Menu.css'
 import '../../stylesheets/Home.css'
 import '../../stylesheets/SearchBar.css'
+import '../../stylesheets/Backdrop.css'
+import '../../stylesheets/DrawerToggleButton.css'
+import '../../stylesheets/SideDrawer.css'
+import '../../stylesheets/Toolbar.css'
 import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
 import '../../stylesheets/form.css'
+import '../../stylesheets/about.css'
+import { format } from 'path';
 
-import Toolbar from '../Navigation/Toolbar' //test
-import SideDrawer from '../SideDrawer/SideDrawer'
-import Backdrop from '../Backdrop/Backdrop'
 
 class App extends Component {
   state = {
@@ -60,19 +65,14 @@ class App extends Component {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
 
-
-
     return (
       <div style={{height: '100%'}}>
-
         <Router>
 
           <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer show={this.state.sideDrawerOpen} />
           {backdrop}
-          <main style={{ marginTop: '64px' }}>
-          </main>
-
+          <main style={{ marginTop: '100px' }} />
 
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -87,6 +87,8 @@ class App extends Component {
             <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
             <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route path={ROUTES.ABOUT} component={About} />
+            <Redirect to={ROUTES.LANDING} />
+
         </Router>
       </div>
 
@@ -95,4 +97,5 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(App);
+// export default withAuthentication(App);
+export default App
