@@ -10,9 +10,6 @@ const Menu = () => (
       <Header />
       <Profile />
       <br/>
-      <SignOutButton />
-      {/* <ImageUpload /> */}
-
     </div>
 
 );

@@ -7,7 +7,8 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 
 const rrfConfig = {
     userProfile: "users",
-    useFirestoreForProfile: true
+    useFirestoreForProfile: true,
+    attachAuthIsReady: true,
 }
 
 const composeEnhancers = process.env.NODE_ENV === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose

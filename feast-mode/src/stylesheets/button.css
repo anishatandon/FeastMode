@@ -5,6 +5,7 @@
     border-radius: 10px;
     padding: 5px 14px 5px 14px;
     margin: 0px 0px 25px 0px;
+    outline: 0;
 
     font-size: 17px;
     letter-spacing: 1px;
@@ -13,6 +14,11 @@
 
     /* Transitions */
     transition: background-color 0.10s;
+}
+
+.classic-button:disabled, .classic-button[disabled] {
+  background-color: #cccccc;
+  color: #666666;
 }
 
 /* Highlight effects hover */
