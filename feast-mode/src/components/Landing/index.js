@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SignInForm from '../SignIn/index.js'
-import { SignUpLink } from '../SignUp/SignUpForm'
+import SignUpLink from '../SignUp/SignUpLink.js'
 
 import logo from '../../images/logo.png'
 

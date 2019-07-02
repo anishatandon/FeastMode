@@ -16,7 +16,12 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
-            phone: data.phone
+            phone: data.phone,
+            creditCard: data.creditCard,
+            expDate: data.expDate,
+            secCode: data.secCode,
+            creditCardType: data.creditCardType,
+            apps: data.apps,
         })
         dispatch({ type: actions.AUTH_SUCCESS })
     } catch(err) {

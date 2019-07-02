@@ -48,7 +48,7 @@ const SignInForm = ({ login, loading, error, cleanUp }) => {
             <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "password" />
           </div>
 
-          {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
+          <p>{error}</p> 
           <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
           </Form>
         )}
@@ -66,11 +66,4 @@ const mapDispatchToProps = {
   cleanUp: actions.clean,
 }
 
-const SignInLink = () => (
-  <pre className = "link-text">
-    Already have an account?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
-  </pre>
-)
-
-export { SignInLink }
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)

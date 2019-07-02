@@ -11,8 +11,6 @@ class AppsYouHave extends Component{
             isDD: false, //doordash
             isUE: false, //ubereats
         };
-        this.handleChange=this.handleChange.bind(this)
-        this.handleSubmit=this.handleSubmit.bind(this)
       }
 
       handleSubmit = event => {
