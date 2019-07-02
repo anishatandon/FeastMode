@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { Form, Field, ErrorMessage, Formik } from 'formik'
 import * as yup from 'yup'
@@ -8,16 +8,23 @@ import { connect } from 'react-redux'
 import * as actions from '../../backend/store/actions'
 
 const SignUpSchema = yup.object().shape({
-    firstName: yup.string("Must be a velid name").required("Please enter your name"),
-    lastName: yup.string("Must be a velid name"),
-    username: yup.string("Must be a velid username").min(4, "Username must be at least 4 characters").required("Please enter a username"),
-    email: yup.string("Must be a velid email").email("Must be a valid email").required("Please enter an email"),
+    firstName: yup.string("Must be a valid name").required("Please enter your name"),
+    lastName: yup.string("Must be a valid name"),
+    username: yup.string("Must be a valid username").min(4, "Username must be at least 4 characters").required("Please enter a username"),
+    email: yup.string("Must be a valid email").email("Must be a valid email").required("Please enter an email"),
     phone: yup.number("Must be a valid phone number").positive("Must be a valid phone number").integer("Must be a valid phone number").required("Please enter a phone number"),
     passwordOne: yup.string().min(8, "Password must be at least 8 characters").required("Please enter a password"),
     passwordTwo: yup.string().oneOf([yup.ref("passwordOne"), null], "Passwords don't match").required("Make sure you can remember your password!")
 })
 
-const SignUpForm = ({ signUp }) => {
+const SignUpForm = ({ signUp, loading, error, cleanUp}) => {
+    console.log(error) // remove this when you get error to show
+    useEffect(() => {
+        return () => {
+            cleanUp()
+        }
+    }, [cleanUp])
+
     return(
         <Formik
             initialValues = {{
@@ -30,15 +37,16 @@ const SignUpForm = ({ signUp }) => {
                 passwordTwo: '',
             }}
             validationSchema = {SignUpSchema}
-            onSubmit = {( values, { resetForm, setSubmitting }) => {
-                signUp(values)
-                console.log(values) 
+            onSubmit = {async ( values, { resetForm, setSubmitting }) => {
+                await signUp(values)
                 resetForm()
                 setSubmitting(false)
-            }}
+                // props.history.push("/pay")
+            }} 
         >
-            {({ errors, touched, isSubmitting }) => (
+            {({ errors, touched, isSubmitting}) => (
                 <Form className = "classic-form">
+                    
                     <div className = "aligned-inputs text-input"> 
                         <div className = {touched.firstName && errors.firstName && "text-error"}>
                             <label> First Name </label> <br />
@@ -85,6 +93,7 @@ const SignUpForm = ({ signUp }) => {
                         </div>
                     </div>
 
+                    {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
                     <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Next </button>
 
                 </Form>
@@ -93,10 +102,14 @@ const SignUpForm = ({ signUp }) => {
     )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = ({ auth }) => ({
+    loading: auth.loading,
+    error: auth.error,
+})
 
 const mapDispatchToProps = {
-    signUp: actions.signUp
+    signUp: actions.signUp,
+    cleanUp: actions.clean,
 }
 
 const SignUpLink = () => (
@@ -105,9 +118,5 @@ const SignUpLink = () => (
     </pre>
 );
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SignUpForm)
-
 export { SignUpLink }
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpForm))

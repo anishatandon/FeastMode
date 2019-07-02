@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp/index.js';
-import SignInPage from '../SignIn';
-import SignOutPage from '../SignOut';
-import HomePage from '../Home';
+import SignOut from '../SignOut';
+import Home from '../Home';
 import Success from '../SignUp/Success';
 import AppsYouHave from '../SignUp/AppsYouHave';
 import PaymentInfo from '../SignUp/PaymentInfo';
@@ -35,67 +31,80 @@ import '../../stylesheets/Backdrop.css'
 import '../../stylesheets/DrawerToggleButton.css'
 import '../../stylesheets/SideDrawer.css'
 import '../../stylesheets/Toolbar.css'
+import '../../stylesheets/Loader.css'
 import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
 import '../../stylesheets/form.css'
 import '../../stylesheets/about.css'
 import { format } from 'path';
+import { auth } from 'firebase';
 
 
-class App extends Component {
-  state = {
-    sideDrawerOpen: false,
-  }
+const App = ({ loggedIn, sideDrawerOpen }) => {
 
-  drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen }
-    })
-  }
+  // drawerToggleClickHandler = () => {
+  //   this.setState(prevState => {
+  //     return { sideDrawerOpen: !prevState.sideDrawerOpen }
+  //   })
+  // }
 
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false })
-  }
+  // backdropClickHandler = () => {
+  //   this.setState({ sideDrawerOpen: false })
+  // }
 
-  render() {
-    let backdrop;
+  let backdrop;
 
-    if (this.state.sideDrawerOpen) {
-      backdrop = <Backdrop click={this.backdropClickHandler} />
-    }
+    // if (this.state.sideDrawerOpen) {
+    //   backdrop = <Backdrop click={this.backdropClickHandler} />
+  //}
 
-    return (
-      <div style={{height: '100%'}}>
-        <Router>
-
-          <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-          <SideDrawer show={this.state.sideDrawerOpen} />
-          {backdrop}
-          <main style={{ marginTop: '100px' }} />
-
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-            <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
-            <Route path={ROUTES.HOME} component={HomePage} />
-            <Route path={ROUTES.SUCCESS} component={Success} />
-            <Route path={ROUTES.PAY} component={PaymentInfo} />
-            <Route path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
-            <Route path={ROUTES.MENU} component={Menu} />
-            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
-            <Route path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
-            <Route path={ROUTES.RESTAURANTS} component={Restaurants} />
-            <Route path={ROUTES.ABOUT} component={About} />
-            <Redirect to={ROUTES.LANDING} />
-
-        </Router>
-      </div>
-
-
+  let routes
+  if (loggedIn) {
+    routes = (
+      <Switch>
+        <Route exact path={ROUTES.HOME} component={Home} />
+        <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
+        <Route exact path={ROUTES.MENU} component={Menu} />
+        <Route exact path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+        <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
+        <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
+        <Route exact path={ROUTES.ABOUT} component={About} />
+        <Redirect to={ROUTES.HOME} />
+      </Switch>
+    )
+  } else {
+    routes = (
+      <Switch>
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+        <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route exact path={ROUTES.PAY} component={PaymentInfo} />
+        <Route exact path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
+        <Route exact path={ROUTES.SUCCESS} component={Success} />
+        <Route exact path={ROUTES.ABOUT} component={About} />
+        <Redirect to={ROUTES.LANDING} />
+      </Switch>
     )
   }
+
+  return (
+    <div style={{height: '100%'}}>
+
+      <Toolbar /* drawerClickHandler={this.drawerToggleClickHandler} */ />
+      {/* <SideDrawer show={this.state.sideDrawerOpen} /> */}
+      {/* {backdrop} */}
+
+      <main style={{ marginTop: '100px' }}> {routes} </main>
+
+    </div>
+  )
 }
 
+
+const mapStateToProps = ({ firebase }) => ({
+  loggedIn: firebase.auth.uid,
+  sideDrawerOpen: false,
+})
+
 // export default withAuthentication(App);
-export default App
+export default connect(mapStateToProps)(App)

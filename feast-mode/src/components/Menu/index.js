@@ -10,8 +10,6 @@ const Menu = () => (
       <Header />
       <Profile />
       <br/>
-      <SignOutButton />
-
     </div>
 
 );

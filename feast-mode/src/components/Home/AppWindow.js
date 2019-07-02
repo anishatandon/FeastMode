@@ -11,7 +11,6 @@ class AppWindow extends Component {
     }
 
     render() {
-        console.log(this.props.name)
         return (
             <Link to = {ROUTES.RESTAURANTS}>
                 <div className = "app_window">
