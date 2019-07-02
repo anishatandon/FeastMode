@@ -6,8 +6,6 @@ import LandingPage from '../Landing';
 import SignUpPage from '../SignUp/index.js';
 import SignOut from '../SignOut';
 import Home from '../Home';
-import Success from '../SignUp/Success';
-import AppsYouHave from '../SignUp/AppsYouHave';
 import Menu from '../Menu';
 import PasswordChangePage from '../Profile/password_change.js';
 import ProfileChangePage from '../Profile/profile_change.js';
@@ -79,8 +77,6 @@ const App = ({ loggedIn, sideDrawerOpen }) => {
       <Switch>
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route exact path={ROUTES.APPS_YOU_HAVE} component={AppsYouHave} />
-        <Route exact path={ROUTES.SUCCESS} component={Success} />
         <Route exact path={ROUTES.ABOUT} component={About} />
         <Redirect to={ROUTES.LANDING} />
       </Switch>

@@ -48,7 +48,7 @@ const SignInForm = ({ login, loading, error, cleanUp }) => {
             <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "password" />
           </div>
 
-          <p>{error}</p> 
+          {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
           <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
           </Form>
         )}

@@ -26,8 +26,6 @@ const Toolbar = ({ loggedIn }) => {
         <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
         <li> <NavLink to={ROUTES.LANDING}> Landing </NavLink> </li>
         <li> <NavLink to={ROUTES.SIGN_UP}> Sign Up </NavLink> </li>
-        <li> <NavLink to={ROUTES.APPS_YOU_HAVE}> Apps You Have </NavLink> </li>
-        <li> <NavLink to={ROUTES.SUCCESS}> Success </NavLink> </li>
       </ul>
     )
   }
@@ -104,12 +102,6 @@ const ToolbarAuth = () => (
     </li>
     <li>
       <NavLink to={ROUTES.RESTAURANTS}>Restaurants</NavLink>
-    </li>
-    <li>
-      <NavLink to={ROUTES.APPS_YOU_HAVE}>Apps you have</NavLink>
-    </li>
-    <li>
-      <NavLink to={ROUTES.PAY}>Payment</NavLink>
     </li>
     <li>
       <NavLink to={ROUTES.ABOUT}>About</NavLink>

@@ -29,12 +29,6 @@ const SideDrawer = props => {
         <li>
           <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
         </li>
-        <li>
-          <Link to={ROUTES.APPS_YOU_HAVE}>Apps you have</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.PAY}>Payment</Link>
-        </li>
       </ul>
     </nav>
   );
