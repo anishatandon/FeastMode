@@ -25,21 +25,6 @@
     border-radius: 20px;
 }
 
-.select-box {
-  position: relative;
-  display: block;
-  width: auto;
-  margin-top: 10px;
-  margin-bottom: none;
-  margin-right: auto;
-  margin-left: auto;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #60666d;
-  justify-content: left;
-  align-items: left;
-}
-
 .logo {
     max-width: 10%;
     object-fit: contain;
