@@ -4,6 +4,11 @@ import Wizard from './Wizard.js'
 import * as actions from '../../backend/store/actions'
 import { connect } from 'react-redux'
 
+import postmates from '../../images/postmates.jpg';
+import doordash from '../../images/doordash.jpg';
+import grubhub from '../../images/grubhub.png';
+import ubereats from '../../images/ubereats.jpeg';
+
 const WizardForm = ({ signUp, loading, error, cleanUp }) => {
     console.log(error) // remove this when you get error to show
     useEffect(() => {
@@ -125,26 +130,27 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
             <Wizard.Page>
                 {props => (
                     <React.Fragment>
-                        <h1>Which delivery apps do you have?</h1>
-                        <div className = "checkbox-input">
-                            <label> Postmates </label>
-                            <Field name = "apps[0]" type = "checkbox"/> <br />
-                        </div>
+                        <ul className = "checkbox-input">
+                            <li>
+                                <Field name = "apps[0]" type = "checkbox" id = "Postmates"/>
+                                <label for = "Postmates"> <img src = {postmates} /> </label>
+                            </li>
 
-                        <div className = "checkbox-input">
-                            <label> GrubHub </label>
-                            <Field name = "apps[1]" type = "checkbox"/> <br />
-                        </div>
+                            <li>
+                                <Field name = "apps[1]" type = "checkbox" id = "GrubHub"/>
+                                <label for = "GrubHub"> <img src = {grubhub} /> </label>
+                            </li>
 
-                        <div className = "checkbox-input">
-                            <label> DoorDash </label>
-                            <Field name = "apps[2]" type = "checkbox"/> <br />
-                        </div>
+                            <li>
+                                <Field name = "apps[2]" type = "checkbox" id = "DoorDash"/>
+                                <label for = "DoorDash"> <img src = {doordash} /> </label>
+                            </li>
 
-                        <div className = "checkbox-input">
-                            <label> UberEats </label>
-                            <Field name = "apps[3]" type = "checkbox"/> <br />
-                        </div>
+                            <li>
+                                <Field name = "apps[3]" type = "checkbox" id = "UberEats"/>
+                                <label for = "UberEats"> <img src = {ubereats} /> </label>
+                            </li>
+                        </ul>
                     </React.Fragment>
                 )}
                 {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}

@@ -51,21 +51,24 @@ class Wizard extends Component {
       <Formik
         initialValues = {values}
         enableReinitialize = {false}
-        // validationSchema = {SignUpSchemas[page]}
+        validationSchema = {SignUpSchemas[page]}
         onSubmit = {this.handleSubmit}
         render = {props => (
-          <Form className = "classic-form">
+          <>
+            {!isLastPage ? <h1> Sign Up! </h1> : <h1> Which apps do you have? </h1>} 
+            <Form className = "classic-form">
 
-            {React.cloneElement(activePage, { parentState: {...props} })}
-            <div className = "button-area">
+              {React.cloneElement(activePage, { parentState: {...props} })}
+              <div className = "button-area">
 
-              {page > 0 && <button type = "button" className = "classic-button" onClick={this.previous}> Previous </button>}
-              {!isLastPage && <button type = "submit" className = "classic-button"> Next </button>}
-              {isLastPage && <button type = "submit" disabled = {props.isSubmitting} className = "classic-button"> Submit </button>}
+                {page > 0 && <button type = "button" className = "classic-button" onClick={this.previous}> Previous </button>}
+                {!isLastPage && <button type = "submit" className = "classic-button"> Next </button>}
+                {isLastPage && <button type = "submit" disabled = {props.isSubmitting} className = "classic-button"> Submit </button>}
 
-            </div>
+              </div>
 
-          </Form>
+            </Form>
+          </>
         )}
       />
     )
