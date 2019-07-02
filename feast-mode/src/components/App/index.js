@@ -12,11 +12,12 @@ import PaymentInfo from '../SignUp/PaymentInfo';
 import Menu from '../Menu';
 import PasswordChangePage from '../Profile/password_change.js';
 import ProfileChangePage from '../Profile/profile_change.js';
-import Restaurants from '../Restaurants'
-import About from '../About'
-import Toolbar from '../Navigation/Toolbar' //test
-import SideDrawer from '../SideDrawer/SideDrawer'
-import Backdrop from '../Backdrop/Backdrop'
+import Restaurants from '../Restaurants';
+import About from '../About';
+import Toolbar from '../Navigation/Toolbar'; //test
+import SideDrawer from '../SideDrawer/SideDrawer';
+import Backdrop from '../Backdrop/Backdrop';
+import Friends from '../Friends';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../../backend/Session';
@@ -70,6 +71,7 @@ const App = ({ loggedIn, sideDrawerOpen }) => {
         <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
         <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
         <Route exact path={ROUTES.ABOUT} component={About} />
+        <Route exact path={ROUTES.FRIENDS} component={Friends} />
         <Redirect to={ROUTES.HOME} />
       </Switch>
     )

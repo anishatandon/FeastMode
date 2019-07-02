@@ -16,10 +16,10 @@ class AppWindow extends Component {
                 <div className = "app_window">
                     <img src = {this.props.logo} className = "logo" alt = {this.props.name}/>
                     <span> {this.props.name} </span>
-                    <hr />
-                    <img src = {food} alt = "food" style = {{ width: "100%" }}/>
+                    <br />
+                    <img src = {food} alt = "food" className="food"/>
                 </div>
-            </Link>
+            </Link> 
 
         )
     }
