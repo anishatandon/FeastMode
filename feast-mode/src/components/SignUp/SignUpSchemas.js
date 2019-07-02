@@ -39,13 +39,22 @@ export const SignUpSchemas = [
 
     yup.object().shape({
         creditCard:
-            yup.string().required("Please input"),
+            yup.number("Must be a valid phone number")
+            .positive("Must be a valid phone number")
+            .integer("Must be a valid phone number")
+            .required("Please enter a phone number"),
 
         expDate:
-            yup.string().required("Please input"),
+            yup.number("Please enter a valid expiration date")
+            .integer("Please input a valid expiration date")
+            .test('len', 'Must be of the form MM/YY', val => val.length === 4) // makes sure it is exactly four numbers
+            .required("Please input a valid expiration date"),
             
         secCode:
-            yup.string().required("Please input"),
+            yup.number("Please enter a valid security code")
+            .integer("Please enter a valid security code")
+            .min(3, "Please enter a valid security code")
+            .required("Please enter a valid security code"),
         
         creditCardType:
             yup.string().required("Please input"),

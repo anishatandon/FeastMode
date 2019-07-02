@@ -99,7 +99,7 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                         <div className = "aligned-inputs text-input"> 
                             <div className = {props.touched.expDate && props.errors.expDate && "text-error"}>
                                 <label> Expiration Date </label> <br />
-                                <Field name = "expDate" type = "text"/> <br/>
+                                <Field name = "expDate" type = "text" placeholder="MM/YY"/> <br/>
                                 <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "expDate" />
                             </div>
                             

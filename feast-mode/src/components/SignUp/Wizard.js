@@ -51,7 +51,7 @@ class Wizard extends Component {
       <Formik
         initialValues = {values}
         enableReinitialize = {false}
-        // validationSchema = {SignUpSchemas[page]}
+        validationSchema = {SignUpSchemas[page]}
         onSubmit = {this.handleSubmit}
         render = {props => (
           <Form className = "classic-form">
