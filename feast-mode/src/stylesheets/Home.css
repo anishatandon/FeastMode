@@ -4,8 +4,8 @@
 
 .home_title {
     text-align: center;
-    margin-bottom: 50px;
-}
+    margin-bottom: 30px;
+} 
 
 .navbar{
     padding: 5px;
@@ -16,7 +16,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #2C3E50;
 }
 
 .navbar li {
@@ -31,7 +31,7 @@
 
 .navbar li button {
     font-size: 15px;
-    background-color: #333;
+    background-color: #2C3E50;
     color: white;
     border: none;
 }
@@ -49,21 +49,39 @@
 }
 
 .app_window{
-    overflow: auto;
-    margin: auto;
-    width: 30%;
-    padding: 25px;
-    border: 3px solid black;
-    border-radius: 5px;
-    margin-bottom: 30px;
+    overflow: auto; /* Control screen resizing */
+    position: relative;
+    background-color: white;
+    padding: 30px; /* Padding around content */
+
+    /* Items perfectly centered in box */
+       
+
+    margin: 3% 30%; /* Box dimensions */
+
+    /* Shadow effect  */
+    border: 1px solid #efefef;
+    box-shadow:
+        0 1px 5px rgba(0,0,0,0.15),
+        0 10px 0 -5px #eee;
 }
 
 .logo {
-    max-width: 10%;
+    max-width: 15%;
     object-fit: contain;
 }
 
 .food {
-    max-width: 50%;
+    max-width: 100%;
+    padding-top: 30px;
     object-fit: contain;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+
 }

@@ -8,3 +8,4 @@ export const PASSWORD_CHANGE = '/settings/password_change';
 export const PROFILE_CHANGE = '/settings/profile_change';
 export const RESTAURANTS = '/restaurants'
 export const ABOUT = '/about'
+export const FRIENDS = '/friends';

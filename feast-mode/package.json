@@ -20,6 +20,7 @@
     "react-scripts": "3.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
+    "redux-firebase": "^0.3.3",
     "redux-firestore": "^0.8.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "twilio": "^3.33.0"
   }
 }
