@@ -10,10 +10,9 @@ import SignOut from '../SignOut'
 import Home from '../Home'
 import Menu from '../Menu'
 import PasswordChangePage from '../Profile/password_change.js'
-import ProfileChangePage from '../Profile/profile_change.js'
+import ProfileChangePage from '../Profile/ProfileChange.js'
 import Restaurants from '../Restaurants'
 import About from '../About'
-import CheatingToolbar from '../Navigation/CheatingToolbar'
 import Navbar from '../Navigation'
 import Backdrop from '../Navigation/Backdrop.js'
 import Friends from '../Friends'
@@ -27,17 +26,18 @@ import '../../stylesheets/Home.css'
 import '../../stylesheets/SearchBar.css'
 import '../../stylesheets/Backdrop.css'
 import '../../stylesheets/DrawerToggleButton.css'
-import '../../stylesheets/SideDrawer.css'
 import '../../stylesheets/CheatingToolbar.css'
 import '../../stylesheets/Loader.css'
 import '../../stylesheets/Navbar.css'
 import '../../stylesheets/Friends.css'
 import '../../stylesheets/EmailVerification.css'
+import '../../stylesheets/ProfileChange.css'
 import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
 import '../../stylesheets/form.css'
 import '../../stylesheets/about.css'
+import '../../stylesheets/PasswordChange.css'
 
 const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
   let routes
@@ -86,20 +86,13 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route exact path={ROUTES.ABOUT} component={About} />
+        <Route exact path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
         <Redirect to={ROUTES.LANDING} />
       </Switch>
     )
   }
 
-  return (
-    <div>
-
-      <CheatingToolbar/>
-
-      <main> {routes} </main>
-
-    </div>
-  )
+  return  <main> {routes} </main>
 }
 
 const mapStateToProps = ({ firebase, ui }) => ({

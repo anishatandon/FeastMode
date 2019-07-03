@@ -1,3 +1,21 @@
+// import React from 'reac';
+// import {connect} from 'react-redux';
+// import {Formik, Field} from 'formik';
+
+
+// const Profile = () => {
+//     return (
+//         <div></div>
+//     )
+// }
+
+// export default Profile;
+
+
+
+
+
+
 // import React, { Component } from 'react';
 // // import Firebase from '../Firebase';
 // import { withFirebase } from '../../backend/Firebase'

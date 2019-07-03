@@ -1,11 +1,11 @@
 
-.email-verification {
+.profile-change {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     overflow: auto; /* Control screen resizing */
     position: relative;
-    top: 40px;
     background-color: white;
     padding: 30px 0px 0px 0px; /* Padding around content */
+    top: 10px;
 
     /* Items perfectly centered in box */
     display: flex;
@@ -13,16 +13,11 @@
     justify-content: center;
     align-items: center;
 
-    margin: 3% 38% 0%; /* Box dimensions */
+    margin: 3% 34.5% 0%; /* Box dimensions */
 
     /* Shadow effect  */
     border: 1px solid #efefef;
     box-shadow:
         0 1px 5px rgba(0,0,0,0.15),
         0 10px 0 -5px #eee;
-}
-
-.email-verification p {
-    text-align: center;
-    margin-bottom: 30px;
 }

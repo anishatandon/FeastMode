@@ -21,7 +21,7 @@ const VerifyEmail = ({ sendVerification, error, loading, cleanUp })=> {
         <div className = "email-verification">
             <h1> You are not verified </h1>
             <p> Go to your email inbox, and please verify your email </p>
-            <button onClick = {sendVerification} className = "classic-button"> Resend Email </button>
+            {/* <button onClick = {sendVerification} className = "classic-button"> Resend Email </button> */}
             <p style = {displayError}>{error}</p>
         </div>
     )

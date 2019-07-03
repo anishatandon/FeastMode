@@ -5,20 +5,20 @@ export const SignUpSchemas = [
     yup.object().shape({
         firstName:
             yup.string("Must be a valid name")
-                .required("Please enter your name"),
+            .required("Please enter your name"),
 
         lastName:
             yup.string("Must be a valid name"),
 
         username:
             yup.string("Must be a valid username")
-                .min(4, "Username must be at least 4 characters")
-                .required("Please enter a username"),
+            .min(4, "Username must be at least 4 characters")
+            .required("Please enter a username"),
 
         email:
             yup.string("Must be a valid email")
-                .email("Must be a valid email")
-                .required("Please enter an email"),
+            .email("Must be a valid email")
+            .required("Please enter an email"),
 
         phone:
             yup.number()
@@ -28,13 +28,13 @@ export const SignUpSchemas = [
 
         passwordOne:
             yup.string()
-                .min(8, "Password must be at least 8 characters")
-                .required("Please enter a password"),
+            .min(8, "Password must be at least 8 characters")
+            .required("Please enter a password"),
 
         passwordTwo:
             yup.string()
-                .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
-                .required("Make sure you can remember your password!")
+            .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
+            .required("Make sure you can remember your password!")
     }),
 
     yup.object().shape({
@@ -46,11 +46,16 @@ export const SignUpSchemas = [
 
         expDate:
             yup.number()
-                .typeError('Please enter a valid expiration date')
-                .positive('Please enter a valid expiration date')
-                .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
-                .required('Please enter a valid expiration date'),
-
+            .typeError('Please enter a valid expiration date')
+            .positive('Please enter a valid expiration date')
+            .test('len', 'Must be of the form MMYY', function(value) { 
+                if (!value) {
+                    return false
+                }
+                return value.toString().length === 4 
+                }) // makes sure it is exactly four numbers
+            .required('Please enter the expiration date'),
+            
         secCode:
             yup.number()
                 .typeError('Please enter a valid security code')
@@ -61,10 +66,10 @@ export const SignUpSchemas = [
             yup.string()
                 .required("Credit card type is required"),
     }),
-    null
+
     // yup.object({
     //     apps: 
-    //     yup.array()
-    //         .oneOf([true], 'Please choose at least one option'),
-    //   })
+    //         yup.array()
+    //             .oneOf([true], 'Choose at least one option'),
+    // })
 ]
