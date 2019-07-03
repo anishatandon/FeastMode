@@ -18,6 +18,7 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
         await firestore.collection('users').doc(res.user.uid).set({ 
             firstName: data.firstName,
             lastName: data.lastName,
+            username: data.username,
             email: data.email,
             phone: data.phone,
             creditCard: data.creditCard,

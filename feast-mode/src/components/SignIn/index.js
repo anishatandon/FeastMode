@@ -50,8 +50,9 @@ const SignInForm = ({ login, loading, error, cleanUp }) => {
 
           <p style = {displayError}>{error}</p>
           <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
-          </Form>
-        )}
+
+        </Form>
+      )}
     </Formik>
   )
 }
