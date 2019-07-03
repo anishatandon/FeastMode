@@ -7,10 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: whitesmoke;
-}
-
-#root {
-  margin: 0px 0px 50px 0px;
+  padding-bottom: 50px
 }
 
 code {

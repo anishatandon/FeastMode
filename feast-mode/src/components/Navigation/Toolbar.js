@@ -1,15 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from '../../backend/Session';
+import { connect } from 'react-redux'
 
-import './Toolbar.css';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
-const Toolbar = props => (
+const Toolbar = ({ loggedIn }) => {
+  let items
+  if (loggedIn) {
+    items = (
+      <ul className = "toolbar-navigation">
+        <li> <NavLink to={ROUTES.HOME}> Home </NavLink> </li>
+        <li> <NavLink to={ROUTES.MENU}> Menu </NavLink> </li>
+        <li> <NavLink to={ROUTES.PASSWORD_CHANGE}> Password Change </NavLink> </li>
+        <li> <NavLink to={ROUTES.PROFILE_CHANGE}> Profile Change </NavLink> </li>
+        <li> <NavLink to={ROUTES.RESTAURANTS}> Restaurants </NavLink> </li>
+        <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
+        <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
+      </ul>
+    )
+  } else {
+    items = (
+      <ul className = "toolbar-navigation">
+        <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
+        <li> <NavLink to={ROUTES.LANDING}> Landing </NavLink> </li>
+        <li> <NavLink to={ROUTES.SIGN_UP}> Sign Up </NavLink> </li>
+      </ul>
+    )
+  }
+
+  return (
+    <header className = "toolbar">
+      {items}
+    </header>
+  )
+}
+
+const Toolbar2 = props => (
   <div>
 
-    <header className="toolbar">
+    <header className = "toolbar">
       <nav className="toolbar_navigation">
 
         <AuthUserContext.Consumer>
@@ -19,10 +50,10 @@ const Toolbar = props => (
                 <div className="toolbar__toggle-button">
                   <DrawerToggleButton click={props.drawerClickHandler} />
                 </div>
-                <div className="toolbar__logo"><Link to={ROUTES.HOME}>The Logo</Link></div>
+                <div className="toolbar__logo"><NavLink to={ROUTES.HOME}>The Logo</NavLink></div>
               </div>
              :
-             <div className="toolbar__logo"><Link to={ROUTES.LANDING}>The Logo</Link></div>
+             <div className="toolbar__logo"><NavLink to={ROUTES.LANDING}>The Logo</NavLink></div>
           }
         </AuthUserContext.Consumer>
 
@@ -31,25 +62,19 @@ const Toolbar = props => (
         <div className="toolbar_navigation-items">
         <AuthUserContext.Consumer>
           {authUser =>
-            authUser ? <ToolbarAuth /> : <div />
+            authUser ? 
+            <ToolbarAuth /> 
+            : 
+            <div className="toolbar_navigation-about">
+            <ul>
+              <li>
+                <NavLink to={ROUTES.ABOUT}>About</NavLink>
+              </li>
+            </ul>
+            </div>
           }
         </AuthUserContext.Consumer>
         </div>
-
-          <AuthUserContext.Consumer>
-            {authUser =>
-              authUser ? <div /> :
-              <div className="toolbar_navigation-about">
-                <ul>
-                  <li>
-                    <Link to={ROUTES.ABOUT}>About</Link>
-                  </li>
-                </ul>
-              </div>
-            }
-          </AuthUserContext.Consumer>
-
-
 
       </nav>
     </header>
@@ -61,40 +86,33 @@ const Toolbar = props => (
 const ToolbarAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <NavLink to={ROUTES.LANDING}>Landing</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.HOME}>Home</Link>
+      <NavLink to={ROUTES.HOME}>Home</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.MENU}>Menu</Link>
+      <NavLink to={ROUTES.MENU}>Menu</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.PASSWORD_CHANGE}>Password Change</Link>
+      <NavLink to={ROUTES.PASSWORD_CHANGE}>Password Change</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.PROFILE_CHANGE}>Profile Change</Link>
+      <NavLink to={ROUTES.PROFILE_CHANGE}>Profile Change</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
+      <NavLink to={ROUTES.RESTAURANTS}>Restaurants</NavLink>
     </li>
     <li>
-      <Link to={ROUTES.APPS_YOU_HAVE}>Apps you have</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.PAY}>Payment</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ABOUT}>About</Link>
+      <NavLink to={ROUTES.ABOUT}>About</NavLink>
     </li>
   </ul>
 );
 
 
+const mapStateToProps = ({ firebase }) => ({
+  loggedIn: firebase.auth.uid,
+})
 
 
-
-
-
-
-export default Toolbar
+export default connect(mapStateToProps)(Toolbar)

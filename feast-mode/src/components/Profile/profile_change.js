@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import Firebase from '../Firebase';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../backend/Firebase'
 
 const INITIAL_STATE = {
   loading: false,

@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
-import './SideDrawer.css';
-
 const SideDrawer = props => {
   let drawerClasses = 'side-drawer';
   if(props.show) {
@@ -30,12 +28,6 @@ const SideDrawer = props => {
         </li>
         <li>
           <Link to={ROUTES.RESTAURANTS}>Restaurants</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.APPS_YOU_HAVE}>Apps you have</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.PAY}>Payment</Link>
         </li>
       </ul>
     </nav>
