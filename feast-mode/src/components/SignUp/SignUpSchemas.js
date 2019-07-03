@@ -24,7 +24,7 @@ export const SignUpSchemas = [
             yup.number()
             .typeError('Please enter a valid phone number')
             .positive('Please enter a valid phone number')
-            .required('Please enter a valid phone number'),
+            .required('Please enter a phone number'),
     
         passwordOne: 
             yup.string()
@@ -42,20 +42,20 @@ export const SignUpSchemas = [
             yup.number()
             .typeError('Please enter a valid credit card number')
             .positive('Please enter a valid credit card number')
-            .required('Please enter a valid credit card number'),
+            .required('Please enter your credit card number'),
 
         expDate:
             yup.number()
             .typeError('Please enter a valid expiration date')
             .positive('Please enter a valid expiration date')
             .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
-            .required('Please enter a valid expiration date'),
+            .required('Please enter the expiration date'),
             
         secCode:
             yup.number()
             .typeError('Please enter a valid security code')
             .positive('Please enter a valid security code')
-            .required('Please enter a valid security code'),
+            .required('Please enter the security code'),
         
         creditCardType:
             yup.string()

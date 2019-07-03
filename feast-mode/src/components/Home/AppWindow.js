@@ -13,7 +13,7 @@ class AppWindow extends Component {
     render() {
         return (
             <Link to = {ROUTES.RESTAURANTS}>
-                <div className = "app_window">
+                <div className = "app-window">
                     <img src = {this.props.logo} className = "logo" alt = {this.props.name}/>
                     <span> {this.props.name} </span>
                     <br />
