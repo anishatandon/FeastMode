@@ -22,11 +22,11 @@ export const SignUpSchemas = [
 
         phone:
             yup.number()
-                .typeError('Please enter a valid phone number')
-                .positive('Please enter a valid phone number')
-                .required('Please enter a valid phone number'),
-
-        passwordOne:
+            .typeError('Please enter a valid phone number')
+            .positive('Please enter a valid phone number')
+            .required('Please enter a phone number'),
+    
+        passwordOne: 
             yup.string()
                 .min(8, "Password must be at least 8 characters")
                 .required("Please enter a password"),
@@ -40,23 +40,23 @@ export const SignUpSchemas = [
     yup.object().shape({
         creditCard:
             yup.number()
-                .typeError('Please enter a valid credit card number')
-                .positive('Please enter a valid credit card number')
-                .required('Please enter a valid credit card number'),
+            .typeError('Please enter a valid credit card number')
+            .positive('Please enter a valid credit card number')
+            .required('Please enter your credit card number'),
 
         expDate:
             yup.number()
-                .typeError('Please enter a valid expiration date')
-                .positive('Please enter a valid expiration date')
-                .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
-                .required('Please enter a valid expiration date'),
-
+            .typeError('Please enter a valid expiration date')
+            .positive('Please enter a valid expiration date')
+            .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
+            .required('Please enter the expiration date'),
+            
         secCode:
             yup.number()
-                .typeError('Please enter a valid security code')
-                .positive('Please enter a valid security code')
-                .required('Please enter a valid security code'),
-
+            .typeError('Please enter a valid security code')
+            .positive('Please enter a valid security code')
+            .required('Please enter the security code'),
+        
         creditCardType:
             yup.string()
                 .required("Credit card type is required"),

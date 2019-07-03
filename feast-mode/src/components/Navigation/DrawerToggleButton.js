@@ -1,6 +1,4 @@
 import React from 'react';
-import * as actions from '../../backend/store/actions'
-import { connect } from 'react-redux'
 
 const DrawerToggleButton = props => {
   return (
@@ -13,9 +11,5 @@ const DrawerToggleButton = props => {
   
 }
 
-// const mapDispatchToProps = {
-//   open: actions.openSideDrawer
-// }
-
 export default DrawerToggleButton
-// export default connect(null, mapDispatchToProps)(DrawerToggleButton)
+

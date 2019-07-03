@@ -1,4 +1,5 @@
 import * as actions from './actionTypes.js'
+import { useReducer } from 'react';
 
 // SignUp action
 export const signUp = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -10,7 +11,9 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             .auth()
             .createUserWithEmailAndPassword(data.email, data.passwordOne)
 
-        console.log(res.user.uid)
+        // Send verification email
+        const user = firebase.auth().currentUser
+        await user.sendEmailVerification()
 
         await firestore.collection('users').doc(res.user.uid).set({ 
             firstName: data.firstName,
@@ -54,7 +57,20 @@ export const signIn = data => async (dispatch, getState, { getFirebase }) => {
     dispatch({ type: actions.AUTH_END })
 }
 
-// Clean up messages
+// Clean up error messages action
 export const clean = () => ({
     type: actions.CLEAN_UP,
 })
+
+// Verify email action
+export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase()
+    dispatch({ type: actions.VERIFY_START })
+    try {
+        const user = firebase.auth().currentUser
+        await user.sendEmailVerification()
+        dispatch({ type: actions.VERIFY_SUCCESS }) 
+    } catch(err) {
+        dispatch({ type: actions.VERIFY_FAIL, payload: err.message })
+    }
+}

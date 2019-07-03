@@ -10,7 +10,14 @@ import grubhub from '../../images/grubhub.png';
 import ubereats from '../../images/ubereats.jpeg';
 
 const WizardForm = ({ signUp, loading, error, cleanUp }) => {
-    console.log(error) // remove this when you get error to show
+    let displayError
+
+    if (error) {
+        displayError = {display: "block"}
+    } else {
+        displayError = {display: "none"}
+    }
+
     useEffect(() => {
         return () => {
             cleanUp()
@@ -37,11 +44,11 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                 await signUp(values)
                 resetForm()
                 setSubmitting(false)
-                console.log("Submitted")
             }}
         >
             <Wizard.Page>
                 {props => (
+                    <>
                     <React.Fragment>
                         <div className = "aligned-inputs text-input"> 
                             <div className = {props.touched.firstName && props.errors.firstName && "text-error"}>
@@ -89,11 +96,13 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                             </div>
                         </div>
                     </React.Fragment>
+                    <p style = {displayError}>{error}</p>
+                    </>
                 )}
-                {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
             </Wizard.Page>
             <Wizard.Page>
                 {props => (
+                    <>
                     <React.Fragment>
                         <div className = {["compensate-input text-input", props.touched.creditCard && props.errors.creditCard && "text-error"].join(' ')}>
                             <label> Credit Card </label> <br />
@@ -125,11 +134,13 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                             <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "creditCardType" />
                         </div>
                     </React.Fragment>
+                    <p style = {displayError}>{error}</p>
+                    </>
                 )}
-                {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
             </Wizard.Page>
             <Wizard.Page>
                 {props => (
+                    <>
                     <React.Fragment>
                         <ul className = "checkbox-input">
                             <li>
@@ -154,8 +165,9 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                         </ul>
                         <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
                     </React.Fragment>
+                    <p style = {displayError}>{error}</p>
+                    </>
                 )}
-                {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
             </Wizard.Page>
         </Wizard>
     )
