@@ -115,10 +115,12 @@
     width: 100px;
     transition-duration: 0.3s;
     transform-origin: 50% 50%;
+    border-radius: 20px;
 }
   
 .checkbox-input :checked + label {
     border-color: #ff9933;
+    border-radius: 20px;
 }
   
 .checkbox-input :checked + label:before {

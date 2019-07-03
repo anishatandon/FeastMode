@@ -152,6 +152,7 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                                 <label for = "UberEats"> <img src = {ubereats} /> </label>
                             </li>
                         </ul>
+                        <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
                     </React.Fragment>
                 )}
                 {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
