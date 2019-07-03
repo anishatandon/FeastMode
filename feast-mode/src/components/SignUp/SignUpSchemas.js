@@ -61,10 +61,25 @@ export const SignUpSchemas = [
             yup.string()
                 .required("Credit card type is required"),
     }),
+    null
+    // yup.object({
+    //         red: yup.boolean(),
+    //         orange: yup.boolean(),
+    //         green: yup.boolean()
+    //     })
+    //     .test(
+    //         'myCustomTest',
+    //         null,
+    //         (obj) => {
+    //             if (obj.red || obj.orange || obj.green) {
+    //                 return true; // everything is fine
+    //             }
 
-    yup.object({
-        apps: 
-        yup.array()
-            .oneOf([true], 'Choose at least one option'),
-      })
+    //             return new yup.ValidationError(
+    //                 'Please check one checkbox',
+    //                 null,
+    //                 'myCustomFieldName'
+    //             );
+    //         }
+    //     )
 ]
