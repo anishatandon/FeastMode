@@ -1,62 +1,18 @@
 .home {
-    background-color: whitesmoke;
+    margin-top: 150px;
 }
 
 .home_title {
+    position: relative;
     text-align: center;
-    margin-bottom: 30px;
 } 
-
-.navbar{
-    padding: 5px;
-}
-
-.navbar ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #2C3E50;
-}
-
-.navbar li {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    
-}
-
-.navbar li button {
-    font-size: 15px;
-    background-color: #2C3E50;
-    color: white;
-    border: none;
-}
-
-.navbar li button:hover {
-    background-color: white;
-    color: black;
-    border: none;
-}
-
-.navbar li button:active {
-    background-color: black;
-    color: white;
-    border: none;
-}
 
 .app_window{
     overflow: auto; /* Control screen resizing */
     position: relative;
     background-color: white;
     padding: 30px; /* Padding around content */
-
-    /* Items perfectly centered in box */
        
-
     margin: 3% 30%; /* Box dimensions */
 
     /* Shadow effect  */
@@ -80,8 +36,4 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.link {
-
-}
+} 

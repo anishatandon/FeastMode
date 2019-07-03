@@ -1,14 +1,11 @@
 import React from 'react'
 
-import Navbar from '../Home/Navbar.js'
-
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 function Restaurants() {
   return (
     <div className = "restaurants">
-      <Navbar />
       <h1 className = "restaurants_title"> Pick your Food </h1>
       <br />
       {/* for now, we can have a button that links to friends, really this should happen after you pick a restaurant */}
