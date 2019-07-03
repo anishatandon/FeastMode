@@ -1,26 +1,26 @@
 import * as yup from 'yup'
 
 export const SignUpSchemas = [
-    
+
     yup.object().shape({
-        firstName: 
+        firstName:
             yup.string("Must be a valid name")
-            .required("Please enter your name"),
-    
-        lastName: 
+                .required("Please enter your name"),
+
+        lastName:
             yup.string("Must be a valid name"),
-    
-        username: 
+
+        username:
             yup.string("Must be a valid username")
-            .min(4, "Username must be at least 4 characters")
-            .required("Please enter a username"),
-    
-        email: 
+                .min(4, "Username must be at least 4 characters")
+                .required("Please enter a username"),
+
+        email:
             yup.string("Must be a valid email")
-            .email("Must be a valid email")
-            .required("Please enter an email"),
-    
-        phone: 
+                .email("Must be a valid email")
+                .required("Please enter an email"),
+
+        phone:
             yup.number()
             .typeError('Please enter a valid phone number')
             .positive('Please enter a valid phone number')
@@ -28,13 +28,13 @@ export const SignUpSchemas = [
     
         passwordOne: 
             yup.string()
-            .min(8, "Password must be at least 8 characters")
-            .required("Please enter a password"),
-        
-        passwordTwo: 
+                .min(8, "Password must be at least 8 characters")
+                .required("Please enter a password"),
+
+        passwordTwo:
             yup.string()
-            .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
-            .required("Make sure you can remember your password!")
+                .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
+                .required("Make sure you can remember your password!")
     }),
 
     yup.object().shape({
@@ -59,8 +59,12 @@ export const SignUpSchemas = [
         
         creditCardType:
             yup.string()
-            .required("Credit card type is required"),
+                .required("Credit card type is required"),
     }),
 
-    null
+    yup.object({
+        apps: 
+        yup.array()
+            .oneOf([true], 'Choose at least one option'),
+      })
 ]
