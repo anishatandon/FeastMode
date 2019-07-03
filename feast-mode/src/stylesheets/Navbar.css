@@ -1,7 +1,6 @@
 
 .navbar {
-  position: fixed;
-  top: 60px;
+  position: relative;
   left: 0px;
   width: 100%;
   background-color: #FF9933;

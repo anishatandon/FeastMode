@@ -1,11 +1,6 @@
 .home {
-    margin-top: 150px;
+    margin-top: 40px;
 }
-
-.home-title {
-    position: relative;
-    text-align: center;
-} 
 
 .app-window{
     overflow: auto; /* Control screen resizing */

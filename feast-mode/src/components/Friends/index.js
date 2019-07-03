@@ -3,8 +3,7 @@ import React from 'react'
 function Friends() {
   return (
     <div className = "friends">
-      <h1> Pick your Friends </h1>
-      
+      <h1 className = "title"> Pick your Friends </h1>
     </div>
   )
 }

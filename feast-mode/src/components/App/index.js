@@ -10,10 +10,9 @@ import SignOut from '../SignOut'
 import Home from '../Home'
 import Menu from '../Menu'
 import PasswordChangePage from '../Profile/password_change.js'
-import ProfileChangePage from '../Profile/profile_change.js'
+import ProfileChangePage from '../Profile/ProfileChange.js'
 import Restaurants from '../Restaurants'
 import About from '../About'
-import CheatingToolbar from '../Navigation/CheatingToolbar'
 import Navbar from '../Navigation'
 import Backdrop from '../Navigation/Backdrop.js'
 import Friends from '../Friends'
@@ -33,6 +32,7 @@ import '../../stylesheets/Loader.css'
 import '../../stylesheets/Navbar.css'
 import '../../stylesheets/Friends.css'
 import '../../stylesheets/EmailVerification.css'
+import '../../stylesheets/ProfileChange.css'
 import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
@@ -93,15 +93,7 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
     )
   }
 
-  return (
-    <div>
-
-      <CheatingToolbar/>
-
-      <main> {routes} </main>
-
-    </div>
-  )
+  return  <main> {routes} </main>
 }
 
 const mapStateToProps = ({ firebase, ui }) => ({
