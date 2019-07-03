@@ -1,12 +1,13 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
-import firebase from '../firebase'
+import firebase from '../Firebase/Firebase'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 
 const rrfConfig = {
     userProfile: "users",
+    //Can add a Apps, Restuarants
     useFirestoreForProfile: true,
     attachAuthIsReady: true,
 }

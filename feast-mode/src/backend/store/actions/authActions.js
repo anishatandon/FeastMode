@@ -11,8 +11,8 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             .createUserWithEmailAndPassword(data.email, data.passwordOne)
 
         console.log(res.user.uid)
-
-        await firestore.collection('users').doc(res.user.uid).set({ 
+        
+        const user = {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
@@ -22,7 +22,9 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             secCode: data.secCode,
             creditCardType: data.creditCardType,
             apps: data.apps,
-        })
+        }
+
+        await firestore.collection('users').doc(res.user.uid).set(user)
         dispatch({ type: actions.AUTH_SUCCESS })
     } catch(err) {
         dispatch({ type: actions.AUTH_FAIL, payload: err.message })
@@ -47,6 +49,8 @@ export const signIn = data => async (dispatch, getState, { getFirebase }) => {
     try {
         await firebase.auth().signInWithEmailAndPassword(data.email, data.password)
         dispatch({ type: actions.AUTH_SUCCESS })
+
+
     } catch(err) {
         console.log(err.message)
         dispatch({ type: actions.AUTH_FAIL, payload: err.message })
@@ -58,3 +62,16 @@ export const signIn = data => async (dispatch, getState, { getFirebase }) => {
 export const clean = () => ({
     type: actions.CLEAN_UP,
 })
+
+// send recover password
+export const recoverPassword = data => async (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase();
+    dispatch({type: actions.RECOVERY_START});
+    try{
+        await firebase.auth().sendPasswordResetEmail(data.email);
+        dispatch({type: actions.RECOVERY_SUCCESS});
+
+    }catch(err){
+        dispatch({type: actions.RECOVERY_FAIL, payload: err.message});
+    }
+};
