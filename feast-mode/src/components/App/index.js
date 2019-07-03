@@ -73,7 +73,7 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
           <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
           <Route exact path={ROUTES.MENU} component={Menu} />
           <Route exact path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
-          {/* <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} /> */}
+          <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
           <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
           <Route exact path={ROUTES.ABOUT} component={About} />
           <Route exact path={ROUTES.FRIENDS} component={Friends} />
