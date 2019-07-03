@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../backend/store/actions'
 
 import LandingPage from '../Landing'
-import SignUpPage from '../SignUp/index.js'
+import SignUpPage from '../SignUp'
 import SignOut from '../SignOut'
 import Home from '../Home'
 import Menu from '../Menu'
@@ -14,9 +14,10 @@ import ProfileChangePage from '../Profile/profile_change.js'
 import Restaurants from '../Restaurants'
 import About from '../About'
 import CheatingToolbar from '../Navigation/CheatingToolbar'
-import Navbar from '../Navigation/Navbar'
+import Navbar from '../Navigation'
 import Backdrop from '../Navigation/Backdrop.js'
 import Friends from '../Friends'
+import EmailVerification from '../EmailVerification'
 
 import '../../stylesheets/Landing.css'
 import '../../stylesheets/SignUp.css'
@@ -31,6 +32,7 @@ import '../../stylesheets/CheatingToolbar.css'
 import '../../stylesheets/Loader.css'
 import '../../stylesheets/Navbar.css'
 import '../../stylesheets/Friends.css'
+import '../../stylesheets/EmailVerification.css'
 import '../../stylesheets/main-logo.css'
 import '../../stylesheets/titles.css'
 import '../../stylesheets/button.css'
@@ -38,7 +40,7 @@ import '../../stylesheets/form.css'
 import '../../stylesheets/about.css'
 import '../../stylesheets/PasswordChange.css'
 
-const App = ({ loggedIn, sideDrawer, open, close }) => {
+const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
   let routes
   let backdrop
 
@@ -46,7 +48,20 @@ const App = ({ loggedIn, sideDrawer, open, close }) => {
     backdrop = <Backdrop click = {close}/>
   }
 
-  if (loggedIn) {
+  if (loggedIn && !emailVerified) {
+    routes = (
+      <>
+        <Navbar drawerClickHandler = {open}/>
+        <Menu show = {sideDrawer} />
+        {backdrop}
+        <Switch> 
+            <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
+            <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
+            <Redirect to={ROUTES.EMAIL_VERIFICATION} />
+        </Switch>
+      </>
+    )
+  } else if (loggedIn && emailVerified) {
     routes = (
       <>
         <Navbar drawerClickHandler = {open}/>
@@ -91,6 +106,7 @@ const App = ({ loggedIn, sideDrawer, open, close }) => {
 
 const mapStateToProps = ({ firebase, ui }) => ({
   loggedIn: firebase.auth.uid,
+  emailVerified: firebase.auth.emailVerified,
   sideDrawer: ui.sideDrawerOpen,
 })
 

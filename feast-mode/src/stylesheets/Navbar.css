@@ -32,17 +32,8 @@
 }
 
 .navbar-navigation-items a {
-  color: black;
+  color: #2C3E50;
   text-decoration: none;
-}
-
-.navbar-navigation-items a:hover,
-.navbar-navigation-items a:active {
-  color: #2C3E00;
-}
-
-.navbar-navigation-items a:visited {
-  color: #2C3E50
 }
 
 @media(max-width: 768px) {
