@@ -21,10 +21,10 @@ export const SignUpSchemas = [
             .required("Please enter an email"),
     
         phone: 
-            yup.number("Must be a valid phone number")
-            .positive("Must be a valid phone number")
-            .integer("Must be a valid phone number")
-            .required("Please enter a phone number"),
+            yup.number()
+            .typeError('Please enter a valid phone number')
+            .positive('Please enter a valid phone number')
+            .required('Please enter a valid phone number'),
     
         passwordOne: 
             yup.string()
@@ -39,16 +39,27 @@ export const SignUpSchemas = [
 
     yup.object().shape({
         creditCard:
-            yup.string().required("Please input"),
+            yup.number()
+            .typeError('Please enter a valid credit card number')
+            .positive('Please enter a valid credit card number')
+            .required('Please enter a valid credit card number'),
 
         expDate:
-            yup.string().required("Please input"),
+            yup.number()
+            .typeError('Please enter a valid expiration date')
+            .positive('Please enter a valid expiration date')
+            .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
+            .required('Please enter a valid expiration date'),
             
         secCode:
-            yup.string().required("Please input"),
+            yup.number()
+            .typeError('Please enter a valid security code')
+            .positive('Please enter a valid security code')
+            .required('Please enter a valid security code'),
         
         creditCardType:
-            yup.string().required("Please input"),
+            yup.string()
+            .required("Credit card type is required"),
     }),
 
     null

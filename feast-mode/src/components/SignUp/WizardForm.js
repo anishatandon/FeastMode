@@ -104,7 +104,7 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                         <div className = "aligned-inputs text-input"> 
                             <div className = {props.touched.expDate && props.errors.expDate && "text-error"}>
                                 <label> Expiration Date </label> <br />
-                                <Field name = "expDate" type = "text"/> <br/>
+                                <Field name = "expDate" type = "text" placeholder="MMYY"/> <br/>
                                 <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "expDate" />
                             </div>
                             
@@ -122,6 +122,7 @@ const WizardForm = ({ signUp, loading, error, cleanUp }) => {
                                 <option value = "visa" label = "Visa" />
                                 <option value = "mastercard" label = "Mastercard" />
                             </Field>
+                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "creditCardType" />
                         </div>
                     </React.Fragment>
                 )}
