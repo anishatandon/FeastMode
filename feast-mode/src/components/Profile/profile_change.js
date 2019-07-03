@@ -5,7 +5,18 @@ import { withFirebase } from '../Firebase';
 const INITIAL_STATE = {
   loading: false,
   users: [],
-  user: null,
+  user: {
+    id: "", //email
+    username: "",
+    phone: NaN,
+    friends: [],
+    orders: [],
+    creditCardNum: NaN,
+    creditCardType: '',
+    expirationDate: '',
+    securityCode: NaN,
+    billAddress: '',
+  },
 };
 
 class ProfileChangeForm extends Component {
@@ -13,11 +24,10 @@ class ProfileChangeForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+    // this.updateProfile = this.updateProfile.bind(this); //new
   }
 
-  componentWillUnmount() {
-    this.props.firebase.users().off();
-  }
+
 
   componentDidMount() {
     this.setState({
@@ -40,11 +50,73 @@ class ProfileChangeForm extends Component {
     });
   }
 
+  // new
+  // updateProfile(profile){
+  //   const user = {...this.state.user};
+  //   user[profile.id] = profile;
+  // }
+  //
+  // componentWillMount() {
+  //   this.usersRef = this.props.firebase.db.syncState('users', {
+  //     context: this,
+  //     state: 'users',
+  //   })
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.props.db.removeBinding(this.usersRef);
+  // }
+  //new
+
+
+
+  onSubmit = event => {
+    event.preventDefault();
+    const user = this.props.firebase.userID();
+    console.log(user)
+
+    const { username, email, phone } = this.state;
+
+    this.props.firebase
+      .doEmailUpdate(email)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+
+
+
+    this.props.firebase
+      .doProfileUpdate(
+        {username: this.username,
+        email: this.email,
+        phone: this.phone,
+        })
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+
+    event.preventDefault();
+  };
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
-    // const { username, email, phone, error } = this.state;
-    const { users, loading, user } = this.state;
-    // const user = this.props.firebase.userID();
-    // console.log(user)
+    const { username, email, phone, error } = this.state;
+    const { users, loading } = this.state;
+
+
+    const isInvalid = false
+    //   username === '' &&
+    //   email === '' &&
+    //   phone === '';
 
     return (
       <div>
@@ -59,38 +131,38 @@ class ProfileChangeForm extends Component {
 
 
 
+        <UserList users={users} />
+
+      <form onSubmit={this.onSubmit}>
+        <input
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New Username"
+        />
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New email"
+        />
+        <input
+          name="phone"
+          value={phone}
+          onChange={this.onChange}
+          type="text"
+          placeholder="New Phone"
+        />
+        <button disabled={isInvalid} type="submit">
+          Save
+        </button>
+
+        {error && <p>{error.message}</p>}
+      </form>
+
       </div>
-      // {loading && <div>Loading ...</div>}
-      //
-      // <UserList users={users} />
-      // <form onSubmit={this.onSubmit}>
-      //   <input
-      //     name="username"
-      //     value={username}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.username
-      //   />
-      //   <input
-      //     name="email"
-      //     value={email}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.email
-      //   />
-      //   <input
-      //     name="phone"
-      //     value={phone}
-      //     onChange={this.onChange}
-      //     type="text"
-      //     placeholder=user.phone
-      //   />
-      //   <button disabled={isInvalid} type="submit">
-      //     Save
-      //   </button>
-      //
-      //   {error && <p>{error.message}</p>}
-      // </form>
     );
   }
 

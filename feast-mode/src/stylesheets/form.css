@@ -1,0 +1,104 @@
+
+.classic-form {
+    margin-top: 20px;
+    color: #2C3E50;
+
+    /* Items perfectly centered in box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.classic-form label {
+    margin-left: 11px;
+    font-size: 13px;
+}
+
+.classic-form input[type=text], .classic-form input[type=password]{
+    font-size: 15px;
+    color: #2C3E50;
+    padding-left: 8px;
+    outline: none;
+
+    /* Box design */
+    margin: 7px 10px 30px 10px;
+    width: 290px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: white;
+    background-color: #F4F6F6;
+
+    /* Transitions */
+    transition: border 0.5s, border-bottom 0.5s, background-color 0.5s;
+}
+
+/* Highlight effects hover */
+.classic-form input[type=text]:hover, .classic-form input[type=password]:hover {
+    border: 1px solid orange;
+}
+
+/* Highlight effects writing */
+.classic-form input[type=text]:focus, .classic-form input[type=password]:focus { 
+    border-bottom: 1px solid orange;
+    background-color:  #eef1f1;
+}
+
+.aligned-inputs{
+    display: flex; /* Display side by side */
+}
+
+.aligned-inputs input[type=text], .aligned-inputs input[type=password]{
+    width: 250px;
+}
+
+.compensate-input input[type=text], .compensate-input input[type=password] {
+    width: 536px;
+}
+
+.error input[type=text], .error input[type=password] {
+    border: 1px solid red; 
+    margin: 7px 10px 0px 10px;
+}
+
+.error label {
+    color: red;
+}
+
+.error-text {
+    margin-left: 11px;
+    font-size: 13px;
+    color: red;
+    margin-bottom: 30px;
+
+    display: none;
+}
+
+.link-area {
+    width: 100%;
+    background-color: #ff9933;
+
+    text-align: center;
+    font-size: 16px;
+}
+
+.link-text {
+    font-family: Helvetica, Arial, sans-serif;
+    color: black;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+
+    /* Transitions */
+    transition: text-decoration 2s;
+}
+
+/* Highlight effects hover */
+.link:hover {
+    text-decoration: underline;
+}
+

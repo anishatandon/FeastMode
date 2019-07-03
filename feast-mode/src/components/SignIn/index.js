@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
 import { compose } from 'recompose'
-
 import { withFirebase } from '../Firebase'
-import './SignIn.css'
-
 
 const INITIAL_STATE = {
   email: '',
@@ -14,6 +11,7 @@ const INITIAL_STATE = {
   friends: [],
   orders: [],
   image: null,
+  user: null,
 }
 
 const USER = null;
@@ -24,6 +22,17 @@ class SignInFormBase extends Component {
     this.state = { ...INITIAL_STATE }
   }
 
+  // conponentWillMount() {
+  //   this.songsRef = base.syncState('users', {
+  //     context: this,
+  //     state: 'users'
+  //   })
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.
+  // }
+
   onSubmit = event => {
     const { email, password } = this.state;
 
@@ -31,9 +40,10 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
-        USER = this.props.firebase.userID();
       })
+      // .then( () => {
+      //   this.props.history.push(ROUTES.HOME); // Can't perform a React state update on an unmounted component
+      // })
       .catch(error => {
         this.setState({ error });
       });
@@ -51,7 +61,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className = "signin-form">
+      <form onSubmit={this.onSubmit} className = "classic-form">
 
         <div>
           <label> Email </label> <br />
@@ -62,7 +72,7 @@ class SignInFormBase extends Component {
             type = "text"
           /> <br />
         </div>
-        
+
         <div>
           <label> Password </label> <br />
           <input
@@ -72,8 +82,8 @@ class SignInFormBase extends Component {
             type = "password"
           /> <br />
         </div>
-        
-        <button disabled={isInvalid} type = "submit"> Log In </button>
+
+        <button disabled={isInvalid} type = "submit" className = "classic-button"> Log In </button>
 
         {error && <p>{error.message}</p>}
 
@@ -87,5 +97,11 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
+const SignInLink = () => (
+  <pre className = "link-text">
+    Already have an account?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
+  </pre>
+);
 
 export default SignInForm
+export { SignInLink }
