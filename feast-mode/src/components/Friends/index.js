@@ -1,11 +1,8 @@
 import React from 'react'
 
-import Navbar from '../Home/Navbar.js'
-
 function Friends() {
   return (
-    <div>
-      <Navbar />
+    <div className = "friends">
       <h1> Pick your Friends </h1>
       
     </div>
