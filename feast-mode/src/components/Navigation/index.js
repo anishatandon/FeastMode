@@ -14,10 +14,13 @@ const Navbar = props => {
         items = (
             <ul>
                 <li> <NavLink to={ROUTES.HOME}> Home </NavLink> </li>
-                <li> <NavLink to={ROUTES.PASSWORD_CHANGE}> Password Change </NavLink> </li>
+                <li> <NavLink to={ROUTES.PASSWORD_CHANGE}> Reset Password </NavLink> </li>
                 <li> <NavLink to={ROUTES.PROFILE_CHANGE}> Profile Change </NavLink> </li>
                 <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
                 <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
+                <li> <NavLink to={ROUTES.ADD_FRIENDS}> Add Friends </NavLink> </li>
+                <li> <NavLink to={ROUTES.EDIT_FRIENDS}> Edit Friends </NavLink> </li>
+                <li> <NavLink to={ROUTES.PICK_FOOD}> Pick Food </NavLink> </li>
                 <li> <SearchBar /> </li>
             </ul>
         )

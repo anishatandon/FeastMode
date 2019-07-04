@@ -15,8 +15,11 @@ import Restaurants from '../Restaurants'
 import About from '../About'
 import Navbar from '../Navigation'
 import Backdrop from '../Navigation/Backdrop.js'
-import Friends from '../Friends'
+// import Friends from '../Friends/Friend'
 import EmailVerification from '../EmailVerification'
+import AddFriendsPage from '../Friends/AddFriends'
+import EditFriendsPage from '../Friends/EditFriends'
+import PickFoodPage from '../Food/PickFood'
 
 import '../../stylesheets/Landing.css'
 import '../../stylesheets/SignUp.css'
@@ -76,7 +79,10 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
           {/* <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} /> */}
           <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
           <Route exact path={ROUTES.ABOUT} component={About} />
-          <Route exact path={ROUTES.FRIENDS} component={Friends} />
+          {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
+          <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriendsPage} />
+          <Route exact path={ROUTES.EDIT_FRIENDS} component={EditFriendsPage} />
+          <Route exact path={ROUTES.PICK_FOOD} component={PickFoodPage} />
           <Redirect to={ROUTES.HOME} />
         </Switch>
       </>
