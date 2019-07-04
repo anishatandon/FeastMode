@@ -1,12 +1,18 @@
-import React from 'react';
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { connect } from 'react-redux'
+import * as actions from '../../backend/store/actions'
 
-const SignOutButton = ({ firebase }) => (
-  <Link to = {ROUTES.LANDING}>
-    <button type="button" onClick={firebase.doSignOut} className="classic-button"> Logout </button>
-  </Link>
-);
+const SignOut = ({ logout, close }) => {
+  useEffect(() => {
+    logout();
+    close()
+  }, [logout])
+  return null
+}
 
-export default withFirebase(SignOutButton);
+const mapDispatchToProps = {
+  logout: actions.signOut,
+  close: actions.closeSideDrawer
+}
+
+export default connect(null, mapDispatchToProps)(SignOut)

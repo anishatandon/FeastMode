@@ -1,107 +1,70 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
-import { compose } from 'recompose'
-import { withFirebase } from '../Firebase'
+import React, { useEffect } from 'react'
+import { Form, Field, ErrorMessage, Formik } from 'formik'
+import { connect } from 'react-redux'
 
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
-  friends: [],
-  orders: [],
-  image: null,
-  user: null,
-}
+import * as actions from '../../backend/store/actions'
+import SignInSchema from './SignInSchemas.js'
 
-const USER = null;
+const SignInForm = ({ login, loading, error, cleanUp }) => {
+  let displayError
 
-class SignInFormBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE }
+  if (error) {
+      displayError = {display: "block"}
+  } else {
+      displayError = {display: "none"}
   }
 
-  // conponentWillMount() {
-  //   this.songsRef = base.syncState('users', {
-  //     context: this,
-  //     state: 'users'
-  //   })
-  // }
-  //
-  // componentWillUnmount() {
-  //   base.
-  // }
+  useEffect(() => {
+    return () => {
+      cleanUp()
+    }
+  }, [cleanUp])
 
-  onSubmit = event => {
-    const { email, password } = this.state;
+  return(
+    <Formik
+      initialValues = {{
+        email: "",
+        password: "",
+      }}
+      validationSchema = {SignInSchema}
+      onSubmit = {async ( values, { resetForm, setSubmitting }) => {
+        await login(values)
+        resetForm()
+        setSubmitting(false)
+      }}
+    >
+      {({ errors, touched, isSubmitting }) => (
+        <Form className = "classic-form">
+            
+          <div className = {["text-input", touched.email && errors.email && "text-error"].join(' ')}> 
+            <label> Email </label> <br />
+            <Field name = "email" type = "email"/> <br/>
+            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "email" />
+          </div>
+          
+          <div className = {["text-input", touched.password && errors.password && "text-error"].join(' ')}>
+            <label> Password </label> <br />
+            <Field name = "password" type = "password"/> <br/>
+            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "password" />
+          </div>
 
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-      })
-      // .then( () => {
-      //   this.props.history.push(ROUTES.HOME); // Can't perform a React state update on an unmounted component
-      // })
-      .catch(error => {
-        this.setState({ error });
-      });
+          <p style = {displayError}>{error}</p>
+          <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
 
-    event.preventDefault();
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  render() {
-    const { email, password, error } = this.state;
-
-    const isInvalid = password === '' || email === '';
-
-    return (
-      <form onSubmit={this.onSubmit} className = "classic-form">
-
-        <div className = "text-input">
-          <label> Email </label> <br />
-          <input
-            name = "email"
-            value = {email}
-            onChange = {this.onChange}
-            type = "text"
-          /> <br />
-        </div>
-        
-        <div className = "text-input">
-          <label> Password </label> <br />
-          <input
-            name = "password"
-            value = {password}
-            onChange = {this.onChange}
-            type = "password"
-          /> <br />
-        </div>
-
-        <button disabled={isInvalid} type = "submit" className = "classic-button"> Log In </button>
-
-        {error && <p>{error.message}</p>}
-
-      </form>
-    );
-  }
+        </Form>
+      )}
+    </Formik>
+  )
 }
 
-const SignInForm = compose(
-  withRouter,
-  withFirebase,
-)(SignInFormBase);
+const mapStateToProps = ({ auth }) => ({
+  loading: auth.loading,
+  error: auth.error,
+})
 
-const SignInLink = () => (
-  <pre className = "link-text">
-    Already have an account?   <Link to={ROUTES.LANDING} className = "link">Log In</Link>
-  </pre>
-);
+const mapDispatchToProps = {
+  login: actions.signIn,
+  cleanUp: actions.clean,
+}
 
-export default SignInForm
-export { SignInLink }
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)

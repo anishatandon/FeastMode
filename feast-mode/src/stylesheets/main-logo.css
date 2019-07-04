@@ -1,6 +1,7 @@
 
 .main-logo {
-    width: 100px; /* Size */
+    width: 100%; /* Size */
+    height: 100%;
 
     /* Animation supported in multiple browsers */
     -webkit-transition: transform 1s ease;
@@ -14,4 +15,8 @@
     transform: translateX( -1px ) rotateY( 180deg ); /* ALSO EXTRA TRANSFORM PROPERTIES ADDED FOR COMPATIBILITY*/
     -ms-transform: translateX( -1px ) rotateY(180deg); /* IE 9 */
     -webkit-transform: translateX( -1px ) rotateY(180deg); /* Chrome, Sa fari, Opera */
+}
+
+.regular-logo-container {
+    width: 100px;
 }
