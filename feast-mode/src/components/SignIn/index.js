@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
 import { Form, Field, ErrorMessage, Formik } from 'formik'
-import * as yup from 'yup'
 import { connect } from 'react-redux'
 
 import * as actions from '../../backend/store/actions'
-
-const SignInSchema = yup.object().shape({
-  email: yup.string("Must be a valid email").email("Must be a valid email").required("Please enter your email"),
-  password: yup.string().min(8, "Password must be at least 8 characters").required("Please enter your password"),
-})
+import SignInSchema from './SignInSchemas.js'
 
 const SignInForm = ({ login, loading, error, cleanUp }) => {
-  console.log(error) // remove this when you get error to show
+  let displayError
+
+  if (error) {
+      displayError = {display: "block"}
+  } else {
+      displayError = {display: "none"}
+  }
+
   useEffect(() => {
     return () => {
       cleanUp()
@@ -48,10 +48,11 @@ const SignInForm = ({ login, loading, error, cleanUp }) => {
             <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "password" />
           </div>
 
-          {/* <p>{error}</p> Conditional rendering of the paragraph with styled components */}
+          <p style = {displayError}>{error}</p>
           <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
-          </Form>
-        )}
+
+        </Form>
+      )}
     </Formik>
   )
 }

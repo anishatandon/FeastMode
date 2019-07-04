@@ -1,10 +1,11 @@
 
-.landing {
+.profile-change {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     overflow: auto; /* Control screen resizing */
     position: relative;
     background-color: white;
     padding: 30px 0px 0px 0px; /* Padding around content */
+    top: 10px;
 
     /* Items perfectly centered in box */
     display: flex;
@@ -12,7 +13,7 @@
     justify-content: center;
     align-items: center;
 
-    margin: 3% 40.95% 0%; /* Box dimensions */
+    margin: 3% 34.5% 0%; /* Box dimensions */
 
     /* Shadow effect  */
     border: 1px solid #efefef;

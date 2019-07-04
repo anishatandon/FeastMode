@@ -8,7 +8,10 @@ import logo from '../../images/logo.png'
 const SignUpPage = () => (
   <div className = "sign-up">
 
-    <img className = "main-logo" src = {logo} alt = "Logo" />
+    <div className = "regular-logo-container">
+      <img className = "main-logo" src = {logo} alt = "Logo" />
+    </div>
+    
     <WizardForm />
 
     <div className = "link-area">
@@ -16,6 +19,6 @@ const SignUpPage = () => (
     </div>
 
   </div>
-);
+)
 
 export default SignUpPage

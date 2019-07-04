@@ -1,0 +1,22 @@
+.toolbar {
+  position: fixed;
+  padding: 5px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.toolbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.toolbar li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}

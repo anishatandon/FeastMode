@@ -45,12 +45,17 @@
     background-color:  #eef1f1;
 }
 
+.select-input{
+    padding: 10px 10px 20px 10px;
+}
+
+
 /* Style this better */
 .select-input select {
-    margin: 50px;
+    margin: 10px;
     width: 150px;
-    padding: 5px 35px 5px 5px;
-    font-size: 16px;
+    padding: 5px 5px 5px 5px;
+    font-size: 15px;
     border: 1px solid #ccc;
     height: 34px;
     -webkit-appearance: none;
@@ -110,10 +115,12 @@
     width: 100px;
     transition-duration: 0.3s;
     transform-origin: 50% 50%;
+    border-radius: 20px;
 }
   
 .checkbox-input :checked + label {
     border-color: #ff9933;
+    border-radius: 20px;
 }
   
 .checkbox-input :checked + label:before {
@@ -181,3 +188,4 @@
 .link:hover {
     text-decoration: underline;
 }
+
