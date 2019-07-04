@@ -9,8 +9,9 @@ import doordash from '../../images/doordash.jpg';
 import grubhub from '../../images/grubhub.png';
 import ubereats from '../../images/ubereats.jpeg';
 
-const ProfileChange = () => {
-    let displayError
+const ProfileChange = ({ firebase }) => {
+    if (!firebase.profile.isLoaded) return null
+    // let displayError
 
     // if (error) {
     //     displayError = {display: "block"}
@@ -20,11 +21,19 @@ const ProfileChange = () => {
 
     return (
         <div className = "profile-change">
-            <h1> Profile Change </h1>
+            <h1> Edit Your Profile </h1>
             <Formik
                 initialValues = {{
-                    email: "",
-                    password: "",
+                    firstName: firebase.profile.firstName,
+                    lastName: firebase.profile.lastName,
+                    username: firebase.profile.username,
+                    email: firebase.auth.email,
+                    phone: firebase.profile.phone,
+                    creditCard: firebase.profile.creditCard,
+                    expDate: firebase.profile.expDate,
+                    secCode: firebase.profile.secCode,
+                    creditCardType: firebase.profile.creditCardType,
+                    apps: firebase.profile.apps, // Postamtes, GrubHub, DoorDash, UberEats
                 }}
                 validationSchema = {ProfileChangeSchema}
                 onSubmit = {async ( values, { resetForm, setSubmitting }) => {
@@ -33,11 +42,11 @@ const ProfileChange = () => {
                     setSubmitting(false)
                 }}
             >
-                {({ errors, touched, isSubmitting }) => (
+                {({ values, errors, touched, isSubmitting }) => (
                     <Form className = "classic-form">
-                        
+                        {console.log(values.apps)}
                         <div className = "aligned-inputs text-input"> 
-                            <div cla>
+                            <div className = {touched.firstName && errors.firstName && "text-error"}>
                                 <label> First Name </label> <br />
                                 <Field name = "firstName" type = "text"/> <br />
                                 <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "firstName" />
@@ -100,29 +109,29 @@ const ProfileChange = () => {
                         
                         <ul className = "checkbox-input">
                             <li>
-                                <Field name = "apps[0]" type = "checkbox" id = "Postmates"/>
+                                <Field name = "apps[0]" type = "checkbox" id = "Postmates" checked = {values.apps[0]}/>
                                 <label for = "Postmates"> <img src = {postmates} /> </label>
                             </li>
 
                             <li>
-                                <Field name = "apps[1]" type = "checkbox" id = "GrubHub"/>
+                                <Field name = "apps[1]" type = "checkbox" id = "GrubHub" checked = {values.apps[1]}/>
                                 <label for = "GrubHub"> <img src = {grubhub} /> </label>
                             </li>
 
                             <li>
-                                <Field name = "apps[2]" type = "checkbox" id = "DoorDash"/>
+                                <Field name = "apps[2]" type = "checkbox" id = "DoorDash" checked = {values.apps[2]}/>
                                 <label for = "DoorDash"> <img src = {doordash} /> </label>
                             </li>
 
                             <li>
-                                <Field name = "apps[3]" type = "checkbox" id = "UberEats"/>
+                                <Field name = "apps[3]" type = "checkbox" id = "UberEats" checked = {values.apps[3]}/>
                                 <label for = "UberEats"> <img src = {ubereats} /> </label>
                             </li>
                         </ul>
                         <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
 
                         {/* <p style = {displayError}>{error}</p> */}
-                        <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Change </button>
+                        <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Edit </button>
 
                     </Form>
                 )}
@@ -131,4 +140,8 @@ const ProfileChange = () => {
     )
 }
 
-export default ProfileChange
+const mapStateToProps = ({ firebase }) => ({
+    firebase
+})
+
+export default connect(mapStateToProps)(ProfileChange)

@@ -48,7 +48,12 @@ export const SignUpSchemas = [
             yup.number()
             .typeError('Please enter a valid expiration date')
             .positive('Please enter a valid expiration date')
-            .test('len', 'Must be of the form MMYY', val => val.toString().length === 4) // makes sure it is exactly four numbers
+            .test('len', 'Must be of the form MMYY', function(value) { 
+                if (!value) {
+                    return false
+                }
+                return value.toString().length === 4 
+                }) // makes sure it is exactly four numbers
             .required('Please enter the expiration date'),
             
         secCode:
