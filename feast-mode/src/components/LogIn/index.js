@@ -3,9 +3,9 @@ import { Form, Field, ErrorMessage, Formik } from 'formik'
 import { connect } from 'react-redux'
 
 import * as actions from '../../backend/store/actions'
-import SignInSchema from './SignInSchemas.js'
+import LogInSchema from './LogInSchemas.js'
 
-const SignInForm = ({ login, loading, error, cleanUp }) => {
+const LogInForm = ({ login, loading, error, cleanUp }) => {
   let displayError
 
   if (error) {
@@ -26,7 +26,7 @@ const SignInForm = ({ login, loading, error, cleanUp }) => {
         email: "",
         password: "",
       }}
-      validationSchema = {SignInSchema}
+      validationSchema = {LogInSchema}
       onSubmit = {async ( values, { resetForm, setSubmitting }) => {
         await login(values)
         resetForm()
@@ -63,8 +63,8 @@ const mapStateToProps = ({ auth }) => ({
 })
 
 const mapDispatchToProps = {
-  login: actions.signIn,
+  login: actions.logIn,
   cleanUp: actions.clean,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm)

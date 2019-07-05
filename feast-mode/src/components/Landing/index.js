@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SignInForm from '../SignIn/index.js'
+import LogInForm from '../LogIn/index.js'
 import SignUpLink from '../SignUp/SignUpLink.js'
 
 import logo from '../../images/logo.png'
@@ -13,7 +13,7 @@ const Landing = () => (
     </div>
     
     <h1> Join the Feast! </h1>
-    <SignInForm />
+    <LogInForm />
 
     <div className = "link-area">
       <SignUpLink />

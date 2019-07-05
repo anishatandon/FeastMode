@@ -1,2 +1,2 @@
-export { signUp, signOut, signIn, clean, verifyEmail, recoverPassword } from './authActions.js'
+export { signUp, logOut, logIn, clean, verifyEmail, recoverPassword, editProfile } from './authActions.js'
 export { closeSideDrawer, openSideDrawer } from './uiActions.js'

@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-const ProfileChangeSchema = yup.object().shape({
+export const ProfileEditSchema = yup.object().shape({
     firstName:
         yup.string("Must be a valid name")
         .required("Please enter your name"),
@@ -24,6 +24,18 @@ const ProfileChangeSchema = yup.object().shape({
         .positive('Please enter a valid phone number')
         .required('Please enter a phone number'),
 
+    passwordOne: 
+        yup.string()
+        .min(8, "Password must be at least 8 characters"),
+
+    passwordTwo:
+        yup.string().when("passwordOne", {
+            is: function(value) { return value.length > 0},
+            then: yup.string()
+                .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
+                .required("Make sure you can remember your password!")
+        }),
+        
     creditCard:
         yup.number()
         .typeError('Please enter a valid credit card number')
@@ -53,4 +65,6 @@ const ProfileChangeSchema = yup.object().shape({
         .required("Credit card type is required"),
 })
 
-export default ProfileChangeSchema
+export const PasswordRecoverySchema = yup.object().shape({
+    email: yup.string("Must be a valid email").email("Must be a valid email").required("Please enter your email"),
+})

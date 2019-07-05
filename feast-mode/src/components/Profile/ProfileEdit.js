@@ -1,23 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
-import ProfileChangeSchema from './ProfileSchemas.js'
+import { ProfileEditSchema } from './ProfileSchemas.js'
+import * as actions from '../../backend/store/actions'
 
 import postmates from '../../images/postmates.jpg';
 import doordash from '../../images/doordash.jpg';
 import grubhub from '../../images/grubhub.png';
 import ubereats from '../../images/ubereats.jpeg';
 
-const ProfileChange = ({ firebase }) => {
-    if (!firebase.profile.isLoaded) return null
-    // let displayError
+const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
+    useEffect(() => {
+        return () => {
+        cleanUp()
+        }
+    }, [cleanUp])
 
-    // if (error) {
-    //     displayError = {display: "block"}
-    // } else {
-    //     displayError = {display: "none"}
-    // }
+    if (!firebase.profile.isLoaded) return null
+
+    let displayError
+    if (error) {
+        displayError = {display: "block"}
+    } else {
+        displayError = {display: "none"}
+    }
 
     return (
         <div className = "profile-change">
@@ -29,22 +36,22 @@ const ProfileChange = ({ firebase }) => {
                     username: firebase.profile.username,
                     email: firebase.auth.email,
                     phone: firebase.profile.phone,
+                    passwordOne: "",
+                    passwordTwo: "",
                     creditCard: firebase.profile.creditCard,
                     expDate: firebase.profile.expDate,
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
                     apps: firebase.profile.apps, // Postamtes, GrubHub, DoorDash, UberEats
                 }}
-                validationSchema = {ProfileChangeSchema}
+                validationSchema = {ProfileEditSchema}
                 onSubmit = {async ( values, { resetForm, setSubmitting }) => {
-                    console.log(values)
-                    resetForm()
+                    await editProfile(values)
                     setSubmitting(false)
                 }}
             >
                 {({ values, errors, touched, isSubmitting }) => (
                     <Form className = "classic-form">
-                        {console.log(values.apps)}
                         <div className = "aligned-inputs text-input"> 
                             <div className = {touched.firstName && errors.firstName && "text-error"}>
                                 <label> First Name </label> <br />
@@ -75,6 +82,20 @@ const ProfileChange = ({ firebase }) => {
                             <label> Phone Number </label> <br />
                             <Field name = "phone" type = "text"/> <br/>
                             <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "phone" />
+                        </div>
+
+                        <div className = "aligned-inputs text-input"> 
+                            <div className = {touched.passwordOne && errors.passwordOne && "text-error"}>
+                                <label> Password </label> <br />
+                                <Field name = "passwordOne" type = "password"/> <br/>
+                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "passwordOne" />
+                            </div>
+                            
+                            <div className = {touched.passwordTwo && errors.passwordTwo && "text-error"}>
+                                <label> Confirm Password </label> <br />
+                                <Field name = "passwordTwo" type = "password"/> <br/>
+                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "passwordTwo" />
+                            </div>
                         </div>
 
                         <div className = "compensate-input text-input">
@@ -130,7 +151,7 @@ const ProfileChange = ({ firebase }) => {
                         </ul>
                         <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
 
-                        {/* <p style = {displayError}>{error}</p> */}
+                        <p style = {displayError}>{error}</p>
                         <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Edit </button>
 
                     </Form>
@@ -140,8 +161,15 @@ const ProfileChange = ({ firebase }) => {
     )
 }
 
-const mapStateToProps = ({ firebase }) => ({
-    firebase
+const mapStateToProps = ({ firebase, auth }) => ({
+    firebase,
+    loading: auth.profileEdit.loading,
+    error: auth.profileEdit.error
 })
 
-export default connect(mapStateToProps)(ProfileChange)
+const mapDispatchToProps = {
+    editProfile: actions.editProfile,
+    cleanUp: actions.clean,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEdit)

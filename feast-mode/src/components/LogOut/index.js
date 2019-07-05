@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../backend/store/actions'
 
-const SignOut = ({ logout, close }) => {
+const LogOut = ({ logout, close }) => {
   useEffect(() => {
     logout();
     close()
@@ -11,8 +11,8 @@ const SignOut = ({ logout, close }) => {
 }
 
 const mapDispatchToProps = {
-  logout: actions.signOut,
+  logout: actions.logOut,
   close: actions.closeSideDrawer
 }
 
-export default connect(null, mapDispatchToProps)(SignOut)
+export default connect(null, mapDispatchToProps)(LogOut)

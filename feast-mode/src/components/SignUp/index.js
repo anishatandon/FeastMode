@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignInLink from '../SignIn/SignInLink.js'
+import LogInLink from '../LogIn/LogInLink.js'
 import WizardForm from './WizardForm.js'
 
 import logo from '../../images/logo.png'
@@ -15,7 +15,7 @@ const SignUpPage = () => (
     <WizardForm />
 
     <div className = "link-area">
-      <SignInLink />
+      <LogInLink />
     </div>
 
   </div>

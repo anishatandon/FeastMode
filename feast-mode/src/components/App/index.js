@@ -4,22 +4,22 @@ import * as ROUTES from '../../constants/routes'
 import { connect } from 'react-redux'
 import * as actions from '../../backend/store/actions'
 
-import LandingPage from '../Landing'
-import SignUpPage from '../SignUp'
-import SignOut from '../SignOut'
+import Landing from '../Landing'
+import SignUp from '../SignUp'
+import LogOut from '../LogOut'
 import Home from '../Home'
 import Menu from '../Menu'
-import PasswordChangePage from '../Profile/password_change.js'
-import ProfileChangePage from '../Profile/ProfileChange.js'
+import PasswordRecovery from '../Profile/PasswordRecovery.js'
+import ProfileEdit from '../Profile/ProfileEdit.js'
 import Restaurants from '../Restaurants'
 import About from '../About'
 import Navbar from '../Navigation'
 import Backdrop from '../Navigation/Backdrop.js'
 // import Friends from '../Friends/Friend'
 import EmailVerification from '../EmailVerification'
-import AddFriendsPage from '../Friends/AddFriends'
-import EditFriendsPage from '../Friends/EditFriends'
-import PickFoodPage from '../Food/PickFood'
+import AddFriends from '../Friends/AddFriends'
+import EditFriends from '../Friends/EditFriends'
+import PickFood from '../Food/PickFood'
 
 import '../../stylesheets/Landing.css'
 import '../../stylesheets/SignUp.css'
@@ -58,7 +58,7 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
         {backdrop}
         <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
-            <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
+            <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Redirect to={ROUTES.EMAIL_VERIFICATION} />
         </Switch>
       </>
@@ -72,16 +72,16 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
 
         <Switch>
           <Route exact path={ROUTES.HOME} component={Home} />
-          <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
+          <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
           <Route exact path={ROUTES.MENU} component={Menu} />
-          <Route exact path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
-          <Route exact path={ROUTES.PROFILE_CHANGE} component={ProfileChangePage} />
+          <Route exact path={ROUTES.PASSWORD_RECOVERY} component={PasswordRecovery} />
+          <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit} />
           <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
           <Route exact path={ROUTES.ABOUT} component={About} />
           {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
-          <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriendsPage} />
-          <Route exact path={ROUTES.EDIT_FRIENDS} component={EditFriendsPage} />
-          <Route exact path={ROUTES.PICK_FOOD} component={PickFoodPage} />
+          <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
+          <Route exact path={ROUTES.EDIT_FRIENDS} component={EditFriends} />
+          <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
           <Redirect to={ROUTES.HOME} />
         </Switch>
       </>
@@ -89,10 +89,10 @@ const App = ({ loggedIn, sideDrawer, emailVerified, open, close }) => {
   } else {
     routes = (
       <Switch>
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route exact path={ROUTES.LANDING} component={Landing} />
+        <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
         <Route exact path={ROUTES.ABOUT} component={About} />
-        <Route exact path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+        <Route exact path={ROUTES.PASSWORD_RECOVERY} component={PasswordRecovery} />
         <Redirect to={ROUTES.LANDING} />
       </Switch>
     )
