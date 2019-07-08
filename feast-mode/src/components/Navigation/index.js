@@ -14,9 +14,9 @@ const Navbar = props => {
         items = (
             <ul>
                 <li> <NavLink to={ROUTES.HOME}> Home </NavLink> </li>
-                <li> <NavLink to={ROUTES.PASSWORD_CHANGE}> Reset Password </NavLink> </li>
-                <li> <NavLink to={ROUTES.PROFILE_CHANGE}> Profile Change </NavLink> </li>
-                <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
+                <li> <NavLink to={ROUTES.PASSWORD_RECOVERY}> Reset Password </NavLink> </li>
+                <li> <NavLink to={ROUTES.PROFILE_EDIT}> Edit Profile </NavLink> </li>
+                <li> <NavLink to={ROUTES.LOG_OUT}> Log Out </NavLink> </li>
                 <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
                 <li> <NavLink to={ROUTES.ADD_FRIENDS}> Add Friends </NavLink> </li>
                 <li> <NavLink to={ROUTES.EDIT_FRIENDS}> Edit Friends </NavLink> </li>
@@ -30,7 +30,7 @@ const Navbar = props => {
     } else {
         items = (
             <ul>
-                <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
+                <li> <NavLink to={ROUTES.LOG_OUT}> Log Out </NavLink> </li>
                 <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
             </ul>
         )
