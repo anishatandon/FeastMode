@@ -12,6 +12,11 @@ const initialState = {
     verifyEmail: {
         error: null,
         loading: false,
+    },
+
+    profileEdit: {
+        error: null,
+        loading: false,
     }
 }
 
@@ -21,37 +26,29 @@ export default (state = initialState, {type, payload}) => {
         case actions.AUTH_START:
             return { ...state, loading: true }
 
-        case actions.AUTH_END:
-            return { ...state, loading: false }
-
         case actions.AUTH_FAIL:
-            return { ...state, error: payload }
+            return { ...state, error: payload, loading: false }
 
         case actions.AUTH_SUCCESS:
-            return { ...state, error: false }
+            return { ...state, error: false, loading: false }
 
 
-        case actions.RECOVERY_START:{
+        case actions.RECOVERY_START:
             return{
                 ...state,
                 recoverPassword: { ...state.recoverPassword, loading: true },
             };
-        }
-
-        case actions.RECOVERY_FAIL:{
+        case actions.RECOVERY_FAIL:
             return{
                 ...state,
                 recoverPassword: { ...state.recoverPassword, loading: false, error: payload, },
             };
-        }
-
-        case actions.RECOVERY_SUCCESS:{
+        case actions.RECOVERY_SUCCESS:
             return{
                 ...state,
                 recoverPassword: { ...state.recoverPassword, loading: false, error: false,  },
             };
-        }
-        
+
         case actions.CLEAN_UP:
             return { 
                 ...state, 
@@ -63,12 +60,17 @@ export default (state = initialState, {type, payload}) => {
                     error: null,
                 },
                 verifyEmail: {
-                    ...state.recoverPassword, 
+                    ...state.verifyEmail, 
                     loading: false, 
                     error: null,
                 },
-         }
-            
+                profileEdit: {
+                    ...state.profileEdit, 
+                    loading: false, 
+                    error: null,
+                },
+            } 
+
         case actions.VERIFY_START:
             return { 
                 ...state, 
@@ -87,6 +89,23 @@ export default (state = initialState, {type, payload}) => {
                 verifyEmail: { ...state.verifyEmail, error: payload, loading: false }
             }
 
+        case actions.PROFILE_EDIT_START:
+            return {
+                ...state, 
+                profileEdit: { ...state.profileEdit, loading: true, error: null }
+            }
+
+        case actions.PROFILE_EDIT_SUCCESS:
+            return {
+                ...state, 
+                profileEdit: { ...state.profileEdit, loading: false, error: false }
+        }
+
+        case actions.PROFILE_EDIT_FAIL:
+            return {
+                ...state, 
+                profileEdit: { ...state.profileEdit, loading: false, error: payload }
+        }
         default:
             return state
     }

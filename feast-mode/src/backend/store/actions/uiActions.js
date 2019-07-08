@@ -9,3 +9,7 @@ export const openSideDrawer = () => ({
 export const closeSideDrawer = () => ({
     type: actions.CLOSE_SIDE_DRAWER,
 })
+
+export const changeSideDrawer = () => ({
+    type: actions.CHANGE_SIDE_DRAWER,
+})

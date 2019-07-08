@@ -1,57 +1,91 @@
 import React from 'react'
 import * as ROUTES from '../../constants/routes'
-import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
-import SearchBar from './SearchBar.js'
-import DrawerToggleButton from './DrawerToggleButton.js'
+import SideDrawerToggleButton from './SideDrawerToggleButton.js'
+import NavItem from './NavItem.js'
 
-const Navbar = props => {
+const FixedWrapper = styled.header`
+    position: fixed;
+    background-color: var(--color-main);
+    padding: 0rem 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+`
+const Container = styled.div`
+    width: 100%;
+    max-width: 140rem;
+    margin: 0 auto;
+    height: 100%;
+`
+const Wrapper = styled.div`
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media ${props => props.theme.mediaQueries.small} {
+        justify-content: flex-start;
+    }
+`
+const Ul = styled.ul`
+    display: flex;
+    margin-top: null;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    
+    @media ${props => props.theme.mediaQueries.small} {
+        display: none;
+    }
+`
+
+const Navbar = ({ emailVerified, sideDrawerClickHandler }) => {
     let items
     let sideDrawerButton
 
-    if (props.emailVerified) {
+    if (emailVerified) {
         items = (
-            <ul>
-                <li> <NavLink to={ROUTES.HOME}> Home </NavLink> </li>
-                <li> <NavLink to={ROUTES.PASSWORD_CHANGE}> Password Change </NavLink> </li>
-                <li> <NavLink to={ROUTES.PROFILE_CHANGE}> Profile Change </NavLink> </li>
-                <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
-                <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
-                <li> <SearchBar /> </li>
-            </ul>
+            <Ul>
+                <NavItem link = {ROUTES.HOME}> Home </NavItem>
+                <NavItem link = {ROUTES.PASSWORD_RECOVERY}> Reset Password </NavItem>
+                <NavItem link = {ROUTES.PROFILE_EDIT}> Edit Profile </NavItem>
+                <NavItem link = {ROUTES.LOG_OUT}> Log Out </NavItem>
+                <NavItem link = {ROUTES.ABOUT}> About </NavItem>
+                <NavItem link = {ROUTES.ADD_FRIENDS}> Add Friends </NavItem>
+                <NavItem link = {ROUTES.EDIT_FRIENDS}> Edit Friends </NavItem>
+                <NavItem link = {ROUTES.PICK_FOOD}> Pick Food </NavItem>
+            </Ul>
         )
         sideDrawerButton = (
-            <DrawerToggleButton click = {props.drawerClickHandler}/>
+            <SideDrawerToggleButton click = {sideDrawerClickHandler}/>
         )
     } else {
         items = (
-            <ul>
-                <li> <NavLink to={ROUTES.SIGN_OUT}> Sign Out </NavLink> </li>
-                <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
-            </ul>
+            <Ul>
+                <NavItem link = {ROUTES.LOG_OUT}> Log Out </NavItem>
+                <NavItem link = {ROUTES.ABOUT}> About </NavItem>
+            </Ul>
         )
     }
 
     return(
-        <header className = "navbar">
-            <nav className = "navbar-navigation">
-                <div className = "navbar-toggle-button">
+        <FixedWrapper>
+            <Container>
+                <Wrapper>
                     {sideDrawerButton}
-                </div>
-                <div className = "spacer"></div>
-                <div className = "navbar-navigation-items">
                     {items}
-                </div>
-            </nav>
-        </header>
+                </Wrapper>
+            </Container>
+        </FixedWrapper>
     )
 }
 
 const mapStateToProps = ({ firebase }) => ({
     emailVerified: firebase.auth.emailVerified,
 })
-
-
 
 export default connect(mapStateToProps, null)(Navbar)

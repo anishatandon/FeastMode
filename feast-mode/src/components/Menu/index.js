@@ -1,19 +1,19 @@
 import React from 'react'
 
 import Header from './Header.js'
-import Profile from './Profile.js'
+import ProfileInfo from './ProfileInfo.js'
 
-const Menu = props => {
+const Menu = ({ show }) => {
   let menuClasses = 'menu'
 
-  if (props.show) {
+  if (show) {
     menuClasses = 'menu open'
   }
 
   return(
     <div className = {menuClasses}>
       <Header />
-      <Profile />
+      <ProfileInfo />
       <br/>
     </div>
   )
