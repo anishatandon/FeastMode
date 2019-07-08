@@ -1,7 +1,7 @@
 
 const theme = {
     colors: {
-        main: "#ff9933", // Previously it was ff9933. New ff870c
+        main: "#ff870C", // Previously it was ff9933. New ff870c
         titleColor: "#2C3E50",
         textColor: "#000000",
         backgroundColor: "#f5f5f5",
