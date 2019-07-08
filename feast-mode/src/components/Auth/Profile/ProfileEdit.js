@@ -18,6 +18,9 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
         }
     }, [cleanUp])
 
+import ImageUpload from '../SignUp/ImageUpload.js';
+
+const ProfileChange = ({ firebase }) => {
     if (!firebase.profile.isLoaded) return null
 
     let displayError
@@ -30,6 +33,8 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     return (
         <div className = "profile-change">
             <h1> Edit Your Profile </h1>
+            <ImageUpload />
+            <br />
             <Formik
                 initialValues = {{
                     firstName: firebase.profile.firstName,

@@ -22,11 +22,11 @@ export const SignUpSchemas = [
 
         phone:
             yup.number()
-            .typeError('Please enter a valid phone number')
-            .positive('Please enter a valid phone number')
-            .required('Please enter a phone number'),
-    
-        passwordOne: 
+                .typeError('Please enter a valid phone number')
+                .positive('Please enter a valid phone number')
+                .required('Please enter a valid phone number'),
+
+        passwordOne:
             yup.string()
             .min(8, "Password must be at least 8 characters")
             .required("Please enter a password"),
@@ -40,9 +40,9 @@ export const SignUpSchemas = [
     yup.object().shape({
         creditCard:
             yup.number()
-            .typeError('Please enter a valid credit card number')
-            .positive('Please enter a valid credit card number')
-            .required('Please enter your credit card number'),
+                .typeError('Please enter a valid credit card number')
+                .positive('Please enter a valid credit card number')
+                .required('Please enter a valid credit card number'),
 
         expDate:
             yup.number()
@@ -58,10 +58,10 @@ export const SignUpSchemas = [
             
         secCode:
             yup.number()
-            .typeError('Please enter a valid security code')
-            .positive('Please enter a valid security code')
-            .required('Please enter the security code'),
-        
+                .typeError('Please enter a valid security code')
+                .positive('Please enter a valid security code')
+                .required('Please enter a valid security code'),
+
         creditCardType:
             yup.string()
                 .required("Credit card type is required"),
