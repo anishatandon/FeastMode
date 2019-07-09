@@ -2,39 +2,46 @@ import * as actions from './actionTypes.js'
 
 
 export const sendInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
+    
     const firebase = getFirebase()
     const firestore = getFirestore()
     const inviteId = data;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
+    // try {
+        // console.log(inviteId)
+        // console.log(userId)
+        // await firestore.collection("friends").doc(inviteId).set({
+        //     requests: firestore.FieldValue.arrayUnion(userId),
+        // })
     try {
-        console.log(inviteId)
-        console.log(userId)
-        await firestore.collection("friends").doc(inviteId).set({
-            requests: firestore.FieldValue.arrayUnion(userId),
-        })
-        // try {
-        //     const res = await firestore
-        //       .collection('friends')
-        //       .doc(inviteId)
-        //       .get();
-        //     if (!res.data()) {
-        //       firestore
-        //         .collection('friends')
-        //         .doc(inviteId)
-        //         .set({
-        //           requested: [userId]
-        //         });
-               
-        //     } else { 
-        //       firestore
-        //         .collection('friends')
-        //         .doc(inviteId)
-        //         .update({
-        //           requested: [...res.data().requested, userId],
-        //         });
-        //     }
+        const res = await firestore
+            .collection('friends')
+            .doc(inviteId)
+            .get();
+        if (!res.data() || res.data().requests === undefined ) {
+            console.log('in here')
+            firestore
+            .collection('friends')
+            .doc(inviteId)
+            .set({
+                requests: [userId]
+            });
+            
+        } else { 
+            console.log(res.data().requests);
+            if(res.data().requests.indexOf(userId) === -1 ){
+                firestore
+                .collection('friends')
+                .doc(inviteId)
+                .update({
+                    requests: [...res.data().requests, userId],
+                });
+            }
+            
+            console.log("complete")
+        }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 
