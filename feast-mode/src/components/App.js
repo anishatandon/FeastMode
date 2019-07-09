@@ -9,7 +9,7 @@ import Landing from './Auth/Landing'
 import SignUp from './Auth/SignUp'
 import LogOut from './Auth/LogOut'
 import Home from './Home'
-import Menu from './Menu'
+import SideDrawer from './Navigation/SideDrawer.js'
 import PasswordRecovery from './Auth/Profile/PasswordRecovery.js'
 import ProfileEdit from './Auth/Profile/ProfileEdit.js'
 import Restaurants from './Food/Restaurants'
@@ -47,21 +47,17 @@ const MainWrapper = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};
 `
 
-const App = ({ loggedIn, sideDrawer, emailVerified, change, close }) => {
+const App = ({ loggedIn, emailVerified }) => {
   let routes
-  let backdrop
-
-  if (sideDrawer) {
-    backdrop = <Backdrop click = {close}/>
-  }
 
   if (loggedIn && !emailVerified) {
     routes = (
       <>
         <Navbar/>
-        <MainWrapper>
+        <MainWrapper loggedIn = {loggedIn}>
           <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
@@ -73,15 +69,14 @@ const App = ({ loggedIn, sideDrawer, emailVerified, change, close }) => {
   } else if (loggedIn && emailVerified) {
     routes = (
       <>
-        <Navbar sideDrawerClickHandler = {change}/>
-        <Menu show = {sideDrawer} />
-        {backdrop}
+        <Navbar/>
+        <SideDrawer/>
 
-        <MainWrapper>
+        <MainWrapper loggedIn = {loggedIn}>
           <Switch>
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
-            <Route exact path={ROUTES.MENU} component={Menu} />
+            <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
             <Route exact path={ROUTES.PASSWORD_RECOVERY} component={PasswordRecovery} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit} />
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
@@ -97,7 +92,7 @@ const App = ({ loggedIn, sideDrawer, emailVerified, change, close }) => {
     )
   } else {
     routes = (
-      <MainWrapper>
+      <MainWrapper loggedIn = {loggedIn}>
         <Switch>
           <Route exact path={ROUTES.LANDING} component={Landing} />
           <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
@@ -112,15 +107,9 @@ const App = ({ loggedIn, sideDrawer, emailVerified, change, close }) => {
   return <div>{ routes }</div>
 }
 
-const mapStateToProps = ({ firebase, ui }) => ({
+const mapStateToProps = ({ firebase }) => ({
   loggedIn: firebase.auth.uid,
   emailVerified: firebase.auth.emailVerified,
-  sideDrawer: ui.sideDrawerOpen,
 })
 
-const mapDispatchToProps = {
-  change: actions.changeSideDrawer,
-  close: actions.closeSideDrawer
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

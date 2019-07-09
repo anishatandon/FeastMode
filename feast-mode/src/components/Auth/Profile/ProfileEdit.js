@@ -11,6 +11,8 @@ import doordash from '../../../images/doordash.jpg';
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
 
+import ImageUpload from '../SignUp/ImageUpload.js';
+
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {
         return () => {
@@ -30,6 +32,8 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     return (
         <div className = "profile-change">
             <h1> Edit Your Profile </h1>
+            <ImageUpload />
+            <br />
             <Formik
                 initialValues = {{
                     firstName: firebase.profile.firstName,
