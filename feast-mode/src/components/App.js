@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import { connect } from 'react-redux'
-import * as actions from '../backend/store/actions'
 import styled from 'styled-components'
 
 import Landing from './Auth/Landing'
@@ -19,32 +18,34 @@ import Backdrop from './Modal/Backdrop.js'
 // import Friends from '../Friends/Friend'
 import EmailVerification from './Auth/EmailVerification'
 import AddFriends from './Friends/AddFriends'
-import EditFriends from './Friends/EditFriends'
+import DisplayFriends from './Friends/DisplayFriends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
 import '../style/SignUp.css'
 import '../style/Restaurants.css'
-import '../style/Menu.css'
 import '../style/Home.css'
-import '../style/SearchBar.css'
 import '../style/Backdrop.css'
-import '../style/CheatingToolbar.css'
 import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
-import '../style/main-logo.css'
 import '../style/titles.css'
 import '../style/button.css'
-import '../style/form.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: calc(100vh - 6rem);
+<<<<<<< HEAD
+  min-height: 100vh;
+=======
+  // height: 100vh;
+  min-height: 100vh;
+  padding: 8rem 0rem;
+>>>>>>> bded6f912631e0b662a9a8e696cd5c05c16463c2
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};
@@ -83,8 +84,8 @@ const App = ({ loggedIn, emailVerified }) => {
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
-            <Route exact path={ROUTES.EDIT_FRIENDS} component={EditFriends} />
-            <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
+            <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
+            {/* <Route exact path={ROUTES.PICK_FOOD} component={PickFood} /> */}
             <Redirect to={ROUTES.HOME} />
           </Switch>
         </MainWrapper>
@@ -104,7 +105,7 @@ const App = ({ loggedIn, emailVerified }) => {
     )
   }
 
-  return <div>{ routes }</div>
+  return <>{ routes }</>
 }
 
 const mapStateToProps = ({ firebase }) => ({

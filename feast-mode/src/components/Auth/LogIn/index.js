@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react'
-import { Form, Field, ErrorMessage, Formik } from 'formik'
+import { Field, Formik } from 'formik'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import * as actions from '../../../backend/store/actions'
 import LogInSchema from './LogInSchemas.js'
 
+import { StyledForm } from '../../../style/UI/FormWrappers.js'
+import { TextInput } from '../../../style/UI/Inputs.js'
+import Button from '../../../style/UI/Buttons.js'
+import { Message, MessageWrapper } from '../../../style/UI/Message.js'
+import { ForgotPasswordLink } from '../../../style/UI/Links.js'
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
+
 const LogInForm = ({ login, loading, error, cleanUp }) => {
-  let displayError
-
-  if (error) {
-      displayError = {display: "block"}
-  } else {
-      displayError = {display: "none"}
-  }
-
   useEffect(() => {
     return () => {
       cleanUp()
@@ -27,31 +32,33 @@ const LogInForm = ({ login, loading, error, cleanUp }) => {
         password: "",
       }}
       validationSchema = {LogInSchema}
-      onSubmit = {async ( values, { resetForm, setSubmitting }) => {
+      onSubmit = {async ( values, { setSubmitting }) => {
         await login(values)
-        resetForm()
         setSubmitting(false)
       }}
     >
-      {({ errors, touched, isSubmitting }) => (
-        <Form className = "classic-form">
-            
-          <div className = {["text-input", touched.email && errors.email && "text-error"].join(' ')}> 
-            <label> Email </label> <br />
-            <Field name = "email" type = "email"/> <br/>
-            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "email" />
-          </div>
+      {({ isSubmitting, isValid }) => (
+        <StyledForm>
           
-          <div className = {["text-input", touched.password && errors.password && "text-error"].join(' ')}>
-            <label> Password </label> <br />
-            <Field name = "password" type = "password"/> <br/>
-            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "password" />
-          </div>
+          <Field name = "email" type = "email" component = {TextInput}/>
+          <Wrapper>
+            <Field name = "password" type = "password" component = {TextInput} />
+            <ForgotPasswordLink />
+          </Wrapper>
+          
+          <Button
+            disabled = {!isValid || isSubmitting}
+            loading = {loading ? 'Logging in...' : null}
+            type = "submit"
+          > 
+            Log In 
+          </Button>
 
-          <p style = {displayError}>{error}</p>
-          <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Log In </button>
+          <MessageWrapper>
+            <Message error show = {error}>{ error }</Message>
+          </MessageWrapper>
 
-        </Form>
+        </StyledForm>
       )}
     </Formik>
   )

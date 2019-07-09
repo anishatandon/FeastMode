@@ -1,24 +1,24 @@
 import React from 'react';
+import styled from 'styled-components'
 
-import LogInLink from '../LogIn/LogInLink.js'
+import { LogInLink } from '../../../style/UI/Links.js'
 import WizardForm from './WizardForm.js'
+import Logo from '../../../style/Logo.js'
+import { FormWrapper } from '../../../style/UI/FormWrappers.js'
 
-import logo from '../../../images/logo.png'
+const SignUpFormWrapper = styled(FormWrapper)`
+  max-width: 60rem;
+`
 
-const SignUpPage = () => (
-  <div className = "sign-up">
-
-    <div className = "regular-logo-container">
-      <img className = "main-logo" src = {logo} alt = "Logo" />
-    </div>
-    
+const SignUp = () => (
+  <>
+  <SignUpFormWrapper>
+    <Logo />
     <WizardForm />
+  </SignUpFormWrapper>
 
-    <div className = "link-area">
-      <LogInLink />
-    </div>
-
-  </div>
+  <LogInLink />
+  </>
 )
 
-export default SignUpPage
+export default SignUp

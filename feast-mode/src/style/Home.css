@@ -1,9 +1,5 @@
-.home {
-    margin-top: 8rem;
-}
 
 .app-window{
-    overflow: auto; /* Control screen resizing */
     position: relative;
     background-color: white;
     padding: 30px; /* Padding around content */
