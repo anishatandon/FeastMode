@@ -22,7 +22,6 @@ import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
 import '../style/Restaurants.css'
-import '../style/Home.css'
 import '../style/Backdrop.css'
 import '../style/Loader.css'
 import '../style/Friends.css'

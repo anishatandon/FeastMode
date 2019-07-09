@@ -22,6 +22,9 @@ const UnderLink = styled(NavLink)`
     border-bottom: 2px solid var(--color-main);
     }
 `
+const DeleteLink = styled(UnderLink)`
+    text-transform: capitalize;
+`
 const PasswordLink = styled(UnderLink)`
     font-size: 1.1rem;
     text-transform: capitalize;
@@ -50,3 +53,9 @@ export const LogInLink = () => (
     </LinkText>
 )
   
+export const ProfileDeleteLink = () => (
+    <LinkText>
+        <span> No longer want FeastMode? </span>
+        <DeleteLink to = {ROUTES.HOME}> Delete Profile </DeleteLink>
+    </LinkText>
+)
