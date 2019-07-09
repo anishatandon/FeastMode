@@ -5,7 +5,7 @@ import WizardForm from './WizardForm.js'
 import Logo from '../../../style/Logo.js'
 import { FormWrapper } from '../../../style/UI/FormWrappers.js'
 
-const SignUpPage = () => (
+const SignUp = () => (
   <>
   <FormWrapper>
     <Logo />
@@ -16,4 +16,4 @@ const SignUpPage = () => (
   </>
 )
 
-export default SignUpPage
+export default SignUp
