@@ -1,7 +1,6 @@
 import * as yup from 'yup'
 
-export const SignUpSchemas = [
-
+export const SignUpSchema = (
     yup.object().shape({
         firstName:
             yup.string("Must be a valid name")
@@ -34,10 +33,8 @@ export const SignUpSchemas = [
         passwordTwo:
             yup.string()
             .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
-            .required("Make sure you can remember your password!")
-    }),
+            .required("Make sure you can remember your password!"),
 
-    yup.object().shape({
         creditCard:
             yup.number()
                 .typeError('Please enter a valid credit card number')
@@ -61,15 +58,5 @@ export const SignUpSchemas = [
                 .typeError('Please enter a valid security code')
                 .positive('Please enter a valid security code')
                 .required('Please enter the security code'),
-
-        creditCardType:
-            yup.string()
-                .required("Credit card type is required"),
-    }),
-
-    // yup.object({
-    //     apps: 
-    //         yup.array()
-    //             .oneOf([true], 'Choose at least one option'),
-    // })
-]
+    })
+)

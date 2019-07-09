@@ -22,7 +22,6 @@ import DisplayFriends from './Friends/DisplayFriends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
-import '../style/SignUp.css'
 import '../style/Restaurants.css'
 import '../style/Home.css'
 import '../style/Backdrop.css'
@@ -30,20 +29,13 @@ import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
-import '../style/titles.css'
-import '../style/button.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-<<<<<<< HEAD
-  min-height: 100vh;
-=======
-  // height: 100vh;
   min-height: 100vh;
   padding: 8rem 0rem;
->>>>>>> bded6f912631e0b662a9a8e696cd5c05c16463c2
   display: flex;
   flex-direction: column;
   align-items: center;

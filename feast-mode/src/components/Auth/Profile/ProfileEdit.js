@@ -11,7 +11,7 @@ import doordash from '../../../images/doordash.jpg';
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
 
-import ImageUpload from '../SignUp/ImageUpload.js';
+import ImageUpload from './ImageUpload.js';
 
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {

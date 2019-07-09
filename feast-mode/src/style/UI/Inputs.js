@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 const InputWrapper = styled.div`
-  width: ${props => props.aligned ? "48%" : "100%"};
+  width: 100%;
   display: flex;
   position: relative;
   margin-bottom: 3rem;
   flex-direction: column;
 `
-const Error = styled.div`
+const Error = styled.p`
   color: var(--color-main);
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   opacity: ${({ show }) => (show ? '1' : '0')};
@@ -22,8 +22,8 @@ const Error = styled.div`
   font-size: 1.3rem;
 `
 const Label = styled.label`
-  text-transform: capitalize;
   font-size: 1.3rem;
+  width: 100%;
   padding: 0.7rem;
   color: var(--color-title);
 `
@@ -50,10 +50,10 @@ const StyledTextInput = styled.input`
   }
 `
 
-export const TextInput = ({ aligned, field, form: { touched, errors }, ...props }) => {
+export const TextInput = ({ label, field, form: { touched, errors }, ...props }) => {
   return (
-    <InputWrapper aligned = {aligned}>
-      <Label> {[field.name]} </Label>
+    <InputWrapper>
+      <Label> {label} </Label>
       <StyledTextInput {...field} {...props} />
       <Error show = {errors[field.name] && touched[field.name]}>
         {errors[field.name]}
