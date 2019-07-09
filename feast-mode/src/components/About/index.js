@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components'
 
+
+// INTRODUCING STYLED COMPONENTS HERE
 const Roles = styled.div`
   display: flex;
   justify-content: space-around;
   text-align: center;
 `
-// Bios is like roles but with margin
 const Bios = styled(Roles)`
-
   margin: 10px; 
 `
+// END OF STYLED COMPONENTS 
 
 const AboutPage = () => (
   <div>
