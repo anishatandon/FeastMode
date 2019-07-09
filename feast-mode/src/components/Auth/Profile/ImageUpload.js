@@ -6,43 +6,38 @@ class ImageUpload extends Component {
     state = {
         avatar: "",
         isUploading: false,
-        progress: 0,
         avatarURL: ""
     };
 
-    handleProgress = (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        this.setState({ progress });
-    }
-
     handleUploadSuccess = filename => {
-        this.setState({ avatar: filename, progress: 100, isUploading: false });
+        this.setState({ avatar: filename, isUploading: false });
         firebase
             .storage()
             .ref("images")
             .child(filename)
             .getDownloadURL()
             .then(url => this.setState({ avatarURL: url }));
-            console.log("hey")
+            
+        // Get current username
+        var user = firebase.auth().currentUser;
+
+        
     };
 
     render() {
         return (
             <div>
                 <form>
-                    <label>Avatar:</label>
-                    <progress value={this.state.progress} max="100"/>
-                    {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+                    <label >Avatar:</label>
                     {this.state.avatarURL && <img src={this.state.avatarURL} />}
                     <FileUploader
                         accept="image/*"
                         name="avatar"
                         randomizeFilename
                         storageRef={firebase.storage().ref("images")}
-                        onUploadStart={this.handleUploadStart}
-                        onUploadError={this.handleUploadError}
+                        // onUploadStart={this.handleUploadStart}
+                        // onUploadError={this.handleUploadError}
                         onUploadSuccess={this.handleUploadSuccess}
-                        onProgress={this.handleProgress}
                     />
                 </form>
             </div>

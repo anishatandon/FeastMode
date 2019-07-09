@@ -39,6 +39,7 @@ const WizardForm = ({ signUp, cleanUp, error, loading }) => {
                 secCode: "",
                 creditCardType: "",
                 apps: [false, false, false, false], // Postamtes, GrubHub, DoorDash, UberEats
+                picture: "", // some random picture, we can set a default one later
             }}
             onSubmit = {async ( values, { resetForm, setSubmitting }) => {
                 await signUp(values)
