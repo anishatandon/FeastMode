@@ -1,60 +1,43 @@
 import React from 'react'
-import * as ROUTES from '../../constants/routes'
-import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
+import styled from 'styled-components'
 
-import SearchBar from './SearchBar.js'
-import DrawerToggleButton from './DrawerToggleButton.js'
+import NavItems from './NavItems.js'
 
-const Navbar = props => {
-    let items
-    let sideDrawerButton
+const FixedWrapper = styled.header`
+    position: fixed;
+    background-color: var(--color-white);
+    padding: 0rem 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8rem;
 
-    if (props.emailVerified) {
-        items = (
-            <ul>
-                <li> <NavLink to={ROUTES.HOME}> Home </NavLink> </li>
-                <li> <NavLink to={ROUTES.PASSWORD_RECOVERY}> Reset Password </NavLink> </li>
-                <li> <NavLink to={ROUTES.PROFILE_EDIT}> Edit Profile </NavLink> </li>
-                <li> <NavLink to={ROUTES.LOG_OUT}> Log Out </NavLink> </li>
-                <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
-                <li> <NavLink to={ROUTES.ADD_FRIENDS}> Add Friends </NavLink> </li>
-                <li> <NavLink to={ROUTES.EDIT_FRIENDS}> Edit Friends </NavLink> </li>
-                <li> <NavLink to={ROUTES.PICK_FOOD}> Pick Food </NavLink> </li>
-                <li> <SearchBar /> </li>
-            </ul>
-        )
-        sideDrawerButton = (
-            <DrawerToggleButton click = {props.drawerClickHandler}/>
-        )
-    } else {
-        items = (
-            <ul>
-                <li> <NavLink to={ROUTES.LOG_OUT}> Log Out </NavLink> </li>
-                <li> <NavLink to={ROUTES.ABOUT}> About </NavLink> </li>
-            </ul>
-        )
+    @media ${props => props.theme.mediaQueries.small} {
+        display: none;
     }
+`
+const Container = styled.div`
+    width: 100%;
+    max-width: 140rem;
+    margin: 0 auto;
+    height: 100%;
+`
+const Wrapper = styled.div`
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+`
 
+const Navbar = () => {
     return(
-        <header className = "navbar">
-            <nav className = "navbar-navigation">
-                <div className = "navbar-toggle-button">
-                    {sideDrawerButton}
-                </div>
-                <div className = "spacer"></div>
-                <div className = "navbar-navigation-items">
-                    {items}
-                </div>
-            </nav>
-        </header>
+        <FixedWrapper>
+            <Container>
+                <Wrapper>
+                    <NavItems/>
+                </Wrapper>
+            </Container>
+        </FixedWrapper>
     )
 }
 
-const mapStateToProps = ({ firebase }) => ({
-    emailVerified: firebase.auth.emailVerified,
-})
-
-
-
-export default connect(mapStateToProps, null)(Navbar)
+export default Navbar

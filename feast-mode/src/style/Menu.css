@@ -1,0 +1,19 @@
+
+.info {
+    width:42%;
+    float: left;
+}
+
+.clearfix {
+    clear:both
+}
+
+.button {
+    border: none;
+    border-radius: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: white;
+    background:#333;
+}
