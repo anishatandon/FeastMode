@@ -28,7 +28,7 @@ const NavItems = ({ mobile, clicked, emailVerified }) => {
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.LOG_OUT}> Log Out </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ABOUT}> About </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ADD_FRIENDS}> Add Friends </NavItem>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.EDIT_FRIENDS}> Edit Friends </NavItem>
+                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.DISPLAY_FRIENDS}> Edit Friends </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PICK_FOOD}> Pick Food </NavItem>
             </Ul>
         )
