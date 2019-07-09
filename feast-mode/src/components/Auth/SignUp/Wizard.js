@@ -63,7 +63,7 @@ class Wizard extends Component {
         onSubmit = {this.handleSubmit}
         render = {props => (
           <>
-          {!isLastPage ? <Heading size = "h1"> Sign Up! </Heading> : <Heading size = "h1"> What apps do you have? </Heading>} 
+          <Heading size = "h1"> Welcome to FeastMode </Heading> 
           <StyledForm>
 
             {React.cloneElement(activePage, { parentState: {...props} })}
