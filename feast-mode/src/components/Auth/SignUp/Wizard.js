@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
-import { Formik, Form } from 'formik'
+import { Formik, ErrorMessage } from 'formik'
+import styled from 'styled-components'
 
 import { SignUpSchemas } from './SignUpSchemas.js'
+import Heading from '../../../style/UI/Heading.js'
+import { StyledForm } from '../../../style/UI/FormWrappers.js'
+import Button from '../../../style/UI/Buttons.js'
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
 
 class Wizard extends Component {
   static Page = ({ children, parentState }) => {
@@ -34,10 +44,8 @@ class Wizard extends Component {
     if (isLastPage) {
       return onSubmit(values, bag)
     } else {
-      bag.setTouched({})
       bag.setSubmitting(false)
       this.next(values)
-      console.log("Next")
     }
   }
 
@@ -55,19 +63,18 @@ class Wizard extends Component {
         onSubmit = {this.handleSubmit}
         render = {props => (
           <>
-            {!isLastPage ? <h1> Sign Up! </h1> : <h1> Which apps do you have? </h1>} 
-            <Form className = "classic-form">
+          {!isLastPage ? <Heading size = "h1"> Sign Up! </Heading> : <Heading size = "h1"> What apps do you have? </Heading>} 
+          <StyledForm>
 
-              {React.cloneElement(activePage, { parentState: {...props} })}
-              <div className = "button-area">
+            {React.cloneElement(activePage, { parentState: {...props} })}
 
-                {page > 0 && <button type = "button" className = "classic-button" onClick={this.previous}> Previous </button>}
-                {!isLastPage && <button type = "submit" className = "classic-button"> Next </button>}
-                {isLastPage && <button type = "submit" disabled = {props.isSubmitting} className = "classic-button"> Submit </button>}
+            <Wrapper>
+              {page > 0 && <Button type = "button" color = {true} onClick={this.previous}> Previous </Button>}
+              {!isLastPage && <Button type = "submit" disabled = {!props.isValid || props.isSubmitting}> Next </Button>}
+              {isLastPage && <Button type = "submit" color = {props.isValid} disabled = {props.isSubmitting}> Submit </Button>}
+            </Wrapper>
 
-              </div>
-
-            </Form>
+          </StyledForm>
           </>
         )}
       />

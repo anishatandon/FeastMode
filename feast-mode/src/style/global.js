@@ -21,6 +21,7 @@ export default createGlobalStyle`
         font-size: 62.5%;
         box-sizing: border-box;
         --color-main: ${props => props.theme.colors.main}
+        --color-mainLight: ${props => props.theme.colors.mainLight}
         --color-title: ${props => props.theme.colors.titleColor};
         --color-text: ${props => props.theme.colors.textColor};
         --color-background: ${props => props.theme.colors.backgroundColor};

@@ -2,6 +2,7 @@
 const theme = {
     colors: {
         main: "#ff870C", // Previously it was ff9933. New ff870c
+        mainLight: "#fabf84",
         titleColor: "#2C3E50",
         textColor: "#000000",
         backgroundColor: "#f5f5f5",

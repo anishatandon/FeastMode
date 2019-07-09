@@ -1,24 +1,19 @@
 import React from 'react';
 
-import LogInLink from '../LogIn/LogInLink.js'
+import { LogInLink } from '../../../style/UI/Links.js'
 import WizardForm from './WizardForm.js'
-
-import logo from '../../../images/logo.png'
+import Logo from '../../../style/Logo.js'
+import { FormWrapper } from '../../../style/UI/FormWrappers.js'
 
 const SignUpPage = () => (
-  <div className = "sign-up">
-
-    <div className = "regular-logo-container">
-      <img className = "main-logo" src = {logo} alt = "Logo" />
-    </div>
-    
+  <>
+  <FormWrapper>
+    <Logo />
     <WizardForm />
+  </FormWrapper>
 
-    <div className = "link-area">
-      <LogInLink />
-    </div>
-
-  </div>
+  <LogInLink />
+  </>
 )
 
 export default SignUpPage

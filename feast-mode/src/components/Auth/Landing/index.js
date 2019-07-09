@@ -1,25 +1,22 @@
 import React from 'react'
 
 import LogInForm from '../LogIn/index.js'
-import SignUpLink from '../SignUp/SignUpLink.js'
+import { SignUpLink } from '../../../style/UI/Links.js'
+import Logo from '../../../style/Logo.js'
 
-import logo from '../../../images/logo.png'
+import { FormWrapper } from '../../../style/UI/FormWrappers.js'
+import Heading from '../../../style/UI/Heading.js'
 
 const Landing = () => (
-  <div className = "landing">
-
-    <div className = "regular-logo-container">
-      <img className = "main-logo" src = {logo} alt = "Logo" />
-    </div>
-    
-    <h1> Join the Feast! </h1>
+  <>
+  <FormWrapper>
+    <Logo />
+    <Heading size = "h1"> Join the Feast! </Heading>
     <LogInForm />
-
-    <div className = "link-area">
-      <SignUpLink />
-    </div>
-
-  </div>
+  </FormWrapper>
+  
+  <SignUpLink />
+  </>
 )
 
 export default Landing

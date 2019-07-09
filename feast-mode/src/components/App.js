@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import { connect } from 'react-redux'
-import * as actions from '../backend/store/actions'
 import styled from 'styled-components'
 
 import Landing from './Auth/Landing'
@@ -25,19 +24,14 @@ import PickFood from './Food/PickFood'
 import '../style/Landing.css'
 import '../style/SignUp.css'
 import '../style/Restaurants.css'
-import '../style/Menu.css'
 import '../style/Home.css'
-import '../style/SearchBar.css'
 import '../style/Backdrop.css'
-import '../style/CheatingToolbar.css'
 import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
-import '../style/main-logo.css'
 import '../style/titles.css'
 import '../style/button.css'
-import '../style/form.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
 
@@ -45,6 +39,7 @@ const MainWrapper = styled.main`
   width: 100%;
   min-height: calc(100vh - 6rem);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};

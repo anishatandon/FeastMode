@@ -20,7 +20,10 @@ const StyledNavLink = styled(NavLink)`
   transition: all 0.2s;
 
   :hover {
-    border-bottom: 2px solid var(--color-main);
+    border-bottom: ${props =>
+      props.mobile
+        ? '1px solid var(--color-white)'
+        : '2px solid var(--color-main)'};
   }
 
   &.active {
