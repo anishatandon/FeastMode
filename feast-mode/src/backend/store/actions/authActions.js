@@ -26,6 +26,8 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             secCode: data.secCode,
             creditCardType: data.creditCardType,
             apps: data.apps,
+            friends: [],
+            requests: [],
         });
 
         dispatch({ type: actions.AUTH_SUCCESS });

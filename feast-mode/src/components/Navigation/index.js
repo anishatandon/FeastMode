@@ -56,7 +56,7 @@ const Navbar = ({ emailVerified, sideDrawerClickHandler }) => {
                 <NavItem link = {ROUTES.LOG_OUT}> Log Out </NavItem>
                 <NavItem link = {ROUTES.ABOUT}> About </NavItem>
                 <NavItem link = {ROUTES.ADD_FRIENDS}> Add Friends </NavItem>
-                <NavItem link = {ROUTES.EDIT_FRIENDS}> Edit Friends </NavItem>
+                <NavItem link = {ROUTES.DISPLAY_FRIENDS}> Friends </NavItem>
                 <NavItem link = {ROUTES.PICK_FOOD}> Pick Food </NavItem>
             </Ul>
         )

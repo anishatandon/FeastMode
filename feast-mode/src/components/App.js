@@ -19,7 +19,7 @@ import Backdrop from './Modal/Backdrop.js'
 // import Friends from '../Friends/Friend'
 import EmailVerification from './Auth/EmailVerification'
 import AddFriends from './Friends/AddFriends'
-import EditFriends from './Friends/EditFriends'
+import DisplayFriends from './Friends/DisplayFriends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
@@ -88,8 +88,8 @@ const App = ({ loggedIn, sideDrawer, emailVerified, change, close }) => {
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
-            <Route exact path={ROUTES.EDIT_FRIENDS} component={EditFriends} />
-            <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
+            <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
+            {/* <Route exact path={ROUTES.PICK_FOOD} component={PickFood} /> */}
             <Redirect to={ROUTES.HOME} />
           </Switch>
         </MainWrapper>
