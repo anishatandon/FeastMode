@@ -1,6 +1,8 @@
 import * as yup from 'yup'
 
-export const ProfileEditSchema = yup.object().shape({
+export const ProfileEditSchema = [
+
+yup.object().shape({
     firstName:
         yup.string("Must be a valid name")
         .required("Please enter your name"),
@@ -63,7 +65,8 @@ export const ProfileEditSchema = yup.object().shape({
     creditCardType:
         yup.string()
         .required("Credit card type is required"),
-})
+}),
+]
 
 export const PasswordRecoverySchema = yup.object().shape({
     email: yup.string("Must be a valid email").email("Must be a valid email").required("Please enter your email"),
