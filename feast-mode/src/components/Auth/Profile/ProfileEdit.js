@@ -32,7 +32,7 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     return (
         <div className = "profile-change">
             <h1> Edit Your Profile </h1>
-            <ImageUpload />
+            {/* <ImageUpload /> */}
             <br />
             <Formik
                 initialValues = {{
@@ -47,7 +47,8 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     expDate: firebase.profile.expDate,
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
-                    apps: firebase.profile.apps, // Postamtes, GrubHub, DoorDash, UberEats
+                    apps: firebase.profile.apps, // Postmates, GrubHub, DoorDash, UberEats
+                    picture: firebase.profile.picture, // initial picture, the default one given at signup
                 }}
                 validationSchema = {ProfileEditSchema}
                 onSubmit = {async ( values, { resetForm, setSubmitting }) => {
@@ -57,6 +58,10 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
             >
                 {({ values, errors, touched, isSubmitting }) => (
                     <Form className = "classic-form">
+                        <div className = "compensate-input text-input"> 
+                            <label> Profile Picture </label> <br />
+                            <Field name = "picture" type = "text"/> <br/>
+                        </div>
                         <div className = "aligned-inputs text-input"> 
                             <div className = {touched.firstName && errors.firstName && "text-error"}>
                                 <label> First Name </label> <br />
