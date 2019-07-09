@@ -101,7 +101,7 @@ const App = ({ loggedIn, emailVerified }) => {
     )
   }
 
-  return <div>{ routes }</div>
+  return <>{ routes }</>
 }
 
 const mapStateToProps = ({ firebase }) => ({
