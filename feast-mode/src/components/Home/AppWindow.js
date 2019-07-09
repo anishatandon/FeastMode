@@ -6,7 +6,7 @@ import food from '../../images/food.jpg'
 
 import styled from 'styled-components'
 
-// Can add these to the UI folder
+// STYLE STARTS HERE: Can add these to the UI folder AGHGHGHGH 
 const StyledAppWindow = styled.div`
     position: relative;
     background-color: white;
@@ -20,7 +20,6 @@ const StyledAppWindow = styled.div`
         0 1px 5px rgba(0,0,0,0.15),
         0 10px 0 -5px #eee;
 `
-
 const FoodImage = styled.img`
     max-width: 100%;
     padding-top: 30px;
@@ -31,7 +30,6 @@ const FoodImage = styled.img`
     justify-content: center;
     align-items: center;
 `
-
 const LogoImage = styled.img`
     max-width: 15%;
     object-fit: contain;
@@ -39,6 +37,9 @@ const LogoImage = styled.img`
 const AppText = styled.span`
     font-size: 24px;
 `
+
+
+///// OK STYLE IS OVER
 
 class AppWindow extends Component {
     constructor(props) {

@@ -7,10 +7,9 @@ const appWindowComponents = appsData.map(app => <AppWindow key = {app.id} {...ap
 
 function Home() {
   return (
-    <div className = "home">
+    <div>
       <h1 className = "home-title"> Pick your App </h1>
       {appWindowComponents}
-      
     </div>
   )
 }

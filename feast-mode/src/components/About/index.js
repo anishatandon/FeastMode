@@ -1,10 +1,19 @@
 import React from 'react';
+import styled from 'styled-components'
+
+const Roles = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+`
+// Bios is like roles but with margin
+const Bios = styled(Roles)`
+
+  margin: 10px; 
+`
 
 const AboutPage = () => (
   <div>
-
-
-
     <section class="center">
       <div class="aboutus">
         <h1>About Us</h1>
@@ -12,29 +21,28 @@ const AboutPage = () => (
     </section>
 
 
-    <div class="roles">
+    <Roles>
         <p id= "alexandra">Developer</p>
         <p id= "ignacio">Developer</p>
         <p id= "cher">Developer</p>
-    </div>
-
+    </Roles>
 
     <section class="grid">
-    <div class="bios">
+    <Bios>
       <p id= "a1">
         <i class="textinc">Alexandra</i> is a Harvey Mudd student .....
       </p>
-    </div>
-    <div class="bios">
+    </Bios>
+    <Bios>
       <p id= "i1">
         <i class="textinc">Ignacio</i> is a Harvey Mudd student .....
       </p>
-    </div>
-    <div class="bios">
+    </Bios>
+    <Bios>
       <p id= "c1">
         <i class=" textinc">Cher</i> is a Harvey Mudd student .....
       </p>
-   </div>
+   </Bios>
    </section>
 
   </div>
