@@ -37,7 +37,9 @@ import '../style/PasswordChange.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: calc(100vh - 6rem);
+  // height: 100vh;
+  min-height: 100vh;
+  padding: 8rem 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
