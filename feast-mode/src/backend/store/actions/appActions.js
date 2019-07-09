@@ -4,15 +4,37 @@ import * as actions from './actionTypes.js'
 export const sendInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data.uid;
+    const inviteId = data;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
     try {
-
-        await firestore.collection("friends").doc(inviteId).update({
+        console.log(inviteId)
+        console.log(userId)
+        await firestore.collection("friends").doc(inviteId).set({
             requests: firestore.FieldValue.arrayUnion(userId),
         })
+        // try {
+        //     const res = await firestore
+        //       .collection('friends')
+        //       .doc(inviteId)
+        //       .get();
+        //     if (!res.data()) {
+        //       firestore
+        //         .collection('friends')
+        //         .doc(inviteId)
+        //         .set({
+        //           requested: [userId]
+        //         });
+               
+        //     } else { 
+        //       firestore
+        //         .collection('friends')
+        //         .doc(inviteId)
+        //         .update({
+        //           requested: [...res.data().requested, userId],
+        //         });
+        //     }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 
@@ -25,13 +47,13 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
 export const acceptInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data.uid;
+    const inviteId = data;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.ACCEPT_INVITE_START })
     try {
 
-        await firestore.collection("friends").doc(inviteId).update({
+        await firestore.collection("friends").doc(inviteId).set({
             friends: firestore.FieldValue.arrayUnion(userId),
         })
 
@@ -50,13 +72,13 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
 export const deleteInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data.uid;
+    const inviteId = data;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.DELETE_INVITE_START })
     try {
 
-        await firestore.collection("friends").doc(inviteId).update({
+        await firestore.collection("friends").doc(inviteId).set({
             requests: firestore.FieldValue.arrayRemove(userId),
         })
 

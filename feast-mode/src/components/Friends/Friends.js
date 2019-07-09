@@ -5,20 +5,18 @@ import { compose } from 'redux';
 
 
 import Friend from './Friend';
-import AddFriendButton from './AddFriendButton';
 import Loader from '../Loader/index.js';
-import './AddFriends.css';
 
-const AddFriends = ({users, hasRequested }) => {
+const Friends = ({users, friends, userId, hasRequested }) => {
 
   let content;
-  if(!users)
+  if(!friends)
   {
     content = (
       <Loader />
     );
   }
-  else if( users.length === 0 )
+  else if( friends[userId].friends.length === 0 )
   {
       content = (
         <p>There are no users!</p>
@@ -26,18 +24,7 @@ const AddFriends = ({users, hasRequested }) => {
   }
   else
   {
-    content = (
-      <div>
-        {Object.keys(users).map(user => 
-          <div className="friend">
-            <Friend display={true} key={user} friend={user} />
-            <AddFriendButton key={"b"+user} friend={user}/>
-          </div>
-        )}
-        
-      </div>
-      
-    )
+    content = friends[userId].friends.map(user => <Friend display={true} key={user} friend={user} />)
     // content += friends[userId].requested.map(friend => <Friend display={false} key={friend.id} friend={friend} />)
   }
  
@@ -52,7 +39,9 @@ const AddFriends = ({users, hasRequested }) => {
 
 const mapStateToProps = ({ firebase, firestore, app }) => ({
   firebase,
+  userId: firebase.auth.uid,
   users: firestore.data.users,
+  friends: firestore.data.friends,
   hasRequested: firestore.status.requested,
 })
 
@@ -60,5 +49,6 @@ const mapDispatchToProps = {}
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect(props => ["friends/"]),
   firestoreConnect(props => ["users/"]),
-)(AddFriends)
+)(Friends)

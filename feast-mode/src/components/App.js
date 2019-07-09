@@ -15,10 +15,9 @@ import Restaurants from './Food/Restaurants'
 import About from './About'
 import Navbar from './Navigation'
 import Backdrop from './Modal/Backdrop.js'
-// import Friends from '../Friends/Friend'
 import EmailVerification from './Auth/EmailVerification'
 import AddFriends from './Friends/AddFriends'
-import DisplayFriends from './Friends/DisplayFriends'
+import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
@@ -37,13 +36,9 @@ import '../style/PasswordChange.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-<<<<<<< HEAD
-  min-height: 100vh;
-=======
   // height: 100vh;
   min-height: 100vh;
   padding: 8rem 0rem;
->>>>>>> bded6f912631e0b662a9a8e696cd5c05c16463c2
   display: flex;
   flex-direction: column;
   align-items: center;
