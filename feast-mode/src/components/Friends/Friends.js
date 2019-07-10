@@ -34,10 +34,10 @@ const Friends = ({users, friends, userId, hasRequested }) => {
             <>
                 <h1>Friend Requests</h1>
                 {friends[userId].requests.map(user =>
-                <div className="friend">
-                    <Friend display={true} key={user} friend={user} />
-                    <AcceptFriendButton key={"a"+user} friend={user}/>
-                    <DeleteInviteButton key={"d"+user} friend={user}/>
+                <div className="friend" key={user}>
+                    <Friend display={true} friend={user} />
+                    <AcceptFriendButton friend={user}/>
+                    <DeleteInviteButton friend={user}/>
                 </div>
                 )}
             </>
@@ -61,9 +61,9 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 {content}
                 <h1>Your Friends</h1>
                 {friends[userId].friends.map(user =>
-                <div className="friend">
-                    <Friend display={true} key={user} friend={user} />
-                    <DeleteFriendButton key={"de"+user} friend={user}/>
+                <div className="friend" key={user}>
+                    <Friend display={true} friend={user} />
+                    <DeleteFriendButton friend={user}/>
                 </div>
                 )}
             </>
