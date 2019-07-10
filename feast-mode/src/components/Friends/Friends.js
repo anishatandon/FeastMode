@@ -10,59 +10,74 @@ import Loader from '../Loader/index.js';
 
 const Friends = ({users, friends, userId, hasRequested }) => {
 
-  let content;
-  if(!friends ) 
+  let content ;
+  
+  if(!friends || !friends[userId]) 
   {
     content = (
       <Loader />
     );
   }
 
-//   if(!friends.requests )
-//   {
+  else {
+    if(!friends[userId].requests || friends[userId].requests.length === 0 )
+    {
+        content = (
+            <p>No friends requests</p>
+        )
+    }
 
-//   }
+    else{
+        content = (
+            <>
+                <h1>Friend Requests</h1>
+                {friends[userId].requests.map(user =>
+                <div className="friend">
+                    <Friend display={true} key={user} friend={user} />
+                    <AcceptFriendButton key={"b"+user} friend={user}/>
+                </div>
+                )}
+            </>
+        )
+    } 
 
-//   if(!friends.friends)
-//   {
+    if(!friends[userId].friends || friends[userId].friends.length === 0)
+    {
+        content = (
+            <>
+                {content}
+                <p>You have no friends.</p>
+            </>
+        )
+    }
 
-//   }
-
-  else if( friends[userId].requests.length === 0 )
-  {
-      content = (
-        <p>There are no users!</p>
-      )
-  }
-  else
-  {
-      content = 
-      (
-        <div>
-            <h1>Friend Requests</h1>
-            {friends[userId].requests.map(user =>
-            <div className="friend">
-                <Friend display={true} key={user} friend={user} />
-                <AcceptFriendButton key={"b"+user} friend={user}/>
-            </div>
-            )}
-            <h1>Your Friends</h1>
-            {/* {friends[userId].friends.map(user =>
-            <div className="friend">
-                <Friend display={true} key={user} friend={user} />
-            </div>
-            )} */}
+    else
+    {
+        content = (
+            <>
+                {content}
+                <h1>Your Friends</h1>
+                {friends[userId].friends.map(user =>
+                <div className="friend">
+                    <Friend display={true} key={user} friend={user} />
+                </div>
+                )}
+            </>
+        )
         
-        </div>
-      )
-    
-    
+        
+    }
+
+
   }
+  
+  
+  
  
 
   return (
     <div className = "friends-change">
-      <h1> All Users </h1>
+      <h1></h1>
       {content}
     </div>
   )
@@ -71,7 +86,6 @@ const Friends = ({users, friends, userId, hasRequested }) => {
 const mapStateToProps = ({ firebase, firestore, app }) => ({
   firebase,
   userId: firebase.auth.uid,
-  users: firestore.data.users,
   friends: firestore.data.friends,
   hasRequested: firestore.status.requested,
 })

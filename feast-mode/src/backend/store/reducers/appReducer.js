@@ -45,6 +45,7 @@ export default (state = initialState, {type, payload}) => {
         case actions.SEND_INVITE_SUCCESS:
             return { ...state,
                 updateFriends: { ...state.acceptInvite, loading: false, error: false }, };
+                
 
         case actions.DELETE_INVITE_START:
             return { ...state,
@@ -66,17 +67,17 @@ export default (state = initialState, {type, payload}) => {
                 error: null, 
                 loading: false, 
                 sendInvite: {
-                    ...state.updateFriends, 
+                    ...state.sendInvite, 
                     loading: false, 
                     error: null,
                 },
                 acceptInvite: {
-                    ...state.updateFriends, 
+                    ...state.acceptInvite, 
                     loading: false, 
                     error: null,
                 },
                 deleteInvite: {
-                    ...state.updateFriends, 
+                    ...state.deleteInvite, 
                     loading: false, 
                     error: null,
                 },
