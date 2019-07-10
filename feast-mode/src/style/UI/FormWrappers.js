@@ -27,3 +27,11 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   color: var(--color-title);
 `
+
+export const AlignedWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  div { width: 48% };
+`

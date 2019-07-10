@@ -48,7 +48,7 @@ const Menu = styled.div`
 `
 
 const SideDrawer = () => {
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(false)
   return (
     <>
       <FixedWrapper>

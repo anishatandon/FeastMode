@@ -21,21 +21,19 @@ import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
-import '../style/SignUp.css'
 import '../style/Restaurants.css'
 import '../style/Backdrop.css'
 import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
-import '../style/titles.css'
-import '../style/button.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
+import '../style/Card.css'
+import '../style/AppsFormWrapper.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-  // height: 100vh;
   min-height: 100vh;
   padding: 8rem 0rem;
   display: flex;
