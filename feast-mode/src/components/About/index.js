@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Alexandra from "./Alexandra.jpg"
 import Ignacio from "./Ignacio.jpg"
+import IgnacioCool from "./IgnacioCool.jpg"
 
 // INTRODUCING STYLED COMPONENTS HERE
 // const Roles = styled.div`
@@ -159,7 +160,7 @@ const AboutPage = () => (
 
 const AboutPageReal = () => (
   <div class="content">
-				<h1>MEET OUR TEAM</h1>
+				<h1>MEET THE TEAM</h1>
 				<div class="grid">
 					<figure class="effect-moses">
 						<img src={Ignacio} alt="img24"/>
@@ -170,18 +171,18 @@ const AboutPageReal = () => (
 						</figcaption>			
 					</figure>
           <figure class="effect-moses">
-						<img src={Ignacio} alt="img24"/>
+						<img src={Alexandra} alt="img24"/>
 						<figcaption>
 							<h2>Ignacio <br/><span>Lista Rosales</span></h2>
 							<p>Moses loves to run after butterflies.</p>
 							<a href="#">View more</a>
 						</figcaption>			
 					</figure>
-					<figure class="effect-ming">
-						<img src={Ignacio} alt="img09"/>
+					<figure class="effect-moses">
+						<img src={IgnacioCool} alt="img24"/>
 						<figcaption>
-							<h2>Cher <span>Ma</span></h2>
-							<p>Ming sits in the corner the whole day. She's into crochet.</p>
+							<h2>Cher <br/><span>Ma</span></h2>
+							<p>Moses loves to run after butterflies.</p>
 							<a href="#">View more</a>
 						</figcaption>			
 					</figure>

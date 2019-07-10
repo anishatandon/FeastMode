@@ -137,17 +137,18 @@ section {
 }
 
 .content {
-	margin: 0 auto;
-	max-width: 1000px;
+	margin: 0 0 0 0;
+  padding: 0 10% 0 10%;
 }
 
 .content > h1 {
 	clear: both;
 	margin: 0;
-	padding: 4em 1% 0;
+	padding: 0 1% 0.8em;
   color: #333;
-	font-weight: 800;
-	font-size: 1.5em;
+	font-weight: 100;
+  font-size: 4em;
+  text-align: center;
 }
 
 .content > h2:first-child {
@@ -307,24 +308,26 @@ body #cda-remove {
 	}
 }
 .grid {
-	position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  position: relative;
 	clear: both;
 	margin: 0;
 	padding: 0;
-	max-width: 1000px;
 	list-style: none;
   text-align: center;
 }
 
 /* Common style */
 .grid figure {
+  justify-self: center;
 	position: relative;
 	float: left;
 	overflow: hidden;
 	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 480px;
-	max-height: 360px;
+	min-width: 380px;
+	max-width: 500px;
+	max-height: 380px;
 	width: 48%;
 	height: auto;
 	background: #3085a3;
@@ -397,8 +400,8 @@ body #cda-remove {
 /*-----------------*/
 
 figure.effect-moses {
-	background: -webkit-linear-gradient(-45deg, #EC65B7 0%,#05E0D8 100%);
-	background: linear-gradient(-45deg, #EC65B7 0%,#05E0D8 100%);
+	background: -webkit-linear-gradient(-45deg, #ea8624 0%,#db3d3d 100%);
+	background: linear-gradient(-45deg, #ea8624 0%,#df7373 100%);
 }
 
 figure.effect-moses img {
@@ -451,69 +454,3 @@ figure.effect-moses:hover p {
 figure.effect-moses:hover img {
 	opacity: 0.6;
 }
-
-/*---------------*/
-/***** Ming *****/
-/*---------------*/
-
-figure.effect-ming {
-	background: #030c17;
-}
-
-figure.effect-ming img {
-	opacity: 0.9;
-	-webkit-transition: opacity 0.35s;
-	transition: opacity 0.35s;
-}
-
-figure.effect-ming figcaption::before {
-	position: absolute;
-	top: 30px;
-	right: 30px;
-	bottom: 30px;
-	left: 30px;
-	border: 2px solid #fff;
-	box-shadow: 0 0 0 30px rgba(255,255,255,0.2);
-	content: '';
-	opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale3d(1.4,1.4,1);
-	transform: scale3d(1.4,1.4,1);
-}
-
-figure.effect-ming h2 {
-	margin: 20% 0 10px 0;
-	-webkit-transition: -webkit-transform 0.35s;
-	transition: transform 0.35s;
-}
-
-figure.effect-ming p {
-	padding: 1em;
-	opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale(1.5);
-	transform: scale(1.5);
-}
-
-figure.effect-ming:hover h2 {
-	-webkit-transform: scale(0.9);
-	transform: scale(0.9);
-}
-
-figure.effect-ming:hover figcaption::before,
-figure.effect-ming:hover p {
-	opacity: 1;
-	-webkit-transform: scale3d(1,1,1);
-	transform: scale3d(1,1,1);
-}
-
-figure.effect-ming:hover figcaption {
-	background-color: rgba(58,52,42,0);
-}
-
-figure.effect-ming:hover img {
-	opacity: 0.4;
-}
-
