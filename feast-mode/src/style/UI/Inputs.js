@@ -18,7 +18,6 @@ const Error = styled.p`
   bottom: 0;
   left: 0;
   padding: 0rem 0.7rem;
-  font-weight: 400;
   font-size: 1.3rem;
 `
 export const Label = styled.label`
@@ -26,6 +25,9 @@ export const Label = styled.label`
   width: 100%;
   padding: 0.7rem;
   color: var(--color-title);
+`
+export const Required = styled.span`
+  color: var(--color-main);
 `
 
 const StyledTextInput = styled.input`
@@ -50,10 +52,10 @@ const StyledTextInput = styled.input`
   }
 `
 
-export const TextInput = ({ label, field, form: { touched, errors }, ...props }) => {
+export const TextInput = ({ required, label, field, form: { touched, errors }, ...props }) => {
   return (
     <InputWrapper>
-      <Label> {label} </Label>
+      <Label> {label} {required && <Required> * </Required>} </Label> 
       <StyledTextInput {...field} {...props} />
       <Error show = {errors[field.name] && touched[field.name]}>
         {errors[field.name]}
