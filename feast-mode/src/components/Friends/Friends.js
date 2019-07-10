@@ -5,7 +5,9 @@ import { compose } from 'redux';
 
 
 import Friend from './Friend';
-import AcceptFriendButton from './AcceptFriendButton'
+import AcceptFriendButton from './Buttons/AcceptFriendButton'
+import DeleteFriendButton from './Buttons/DeleteFriendButton'
+import DeleteInviteButton from './Buttons/DeleteInviteButton'
 import Loader from '../Loader/index.js';
 
 const Friends = ({users, friends, userId, hasRequested }) => {
@@ -34,7 +36,8 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 {friends[userId].requests.map(user =>
                 <div className="friend">
                     <Friend display={true} key={user} friend={user} />
-                    <AcceptFriendButton key={"b"+user} friend={user}/>
+                    <AcceptFriendButton key={"a"+user} friend={user}/>
+                    <DeleteInviteButton key={"d"+user} friend={user}/>
                 </div>
                 )}
             </>
@@ -60,6 +63,7 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 {friends[userId].friends.map(user =>
                 <div className="friend">
                     <Friend display={true} key={user} friend={user} />
+                    <DeleteFriendButton key={"de"+user} friend={user}/>
                 </div>
                 )}
             </>
