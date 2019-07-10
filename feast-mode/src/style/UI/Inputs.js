@@ -21,7 +21,7 @@ const Error = styled.p`
   font-weight: 400;
   font-size: 1.3rem;
 `
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 1.3rem;
   width: 100%;
   padding: 0.7rem;
@@ -44,7 +44,7 @@ const StyledTextInput = styled.input`
     border: 1px solid var(--color-main);
   }
 
-  &: focus {
+  &:focus {
     border-bottom: 1px solid var(--color-main);
     background-color: #eef1f1;
   }

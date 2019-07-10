@@ -30,6 +30,7 @@ import '../style/ProfileChange.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
 import '../style/Card.css'
+import '../style/AppsFormWrapper.css'
 
 const MainWrapper = styled.main`
   width: 100%;

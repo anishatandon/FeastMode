@@ -5,11 +5,17 @@ import { connect } from 'react-redux'
 import Cards from 'react-credit-cards'
 
 import { SignUpSchema } from './SignUpSchema.js'
-import { StyledForm, AlignedWrapper, OuterColumnWrapper, ColumnWrapper } from '../../../style/UI/FormWrappers.js'
+import { StyledForm, AlignedWrapper, AppsWrapper, AppsLi, AppsLabel } from '../../../style/UI/FormWrappers.js'
 import Button from '../../../style/UI/Buttons.js'
-import { TextInput } from '../../../style/UI/Inputs.js'
+import { TextInput, Label } from '../../../style/UI/Inputs.js'
 import { Message, MessageWrapper } from '../../../style/UI/Message.js'
 import { getCreditCardType } from '../CreditCard.js'
+
+import postmates from '../../../images/postmates.jpg';
+import doordash from '../../../images/doordash.jpg'
+import grubhub from '../../../images/grubhub.png';
+import ubereats from '../../../images/ubereats.jpeg';
+
 
 const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
   const [focused, setFocused] = useState("")
@@ -32,12 +38,13 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
         passwordTwo: "",
         creditCard: "",
         creditCardType: "",
-        expiry: "",
-        cvc: "",
+        expDate: "",
+        secCode: "",
         apps: [false, false, false, false], // Postamtes, GrubHub, DoorDash, UberEats
       }}
       validationSchema = {SignUpSchema}
       onSubmit = {async ( values, { resetForm, setSubmitting }) => {
+        values.creditCardType = getCreditCardType(values.creditCard)
         await signUp(values)
         resetForm()
         setSubmitting(false)
@@ -63,16 +70,39 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
           <Cards
             number = {values.creditCard}
             name = {values.firstName + " " + values.lastName}
-            expiry = {values.expiry}
-            cvc ={values.cvc}
+            expiry = {values.expDate}
+            cvc ={values.secCode}
             focused = {focused}
           />
 
           <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick = {() => setFocused("number")}/>
           <AlignedWrapper>
-            <Field name = "expiry" type = "text" component = {TextInput} label = "Expiration Date" onClick = {() => setFocused("expiry")}/>
-            <Field name = "cvc" type = "text" component = {TextInput} label = "Security Code" onClick = {() => setFocused("cvc")}/>
+            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick = {() => setFocused("expiry")}/>
+            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick = {() => setFocused("cvc")}/>
           </AlignedWrapper>
+
+          <Label> What apps do you have? </Label>
+          <ul className = "checkbox-input">
+            <li>
+              <Field name = "apps[0]" type = "checkbox" id = "Postmates"/>
+              <label for = "Postmates"> <img src = {postmates} /> </label>
+            </li>
+
+            <li>
+              <Field name = "apps[1]" type = "checkbox" id = "GrubHub"/>
+              <label for = "GrubHub"> <img src = {grubhub} /> </label>
+            </li>
+
+            <li>
+              <Field name = "apps[2]" type = "checkbox" id = "DoorDash"/>
+              <label for = "DoorDash"> <img src = {doordash} /> </label>
+            </li>
+
+            <li>
+              <Field name = "apps[3]" type = "checkbox" id = "UberEats"/>
+              <label for = "UberEats"> <img src = {ubereats} /> </label>
+            </li>
+          </ul>
 
           <Button
             disabled = {!isValid || isSubmitting}

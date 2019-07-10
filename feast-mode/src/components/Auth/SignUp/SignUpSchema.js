@@ -7,11 +7,12 @@ export const SignUpSchema = (
             .required("Please enter your name"),
 
         lastName:
-            yup.string("Must be a valid name"),
+            yup.string("Must be a valid name")
+            .required("Please enter yout last name"),
 
         username:
             yup.string("Must be a valid username")
-            .min(4, "Username must be at least 4 characters")
+            .min(4, "Must be at least 4 characters")
             .required("Please enter a username"),
 
         email:
@@ -33,7 +34,7 @@ export const SignUpSchema = (
         passwordTwo:
             yup.string()
             .oneOf([yup.ref("passwordOne"), null], "Passwords don't match")
-            .required("Make sure you can remember your password!"),
+            .required("Please retype your password"),
 
         creditCard:
             yup.number()

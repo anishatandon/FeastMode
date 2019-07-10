@@ -1,4 +1,9 @@
 
+
+// NOT WORKING!
+
+
+
 export const getCreditCardType = accountNumber => {
   let result = "unknown"
   
@@ -6,22 +11,6 @@ export const getCreditCardType = accountNumber => {
   else if (/^4/.test(accountNumber)) { result = "visa" }
   else if (/^3[47]/.test(accountNumber)) { result = "amex" }
   return result
-}
-
-export const displayCreditCardType = (type) => {
-    switch (type) {
-        case "mastercard":
-            break;
-
-        case "visa":
-            break;
-
-        case "amex":
-            break;
-
-        default:
-            break;
-    }
 }
 
 export const isValidIdentifier = identifier => {
