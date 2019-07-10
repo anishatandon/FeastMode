@@ -9,7 +9,7 @@ const DeleteInviteButton = ({friend, deleteInvite, cleanUp, error, loading}) => 
     }
 
     return(
-        <div className="">
+        <div className="delete-invite">
             <button onClick={onClick}>
                 x
             </button>

@@ -9,7 +9,7 @@ const AccepFtriendButton = ({friend, acceptInvite, cleanUp, error, loading}) => 
     }
 
     return(
-        <div className="">
+        <div className="accept-friend">
             <button onClick={onClick}>
             &#10003;
             </button>
