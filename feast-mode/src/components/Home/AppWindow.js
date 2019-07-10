@@ -6,7 +6,7 @@ import food from '../../images/food.jpg'
 
 import styled from 'styled-components'
 
-// Can add these to the UI folder
+// STYLE STARTS HERE: Can add these to the UI folder AGHGHGHGH 
 const StyledAppWindow = styled.div`
     position: relative;
     background-color: white;
@@ -37,6 +37,9 @@ const LogoImage = styled.img`
 const AppText = styled.span`
     font-size: 24px;
 `
+
+
+///// OK STYLE IS OVER
 
 class AppWindow extends Component {
     constructor(props) {
