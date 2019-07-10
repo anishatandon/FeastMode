@@ -15,6 +15,10 @@ const initialState = {
         error: null,
         loading: false,
     },
+    deleteFriend: {
+        error: null,
+        loading: false,
+    },
 
 }
 
@@ -46,6 +50,7 @@ export default (state = initialState, {type, payload}) => {
             return { ...state,
                 updateFriends: { ...state.acceptInvite, loading: false, error: false }, };
 
+
         case actions.DELETE_INVITE_START:
             return { ...state,
                 updateFriends: { ...state.deleteInvite, loading: true }, };
@@ -57,7 +62,19 @@ export default (state = initialState, {type, payload}) => {
         case actions.DELETE_INVITE_SUCCESS:
             return { ...state,
                 updateFriends: { ...state.deleteInvite, loading: false, error: false }, };
-        
+
+        case actions.DELETE_FRIEND_START:
+            return { ...state,
+                updateFriends: { ...state.deleteFriend, loading: true }, };
+
+        case actions.DELETE_FRIEND_FAIL:
+            return { ...state,
+                updateFriends: { ...state.deleteFriend, loading: false, error: payload }, };
+
+        case actions.DELETE_FRIEND_SUCCESS:
+            return { ...state,
+                updateFriends: { ...state.deleteFriend, loading: false, error: false }, };
+    
 
 
         case actions.CLEAN_UP:
@@ -66,17 +83,22 @@ export default (state = initialState, {type, payload}) => {
                 error: null, 
                 loading: false, 
                 sendInvite: {
-                    ...state.updateFriends, 
+                    ...state.sendInvite, 
                     loading: false, 
                     error: null,
                 },
                 acceptInvite: {
-                    ...state.updateFriends, 
+                    ...state.acceptInvite, 
                     loading: false, 
                     error: null,
                 },
                 deleteInvite: {
-                    ...state.updateFriends, 
+                    ...state.deleteInvite, 
+                    loading: false, 
+                    error: null,
+                },
+                deleteFriend: {
+                    ...state.deleteFriend, 
                     loading: false, 
                     error: null,
                 },

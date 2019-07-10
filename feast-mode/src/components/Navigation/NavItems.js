@@ -23,7 +23,6 @@ const NavItems = ({ mobile, clicked, emailVerified }) => {
         links = (
             <Ul mobile = {mobile}>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.HOME}> Home </NavItem>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PASSWORD_RECOVERY}> Reset Password </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PROFILE_EDIT}> Edit Profile </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.LOG_OUT}> Log Out </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ABOUT}> About </NavItem>

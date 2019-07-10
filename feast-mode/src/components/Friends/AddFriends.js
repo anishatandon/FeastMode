@@ -5,7 +5,7 @@ import { compose } from 'redux';
 
 
 import Friend from './Friend';
-import AddFriendButton from './AddFriendButton';
+import AddFriendButton from './Buttons/AddFriendButton';
 import Loader from '../Loader/index.js';
 import './AddFriends.css';
 
