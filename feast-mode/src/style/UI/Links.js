@@ -8,7 +8,8 @@ const LinkText = styled.p`
     font-weight: 400;
     letter-spacing: 0.5px;
     color: var(--color-title);
-    padding-top: 1rem;
+    padding-top: ${props => props.top ? "0rem" : "1rem"};
+    padding-bottom: ${props => props.top ? "1rem" : "0rem"};
 `
 const UnderLink = styled(NavLink)`
     text-transform: uppercase;
@@ -21,6 +22,9 @@ const UnderLink = styled(NavLink)`
     border-bottom: 2px solid var(--color-main);
     }
 `
+const DeleteLink = styled(UnderLink)`
+    text-transform: capitalize;
+`
 const PasswordLink = styled(UnderLink)`
     font-size: 1.1rem;
     text-transform: capitalize;
@@ -32,7 +36,7 @@ const PasswordLink = styled(UnderLink)`
 `
 
 export const SignUpLink = () => (
-    <LinkText>
+    <LinkText top = {false}>
         <span> New to FeastMode? </span>
         <UnderLink to = {ROUTES.SIGN_UP}> Sign Up </UnderLink>
     </LinkText>
@@ -43,9 +47,15 @@ export const ForgotPasswordLink= () => (
 )
 
 export const LogInLink = () => (
-    <LinkText>
+    <LinkText top = {true}>
         <span> Already have an account? </span>
         <UnderLink to = {ROUTES.LANDING}> Log In </UnderLink>
     </LinkText>
 )
   
+export const ProfileDeleteLink = () => (
+    <LinkText>
+        <span> No longer want FeastMode? </span>
+        <DeleteLink to = {ROUTES.HOME}> Delete Profile </DeleteLink>
+    </LinkText>
+)

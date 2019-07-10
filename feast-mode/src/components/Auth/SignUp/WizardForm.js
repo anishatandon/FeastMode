@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Field, ErrorMessage } from 'formik';
-import Wizard from './Wizard.js'
+import Wizard from './SignUpForm.js/index.js'
 import * as actions from '../../../backend/store/actions'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -12,7 +12,7 @@ import doordash from '../../../images/doordash.jpg'
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
 
-const Wrapper = styled.div`
+const AlignedWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -39,6 +39,7 @@ const WizardForm = ({ signUp, cleanUp, error, loading }) => {
                 secCode: "",
                 creditCardType: "",
                 apps: [false, false, false, false], // Postamtes, GrubHub, DoorDash, UberEats
+                picture: "", // some random picture, we can set a default one later
             }}
             onSubmit = {async ( values, { resetForm, setSubmitting }) => {
                 await signUp(values)

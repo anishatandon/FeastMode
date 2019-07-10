@@ -4,19 +4,36 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { ProfileEditSchema } from './ProfileSchemas.js'
 import * as actions from '../../../backend/store/actions'
-import ProfileDeleteLink from './ProfileDelete'
 
+// App Logos
 import postmates from '../../../images/postmates.jpg';
 import doordash from '../../../images/doordash.jpg';
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
 
-import ImageUpload from '../SignUp/ImageUpload.js';
+// Style
+import styled from 'styled-components'
+import { StyledForm } from '../../../style/UI/FormWrappers.js'
+import { TextInput } from '../../../style/UI/Inputs.js'
+import Button from '../../../style/UI/Buttons.js'
+import { FormWrapper } from '../../../style/UI/FormWrappers.js'
+import { ProfileDeleteLink } from '../../../style/UI/Links.js'
+import { Message, MessageWrapper } from '../../../style/UI/Message.js'
+
+const SignUpFormWrapper = styled(FormWrapper)`
+  max-width: 60rem;
+`
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+// import ImageUpload from './ImageUpload.js';
 
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {
         return () => {
-        cleanUp()
+            cleanUp()
         }
     }, [cleanUp])
 
@@ -24,18 +41,18 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
 
     let displayError
     if (error) {
-        displayError = {display: "block"}
+        displayError = { display: "block" }
     } else {
-        displayError = {display: "none"}
+        displayError = { display: "none" }
     }
 
     return (
-        <div className = "profile-change">
+        <SignUpFormWrapper>
             <h1> Edit Your Profile </h1>
-            <ImageUpload />
+            {/* <ImageUpload /> */}
             <br />
             <Formik
-                initialValues = {{
+                initialValues={{
                     firstName: firebase.profile.firstName,
                     lastName: firebase.profile.lastName,
                     username: firebase.profile.username,
@@ -47,125 +64,73 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     expDate: firebase.profile.expDate,
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
-                    apps: firebase.profile.apps, // Postamtes, GrubHub, DoorDash, UberEats
+                    apps: firebase.profile.apps, // Postmates, GrubHub, DoorDash, UberEats
+                    picture: firebase.profile.picture, // initial picture, the default one given at signup
                 }}
-                validationSchema = {ProfileEditSchema}
-                onSubmit = {async ( values, { resetForm, setSubmitting }) => {
+                validationSchema={ProfileEditSchema}
+                onSubmit={async (values, { resetForm, setSubmitting }) => {
                     await editProfile(values)
                     setSubmitting(false)
                 }}
             >
                 {({ values, errors, touched, isSubmitting }) => (
-                    <Form className = "classic-form">
-                        <div className = "aligned-inputs text-input"> 
-                            <div className = {touched.firstName && errors.firstName && "text-error"}>
-                                <label> First Name </label> <br />
-                                <Field name = "firstName" type = "text"/> <br />
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "firstName" />
-                            </div>
+                    <StyledForm>
+                        {/* <div className = "compensate-input text-input"> 
+                            <label> Profile Picture </label> <br />
+                            <Field name = "picture" type = "file"/> <br/>
+                        </div> */}
+                        <Wrapper>
+                            <Field name="firstName" type="text" aligned="true" component={TextInput} />
+                            <Field name="lastName" type="text" aligned="true" component={TextInput} />
+                        </Wrapper>
+                        <Field name="username" type="text" component={TextInput} />
+                        <Field name="email" type="email" component={TextInput} />
+                        <Field name="phone" type="text" component={TextInput} />
+                        <Wrapper>
+                            <Field name="passwordOne" type="password" aligned="true" component={TextInput} />
+                            <Field name="passwordTwo" type="password" aligned="true" component={TextInput} />
+                        </Wrapper>
+                        <Field name="creditCard" type="text" component={TextInput} />
+                        <Wrapper>
+                            <Field name="expDate" type="text" aligned="true" component={TextInput} />
+                            <Field name="secCode" type="text" aligned="true" component={TextInput} />
+                        </Wrapper>
+                        <Wrapper>
+                            {/* <ul className = "checkbox-input">
+                                <li>
+                                    <Field name = "apps[0]" type = "checkbox" id = "Postmates" checked = {values.apps[0]}/>
+                                    <label for = "Postmates"> <img src = {postmates} /> </label>
+                                </li>
 
-                            <div>
-                                <label> Last Name </label> <br />
-                                <Field name = "lastName" type = "text"/> <br/>
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "lastName" />
-                            </div>
-                        </div>
+                                <li>
+                                    <Field name = "apps[1]" type = "checkbox" id = "GrubHub" checked = {values.apps[1]}/>
+                                    <label for = "GrubHub"> <img src = {grubhub} /> </label>
+                                </li>
 
-                        <div className = {["compensate-input text-input", touched.username && errors.username && "text-error"].join(' ')}>
-                            <label> Username </label> <br />
-                            <Field name = "username" type = "text"/> <br/>
-                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "username" />
-                        </div>
-                        
-                        <div className = "compensate-input text-input"> 
-                            <label> Email </label> <br />
-                            <Field name = "email" type = "email"/> <br/>
-                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "email" />
-                        </div>
-                        
-                        <div className = "compensate-input text-input">
-                            <label> Phone Number </label> <br />
-                            <Field name = "phone" type = "text"/> <br/>
-                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "phone" />
-                        </div>
+                                <li>
+                                    <Field name = "apps[2]" type = "checkbox" id = "DoorDash" checked = {values.apps[2]}/>
+                                    <label for = "DoorDash"> <img src = {doordash} /> </label>
+                                </li>
 
-                        <div className = "aligned-inputs text-input"> 
-                            <div className = {touched.passwordOne && errors.passwordOne && "text-error"}>
-                                <label> Password </label> <br />
-                                <Field name = "passwordOne" type = "password"/> <br/>
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "passwordOne" />
-                            </div>
-                            
-                            <div className = {touched.passwordTwo && errors.passwordTwo && "text-error"}>
-                                <label> Confirm Password </label> <br />
-                                <Field name = "passwordTwo" type = "password"/> <br/>
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "passwordTwo" />
-                            </div>
-                        </div>
-
-                        <div className = "compensate-input text-input">
-                            <label> Credit Card </label> <br />
-                            <Field name = "creditCard" type = "text"/> <br />
-                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "creditCard" />
-                        </div>
-
-                        <div className = "aligned-inputs text-input"> 
-                            <div>
-                                <label> Expiration Date </label> <br />
-                                <Field name = "expDate" type = "text" placeholder="MMYY"/> <br/>
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "expDate" />
-                            </div>
-                            
-                            <div>
-                                <label> Security Code </label> <br />
-                                <Field name = "secCode" type = "text"/> <br/>
-                                <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "secCode" />
-                            </div>
-                        </div>
-                        <div className = "select-input">
-                            <label> Card Type: </label>
-                            <Field component = "select" name = "creditCardType">
-                                <option value = "" label = "Select one" />
-                                <option value = "amex" label = "American Express" />
-                                <option value = "visa" label = "Visa" />
-                                <option value = "mastercard" label = "Mastercard" />
-                            </Field>
-                            <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "creditCardType" />
-                        </div>
-                        
-                        <ul className = "checkbox-input">
-                            <li>
-                                <Field name = "apps[0]" type = "checkbox" id = "Postmates" checked = {values.apps[0]}/>
-                                <label for = "Postmates"> <img src = {postmates} /> </label>
-                            </li>
-
-                            <li>
-                                <Field name = "apps[1]" type = "checkbox" id = "GrubHub" checked = {values.apps[1]}/>
-                                <label for = "GrubHub"> <img src = {grubhub} /> </label>
-                            </li>
-
-                            <li>
-                                <Field name = "apps[2]" type = "checkbox" id = "DoorDash" checked = {values.apps[2]}/>
-                                <label for = "DoorDash"> <img src = {doordash} /> </label>
-                            </li>
-
-                            <li>
-                                <Field name = "apps[3]" type = "checkbox" id = "UberEats" checked = {values.apps[3]}/>
-                                <label for = "UberEats"> <img src = {ubereats} /> </label>
-                            </li>
-                        </ul>
+                                <li>
+                                    <Field name = "apps[3]" type = "checkbox" id = "UberEats" checked = {values.apps[3]}/>
+                                    <label for = "UberEats"> <img src = {ubereats} /> </label>
+                                </li>
+                            </ul> */}
+                        </Wrapper>
                         <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
 
-                        <p style = {displayError}>{error}</p>
-                        <button type = "submit" disabled = {isSubmitting} className = "classic-button"> Edit </button>
-
-                    </Form>
+                        <Button disabled={isSubmitting} type="submit">Edit</Button>
+                    
+                        <MessageWrapper>
+                            <Message error show = {error}>{ error }</Message>
+                        </MessageWrapper>
+                    
+                    </StyledForm>
                 )}
             </Formik>
-            <div className = "link-area">
-                <ProfileDeleteLink />
-            </div>
-        </div>
+            <ProfileDeleteLink />
+        </SignUpFormWrapper>
     )
 }
 

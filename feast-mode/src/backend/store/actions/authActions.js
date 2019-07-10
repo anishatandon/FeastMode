@@ -22,9 +22,9 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             email: data.email,
             phone: data.phone,
             creditCard: data.creditCard,
+            creditCardType: data.creditCardType,
             expDate: data.expDate,
             secCode: data.secCode,
-            creditCardType: data.creditCardType,
             apps: data.apps,
             friends: [],
             requests: [],
@@ -102,7 +102,7 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
         const user = firebase.auth().currentUser
         const {uid: userId, email: userEmail} = getState().firebase.auth
         if (data.email !== userEmail) {
-            await user.updateEmail(data.email)
+            await user.updateEmail(data.email) 
         }
 
         await firestore.collection("users").doc(userId).set({
@@ -111,10 +111,11 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
             username: data.username,
             phone: data.phone,
             creditCard: data.creditCard,
-            expDate: data.expDate,
-            secCode: data.secCode,
+            expDate: data.expiry,
+            secCode: data.cvc,
             creditCardType: data.creditCardType,
-            apps: data.apps,
+            apps: data.apps, 
+            picture: data.picture, 
         })
 
         if (data.passwordOne.length > 0) {

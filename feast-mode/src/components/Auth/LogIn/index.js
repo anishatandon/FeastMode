@@ -40,9 +40,9 @@ const LogInForm = ({ login, loading, error, cleanUp }) => {
       {({ isSubmitting, isValid }) => (
         <StyledForm>
           
-          <Field name = "email" type = "email" component = {TextInput}/>
+          <Field name = "email" type = "email" component = {TextInput} label = "Email"/>
           <Wrapper>
-            <Field name = "password" type = "password" component = {TextInput} />
+            <Field name = "password" type = "password" component = {TextInput} label = "Password"/>
             <ForgotPasswordLink />
           </Wrapper>
           

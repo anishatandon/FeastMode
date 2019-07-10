@@ -15,29 +15,27 @@ import Restaurants from './Food/Restaurants'
 import About from './About'
 import Navbar from './Navigation'
 import Backdrop from './Modal/Backdrop.js'
-// import Friends from '../Friends/Friend'
 import EmailVerification from './Auth/EmailVerification'
 import AddFriends from './Friends/AddFriends'
-import DisplayFriends from './Friends/DisplayFriends'
+import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
 import '../style/Landing.css'
-import '../style/SignUp.css'
 import '../style/Restaurants.css'
-import '../style/Home.css'
 import '../style/Backdrop.css'
 import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
-import '../style/titles.css'
-import '../style/button.css'
 import '../style/about.css'
 import '../style/PasswordChange.css'
+import '../style/Card.css'
+import '../style/AppsFormWrapper.css'
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: calc(100vh - 6rem);
+  min-height: 100vh;
+  padding: 8rem 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +97,7 @@ const App = ({ loggedIn, emailVerified }) => {
     )
   }
 
-  return <div>{ routes }</div>
+  return <>{ routes }</>
 }
 
 const mapStateToProps = ({ firebase }) => ({
