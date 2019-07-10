@@ -20,7 +20,8 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             .collection('friends')
             .doc(inviteId)
             .get();
-        if (!res.data() || res.data().requests === undefined ) {
+        console.log(res);
+        if (!res.data() ) {
             console.log('in here')
             firestore
             .collection('friends')
@@ -30,8 +31,8 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             });
             
         } else { 
-            console.log(res.data().requests);
-            if(res.data().requests.indexOf(userId) === -1 ){
+            console.log(userId != inviteId);
+            if(res.data().requests.indexOf(userId) === -1 && userId != inviteId ){
                 firestore
                 .collection('friends')
                 .doc(inviteId)
@@ -59,19 +60,67 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
 
     dispatch({ type: actions.ACCEPT_INVITE_START })
     try {
+        const resUser = await firestore
+            .collection('friends')
+            .doc(userId)
+            .get();
+        const resInvite = await firestore
+            .collection('friends')
+            .doc(inviteId)
+            .get();
+            
+        if (!resUser.data() ) {
+            console.log('resuser in here')
+            firestore
+            .collection('friends')
+            .doc(userId)
+            .set({
+                friends: [inviteId]
+            });
+            
+        } 
+        else { 
+            console.log("resuser")
+            if(resUser.data().friends.indexOf(inviteId) === -1 ){
+                firestore
+                .collection('friends')
+                .doc(userId)
+                .update({
+                    friends: [...resUser.data().friends, inviteId],
+                });
+            }
+        }
 
-        await firestore.collection("friends").doc(inviteId).set({
-            friends: firestore.FieldValue.arrayUnion(userId),
-        })
 
-        await firestore.collection("friends").doc(userId).set({
-            friends: firestore.FieldValue.arrayUnion(inviteId),
-        })
+        if (!resInvite.data() ) {
+            console.log("resinvite in here")
+            firestore
+            .collection('friends')
+            .doc(inviteId)
+            .set({
+                friends: [userId]
+            });
+            
+        } 
+        
+        else { 
+            console.log("resinvite")
+            if(resInvite.data().friends.indexOf(userId) === -1 ){
+                firestore
+                .collection('friends')
+                .doc(inviteId)
+                .update({
+                    friends: [...resInvite.data().friends, userId],
+                });
+            }
+            
+            console.log("complete")
+        }
 
-        dispatch({ type: actions.ACCEPT_INVITE_SUCCESS }) 
+        dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 
     } catch(err) {
-        dispatch({ type: actions.ACCEPT_INVITE_FAIL, payload: err.message })
+        dispatch({ type: actions.SEND_INVITE_FAIL, payload: err.message })
     }
 }
 

@@ -8,14 +8,14 @@ import Loader from '../Loader/index.js';
 
 
 const Friend = ({ friend, allUsers }) => {
-  const user = allUsers[friend];
+  // const user = allUsers[friend];
   return(
     <div className="friend">
       <p></p>
       <p>Image: </p>
       <p>Id: {friend}</p>
-      <p>Name: {user.firstName + " " + user.lastName}</p>
-      <p> E-mail: {user.email}</p>
+      {/* <p>Name: {user.firstName + " " + user.lastName}</p>
+      <p> E-mail: {user.email}</p> */}
 
     </div>
   )
