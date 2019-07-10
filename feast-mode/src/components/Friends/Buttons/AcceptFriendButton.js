@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as actions from '../../backend/store/actions'
+import * as actions from '../../../backend/store/actions'
 import { connect } from 'react-redux';
 
 
