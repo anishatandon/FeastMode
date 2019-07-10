@@ -9,12 +9,6 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
-    // try {
-        // console.log(inviteId)
-        // console.log(userId)
-        // await firestore.collection("friends").doc(inviteId).set({
-        //     requests: firestore.FieldValue.arrayUnion(userId),
-        // })
     try {
         const res = await firestore
             .collection('friends')
@@ -69,13 +63,15 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             .doc(inviteId)
             .get();
             
-        if (!resUser.data() ) {
+        const userPrevious = resUser.data().requests.filter(request => request !== inviteId);
+        if (!resUser.data() || !resUser.data().friends) {
             console.log('resuser in here')
             firestore
             .collection('friends')
             .doc(userId)
             .set({
-                friends: [inviteId]
+                friends: [inviteId],
+                requests: userPrevious,
             });
             
         } 
@@ -87,18 +83,20 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 .doc(userId)
                 .update({
                     friends: [...resUser.data().friends, inviteId],
+                    requests: userPrevious,
                 });
             }
         }
 
 
-        if (!resInvite.data() ) {
+        if (!resInvite.data() || !resInvite.data().friends) {
             console.log("resinvite in here")
             firestore
             .collection('friends')
             .doc(inviteId)
             .set({
-                friends: [userId]
+                friends: [userId],
+                requests: [...resInvite.data().requests],
             });
             
         } 
@@ -111,6 +109,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 .doc(inviteId)
                 .update({
                     friends: [...resInvite.data().friends, userId],
+                    requests: [...resInvite.data().requests],
                 });
             }
             

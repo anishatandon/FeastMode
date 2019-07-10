@@ -48,20 +48,21 @@ const MainWrapper = styled.main`
 const App = ({ loggedIn, emailVerified }) => {
   let routes
 
-  if (loggedIn && !emailVerified) {
-    routes = (
-      <>
-        <Navbar/>
-        <MainWrapper loggedIn = {loggedIn}>
-          <Switch> 
-            <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
-            <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
-            <Redirect to={ROUTES.EMAIL_VERIFICATION} />
-          </Switch>
-        </MainWrapper>
-      </>
-    )
-  } else if (loggedIn && emailVerified) {
+  // if (loggedIn && !emailVerified) {
+  //   routes = (
+  //     <>
+  //       <Navbar/>
+  //       <MainWrapper loggedIn = {loggedIn}>
+  //         <Switch> 
+  //           <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
+  //           <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
+  //           <Redirect to={ROUTES.EMAIL_VERIFICATION} />
+  //         </Switch>
+  //       </MainWrapper>
+  //     </>
+  //   )
+  // } 
+  if (loggedIn) { // && emailVerified) {
     routes = (
       <>
         <Navbar/>

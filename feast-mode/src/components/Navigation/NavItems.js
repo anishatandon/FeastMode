@@ -19,7 +19,7 @@ const Ul = styled.ul`
 const NavItems = ({ mobile, clicked, emailVerified }) => {
     let links
     
-    if (emailVerified) {
+    // if (emailVerified) {
         links = (
             <Ul mobile = {mobile}>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.HOME}> Home </NavItem>
@@ -32,14 +32,14 @@ const NavItems = ({ mobile, clicked, emailVerified }) => {
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PICK_FOOD}> Pick Food </NavItem>
             </Ul>
         )
-    } else {
-        links = (
-            <Ul mobile = {mobile}>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.LOG_OUT}> Log Out </NavItem>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ABOUT}> About </NavItem>
-            </Ul>
-        )
-    }
+    // } else {
+        // links = (
+        //     <Ul mobile = {mobile}>
+        //         <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.LOG_OUT}> Log Out </NavItem>
+        //         <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ABOUT}> About </NavItem>
+        //     </Ul>
+        // )
+    // }
     
     return <Nav mobile = {mobile}>{ links }</Nav>
 }
