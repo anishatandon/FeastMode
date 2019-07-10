@@ -1,6 +1,6 @@
-.center {
+/* .center {
   text-align: center;
-}
+} */
 
 .btn {
     font-size: 20px;
@@ -20,15 +20,15 @@
   color: #FF6501;
   font-family: inherit;
 }
-
+/* 
 .aboutus {
   padding-top: 20px;
   font-size: xx-large;
-  color: white;
-}
+  
+} */
 
-/* 
-#john {
+
+/* #john {
   font-size: x-large;
   color: white;
 }
@@ -36,15 +36,15 @@
 #damon {
   font-size: x-large;
   color: white;
-}
+} */
 
 /* #cher {
   font-size: x-large;
   color: white;
-} */ */
+} */
 
 
-.roles {
+/* .roles {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -55,7 +55,7 @@
   justify-content: space-around;
   text-align: center;
   margin: 10px;
-}
+} */
 
 .textinc {
   font-size: large;
@@ -65,7 +65,7 @@
   color: white;
   border-radius: 25px;
   box-shadow: 0 3px white;
-  background: #59B6E9;
+  background: #ff870C;
   padding: 20px;
   width: 300px;
   height: 100px;
@@ -75,7 +75,7 @@
   color: white;
   border-radius: 25px;
   box-shadow: 0 3px white;
-  background: #58E3D1;
+  background: #ff870C;
   padding: 20px;
   width: 300px;
   height: 100px;
@@ -85,14 +85,14 @@
   color: white;
   border-radius: 25px;
   box-shadow: 0 3px white;
-  background: #F49598;
+  background: #ff870C;
   padding: 20px;
   width: 300px;
   height: 100px;
 }
-
+/* 
 .grid {
   padding-bottom: 25px;
   display: grid;
   grid-template-columns: auto auto auto;
-}
+} */
