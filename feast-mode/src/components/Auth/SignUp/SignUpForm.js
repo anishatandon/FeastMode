@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Cards from 'react-credit-cards'
 
 import { SignUpSchema } from './SignUpSchema.js'
-import { StyledForm, AlignedWrapper, AppsWrapper, AppsLi, AppsLabel } from '../../../style/UI/FormWrappers.js'
+import { StyledForm, AlignedWrapper } from '../../../style/UI/FormWrappers.js'
 import Button from '../../../style/UI/Buttons.js'
 import { TextInput, Label } from '../../../style/UI/Inputs.js'
 import { Message, MessageWrapper } from '../../../style/UI/Message.js'
@@ -44,7 +44,6 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
       }}
       validationSchema = {SignUpSchema}
       onSubmit = {async ( values, { resetForm, setSubmitting }) => {
-        values.creditCardType = getCreditCardType(values.creditCard)
         await signUp(values)
         resetForm()
         setSubmitting(false)
@@ -55,7 +54,7 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
 
           <AlignedWrapper>
             <Field name = "firstName" type = "text" component = {TextInput} label = "First Name" onClick = {() => setFocused("name")}/>
-            <Field name = "lastName" type = "text" component = {TextInput} label = "Last Name"/>
+            <Field name = "lastName" type = "text" component = {TextInput} label = "Last Name" onClick = {() => setFocused("name")}/>
           </AlignedWrapper>
 
           <Field name = "username" type = "text" component = {TextInput} label = "Username"/>
