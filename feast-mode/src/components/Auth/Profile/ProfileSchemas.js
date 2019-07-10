@@ -68,6 +68,9 @@ yup.object().shape({
 }),
 ]
 
-export const PasswordRecoverySchema = yup.object().shape({
-    email: yup.string("Must be a valid email").email("Must be a valid email").required("Please enter your email"),
+export const PasswordResetSchema = yup.object().shape({
+    email: 
+        yup.string("Must be a valid email")
+        .email("Must be a valid email")
+        .required("Please enter your email"),
 })

@@ -27,12 +27,17 @@ const DeleteLink = styled(UnderLink)`
 `
 const PasswordLink = styled(UnderLink)`
     font-size: 1.1rem;
+    border-bottom: 1px solid transparent;
     text-transform: capitalize;
-    color: grey;
+    font-weight: 400;
     margin-top: 8rem;
     position: absolute;
     display: flex;
     align-items: flex-end;
+
+    :hover {
+        border-bottom: 1px solid var(--color-main);
+        }
 `
 
 export const SignUpLink = () => (
@@ -43,7 +48,7 @@ export const SignUpLink = () => (
 )
 
 export const ForgotPasswordLink= () => (
-    <PasswordLink to = {ROUTES.PASSWORD_RECOVERY}> Forgot password </PasswordLink>
+    <PasswordLink to = {ROUTES.PASSWORD_RESET}> Forgot password </PasswordLink>
 )
 
 export const LogInLink = () => (

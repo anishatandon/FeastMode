@@ -4,17 +4,18 @@ import styled, { css } from 'styled-components'
 const baseStyle = css`
   color: ${({ color }) =>
     color === 'white' ? 'var(--color-white)' : 'var(--color-title)'};
-  font-weight: ${({ bold }) => (bold ? '700' : '500')};
   margin-top: 0;
-  letter-spacing: 1px;
+  text-align: center;
+  letter-spacing: 0.5px;
   margin-bottom: ${({ noMargin }) => (noMargin ? '0rem' : '2rem')};
 `
 const Heading1 = styled.h1`
   font-size: 3.5rem;
+  font-weight: ${({ bold }) => (bold ? '700' : '500')};
   ${baseStyle}
 `
 const Heading2 = styled.h2`
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   ${baseStyle}
 `
 const Heading3 = styled.h3`
@@ -23,6 +24,7 @@ const Heading3 = styled.h3`
 `
 const Heading4 = styled.h4`
   font-size: 1.3rem;
+  font-weight: ${({ bold }) => (bold ? '600' : '400')};
   ${baseStyle}
 `
 

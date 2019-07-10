@@ -20,7 +20,6 @@ const StyledAppWindow = styled.div`
         0 1px 5px rgba(0,0,0,0.15),
         0 10px 0 -5px #eee;
 `
-
 const FoodImage = styled.img`
     max-width: 100%;
     padding-top: 30px;
@@ -31,7 +30,6 @@ const FoodImage = styled.img`
     justify-content: center;
     align-items: center;
 `
-
 const LogoImage = styled.img`
     max-width: 15%;
     object-fit: contain;
