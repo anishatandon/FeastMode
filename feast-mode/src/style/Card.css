@@ -4,16 +4,16 @@
     margin: 0 auto;
     -webkit-perspective: 1000px;
             perspective: 1000px;
-    width: 290px; }
+    width: 27rem; }
     .rccs__card {
-      height: 16rem;
+      height: 14rem;
       margin: 1rem auto;
       position: relative;
       -webkit-transform-style: preserve-3d;
               transform-style: preserve-3d;
       -webkit-transition: all 0.4s linear;
       transition: all 0.4s linear;
-      width: 27rem; }
+      width: 24rem; }
       .rccs__card--front, .rccs__card--back {
         -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
@@ -126,13 +126,13 @@
       font-size: 1.7rem;
       left: 10%;
       position: absolute;
-      top: 45%; }
+      top: 40%; }
       .rccs__number.rccs__number--large {
         font-size: 17px; }
     .rccs__name {
-      bottom: 15%;
+      bottom: 20%;
       font-family: Consolas, Courier, monospace;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       left: 10%;
       line-height: 1;
       overflow: hidden;
