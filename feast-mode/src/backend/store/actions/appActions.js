@@ -14,7 +14,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             .collection('friends')
             .doc(inviteId)
             .get();
-        console.log(res);
+        // console.log(res);
         if (!res.data() ) {
             console.log('in here')
             firestore
@@ -25,7 +25,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             });
             
         } else { 
-            console.log(userId != inviteId);
+            // console.log(userId != inviteId);
             if(res.data().requests.indexOf(userId) === -1 && userId != inviteId ){
                 firestore
                 .collection('friends')
@@ -35,7 +35,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
                 });
             }
             
-            console.log("complete")
+            // console.log("complete")
         }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
@@ -90,7 +90,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
 
 
         if (!resInvite.data() || !resInvite.data().friends) {
-            console.log("resinvite in here")
+            // console.log("resinvite in here")
             firestore
             .collection('friends')
             .doc(inviteId)
@@ -102,7 +102,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
         } 
         
         else { 
-            console.log("resinvite")
+            // console.log("resinvite")
             if(resInvite.data().friends.indexOf(userId) === -1 ){
                 firestore
                 .collection('friends')
@@ -113,7 +113,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 });
             }
             
-            console.log("complete")
+            // console.log("complete")
         }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 

@@ -16,20 +16,15 @@ const Friends = ({users, friends, userId, hasRequested }) => {
   
   if(!friends || !friends[userId]) 
   {
-    content = (
-      <Loader />
-    );
+    content = ( <Loader /> );
   }
 
   else {
-    if(!friends[userId].requests || friends[userId].requests.length === 0 )
-    {
-        content = (
-            <p>No friends requests</p>
-        )
+    if(!friends[userId].requests || friends[userId].requests.length === 0 ) {
+        content = (<p>No friends requests</p>)
     }
 
-    else{
+    else {
         content = (
             <>
                 <h1>Friend Requests</h1>
@@ -44,8 +39,7 @@ const Friends = ({users, friends, userId, hasRequested }) => {
         )
     } 
 
-    if(!friends[userId].friends || friends[userId].friends.length === 0)
-    {
+    if(!friends[userId].friends || friends[userId].friends.length === 0) {
         content = (
             <>
                 {content}
@@ -54,8 +48,7 @@ const Friends = ({users, friends, userId, hasRequested }) => {
         )
     }
 
-    else
-    {
+    else {
         content = (
             <>
                 {content}
@@ -68,20 +61,13 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 )}
             </>
         )
-        
-        
     }
-
-
   }
   
   
-  
- 
-
   return (
     <div className = "friends-change">
-      <h1></h1>
+      <button>Add Friends</button>
       {content}
     </div>
   )
