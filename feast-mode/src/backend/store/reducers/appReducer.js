@@ -74,9 +74,8 @@ export default (state = initialState, {type, payload}) => {
         case actions.DELETE_FRIEND_SUCCESS:
             return { ...state,
                 updateFriends: { ...state.deleteFriend, loading: false, error: false }, };
-    
 
-
+                
         case actions.CLEAN_UP:
             return { 
                 ...state, 

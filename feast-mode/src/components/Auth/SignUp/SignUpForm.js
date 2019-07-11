@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import Cards from 'react-credit-cards'
 
 import { SignUpSchema } from './SignUpSchema.js'
-import { StyledForm, AlignedWrapper } from '../../../style/UI/FormWrappers.js'
-import Button from '../../../style/UI/Buttons.js'
-import { TextInput, Label } from '../../../style/UI/Inputs.js'
-import { Message, MessageWrapper } from '../../../style/UI/Message.js'
+import { StyledForm, AlignedWrapper } from '../../../style/FormUI/FormWrappers.js'
+import Button from '../../../style/FormUI/Buttons.js'
+import { TextInput, Label } from '../../../style/FormUI/Inputs.js'
+import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
 import { getCreditCardType } from '../CreditCard.js'
 
 import postmates from '../../../images/postmates.jpg';

@@ -1,11 +1,11 @@
 import React from 'react'
 
 import LogInForm from '../LogIn/index.js'
-import { SignUpLink } from '../../../style/UI/Links.js'
+import { SignUpLink } from '../../../style/FormUI/Links.js'
 import Logo from '../../../style/Logo.js'
 
-import { FormWrapper } from '../../../style/UI/FormWrappers.js'
-import Heading from '../../../style/UI/Heading.js'
+import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
+import Heading from '../../../style/FormUI/Heading.js'
 
 const Landing = () => (
   <>

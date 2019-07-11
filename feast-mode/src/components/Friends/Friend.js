@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import Loader from '../Loader/index.js';
 
 
-const Friend = ({ friend, allUsers }) => {
+const Friend = ({ firebase, friend, allUsers }) => {
   // const user = allUsers[friend];
   return(
     <div className="friend">

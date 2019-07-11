@@ -6,12 +6,12 @@ import styled from 'styled-components'
 import * as actions from '../../../backend/store/actions'
 import { PasswordResetSchema } from './ProfileSchemas.js'
 
-import { StyledForm } from '../../../style/UI/FormWrappers.js'
-import { TextInput } from '../../../style/UI/Inputs.js'
-import { Message, MessageWrapper } from '../../../style/UI/Message.js'
-import { FormWrapper } from '../../../style/UI/FormWrappers.js'
-import Heading from '../../../style/UI/Heading.js'
-import Button from '../../../style/UI/Buttons.js'
+import { StyledForm } from '../../../style/FormUI/FormWrappers.js'
+import { TextInput } from '../../../style/FormUI/Inputs.js'
+import { Message } from '../../../style/FormUI/Message.js'
+import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
+import Heading from '../../../style/FormUI/Heading.js'
+import Button from '../../../style/FormUI/Buttons.js'
 
 const PasswordResetButton = styled(Button)`
   margin-top: 1rem;
@@ -41,7 +41,7 @@ const PasswordResetForm = ({ sendEmail, loading, error, cleanUp }) => {
     >
       {({ isValid, isSubmitting }) => (
         <FormWrapper>
-          <Heading noMargin size = "h2"> Reset Your Password </Heading>
+          <Heading noMargin bold size = "h2"> Reset Your Password </Heading>
           <Heading size = "h4"> Type in your email to receive a new password. You can change it later in your profile. </Heading>
           <StyledForm>
 

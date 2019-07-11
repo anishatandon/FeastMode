@@ -1,22 +1,35 @@
-import React, { Component } from 'react'
-import firebase from '../../backend/Firebase/Firebase.js'
+import React from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import AppWindow from './AppWindow.js'
-import postmates from '../../images/postmates.jpg'
-import doordash from '../../images/doordash.jpg'
-import grubhub from '../../images/grubhub.png'
-import ubereats from '../../images/ubereats.jpeg'
+import Heading from '../../style/FormUI/Heading.js'
+import Carousel from './Carousel/Carousel.js'
 
-class Home extends Component {
-  render() {
-    return (
-      <div className = "home">
-        <h1 className = "home-title"> Pick your App </h1>
-        <p></p>
-        
-      </div>
-    )
-  }
+const Item = styled.div`
+  background: darkorange;
+  text-align: center;
+  padding: 50px;
+  color: white;
+`
+
+const Home = ({ firebase, apps }) => {
+  if (!firebase.profile.isLoaded) return null
+
+  const userApps = Object.keys(apps).filter(app => apps[app])
+  const appWindows = userApps.map(app => <Item><AppWindow name = {app} /></Item>)
+   
+  return (
+    <>
+    <Heading size = "h1"> Pick your App </Heading>
+    <Carousel>{ appWindows }</Carousel>
+    </>
+  )
 }
 
-export default Home
+const mapStateToProps = ({ firebase }) => ({
+  firebase,
+  apps: firebase.profile.apps
+})
+
+export default connect(mapStateToProps)(Home)

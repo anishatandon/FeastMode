@@ -23,7 +23,6 @@ import PickFood from './Food/PickFood'
 import '../style/Landing.css'
 import '../style/Restaurants.css'
 import '../style/Backdrop.css'
-import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
@@ -38,7 +37,6 @@ const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};
 `
 

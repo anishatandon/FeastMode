@@ -10,7 +10,6 @@ import Loader from '../Loader/index.js';
 import './AddFriends.css';
 
 const AddFriends = ({users, hasRequested }) => {
-
   let content;
   if(!users)
   {
