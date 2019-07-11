@@ -7,7 +7,6 @@ import * as actions from '../../../backend/store/actions'
 // Components
 import { ProfileEditSchema } from './ProfileSchemas.js'
 import { ProfileDeleteLink } from '../../../style/FormUI/Links.js'
-// import ImageUpload from './ImageUpload.js';
 
 // Images
 import postmates from '../../../images/postmates.jpg';
@@ -38,6 +37,10 @@ const Cover = styled.div`
         display: none;
     }
 `
+// const ProfileImage = styled.img`
+//     border-radius: 50%;
+//     width: 20rem;
+// `
 
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {
@@ -51,7 +54,6 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     return (
         <EditProfileWrapper>
             <Heading size = "h1"> Edit Your Profile </Heading> 
-            {/* <ImageUpload /> */}
             <Formik
                 initialValues={{
                     firstName: firebase.profile.firstName,
@@ -66,7 +68,12 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
                     apps: firebase.profile.apps,
-                    // picture: firebase.profile.picture, // initial picture, the default one given at signup
+                    
+
+                    // new shit starts here 
+                    avatar: "", 
+                    isUploading: false,
+                    avatarURL: "",
                 }}
                 validationSchema = {ProfileEditSchema}
                 onSubmit = {async (values, { resetForm, setSubmitting }) => {
@@ -74,6 +81,9 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     resetForm()
                     setSubmitting(false)
                 }}
+
+
+                // put an onSbmit method? 
             >
                 {({ values, isValid, isSubmitting }) => (
                     <StyledForm>
