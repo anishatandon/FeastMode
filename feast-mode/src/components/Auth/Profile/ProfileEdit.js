@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Field, ErrorMessage } from 'formik'
 
 import { ProfileEditSchema } from './ProfileSchemas.js'
 import * as actions from '../../../backend/store/actions'
@@ -13,12 +13,12 @@ import ubereats from '../../../images/ubereats.jpeg';
 
 // Style
 import styled from 'styled-components'
-import { StyledForm } from '../../../style/UI/FormWrappers.js'
-import { TextInput } from '../../../style/UI/Inputs.js'
-import Button from '../../../style/UI/Buttons.js'
-import { FormWrapper } from '../../../style/UI/FormWrappers.js'
-import { ProfileDeleteLink } from '../../../style/UI/Links.js'
-import { Message, MessageWrapper } from '../../../style/UI/Message.js'
+import { StyledForm } from '../../../style/FormUI/FormWrappers.js'
+import { TextInput } from '../../../style/FormUI/Inputs.js'
+import Button from '../../../style/FormUI/Buttons.js'
+import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
+import { ProfileDeleteLink } from '../../../style/FormUI/Links.js'
+import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
 
 const SignUpFormWrapper = styled(FormWrapper)`
   max-width: 60rem;
@@ -38,13 +38,6 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     }, [cleanUp])
 
     if (!firebase.profile.isLoaded) return null
-
-    let displayError
-    if (error) {
-        displayError = { display: "block" }
-    } else {
-        displayError = { display: "none" }
-    }
 
     return (
         <SignUpFormWrapper>
@@ -73,7 +66,8 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     setSubmitting(false)
                 }}
             >
-                {({ values, errors, touched, isSubmitting }) => (
+
+                {({ values, isValid, isSubmitting }) => (
                     <StyledForm>
                         {/* <div className = "compensate-input text-input"> 
                             <label> Profile Picture </label> <br />
@@ -96,27 +90,27 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                             <Field name="secCode" type="text" aligned="true" component={TextInput} />
                         </Wrapper>
                         <Wrapper>
-                            {/* <ul className = "checkbox-input">
+                            <ul className = "checkbox-input">
                                 <li>
-                                    <Field name = "apps[0]" type = "checkbox" id = "Postmates" checked = {values.apps[0]}/>
+                                    <Field name = "apps.postmates" type = "checkbox" id = "Postmates" checked = {values.apps.postmates}/>
                                     <label for = "Postmates"> <img src = {postmates} /> </label>
                                 </li>
 
                                 <li>
-                                    <Field name = "apps[1]" type = "checkbox" id = "GrubHub" checked = {values.apps[1]}/>
+                                    <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub" checked = {values.apps.grubhub}/>
                                     <label for = "GrubHub"> <img src = {grubhub} /> </label>
                                 </li>
 
                                 <li>
-                                    <Field name = "apps[2]" type = "checkbox" id = "DoorDash" checked = {values.apps[2]}/>
+                                    <Field name = "apps.doordash" type = "checkbox" id = "DoorDash" checked = {values.apps.doordash}/>
                                     <label for = "DoorDash"> <img src = {doordash} /> </label>
                                 </li>
 
                                 <li>
-                                    <Field name = "apps[3]" type = "checkbox" id = "UberEats" checked = {values.apps[3]}/>
+                                    <Field name = "apps.ubereats" type = "checkbox" id = "UberEats" checked = {values.apps.ubereats}/>
                                     <label for = "UberEats"> <img src = {ubereats} /> </label>
                                 </li>
-                            </ul> */}
+                            </ul>
                         </Wrapper>
                         <ErrorMessage render = {msg => <p className = "error-msg"> {msg} </p>} name = "apps" />
 

@@ -1,10 +1,9 @@
 export const LANDING = '/';
 export const SIGN_UP = '/signup';
-export const LOG_IN = '/login';
 export const LOG_OUT = '/logout';
 export const HOME = '/home';
 export const SIDEDRAWER = '/sidedrawer';
-export const PASSWORD_RECOVERY = '/password_recovery';
+export const PASSWORD_RESET = '/password_reset';
 export const PROFILE_EDIT = '/profile_edit';
 export const RESTAURANTS = '/restaurants'
 export const ABOUT = '/about'

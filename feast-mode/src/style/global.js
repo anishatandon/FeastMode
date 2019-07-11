@@ -42,7 +42,6 @@ export default createGlobalStyle`
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 400;
         line-height: 1.6;
-        // height: 821px;
         min-height: 100%;
     }
 

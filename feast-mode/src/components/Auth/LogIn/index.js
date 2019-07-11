@@ -6,11 +6,11 @@ import styled from 'styled-components'
 import * as actions from '../../../backend/store/actions'
 import LogInSchema from './LogInSchemas.js'
 
-import { StyledForm } from '../../../style/UI/FormWrappers.js'
-import { TextInput } from '../../../style/UI/Inputs.js'
-import Button from '../../../style/UI/Buttons.js'
-import { Message, MessageWrapper } from '../../../style/UI/Message.js'
-import { ForgotPasswordLink } from '../../../style/UI/Links.js'
+import { StyledForm } from '../../../style/FormUI/FormWrappers.js'
+import { TextInput } from '../../../style/FormUI/Inputs.js'
+import Button from '../../../style/FormUI/Buttons.js'
+import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
+import { ForgotPasswordLink } from '../../../style/FormUI/Links.js'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -40,9 +40,9 @@ const LogInForm = ({ login, loading, error, cleanUp }) => {
       {({ isSubmitting, isValid }) => (
         <StyledForm>
           
-          <Field name = "email" type = "email" component = {TextInput} label = "Email"/>
+          <Field name = "email" type = "email" required component = {TextInput} label = "Email"/>
           <Wrapper>
-            <Field name = "password" type = "password" component = {TextInput} label = "Password"/>
+            <Field name = "password" type = "password" required component = {TextInput} label = "Password"/>
             <ForgotPasswordLink />
           </Wrapper>
           

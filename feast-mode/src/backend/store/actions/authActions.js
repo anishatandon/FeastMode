@@ -26,8 +26,6 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             expDate: data.expDate,
             secCode: data.secCode,
             apps: data.apps,
-            friends: [],
-            requests: [],
         });
 
         dispatch({ type: actions.AUTH_SUCCESS });
@@ -111,11 +109,11 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
             username: data.username,
             phone: data.phone,
             creditCard: data.creditCard,
-            expDate: data.expiry,
-            secCode: data.cvc,
+            expDate: data.expDate,
+            secCode: data.secCode,
             creditCardType: data.creditCardType,
             apps: data.apps, 
-            picture: data.picture, 
+            // picture: data.picture, 
         })
 
         if (data.passwordOne.length > 0) {

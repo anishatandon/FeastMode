@@ -9,7 +9,7 @@ import SignUp from './Auth/SignUp'
 import LogOut from './Auth/LogOut'
 import Home from './Home'
 import SideDrawer from './Navigation/SideDrawer.js'
-import PasswordRecovery from './Auth/Profile/PasswordRecovery.js'
+import PasswordReset from './Auth/Profile/PasswordReset.js'
 import ProfileEdit from './Auth/Profile/ProfileEdit.js'
 import Restaurants from './Food/Restaurants'
 import About from './About'
@@ -23,12 +23,10 @@ import PickFood from './Food/PickFood'
 import '../style/Landing.css'
 import '../style/Restaurants.css'
 import '../style/Backdrop.css'
-import '../style/Loader.css'
 import '../style/Friends.css'
 import '../style/EmailVerification.css'
 import '../style/ProfileChange.css'
 import '../style/about.css'
-import '../style/PasswordChange.css'
 import '../style/Card.css'
 import '../style/AppsFormWrapper.css'
 
@@ -39,7 +37,6 @@ const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};
 `
 
@@ -59,7 +56,7 @@ const App = ({ loggedIn, emailVerified }) => {
         </MainWrapper>
       </>
     )
-  } else if (loggedIn && emailVerified) {
+    } else if (loggedIn && emailVerified) {
     routes = (
       <>
         <Navbar/>
@@ -70,7 +67,6 @@ const App = ({ loggedIn, emailVerified }) => {
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
-            <Route exact path={ROUTES.PASSWORD_RECOVERY} component={PasswordRecovery} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit} />
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
@@ -89,8 +85,7 @@ const App = ({ loggedIn, emailVerified }) => {
         <Switch>
           <Route exact path={ROUTES.LANDING} component={Landing} />
           <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
-          <Route exact path={ROUTES.ABOUT} component={About} />
-          <Route exact path={ROUTES.PASSWORD_RECOVERY} component={PasswordRecovery} />
+          <Route exact path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
           <Redirect to={ROUTES.LANDING} />
         </Switch>
       </MainWrapper>
