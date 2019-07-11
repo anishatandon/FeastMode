@@ -1,0 +1,17 @@
+.friends-popup {
+    height: 70rem;
+    width: 60rem;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    overflow: auto; /* Control screen resizing */
+    position: relative;
+    background-color: white;
+    padding: 30px 0px 0px 0px; /* Padding around content */
+
+    /* Items perfectly centered in box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 3% 34.5% 0%; /* Box position */
+}

@@ -23,6 +23,7 @@
     "react-google-login": "^5.0.4",
     "react-onclickoutside": "^6.8.0",
     "react-plastic": "^1.1.1",
+    "react-pure-modal": "^1.5.1",
     "react-redux": "^5.1.1",
     "react-redux-firebase": "^2.2.6",
     "react-router-dom": "^5.0.1",
