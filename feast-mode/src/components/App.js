@@ -76,7 +76,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
-            {/* <Route exact path={ROUTES.PICK_FOOD} component={PickFood} /> */}
+            <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Redirect to={ROUTES.HOME} />
           </Switch>
           
