@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -6,10 +6,16 @@ import { compose } from 'redux';
 import Friend from './Friend';
 import AddFriendButton from './Buttons/AddFriendButton';
 import Loader from '../Loader/index.js';
+import Modal from '../Modal/Modal'
+import Button from '../../style/UI/Buttons'
 import './AddFriends.css';
 
 
-const AddFriends = ({users, userId, allFriends, hasRequested }) => {
+const AddFriends = ({users, userId, allFriends, close, opened, hasRequested }) => {
+
+  const [isOpened, setisOpened] = useState(false);
+
+
   console.log("wh")
   let content;
   
@@ -70,10 +76,20 @@ const AddFriends = ({users, userId, allFriends, hasRequested }) => {
  
 
   return (
-    <div className = "friends-change">
-      <h1> All Users </h1>
-      {content}
-    </div>
+    <>
+    <Button color="main" contain onClick={() => setisOpened(true)}>
+      Add Friends
+    </Button>
+    <Modal opened={isOpened} close={() => setisOpened(false)}>
+      <Button color="main" contain onClick={() => setisOpened(false)}>
+        Done
+      </Button>
+      <div className = "friends-change">
+        <h1> All Users </h1>
+        {content}
+      </div>
+    </Modal>
+    </>
   )
 }
 

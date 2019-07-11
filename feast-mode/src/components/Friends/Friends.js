@@ -5,9 +5,10 @@ import { compose } from 'redux';
 
 
 import Friend from './Friend';
-import AcceptFriendButton from './Buttons/AcceptFriendButton'
-import DeleteFriendButton from './Buttons/DeleteFriendButton'
-import DeleteInviteButton from './Buttons/DeleteInviteButton'
+import AcceptFriendButton from './Buttons/AcceptFriendButton';
+import DeleteFriendButton from './Buttons/DeleteFriendButton';
+import DeleteInviteButton from './Buttons/DeleteInviteButton';
+import AddFriends from './AddFriends';
 import Loader from '../Loader/index.js';
 
 const Friends = ({users, friends, userId, hasRequested }) => {
@@ -67,7 +68,7 @@ const Friends = ({users, friends, userId, hasRequested }) => {
   
   return (
     <div className = "friends-change">
-      <button>Add Friends</button>
+        <AddFriends />
       {content}
     </div>
   )
