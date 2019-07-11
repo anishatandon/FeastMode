@@ -15,7 +15,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             .doc(inviteId)
             .get();
         // console.log(res);
-        if (!res.data() ) {
+        if (!res.data() || !res.data().requests) {
             console.log('in here')
             firestore
             .collection('friends')
@@ -170,14 +170,12 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
             .collection('friends')
             .doc(inviteId)
             .get();
-            
-        const userPrevious = resUser.data().friends.filter(friend => friend !== inviteId);
-        const invitePrevious = resInvite.data().friends.filter(friend => friend !== userId);
-
+        
         // console.log(userPrevious)
         // console.log(invitePrevious)
         // console.log(!resUser.data() )
         if (resUser.data() ) {
+            const userPrevious = resUser.data().friends.filter(friend => friend !== inviteId);
             firestore
             .collection('friends')
             .doc(userId)
@@ -187,6 +185,7 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
         } 
         
         if (resInvite.data() ) {
+            const invitePrevious = resInvite.data().friends.filter(friend => friend !== userId);
             firestore
             .collection('friends')
             .doc(inviteId)
