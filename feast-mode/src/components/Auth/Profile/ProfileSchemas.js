@@ -42,7 +42,7 @@ yup.object().shape({
         yup.number()
         .typeError('Please enter a valid credit card number')
         .positive('Please enter a valid credit card number')
-        .required('Please enter your credit card number'),
+        .required('Please enter a credit card number'),
 
     expDate:
         yup.number()
@@ -61,11 +61,7 @@ yup.object().shape({
         .typeError('Please enter a valid security code')
         .positive('Please enter a valid security code')
         .required('Please enter the security code'),
-    
-    creditCardType:
-        yup.string()
-        .required("Credit card type is required"),
-}),
+    })
 ]
 
 export const PasswordResetSchema = yup.object().shape({

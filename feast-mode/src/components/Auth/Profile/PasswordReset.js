@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { Field, Formik } from 'formik'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-
 import * as actions from '../../../backend/store/actions'
+
 import { PasswordResetSchema } from './ProfileSchemas.js'
 
 import { StyledForm } from '../../../style/FormUI/FormWrappers.js'

@@ -26,7 +26,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             
         } else { 
             // console.log(userId != inviteId);
-            if(res.data().requests.indexOf(userId) === -1 && userId != inviteId ){
+            if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
                 firestore
                 .collection('friends')
                 .doc(inviteId)

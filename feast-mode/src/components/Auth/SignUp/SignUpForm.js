@@ -16,7 +16,6 @@ import doordash from '../../../images/doordash.jpg'
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
 
-
 const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
   const [focused, setFocused] = useState("")
 
