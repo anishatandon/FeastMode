@@ -5,6 +5,7 @@ import NavItems from './NavItems.js'
 
 const FixedWrapper = styled.header`
     position: fixed;
+    z-index: 2;
     background-color: var(--color-white);
     padding: 0rem 2rem;
     top: 0;

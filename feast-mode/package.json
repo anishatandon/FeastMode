@@ -21,6 +21,7 @@
     "react-dom": "^16.8.6",
     "react-firebase-file-uploader": "^2.4.2",
     "react-google-login": "^5.0.4",
+    "react-onclickoutside": "^6.8.0",
     "react-plastic": "^1.1.1",
     "react-pure-modal": "^1.5.1",
     "react-redux": "^5.1.1",

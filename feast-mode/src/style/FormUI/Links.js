@@ -59,7 +59,7 @@ export const LogInLink = () => (
 )
   
 export const ProfileDeleteLink = () => (
-    <LinkText>
+    <LinkText top = {true}>
         <span> No longer want FeastMode? </span>
         <DeleteLink to = {ROUTES.HOME}> Delete Profile </DeleteLink>
     </LinkText>

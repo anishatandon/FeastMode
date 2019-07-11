@@ -6,9 +6,9 @@ import NavItems from './NavItems.js'
 
 const FixedWrapper = styled.header`
   position: fixed;
+  z-index: 2;
   background-color: var(--color-white);
   padding: 0rem 2rem;
-  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,7 +27,8 @@ const Wrapper = styled.div`
   align-items: center;
 `
 const Menu = styled.div`
-  position: fixed;
+  position: absolute;
+  z-index: 2;
   width: 100%;
   left: 0;
   top: 0;

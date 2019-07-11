@@ -37,11 +37,6 @@ const Cover = styled.div`
         display: none;
     }
 `
-// const ProfileImage = styled.img`
-//     border-radius: 50%;
-//     width: 20rem;
-// `
-
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {
         return () => {
@@ -68,12 +63,9 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
                     apps: firebase.profile.apps,
-                    
 
-                    // new shit starts here 
-                    avatar: "", 
-                    isUploading: false,
-                    avatarURL: "",
+                    // new shit
+                    file: null,
                 }}
                 validationSchema = {ProfileEditSchema}
                 onSubmit = {async (values, { resetForm, setSubmitting }) => {
@@ -81,9 +73,6 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     resetForm()
                     setSubmitting(false)
                 }}
-
-
-                // put an onSbmit method? 
             >
                 {({ values, isValid, isSubmitting }) => (
                     <StyledForm>
