@@ -1,38 +1,39 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
-import { DropdownButton } from '../../../../style/FormUI/Buttons.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons'
 
 const StyledDropdown = styled.div`
     font-size: 1.7rem;
     border-radius: 1rem;
-    border 1px solid var(--color-border)
     margin: 1rem 0rem;
     width: 100%;
-    height: ${props => !props.opened && "7rem"};
-    transition: background-color 100ms ease-in, height 550ms ease-in;
+    height: ${props => !props.opened && "6rem"};
+    transition: background-color 50ms ease-in, height 350ms ease-in;
 
     main {
         padding: 0rem 2rem;
         max-height: ${props => props.opened ? "100vh" : "0"};
         opacity: ${props => props.opened ? "1" : "0"}
-        transition: ${props => props.opened ? "all 350ms ease-in-out" : "all 250ms ease"};
+        transition: ${props => props.opened ? "all 350ms ease-in-out" : "all 250ms ease-in-out"};
         display: flex;
         flex-direction: column;
     }
 
     :hover {
-        background-color: ${props => !props.opened && "var(--color-mainLight)"};
+        background-color: ${props => !props.opened && "var(--color-titleLight)"};
     }
 `
 const TitleArea = styled.div`
     padding: 0rem 2rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
+    height: 6rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    background-color: ${props => props.opened && "var(--color-mainLight)"};
+    background-color: ${props => props.opened && "var(--color-titleLight)"};
 `
 
 class Dropdown extends Component {
@@ -55,7 +56,7 @@ class Dropdown extends Component {
             <StyledDropdown opened = {childrenOpen}>
                 <TitleArea onClick = {this.toggle} opened = {childrenOpen}>
                     {title}
-                    <DropdownButton type = "button" > Dropdown </DropdownButton>
+                    {childrenOpen ? <FontAwesomeIcon icon = {faChevronCircleUp}/> : <FontAwesomeIcon icon = {faChevronCircleDown}/>}
                 </TitleArea>
                 <main>
                     {childrenOpen && children}

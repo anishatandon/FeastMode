@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as actions from '../../../../backend/store/actions'
+import Cards from 'react-credit-cards'
 
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
@@ -16,11 +17,13 @@ import ubereats from '../../../../images/ubereats.jpeg';
 
 // Style
 import { StyledForm, AlignedWrapper } from '../../../../style/FormUI/FormWrappers.js'
-import { TextInput, LastTextInput, Label } from '../../../../style/FormUI/Inputs.js'
+import { TextInput, Label } from '../../../../style/FormUI/Inputs.js'
 import Button from '../../../../style/FormUI/Buttons.js'
 import { Message, MessageWrapper } from '../../../../style/FormUI/Message.js'
 
 const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => {
+    const [focused, setFocused] = useState("")
+
     useEffect(() => {
         return () => {
             cleanUp()
@@ -70,16 +73,23 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                         <Field name = "phone" type = "text" component = {TextInput} label = "Phone"/>
                         
                         <AlignedWrapper>
-                            <Field name = "passwordOne" type = "password" component = {LastTextInput} label = "Password"/>
-                            <Field name = "passwordTwo" type = "password" component = {LastTextInput} label = "Confirm Password"/>
+                            <Field name = "passwordOne" type = "password" component = {TextInput} label = "Password"/>
+                            <Field name = "passwordTwo" type = "password" component = {TextInput} label = "Confirm Password"/>
                         </AlignedWrapper>
                     </Dropdown>
 
                     <Dropdown title = "Credit Card Information">
-                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number"/>
+                        <Cards
+                            number={values.creditCard}
+                            name={values.firstName + " " + values.lastName}
+                            expiry={values.expDate}
+                            cvc={values.secCode}
+                            focused={focused}
+                        />
+                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick={() => setFocused("number")}/>
                         <AlignedWrapper>
-                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date"/>
-                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code"/>
+                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick={() => setFocused("expiry")}/>
+                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick={() => setFocused("cvc")}/>
                         </AlignedWrapper>
                     </Dropdown>
 

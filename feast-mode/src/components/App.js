@@ -61,8 +61,8 @@ const App = ({ loggedIn, emailVerified, location }) => {
     } else if (loggedIn && emailVerified) {
     routes = (
       <>
-        <Navbar/>
-        <SideDrawer/>
+        <Navbar path = {location.pathname}/>
+        <SideDrawer path = {location.pathname}/>
 
         <MainWrapper loggedIn = {loggedIn} path = {location.pathname}>
           <Switch>
@@ -70,7 +70,6 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
-            {console.log(location.pathname)}
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
