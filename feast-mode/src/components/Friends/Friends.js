@@ -5,9 +5,10 @@ import { compose } from 'redux';
 
 
 import Friend from './Friend';
-import AcceptFriendButton from './Buttons/AcceptFriendButton'
-import DeleteFriendButton from './Buttons/DeleteFriendButton'
-import DeleteInviteButton from './Buttons/DeleteInviteButton'
+import AcceptFriendButton from './Buttons/AcceptFriendButton';
+import DeleteFriendButton from './Buttons/DeleteFriendButton';
+import DeleteInviteButton from './Buttons/DeleteInviteButton';
+import AddFriends from './AddFriends';
 import Loader from '../Loader/index.js';
 
 const Friends = ({users, friends, userId, hasRequested }) => {
@@ -16,36 +17,30 @@ const Friends = ({users, friends, userId, hasRequested }) => {
   
   if(!friends || !friends[userId]) 
   {
-    content = (
-      <Loader />
-    );
+    content = ( <Loader /> );
   }
 
   else {
-    if(!friends[userId].requests || friends[userId].requests.length === 0 )
-    {
-        content = (
-            <p>No friends requests</p>
-        )
+    if(!friends[userId].requests || friends[userId].requests.length === 0 ) {
+        content = (<p>No friends requests</p>)
     }
 
-    else{
+    else {
         content = (
             <>
                 <h1>Friend Requests</h1>
                 {friends[userId].requests.map(user =>
-                <div className="friend">
-                    <Friend display={true} key={user} friend={user} />
-                    <AcceptFriendButton key={"a"+user} friend={user}/>
-                    <DeleteInviteButton key={"d"+user} friend={user}/>
+                <div className="friend" key={user}>
+                    <Friend display={true} friend={user} />
+                    <AcceptFriendButton friend={user}/>
+                    <DeleteInviteButton friend={user}/>
                 </div>
                 )}
             </>
         )
     } 
 
-    if(!friends[userId].friends || friends[userId].friends.length === 0)
-    {
+    if(!friends[userId].friends || friends[userId].friends.length === 0) {
         content = (
             <>
                 {content}
@@ -54,34 +49,26 @@ const Friends = ({users, friends, userId, hasRequested }) => {
         )
     }
 
-    else
-    {
+    else {
         content = (
             <>
                 {content}
                 <h1>Your Friends</h1>
                 {friends[userId].friends.map(user =>
-                <div className="friend">
-                    <Friend display={true} key={user} friend={user} />
-                    <DeleteFriendButton key={"de"+user} friend={user}/>
+                <div className="friend" key={user}>
+                    <Friend display={true} friend={user} />
+                    <DeleteFriendButton friend={user}/>
                 </div>
                 )}
             </>
         )
-        
-        
     }
-
-
   }
   
   
-  
- 
-
   return (
     <div className = "friends-change">
-      <h1></h1>
+        <AddFriends />
       {content}
     </div>
   )

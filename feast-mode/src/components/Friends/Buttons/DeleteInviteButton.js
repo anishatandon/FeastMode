@@ -3,13 +3,13 @@ import * as actions from '../../../backend/store/actions'
 import { connect } from 'react-redux';
 
 
-const DeleteInviteButton = ({friend, sendInvite, cleanUp, error, loading}) => {
+const DeleteInviteButton = ({friend, deleteInvite, cleanUp, error, loading}) => {
     const onClick = () => {
-        sendInvite(friend);
+        deleteInvite(friend);
     }
 
     return(
-        <div className="">
+        <div className="delete-invite">
             <button onClick={onClick}>
                 x
             </button>
@@ -25,7 +25,7 @@ const mapStateToProps = ({ auth }) => ({
 })
 
 const mapDispatchToProps = {
-    sendInvite: actions.sendInvite,
+    deleteInvite: actions.deleteInvite,
     cleanUp: actions.clean,
 }
 

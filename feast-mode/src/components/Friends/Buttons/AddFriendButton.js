@@ -9,7 +9,7 @@ const AddFriendButton = ({friend, sendInvite, cleanUp, error, loading}) => {
     }
 
     return(
-        <div className="">
+        <div className="add-friend">
             <button onClick={onClick}>
                 +
             </button>

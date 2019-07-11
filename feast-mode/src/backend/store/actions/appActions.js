@@ -14,7 +14,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             .collection('friends')
             .doc(inviteId)
             .get();
-        console.log(res);
+        // console.log(res);
         if (!res.data() ) {
             console.log('in here')
             firestore
@@ -25,8 +25,8 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             });
             
         } else { 
-            console.log(userId !== inviteId);
-            if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
+            // console.log(userId != inviteId);
+            if(res.data().requests.indexOf(userId) === -1 && userId != inviteId ){
                 firestore
                 .collection('friends')
                 .doc(inviteId)
@@ -35,7 +35,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
                 });
             }
             
-            console.log("complete")
+            // console.log("complete")
         }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
@@ -90,7 +90,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
 
 
         if (!resInvite.data() || !resInvite.data().friends) {
-            console.log("resinvite in here")
+            // console.log("resinvite in here")
             firestore
             .collection('friends')
             .doc(inviteId)
@@ -102,7 +102,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
         } 
         
         else { 
-            console.log("resinvite")
+            // console.log("resinvite")
             if(resInvite.data().friends.indexOf(userId) === -1 ){
                 firestore
                 .collection('friends')
@@ -113,7 +113,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 });
             }
             
-            console.log("complete")
+            // console.log("complete")
         }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
@@ -137,14 +137,14 @@ export const deleteInvite = data => async (dispatch, getState, { getFirebase, ge
             .doc(userId)
             .get();
         const userPrevious = resUser.data().requests.filter(request => request !== inviteId);
+        // console.log(userPrevious)
         firestore
             .collection('friends')
             .doc(userId)
             .update({
-                requests: [userPrevious],
-                friends: [...resUser.data().friends]
+                requests: userPrevious,
             });
-            
+        // console.log("past")
         dispatch({ type: actions.DELETE_INVITE_SUCCESS }) 
 
     } catch(err) {
@@ -171,29 +171,28 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
             .doc(inviteId)
             .get();
             
+        const userPrevious = resUser.data().friends.filter(friend => friend !== inviteId);
+        const invitePrevious = resInvite.data().friends.filter(friend => friend !== userId);
 
-        const userPrevious = resUser.data().requests.filter(request => request !== inviteId);
-        const invitePrevious = resInvite.data().requests.filter(request => request !== userId);
-
-        if (!resUser.data() ) {
+        // console.log(userPrevious)
+        // console.log(invitePrevious)
+        // console.log(!resUser.data() )
+        if (resUser.data() ) {
             firestore
             .collection('friends')
             .doc(userId)
-            .set({
+            .update({
                 friends: userPrevious,
-                requests: [...resUser.data().requests],
             });
         } 
         
-        if (!resInvite.data() ) {
+        if (resInvite.data() ) {
             firestore
             .collection('friends')
             .doc(inviteId)
-            .set({
+            .update({
                 friends: invitePrevious,
-                requests: [...resInvite.data().requests],
             });
-            
         } 
 
         dispatch({ type: actions.DELETE_FRIEND_SUCCESS }) 
