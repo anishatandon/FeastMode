@@ -26,7 +26,7 @@ const StyledDropdown = styled.div`
     }
 `
 const TitleArea = styled.div`
-    padding: 0rem 1rem;
+    padding: 0rem 2rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
     display: flex;

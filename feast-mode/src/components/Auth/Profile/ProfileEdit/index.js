@@ -11,6 +11,7 @@ const EditProfileWrapper = styled(FormWrapper)`
     padding: 6rem 3rem;
 `
 const Wrapper = styled.div`
+    width: 100%;
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
