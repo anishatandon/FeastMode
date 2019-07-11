@@ -8,6 +8,9 @@ const InputWrapper = styled.div`
   margin-bottom: 3rem;
   flex-direction: column;
 `
+const LastInputWrapper = styled(InputWrapper)`
+  margin-bottom: 1rem;
+`
 const Error = styled.p`
   color: var(--color-main);
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
@@ -61,5 +64,17 @@ export const TextInput = ({ required, label, field, form: { touched, errors }, .
         {errors[field.name]}
       </Error>
     </InputWrapper>
+  )
+}
+
+export const LastTextInput = ({ required, label, field, form: { touched, errors }, ...props }) => {
+  return (
+    <LastInputWrapper>
+      <Label> {label} {required && <Required> * </Required>} </Label> 
+      <StyledTextInput {...field} {...props} />
+      <Error show = {errors[field.name] && touched[field.name]}>
+        {errors[field.name]}
+      </Error>
+    </LastInputWrapper>
   )
 }

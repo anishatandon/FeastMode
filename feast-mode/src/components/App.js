@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -10,7 +10,7 @@ import LogOut from './Auth/LogOut'
 import Home from './Home'
 import SideDrawer from './Navigation/SideDrawer.js'
 import PasswordReset from './Auth/Profile/PasswordReset.js'
-import ProfileEdit from './Auth/Profile/ProfileEdit.js'
+import ProfileEdit from './Auth/Profile/ProfileEdit/index.js'
 import Restaurants from './Food/Restaurants'
 import About from './About'
 import Navbar from './Navigation'
@@ -30,19 +30,21 @@ import '../style/about.css'
 import '../style/Card.css'
 import '../style/AppsFormWrapper.css'
 
-const MainWrapper = styled.main`
+export const MainWrapper = styled.main`
+  position: absolute;
+  z-index: 1;
   width: 100%;
   min-height: 100vh;
   padding: 8rem 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ loggedIn }) => (loggedIn ? 'var(--color-white)' : 'var(--color-background)')};
+  background-color: ${({ loggedIn, path }) => (loggedIn && path !== "/profile_edit") ? 'var(--color-white)' : 'var(--color-background)'};
 `
 
-const App = ({ loggedIn, emailVerified }) => {
+const App = ({ loggedIn, emailVerified, location }) => {
   let routes
-
+  
   if (loggedIn && !emailVerified) {
     routes = (
       <>
@@ -62,12 +64,13 @@ const App = ({ loggedIn, emailVerified }) => {
         <Navbar/>
         <SideDrawer/>
 
-        <MainWrapper loggedIn = {loggedIn}>
+        <MainWrapper loggedIn = {loggedIn} path = {location.pathname}>
           <Switch>
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
-            <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit} />
+            <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
+            {console.log(location.pathname)}
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
@@ -76,6 +79,7 @@ const App = ({ loggedIn, emailVerified }) => {
             {/* <Route exact path={ROUTES.PICK_FOOD} component={PickFood} /> */}
             <Redirect to={ROUTES.HOME} />
           </Switch>
+          
         </MainWrapper>
       </>
     )
@@ -100,4 +104,4 @@ const mapStateToProps = ({ firebase }) => ({
   emailVerified: firebase.auth.emailVerified,
 })
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
