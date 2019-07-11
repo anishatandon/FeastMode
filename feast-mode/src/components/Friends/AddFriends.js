@@ -10,17 +10,12 @@ import Modal from '../Modal/Modal'
 import Button from '../../style/UI/Buttons'
 import './AddFriends.css';
 
-<<<<<<< HEAD
-const AddFriends = ({users, hasRequested }) => {
-=======
-
 const AddFriends = ({users, userId, allFriends, close, opened, hasRequested }) => {
 
   const [isOpened, setisOpened] = useState(false);
 
 
   console.log("wh")
->>>>>>> 7a55a04a52a96128078f30fd2b096ebf05844c6f
   let content;
   
   if(!users)
