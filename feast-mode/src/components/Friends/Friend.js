@@ -6,10 +6,6 @@ import { compose } from 'redux';
 import Loader from '../Loader/index.js';
 
 
-<<<<<<< HEAD
-const Friend = ({ firebase, friend, allUsers }) => {
-  // const user = allUsers[friend];
-=======
 const Friend = ({ friend, allUsers }) => {
   let user;
 
@@ -18,7 +14,6 @@ const Friend = ({ friend, allUsers }) => {
 
   user = allUsers[friend];
 
->>>>>>> 7a55a04a52a96128078f30fd2b096ebf05844c6f
   return(
     
     <div className="friend">
