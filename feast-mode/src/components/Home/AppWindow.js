@@ -1,6 +1,6 @@
 import React from 'react'
 import * as ROUTES from '../../constants/routes'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import postmates from '../../images/postmates.jpg'
@@ -9,12 +9,15 @@ import grubhub from '../../images/grubhub.png'
 import ubereats from '../../images/ubereats.jpeg'
 
 import Heading from '../../style/FormUI/Heading'
+import Button from '../../style/FormUI/Buttons'
 
 const StyledAppWindow = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    padding: 50px;
 
     > * {
         padding: 2rem;
@@ -40,7 +43,10 @@ const AppWindow = ({ name }) => {
     return (
         <StyledAppWindow>
             <ImgWrapper><Img src = {source} alt = {name}  /></ImgWrapper>
-            <Heading noMargin size = "h2">{ appName }</Heading>
+            <div>
+                <Heading noMargin size = "h2">{ appName }</Heading>
+                <NavLink to = {ROUTES.PICK_FOOD}><Button> Order Now! </Button></NavLink>
+            </div>
         </StyledAppWindow>
     )
 }

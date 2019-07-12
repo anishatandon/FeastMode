@@ -11,10 +11,8 @@ import Home from './Home'
 import SideDrawer from './Navigation/SideDrawer.js'
 import PasswordReset from './Auth/Profile/PasswordReset.js'
 import ProfileEdit from './Auth/Profile/ProfileEdit/index.js'
-import Restaurants from './Food/Restaurants'
 import About from './About'
 import Navbar from './Navigation'
-import Backdrop from './Modal/Backdrop.js'
 import EmailVerification from './Auth/EmailVerification'
 // import AddFriends from './Friends/AddFriends'
 import DisplayFriends from './Friends/Friends'
@@ -67,7 +65,6 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
-            <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             {/* <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} /> */}
