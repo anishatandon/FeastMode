@@ -4,8 +4,9 @@ import * as actions from './actionTypes.js'
 export const sendInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     
     const firebase = getFirebase()
+    const goodFirebase = data.firebaseGood
     const firestore = getFirestore()
-    const inviteId = data.friend;
+    const inviteId = data.user;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
@@ -13,41 +14,43 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
         
 
         //try passing in other firebase
-        console.log(firebase)
-        // const newRequest = {
-        //     friendId: userId,
-        //     friendFirst: firestore.firstName,
-        //     friendLast: firebase.lastName, 
-        //     friendEmail: getState().firebase.auth.email, 
-        //     friendPhone: firebase.profile.phone, 
-        // }
+        // console.log(goodFirebase)
+        const newRequest = {
+            friendId: userId,
+            friendFirst: goodFirebase.profile.firstName,
+            friendLast: goodFirebase.profile.lastName, 
+            friendEmail: getState().firebase.auth.email, 
+            friendPhone: goodFirebase.profile.phone, 
+        }
 
         // console.log(newRequest)
+        console.log(inviteId)
+        const res = await firestore
+            .collection('friends')
+            .doc(inviteId)
+            .get();
+        
+        console.log(!res.data())
 
-        // const res = await firestore
-        //     .collection('friends')
-        //     .doc(inviteId)
-        //     .get();
-
-        // if (!res.data() || !res.data().requests) {
-        //     firestore
-        //     .collection('friends')
-        //     .doc(inviteId)
-        //     .set({
-        //         requests: [newRequest],
-        //     });
+        if (!res.data() || !res.data().requests) {
+            firestore
+            .collection('friends')
+            .doc(inviteId)
+            .set({
+                requests: [newRequest],
+            });
             
-        // } else { 
+        } else { 
 
-        //     if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
-        //         firestore
-        //         .collection('friends')
-        //         .doc(inviteId)
-        //         .update({
-        //             requests: [...res.data().requests, newRequest],
-        //         });
-        //     }
-        // }
+            if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
+                firestore
+                .collection('friends')
+                .doc(inviteId)
+                .update({
+                    requests: [...res.data().requests, newRequest],
+                });
+            }
+        }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 

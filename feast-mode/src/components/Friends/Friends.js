@@ -26,12 +26,21 @@ const Friends = ({users, friends, userId, hasRequested }) => {
     }
 
     else {
+        const friendKeys = Object.keys(friends).filter(user => user !== userId)
+
         content = (
             <>
                 <h1>Friend Requests</h1>
                 {friends[userId].requests.map(user =>
                 <div className="friend" key={user}>
-                    <Friend display={true} friend={user} />
+                    <Friend 
+                        display={true} 
+                        friendId={user} 
+                        friendFirst={friends[user].firstName} 
+                        friendLast={friends[user].lastName} 
+                        friendEmail={friends[user].email} 
+                        friendPhone={friends[user].phone} 
+                    />
                     <AcceptFriendButton friend={user}/>
                     <DeleteInviteButton friend={user}/>
                 </div>

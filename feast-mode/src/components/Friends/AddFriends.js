@@ -11,7 +11,7 @@ import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
 
 
-const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
+const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
   const [isOpened, setisOpened] = useState(false);
 
   // console.log("wh")
@@ -48,7 +48,7 @@ const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasReq
                 friendEmail={users[user].email} 
                 friendPhone={users[user].phone} 
               />
-              <AddFriendButton friend={user}/>
+              <AddFriendButton friend={{firebaseGood, user}}/>
           </div>
         )}
         
@@ -89,7 +89,7 @@ const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasReq
 }
 
 const mapStateToProps = ({ firebase, firestore, app }) => ({
-  firebase,
+  firebaseGood: firebase,
   userId: firebase.auth.uid,
   users: firestore.data.users,
   allFriends: firestore.data.users,
