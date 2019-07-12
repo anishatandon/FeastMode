@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 import Indicator from './Indicator'
 
@@ -109,8 +111,8 @@ class Carousel extends Component {
           ))}
         </CarouselContainer>
       </Wrapper>
-      <button onClick = {() => this.nextSlide()}> Next </button>
-      <button onClick = {() => this.prevSlide()}> Prev </button>
+      <div onClick = {() => this.prevSlide()}> <FontAwesomeIcon icon = {faChevronCircleLeft} size = "5x" color = "#2C3E50"/> </div>
+      <div onClick = {() => this.nextSlide()}> <FontAwesomeIcon icon = {faChevronCircleRight} size = "5x" color = "#2C3E50"/> </div>
       </>
     )
   }

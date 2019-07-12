@@ -16,16 +16,12 @@ import About from './About'
 import Navbar from './Navigation'
 import Backdrop from './Modal/Backdrop.js'
 import EmailVerification from './Auth/EmailVerification'
-import AddFriends from './Friends/AddFriends'
+// import AddFriends from './Friends/AddFriends'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
-import '../style/Landing.css'
-import '../style/Restaurants.css'
 import '../style/Backdrop.css'
-import '../style/Friends.css'
 import '../style/EmailVerification.css'
-import '../style/ProfileChange.css'
 import '../style/about.css'
 import '../style/Card.css'
 import '../style/AppsFormWrapper.css'
@@ -61,8 +57,8 @@ const App = ({ loggedIn, emailVerified, location }) => {
     } else if (loggedIn && emailVerified) {
     routes = (
       <>
-        <Navbar/>
-        <SideDrawer/>
+        <Navbar path = {location.pathname}/>
+        <SideDrawer path = {location.pathname}/>
 
         <MainWrapper loggedIn = {loggedIn} path = {location.pathname}>
           <Switch>
@@ -70,11 +66,10 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
-            {console.log(location.pathname)}
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
-            <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
+            {/* <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} /> */}
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Redirect to={ROUTES.HOME} />

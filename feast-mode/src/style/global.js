@@ -18,11 +18,13 @@ export default createGlobalStyle`
     }
 
     html {
+        height: 100%;
         font-size: 62.5%;
         box-sizing: border-box;
         --color-main: ${props => props.theme.colors.main}
         --color-mainLight: ${props => props.theme.colors.mainLight}
         --color-title: ${props => props.theme.colors.titleColor};
+        --color-titleLight: ${props => props.theme.colors.titleColorLight};
         --color-text: ${props => props.theme.colors.textColor};
         --color-background: ${props => props.theme.colors.backgroundColor};
         --color-white: ${props => props.theme.colors.whiteColor};
@@ -39,6 +41,7 @@ export default createGlobalStyle`
     }
 
     body {
+        height: 100%;
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 400;
         line-height: 1.6;
