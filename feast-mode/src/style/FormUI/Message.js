@@ -15,10 +15,7 @@ const P = styled.p`
 `
 export const MessageWrapper = styled.div`
   position: absolute;
-  bottom: -2rem;
-  @media ${props => props.theme.mediaQueries.small} {
-    bottom: -3rem;
-  }
+  bottom: -3rem;
 `
 
 export const Message = ({ children, error, success, show }) => {

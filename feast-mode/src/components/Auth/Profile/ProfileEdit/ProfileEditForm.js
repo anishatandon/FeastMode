@@ -93,10 +93,10 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                             cvc={values.secCode}
                             focused={focused}
                         />
-                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick={() => setFocused("number")}/>
+                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick = {() => setFocused("number")}/>
                         <AlignedWrapper>
-                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick={() => setFocused("expiry")}/>
-                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick={() => setFocused("cvc")}/>
+                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick = {() => setFocused("expiry")}/>
+                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick = {() => setFocused("cvc")}/>
                         </AlignedWrapper>
                     </Dropdown>
 
