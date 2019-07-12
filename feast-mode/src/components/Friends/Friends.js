@@ -26,8 +26,6 @@ const Friends = ({users, friends, userId, hasRequested }) => {
     }
 
     else {
-        const requestKeys = Object.keys(friends[userId].requests)
-
         content = (
             <>
                 <h1>Friend Requests</h1>
