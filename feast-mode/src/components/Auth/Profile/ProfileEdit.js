@@ -38,17 +38,45 @@ const Cover = styled.div`
     }
 `
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
+    // INTRODUCING STATE STUFF /////////////////////////////
+    const [avatar, setAvatar] = useState("");
+    // const [isUploading, setIsUploading] = useState(false);
+    const [avatarURL, setAvatarURL] = useState("");
+    ////////////////////////////////////////////////////////
+
+    // useEffect(() => {
+    //     function handleUploadSuccess(filename) {
+    //         setAvatar(filename);
+    //         setIsUploading(false);
+    //         firebase
+    //             .storage()
+    //             .ref("images")
+    //             .child(filename)
+    //             .getDownloadURL()
+    //             .then(url => setAvatarURL(url));
+    //     }
+    // });
+    handleUploadSuccess = filename => {
+        setAvatar(filename);
+        firebase
+            .storage()
+            .ref("images")
+            .child(filename)
+            .getDownloadURL()
+            .then(url => setAvatarURL(url));
+    }
+
     useEffect(() => {
         return () => {
             cleanUp()
         }
-    }, [cleanUp])
+    }, [cleanUp]);
 
     if (!firebase.profile.isLoaded) return null
 
     return (
         <EditProfileWrapper>
-            <Heading size = "h1"> Edit Your Profile </Heading> 
+            <Heading size="h1"> Edit Your Profile </Heading>
             <Formik
                 initialValues={{
                     firstName: firebase.profile.firstName,
@@ -65,10 +93,10 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     apps: firebase.profile.apps,
 
                     // new shit
-                    file: null,
+                    avatar: "",
                 }}
-                validationSchema = {ProfileEditSchema}
-                onSubmit = {async (values, { resetForm, setSubmitting }) => {
+                validationSchema={ProfileEditSchema}
+                onSubmit={async (values, { resetForm, setSubmitting }) => {
                     await editProfile(values)
                     resetForm()
                     setSubmitting(false)
@@ -76,68 +104,76 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
             >
                 {({ values, isValid, isSubmitting }) => (
                     <StyledForm>
-                        {/* <div className = "compensate-input text-input"> 
-                            <label> Profile Picture </label> <br />
-                            <Field name = "picture" type = "file"/> <br/>
-                        </div> */}
-                        <Cover text = "Personal information"> <CoverWrapper>
+                        <div className="compensate-input text-input">
+                            <label >Profile Picture</label>
+                            {avatarURL && <img src={avatarURL} />}
+                            <FileUploader
+                                accept="image/*"
+                                name="avatar"
+                                randomizeFilename
+                                storageRef={firebase.storage().ref("images")}
+                                onUploadSuccess={handleUploadSuccess}
+                            />
+                            {/* <Field name = "picture" type = "file"/> <br/> */} */}
+                        </div>
+                        <Cover text="Personal information"> <CoverWrapper>
                             <AlignedWrapper>
-                                <Field name = "firstName" type = "text" component = {TextInput} label = "First Name"/>
-                                <Field name = "lastName" type = "text" component = {TextInput} label = "Last Name"/>
+                                <Field name="firstName" type="text" component={TextInput} label="First Name" />
+                                <Field name="lastName" type="text" component={TextInput} label="Last Name" />
                             </AlignedWrapper>
 
-                            <Field name = "username" type = "text" component = {TextInput} label = "Username"/>
-                            <Field name = "email" type = "email" component = {TextInput} label = "Email"/>
-                            <Field name = "phone" type = "text" component = {TextInput} label = "Phone"/>
-                            
+                            <Field name="username" type="text" component={TextInput} label="Username" />
+                            <Field name="email" type="email" component={TextInput} label="Email" />
+                            <Field name="phone" type="text" component={TextInput} label="Phone" />
+
                             <AlignedWrapper>
-                                <Field name = "passwordOne" type = "password" component = {TextInput} label = "Password"/>
-                                <Field name = "passwordTwo" type = "password" component = {TextInput} label = "Confirm Password"/>
+                                <Field name="passwordOne" type="password" component={TextInput} label="Password" />
+                                <Field name="passwordTwo" type="password" component={TextInput} label="Confirm Password" />
                             </AlignedWrapper>
                         </CoverWrapper> </Cover>
 
-                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number"/>
+                        <Field name="creditCard" type="text" component={TextInput} label="Card Number" />
                         <AlignedWrapper>
-                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date"/>
-                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code"/>
+                            <Field name="expDate" type="text" component={TextInput} label="Expiration Date" />
+                            <Field name="secCode" type="text" component={TextInput} label="Security Code" />
                         </AlignedWrapper>
 
                         <Label> What apps do you have? </Label>
-                        <ul className = "checkbox-input">
+                        <ul className="checkbox-input">
                             <li>
-                            <Field name = "apps.postmates" type = "checkbox" id = "Postmates"/>
-                            <label for = "Postmates"> <img src = {postmates} /> </label>
+                                <Field name="apps.postmates" type="checkbox" id="Postmates" />
+                                <label for="Postmates"> <img src={postmates} /> </label>
                             </li>
 
                             <li>
-                            <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub"/>
-                            <label for = "GrubHub"> <img src = {grubhub} /> </label>
+                                <Field name="apps.grubhub" type="checkbox" id="GrubHub" />
+                                <label for="GrubHub"> <img src={grubhub} /> </label>
                             </li>
 
                             <li>
-                            <Field name = "apps.doordash" type = "checkbox" id = "DoorDash"/>
-                            <label for = "DoorDash"> <img src = {doordash} /> </label>
+                                <Field name="apps.doordash" type="checkbox" id="DoorDash" />
+                                <label for="DoorDash"> <img src={doordash} /> </label>
                             </li>
 
                             <li>
-                            <Field name = "apps.ubereats" type = "checkbox" id = "UberEats"/>
-                            <label for = "UberEats"> <img src = {ubereats} /> </label>
+                                <Field name="apps.ubereats" type="checkbox" id="UberEats" />
+                                <label for="UberEats"> <img src={ubereats} /> </label>
                             </li>
                         </ul>
 
                         <Button
-                            disabled = { !isValid || isSubmitting}
-                            loading = {loading ? 'Making changes...' : null}
-                            type = "submit"
-                        > 
-                            Edit Profile 
+                            disabled={!isValid || isSubmitting}
+                            loading={loading ? 'Making changes...' : null}
+                            type="submit"
+                        >
+                            Edit Profile
                         </Button>
-                    
+
                         <MessageWrapper>
-                            <Message error show = {error}>{ error }</Message>
+                            <Message error show={error}>{error}</Message>
                         </MessageWrapper>
                         <MessageWrapper>
-                            <Message success show = {error === false}> Profile changed successfully </Message>
+                            <Message success show={error === false}> Profile changed successfully </Message>
                         </MessageWrapper>
                     </StyledForm>
                 )}
