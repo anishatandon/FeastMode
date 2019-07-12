@@ -18,7 +18,7 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
   let content;
   
   if(!users) {
-    console.log("if")
+    // console.log("if")
     content = (
       <Loader />
     );
@@ -31,7 +31,13 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
   }
 
   else {
-    const userKeys = Object.keys(users).filter(user => user !== userId)
+    let userKeys = Object.keys(users).filter(user => user !== userId)
+    let friendKeys = allFriends[userId].friends
+    if(friendKeys && friendKeys.length !== 0)
+    {
+      friendKeys = friendKeys.map(user => user.friendId)
+      userKeys = userKeys.filter(key => friendKeys.indexOf(key) === -1)
+    }
   
     content = (
       <div>
@@ -92,7 +98,7 @@ const mapStateToProps = ({ firebase, firestore, app }) => ({
   firebaseGood: firebase,
   userId: firebase.auth.uid,
   users: firestore.data.users,
-  allFriends: firestore.data.users,
+  allFriends: firestore.data.friends,
   hasRequested: firestore.status.requested,
 })
 
