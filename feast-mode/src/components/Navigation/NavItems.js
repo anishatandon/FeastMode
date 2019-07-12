@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'
 import * as ROUTES from '../../constants/routes.js'
 
-import NavItem from './NavItem.js';
+import NavItem from './NavItem.js'
 
 const Nav = styled.nav`
   display: flex;

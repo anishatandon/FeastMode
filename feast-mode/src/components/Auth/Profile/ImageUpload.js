@@ -20,8 +20,6 @@ class ImageUpload extends Component {
             
         // Get current username
         var user = firebase.auth().currentUser;
-
-        
     };
 
     render() {

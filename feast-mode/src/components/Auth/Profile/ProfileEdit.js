@@ -7,7 +7,6 @@ import * as actions from '../../../backend/store/actions'
 // Components
 import { ProfileEditSchema } from './ProfileSchemas.js'
 import { ProfileDeleteLink } from '../../../style/FormUI/Links.js'
-// import ImageUpload from './ImageUpload.js';
 
 // Images
 import postmates from '../../../images/postmates.jpg';
@@ -38,7 +37,6 @@ const Cover = styled.div`
         display: none;
     }
 `
-
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     useEffect(() => {
         return () => {
@@ -51,7 +49,6 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     return (
         <EditProfileWrapper>
             <Heading size = "h1"> Edit Your Profile </Heading> 
-            {/* <ImageUpload /> */}
             <Formik
                 initialValues={{
                     firstName: firebase.profile.firstName,
@@ -66,7 +63,9 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     secCode: firebase.profile.secCode,
                     creditCardType: firebase.profile.creditCardType,
                     apps: firebase.profile.apps,
-                    // picture: firebase.profile.picture, // initial picture, the default one given at signup
+
+                    // new shit
+                    file: null,
                 }}
                 validationSchema = {ProfileEditSchema}
                 onSubmit = {async (values, { resetForm, setSubmitting }) => {
