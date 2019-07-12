@@ -131,3 +131,20 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
         dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: err.message })
     }
 }
+
+// // Edit profile PICTURE action
+// export const editProfilePicture = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
+//     const firebase = getFirebase()
+//     const firestore = getFirestore()
+//     dispatch({ type: actions.PROFILE_EDIT_START })
+//     try {
+//         const {uid: userId} = getState().firebase.auth
+//         await firestore.collection("users").doc(userId).set({
+//             file: data.file,
+//             url: data.url,
+//         })
+//         dispatch({ type: actions.PROFILE_EDIT_SUCCESS }) 
+//     } catch(err) {
+//         dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: err.message })
+//     }
+// }
