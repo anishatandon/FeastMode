@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Formik, Field } from 'formik'
 import styled from 'styled-components'
 import * as actions from '../../../backend/store/actions'
+import FileUploader from "react-firebase-file-uploader";
 
 // Components
 import { ProfileEditSchema } from './ProfileSchemas.js'
@@ -40,7 +41,6 @@ const Cover = styled.div`
 const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     // INTRODUCING STATE STUFF /////////////////////////////
     const [avatar, setAvatar] = useState("");
-    // const [isUploading, setIsUploading] = useState(false);
     const [avatarURL, setAvatarURL] = useState("");
     ////////////////////////////////////////////////////////
 
@@ -56,7 +56,7 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
     //             .then(url => setAvatarURL(url));
     //     }
     // });
-    handleUploadSuccess = filename => {
+    const handleUploadSuccess = filename => {
         setAvatar(filename);
         firebase
             .storage()
@@ -93,7 +93,8 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                     apps: firebase.profile.apps,
 
                     // new shit
-                    avatar: "",
+                    file: avatar,
+                    url: avatarURL,
                 }}
                 validationSchema={ProfileEditSchema}
                 onSubmit={async (values, { resetForm, setSubmitting }) => {
@@ -104,7 +105,9 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
             >
                 {({ values, isValid, isSubmitting }) => (
                     <StyledForm>
+                        <p> meep</p>
                         <div className="compensate-input text-input">
+
                             <label >Profile Picture</label>
                             {avatarURL && <img src={avatarURL} />}
                             <FileUploader
@@ -114,9 +117,10 @@ const ProfileEdit = ({ firebase, error, loading, cleanUp, editProfile }) => {
                                 storageRef={firebase.storage().ref("images")}
                                 onUploadSuccess={handleUploadSuccess}
                             />
-                            {/* <Field name = "picture" type = "file"/> <br/> */} */}
+                            {/* <Field name = "picture" type = "file"/> <br/> */}
                         </div>
                         <Cover text="Personal information"> <CoverWrapper>
+                            <p> meep</p>
                             <AlignedWrapper>
                                 <Field name="firstName" type="text" component={TextInput} label="First Name" />
                                 <Field name="lastName" type="text" component={TextInput} label="Last Name" />
