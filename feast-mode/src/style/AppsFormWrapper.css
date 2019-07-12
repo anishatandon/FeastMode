@@ -20,6 +20,7 @@
     position: relative;
     margin: 1rem; 
     cursor: pointer;
+    height: 10.4rem;
 }
   
 .checkbox-input label:before {

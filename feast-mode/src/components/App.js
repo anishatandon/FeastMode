@@ -20,12 +20,8 @@ import AddFriends from './Friends/AddFriends'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
-import '../style/Landing.css'
-import '../style/Restaurants.css'
 import '../style/Backdrop.css'
-import '../style/Friends.css'
 import '../style/EmailVerification.css'
-import '../style/ProfileChange.css'
 import '../style/about.css'
 import '../style/Card.css'
 import '../style/AppsFormWrapper.css'
@@ -72,7 +68,6 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
-            {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />

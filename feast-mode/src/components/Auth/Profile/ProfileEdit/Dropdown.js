@@ -56,7 +56,11 @@ class Dropdown extends Component {
             <StyledDropdown opened = {childrenOpen}>
                 <TitleArea onClick = {this.toggle} opened = {childrenOpen}>
                     {title}
-                    {childrenOpen ? <FontAwesomeIcon icon = {faChevronCircleUp}/> : <FontAwesomeIcon icon = {faChevronCircleDown}/>}
+                    {childrenOpen ? 
+                        <FontAwesomeIcon icon = {faChevronCircleUp} color = "#2C3E50"/> 
+                        : 
+                        <FontAwesomeIcon icon = {faChevronCircleDown} color = "#2C3E50"/>
+                    }
                 </TitleArea>
                 <main>
                     {childrenOpen && children}
