@@ -1,8 +1,8 @@
-*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+/* *, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
 .clearfix:before, .clearfix:after { display: table; content: ''; }
-.clearfix:after { clear: both; }
+.clearfix:after { clear: both; } */
 
-body {
+.content body {
 	background: #2f3238;
 	color: #fff;
 	font-weight: 400;
@@ -10,17 +10,17 @@ body {
 	font-family: 'Raleway', Arial, sans-serif;
 }
 
-a {
+.content a {
 	outline: none;
 	color: #3498db;
 	text-decoration: none;
 }
 
-a:hover, a:focus {
+.content a:hover, .content a:focus {
 	color: #528cb3;
 }
 
-section {
+.content section {
 	padding: 1em;
 	text-align: center;
 }

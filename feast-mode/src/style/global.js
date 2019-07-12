@@ -23,6 +23,7 @@ export default createGlobalStyle`
         --color-main: ${props => props.theme.colors.main}
         --color-mainLight: ${props => props.theme.colors.mainLight}
         --color-title: ${props => props.theme.colors.titleColor};
+        --color-titleLight: ${props => props.theme.colors.titleColorLight};
         --color-text: ${props => props.theme.colors.textColor};
         --color-background: ${props => props.theme.colors.backgroundColor};
         --color-white: ${props => props.theme.colors.whiteColor};
