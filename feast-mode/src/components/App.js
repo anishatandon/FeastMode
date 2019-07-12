@@ -33,7 +33,7 @@ export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ loggedIn, path }) => (loggedIn && path !== "/profile_edit") ? 'var(--color-white)' : 'var(--color-background)'};
+  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
 `
 
 const App = ({ loggedIn, emailVerified, location }) => {
@@ -42,8 +42,8 @@ const App = ({ loggedIn, emailVerified, location }) => {
   if (loggedIn && !emailVerified) {
     routes = (
       <>
-        <Navbar/>
-        <MainWrapper loggedIn = {loggedIn}>
+        <Navbar path = {location.pathname}/>
+        <MainWrapper loggedIn = {loggedIn} path = {location.pathname}>
           <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
             <Route exact path={ROUTES.ABOUT} component={About} />

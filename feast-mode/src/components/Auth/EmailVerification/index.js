@@ -1,40 +1,58 @@
 import React, { useEffect } from 'react'
-import * as actions from '../../../backend/store/actions'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
+import * as actions from '../../../backend/store/actions'
 
-const VerifyEmail = ({ sendVerification, error, loading, cleanUp })=> {
-    let displayError
+import { FormWrapper, StyledForm } from '../../../style/FormUI/FormWrappers.js'
+import Heading from '../../../style/FormUI/Heading.js'
+import Button from '../../../style/FormUI/Buttons.js'
+import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
 
-    if (error) {
-        displayError = {display: "block"}
-    } else {
-        displayError = {display: "none"}
-    }
+const VerifyEmailWrapper = styled(FormWrapper)`
+    margin-top: 4rem;
+`;
 
-    useEffect(() => {
-        return () => {
-            cleanUp()
-        }
-    }, [cleanUp])
+const VerifyEmail = ({ sendVerification, error, loading, cleanUp }) => {
+  useEffect(() => {
+    return () => {
+      cleanUp();
+    };
+  }, [cleanUp]);
 
-    return (
-        <div className = "email-verification">
-            <h1> You are not verified </h1>
-            <p> Go to your email inbox, and please verify your email </p>
-            {/* <button onClick = {sendVerification} className = "classic-button"> Resend Email </button> */}
-            <p style = {displayError}>{error}</p>
-        </div>
-    )
-}
+  return (
+    <VerifyEmailWrapper>
+        <Heading noMargin bold size = "h2"> Verify your email </Heading>
+        <Heading size = "h4"> Go to your email inbox, and please verify your email. </Heading>
+        <StyledForm>
+            <Button
+                loading={loading ? 'Sending email...' : null}
+                disabled={loading}
+                onClick={() => sendVerification()}
+            >
+                Re-send verification email
+            </Button>
+            <MessageWrapper>
+                <Message error show = {error}>{ error }</Message>
+            </MessageWrapper>
+            <MessageWrapper>
+                <Message success show = {error === false}> Email sent successfully! </Message>
+            </MessageWrapper>
+        </StyledForm>
+    </VerifyEmailWrapper>
+  );
+};
 
 const mapStateToProps = ({ auth }) => ({
-    loading: auth.verifyEmail.loading,
-    error: auth.verifyEmail.error
-})
+  loading: auth.verifyEmail.loading,
+  error: auth.verifyEmail.error,
+});
 
 const mapDispatchToProps = {
-    sendVerification: actions.verifyEmail,
-    cleanUp: actions.clean
-}
+  sendVerification: actions.verifyEmail,
+  cleanUp: actions.clean,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(VerifyEmail)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VerifyEmail);
