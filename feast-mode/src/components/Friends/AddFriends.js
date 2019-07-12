@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import { compose } from 'redux';
 
-
-
 import Friend from './Friend';
 import AddFriendButton from './Buttons/AddFriendButton';
 import Loader from '../Loader/index.js';
@@ -12,70 +10,66 @@ import Modal from '../Modal/Modal'
 import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
 
-import * as actions from '../../backend/store/actions/';
 
 const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
-
   const [isOpened, setisOpened] = useState(false);
 
   // console.log("wh")
   let content;
   
-  if(!users)
-  {
+  if(!users) {
     console.log("if")
     content = (
       <Loader />
     );
   }
-
   
-  else if( users.length === 0 )
-  {
-    // console.log("elif")
+  else if( users.length === 0 ) {
     content = (
       <p>There are no users!</p>
     )
   }
-  else
-  {
-    // console.log("else")
-    
-    users = Object.keys(users).filter(user => user !== userId)
+
+  else {
+    const userKeys = Object.keys(users).filter(user => user !== userId)
   
-    // let friends = [];
-    // console.log(friends)
-    
-    // if(allFriends.friends)
-    // {
-    //   friends += allFriends.friends
-    // }
-      
-    // if(allFriends.requests) 
-    // {
-    //   friends += allFriends.requests
-    // }
-
-
-    // console.log(!friends.includes(userId))
-
-    // users = users.filter(user => !friends.includes(user) && user !== userId )
     content = (
       <div>
         {
-          users.map(user => 
+          userKeys.map(user => 
+            
           <div className="friend" key={user}>
-              <Friend display={true} friend={user} />
+          
+              <Friend 
+                display={true} 
+                friendId={user} 
+                friendFirst={users[user].firstName} 
+                friendLast={users[user].lastName} 
+                friendEmail={users[user].email} 
+                friendPhone={users[user].phone} 
+              />
               <AddFriendButton friend={user}/>
           </div>
         )}
         
       </div>
     )
-    // console.log("over here")
   }
  
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <>
     <Button color="main" contain onClick={() => setisOpened(true)}>
@@ -90,9 +84,6 @@ const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasReq
       {content}
       </div>
     </Modal>
-      
-
-   
     </>
   )
 }
@@ -116,7 +107,20 @@ export default compose(
 
 
 
-/*
- 
+    // let friends = [];
+    // console.log(friends)
+    
+    // if(allFriends.friends)
+    // {
+    //   friends += allFriends.friends
+    // }
+      
+    // if(allFriends.requests) 
+    // {
+    //   friends += allFriends.requests
+    // }
 
-  */
+
+    // console.log(!friends.includes(userId))
+
+    // users = users.filter(user => !friends.includes(user) && user !== userId )

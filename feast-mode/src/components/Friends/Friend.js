@@ -6,20 +6,20 @@ import { compose } from 'redux';
 import Loader from '../Loader/index.js';
 
 
-const Friend = ({ friend, allUsers }) => {
+const Friend = ({ friendId, allUsers }) => {
   let user;
 
-  if(!allUsers || !allUsers[friend])
+  if(!allUsers || !allUsers[friendId])
     return <Loader />;
 
-  user = allUsers[friend];
+  user = allUsers[friendId];
 
   return(
     
     <div className="friend">
       <p></p>
       <p>Image: </p>
-      <p>Id: {friend}</p>
+      <p>Id: {friendId}</p>
       <p>Name: {user.firstName + " " + user.lastName}</p>
       <p> E-mail: {user.email}</p>
 
