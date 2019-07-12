@@ -11,10 +11,8 @@ import Home from './Home'
 import SideDrawer from './Navigation/SideDrawer.js'
 import PasswordReset from './Auth/Profile/PasswordReset.js'
 import ProfileEdit from './Auth/Profile/ProfileEdit/index.js'
-import Restaurants from './Food/Restaurants'
 import About from './About'
 import Navbar from './Navigation'
-import Backdrop from './Modal/Backdrop.js'
 import EmailVerification from './Auth/EmailVerification'
 // import AddFriends from './Friends/AddFriends'
 import DisplayFriends from './Friends/Friends'
@@ -35,7 +33,7 @@ export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ loggedIn, path }) => (loggedIn && path !== "/profile_edit") ? 'var(--color-white)' : 'var(--color-background)'};
+  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
 `
 
 const App = ({ loggedIn, emailVerified, location }) => {
@@ -44,8 +42,8 @@ const App = ({ loggedIn, emailVerified, location }) => {
   if (loggedIn && !emailVerified) {
     routes = (
       <>
-        <Navbar/>
-        <MainWrapper loggedIn = {loggedIn}>
+        <Navbar path = {location.pathname}/>
+        <MainWrapper loggedIn = {loggedIn} path = {location.pathname}>
           <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
             <Route exact path={ROUTES.ABOUT} component={About} />
@@ -67,7 +65,6 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
-            <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
             {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
             {/* <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} /> */}

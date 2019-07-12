@@ -11,14 +11,12 @@ import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
 
 
-const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
+const AddFriends = ({ users, userId, allFriends }) => {
   const [isOpened, setisOpened] = useState(false);
 
-  // console.log("wh")
   let content;
   
   if(!users) {
-    console.log("if")
     content = (
       <Loader />
     );
@@ -31,7 +29,13 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
   }
 
   else {
-    const userKeys = Object.keys(users).filter(user => user !== userId)
+    let userKeys = Object.keys(users).filter(user => user !== userId)
+    let friendKeys = allFriends[userId].friends
+    if(friendKeys && friendKeys.length !== 0)
+    {
+      friendKeys = friendKeys.map(user => user.friendId)
+      userKeys = userKeys.filter(key => friendKeys.indexOf(key) === -1)
+    }
   
     content = (
       <div>
@@ -55,21 +59,7 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
       </div>
     )
   }
- 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
   return (
     <>
     <Button color="main" contain onClick={() => setisOpened(true)}>
@@ -88,39 +78,20 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
   )
 }
 
+
 const mapStateToProps = ({ firebase, firestore, app }) => ({
-  firebaseGood: firebase,
   userId: firebase.auth.uid,
   users: firestore.data.users,
-  allFriends: firestore.data.users,
+  allFriends: firestore.data.friends,
   hasRequested: firestore.status.requested,
 })
 
+
 const mapDispatchToProps = {}
+
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => ["users/"]),
   firestoreConnect(props => ["friends/"]),
 )(AddFriends)
-
-
-
-
-    // let friends = [];
-    // console.log(friends)
-    
-    // if(allFriends.friends)
-    // {
-    //   friends += allFriends.friends
-    // }
-      
-    // if(allFriends.requests) 
-    // {
-    //   friends += allFriends.requests
-    // }
-
-
-    // console.log(!friends.includes(userId))
-
-    // users = users.filter(user => !friends.includes(user) && user !== userId )
