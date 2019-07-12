@@ -5,38 +5,49 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
     
     const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data;
+    const inviteId = data.friend;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
     try {
-        const res = await firestore
-            .collection('friends')
-            .doc(inviteId)
-            .get();
-        // console.log(res);
-        if (!res.data() || !res.data().requests) {
-            console.log('in here')
-            firestore
-            .collection('friends')
-            .doc(inviteId)
-            .set({
-                requests: [userId],
-            });
+        
+
+        //try passing in other firebase
+        console.log(firebase)
+        // const newRequest = {
+        //     friendId: userId,
+        //     friendFirst: firestore.firstName,
+        //     friendLast: firebase.lastName, 
+        //     friendEmail: getState().firebase.auth.email, 
+        //     friendPhone: firebase.profile.phone, 
+        // }
+
+        // console.log(newRequest)
+
+        // const res = await firestore
+        //     .collection('friends')
+        //     .doc(inviteId)
+        //     .get();
+
+        // if (!res.data() || !res.data().requests) {
+        //     firestore
+        //     .collection('friends')
+        //     .doc(inviteId)
+        //     .set({
+        //         requests: [newRequest],
+        //     });
             
-        } else { 
-            // console.log(userId != inviteId);
-            if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
-                firestore
-                .collection('friends')
-                .doc(inviteId)
-                .update({
-                    requests: [...res.data().requests, userId],
-                });
-            }
-            
-            // console.log("complete")
-        }
+        // } else { 
+
+        //     if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
+        //         firestore
+        //         .collection('friends')
+        //         .doc(inviteId)
+        //         .update({
+        //             requests: [...res.data().requests, newRequest],
+        //         });
+        //     }
+        // }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 

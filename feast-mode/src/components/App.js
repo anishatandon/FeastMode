@@ -16,7 +16,7 @@ import About from './About'
 import Navbar from './Navigation'
 import Backdrop from './Modal/Backdrop.js'
 import EmailVerification from './Auth/EmailVerification'
-import AddFriends from './Friends/AddFriends'
+// import AddFriends from './Friends/AddFriends'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
@@ -68,7 +68,8 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
             <Route exact path={ROUTES.RESTAURANTS} component={Restaurants} />
             <Route exact path={ROUTES.ABOUT} component={About} />
-            <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} />
+            {/* <Route exact path={ROUTES.FRIENDS} component={Friends} /> */}
+            {/* <Route exact path={ROUTES.ADD_FRIENDS} component={AddFriends} /> */}
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Redirect to={ROUTES.HOME} />
