@@ -4,6 +4,10 @@ import { Formik, Field } from 'formik'
 import * as actions from '../../../../backend/store/actions'
 import Cards from 'react-credit-cards'
 import styled from 'styled-components'
+import FileUploader from "react-firebase-file-uploader"
+
+import * as firebase from "firebase";
+
 
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
@@ -30,6 +34,18 @@ const Wrapper = styled.div`
 
 const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => {
     const [focused, setFocused] = useState("")
+    const [avatar, setAvatar] = useState("")
+    const [avatarURL, setAvatarURL] = useState("")
+
+    // const handleUploadSuccess = filename => {
+    //     setAvatar(filename);
+    //     firebase
+    //         .storage()
+    //         .ref("images")
+    //         .child(filename)
+    //         .getDownloadURL()
+    //         .then(url => setAvatarURL(url));
+    // }
 
     useEffect(() => {
         return () => {
@@ -54,7 +70,8 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                 secCode: firebase.profile.secCode,
                 creditCardType: firebase.profile.creditCardType,
                 apps: firebase.profile.apps,
-                // picture: firebase.profile.picture, // initial picture, the default one given at signup
+                file: avatar,
+                url: avatarURL,
             }}
             validationSchema = {ProfileEditSchema}
             onSubmit = {async (values, { resetForm, setSubmitting }) => {
@@ -65,9 +82,16 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
         >
             {({ values, isValid, isSubmitting }) => (
                 <StyledForm>
-                    {/* <div className = "compensate-input text-input"> 
-                        <label> Profile Picture </label> <br />
-                        <Field name = "picture" type = "file"/> <br/>
+                    {/* <div className="compensate-input text-input">
+                            <label >Profile Picture</label>
+                            {avatarURL && <img src={avatarURL} />}
+                            <FileUploader
+                                accept="image/*"
+                                name="avatar"
+                                randomizeFilename
+                                storageRef={firebase.storage().ref("images")}
+                                onUploadSuccess={handleUploadSuccess}
+                            />
                     </div> */}
                     <Dropdown title = "Personal information">
                         <AlignedWrapper>
