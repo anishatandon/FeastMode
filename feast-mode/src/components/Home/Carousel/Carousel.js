@@ -6,30 +6,35 @@ import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-sol
 import Indicator from './Indicator'
 
 const CarouselContainer = styled.div`
+  width: 90%;
   display: flex;
-  margin: 0 0 20px 20px;
   transition: ${(props) => props.sliding ? 'none' : 'transform 1s ease'};
   transform: ${(props) => {
     if (props.numSlides === 1) return 'translateX(0%)'
     if (props.numSlides === 2) {
-      if (!props.sliding && props.direction === 'next') return 'translateX(calc(-80% + 30px))'
+      if (!props.sliding && props.direction === 'next') return 'translateX(calc(-100% - 2rem))'
       if (!props.sliding && props.direction === 'prev') return 'translateX(0%)'
-      if (props.direction === 'prev') return 'translateX(calc(-80% + 30px))'
+      if (props.direction === 'prev') return 'translateX(calc(-100% - 2rem))'
       return 'translateX(0%)'
     }
-    if (!props.sliding) return 'translateX(calc(-80% - 20px))'
-    if (props.direction === 'prev') return 'translateX(calc(2 * (-80% - 20px)))'
+    if (!props.sliding) return 'translateX(calc(-100% - 2rem))'
+    if (props.direction === 'prev') return 'translateX(calc(2 * (-100% - 2rem)))'
     return 'translateX(0%)'
   }};
 `
 const Wrapper = styled.div`
   width: 100%;
+  height: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `
 const CarouselSlot = styled.div`
   flex: 1 0 100%;
-  flex-basis: 80%;
-  margin-right: 20px;
+  flex-basis: 100%;
+  margin-right: 2rem;
   order: ${(props) => props.order};
   opacity: ${(props) => {
     if (props.numSlides === 1) return 1
@@ -37,6 +42,13 @@ const CarouselSlot = styled.div`
     return props.order === 1 ? 1 : 0.5
   }};
   transition: opacity 1s ease;
+`
+const ButtonWrapper = styled.div`
+  position: absolute;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.5;
 `
 
 class Carousel extends Component {
@@ -110,9 +122,12 @@ class Carousel extends Component {
             </CarouselSlot>
           ))}
         </CarouselContainer>
+        <ButtonWrapper>
+          <div onClick = {() => this.prevSlide()}> <FontAwesomeIcon icon = {faChevronCircleLeft} size = "5x" color = "#2C3E50" /> </div>
+          <div onClick = {() => this.nextSlide()}> <FontAwesomeIcon icon = {faChevronCircleRight} size = "5x" color = "#2C3E50"/> </div>
+        </ButtonWrapper>
       </Wrapper>
-      <div onClick = {() => this.prevSlide()}> <FontAwesomeIcon icon = {faChevronCircleLeft} size = "5x" color = "#2C3E50"/> </div>
-      <div onClick = {() => this.nextSlide()}> <FontAwesomeIcon icon = {faChevronCircleRight} size = "5x" color = "#2C3E50"/> </div>
+      
       </>
     )
   }
