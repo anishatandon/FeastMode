@@ -48,6 +48,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
         <MainWrapper loggedIn = {loggedIn}>
           <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
+            <Route exact path={ROUTES.ABOUT} component={About} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Redirect to={ROUTES.EMAIL_VERIFICATION} />
           </Switch>
