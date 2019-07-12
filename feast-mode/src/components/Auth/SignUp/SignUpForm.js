@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik'
 import * as actions from '../../../backend/store/actions'
 import { connect } from 'react-redux'
 import Cards from 'react-credit-cards'
+import styled from 'styled-components'
 
 import { SignUpSchema } from './SignUpSchema.js'
 import { StyledForm, AlignedWrapper } from '../../../style/FormUI/FormWrappers.js'
@@ -15,6 +16,12 @@ import postmates from '../../../images/postmates.jpg';
 import doordash from '../../../images/doordash.jpg'
 import grubhub from '../../../images/grubhub.png';
 import ubereats from '../../../images/ubereats.jpeg';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: ${props => props.theme.mediaQueries.small ? "column" : "row"};
+  align-items: center;
+`
 
 const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
   const [focused, setFocused] = useState("")
@@ -84,27 +91,29 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
           </AlignedWrapper>
 
           <Label> What apps do you have? </Label>
-          <ul className="checkbox-input">
-            <li>
-              <Field name="apps.postmates" type="checkbox" id="Postmates" />
-              <label for="Postmates"> <img src={postmates} /> </label>
-            </li>
+          <Wrapper>
+            <ul className="checkbox-input">
+              <li>
+                <Field name="apps.postmates" type="checkbox" id="Postmates" />
+                <label for="Postmates"> <img src={postmates} /> </label>
+              </li>
 
-            <li>
-              <Field name="apps.grubhub" type="checkbox" id="GrubHub" />
-              <label for="GrubHub"> <img src={grubhub} /> </label>
-            </li>
+              <li>
+                <Field name="apps.grubhub" type="checkbox" id="GrubHub" />
+                <label for="GrubHub"> <img src={grubhub} /> </label>
+              </li>
 
-            <li>
-              <Field name="apps.doordash" type="checkbox" id="DoorDash" />
-              <label for="DoorDash"> <img src={doordash} /> </label>
-            </li>
+              <li>
+                <Field name="apps.doordash" type="checkbox" id="DoorDash" />
+                <label for="DoorDash"> <img src={doordash} /> </label>
+              </li>
 
-            <li>
-              <Field name="apps.ubereats" type="checkbox" id="UberEats" />
-              <label for="UberEats"> <img src={ubereats} /> </label>
-            </li>
-          </ul>
+              <li>
+                <Field name="apps.ubereats" type="checkbox" id="UberEats" />
+                <label for="UberEats"> <img src={ubereats} /> </label>
+              </li>
+            </ul>
+          </Wrapper>
 
           <Button
             disabled={!isValid || isSubmitting}

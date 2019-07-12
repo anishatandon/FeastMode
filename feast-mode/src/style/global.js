@@ -18,6 +18,7 @@ export default createGlobalStyle`
     }
 
     html {
+        height: 100%;
         font-size: 62.5%;
         box-sizing: border-box;
         --color-main: ${props => props.theme.colors.main}
@@ -40,6 +41,7 @@ export default createGlobalStyle`
     }
 
     body {
+        height: 100%;
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 400;
         line-height: 1.6;

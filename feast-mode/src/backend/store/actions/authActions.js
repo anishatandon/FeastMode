@@ -11,14 +11,10 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             .auth()
             .createUserWithEmailAndPassword(data.email, data.passwordOne)
 
-        // const resFriends = await firestore
-        //     .collection('friends')
-        //     .doc(res.user.uid)
-        //     .get()
-        //     .set({
-        //         friends: [],
-        //         requests: [],
-        //     });
+        await firestore.collection('friends').doc(res.user.uid).set({
+            friends: [],
+            requests: [],
+        });
 
         // Send verification email
         const user = firebase.auth().currentUser;

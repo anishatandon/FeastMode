@@ -20,12 +20,8 @@ import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 
-import '../style/Landing.css'
-import '../style/Restaurants.css'
 import '../style/Backdrop.css'
-import '../style/Friends.css'
 import '../style/EmailVerification.css'
-import '../style/ProfileChange.css'
 import '../style/about.css'
 import '../style/Card.css'
 import '../style/AppsFormWrapper.css'
@@ -52,6 +48,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
         <MainWrapper loggedIn = {loggedIn}>
           <Switch> 
             <Route exact path={ROUTES.EMAIL_VERIFICATION} component={EmailVerification} />
+            <Route exact path={ROUTES.ABOUT} component={About} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Redirect to={ROUTES.EMAIL_VERIFICATION} />
           </Switch>

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 
 const Container = styled.div`
-  margin-bottom: 20px;
+  margin: 2rem 0rem;
 `
 const Pip = styled.span`
-  background: ${(props) => (props.isCurrent) ? 'darkorange' : 'gainsboro'};
+  background: ${(props) => (props.isCurrent) ? 'var(--color-main)' : 'gainsboro'};
   width: 60px;
   height: 5px;
   margin-right: 5px;

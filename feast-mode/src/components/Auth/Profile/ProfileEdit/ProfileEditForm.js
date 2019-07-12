@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as actions from '../../../../backend/store/actions'
 import Cards from 'react-credit-cards'
+import styled from 'styled-components'
 
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
@@ -20,6 +21,12 @@ import { StyledForm, AlignedWrapper } from '../../../../style/FormUI/FormWrapper
 import { TextInput, Label } from '../../../../style/FormUI/Inputs.js'
 import Button from '../../../../style/FormUI/Buttons.js'
 import { Message, MessageWrapper } from '../../../../style/FormUI/Message.js'
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: ${props => props.theme.mediaQueries.small ? "column" : "row"};
+    align-items: center;
+`
 
 const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => {
     const [focused, setFocused] = useState("")
@@ -86,36 +93,38 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                             cvc={values.secCode}
                             focused={focused}
                         />
-                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick={() => setFocused("number")}/>
+                        <Field name = "creditCard" type = "text" component = {TextInput} label = "Card Number" onClick = {() => setFocused("number")}/>
                         <AlignedWrapper>
-                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick={() => setFocused("expiry")}/>
-                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick={() => setFocused("cvc")}/>
+                            <Field name = "expDate" type = "text" component = {TextInput} label = "Expiration Date" onClick = {() => setFocused("expiry")}/>
+                            <Field name = "secCode" type = "text" component = {TextInput} label = "Security Code" onClick = {() => setFocused("cvc")}/>
                         </AlignedWrapper>
                     </Dropdown>
 
                     <Dropdown title = "Apps">
                         <Label> What apps do you have? </Label>
-                        <ul className = "checkbox-input">
-                            <li>
-                            <Field name = "apps.postmates" type = "checkbox" id = "Postmates" checked = {values.apps.postmates}/>
-                            <label for = "Postmates"> <img src = {postmates} /> </label>
-                            </li>
+                        <Wrapper>
+                            <ul className = "checkbox-input">
+                                <li>
+                                <Field name = "apps.postmates" type = "checkbox" id = "Postmates" checked = {values.apps.postmates}/>
+                                <label for = "Postmates"> <img src = {postmates} /> </label>
+                                </li>
 
-                            <li>
-                            <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub" checked = {values.apps.grubhub}/>
-                            <label for = "GrubHub"> <img src = {grubhub} /> </label>
-                            </li>
+                                <li>
+                                <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub" checked = {values.apps.grubhub}/>
+                                <label for = "GrubHub"> <img src = {grubhub} /> </label>
+                                </li>
 
-                            <li>
-                            <Field name = "apps.doordash" type = "checkbox" id = "DoorDash" checked = {values.apps.doordash}/>
-                            <label for = "DoorDash"> <img src = {doordash} /> </label>
-                            </li>
+                                <li>
+                                <Field name = "apps.doordash" type = "checkbox" id = "DoorDash" checked = {values.apps.doordash}/>
+                                <label for = "DoorDash"> <img src = {doordash} /> </label>
+                                </li>
 
-                            <li>
-                            <Field name = "apps.ubereats" type = "checkbox" id = "UberEats" checked = {values.apps.ubereats}/>
-                            <label for = "UberEats"> <img src = {ubereats} /> </label>
-                            </li>
-                        </ul>
+                                <li>
+                                <Field name = "apps.ubereats" type = "checkbox" id = "UberEats" checked = {values.apps.ubereats}/>
+                                <label for = "UberEats"> <img src = {ubereats} /> </label>
+                                </li>
+                            </ul>
+                        </Wrapper>
                     </Dropdown>
 
                     <Button

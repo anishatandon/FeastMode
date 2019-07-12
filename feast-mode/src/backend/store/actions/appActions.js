@@ -4,34 +4,25 @@ import * as actions from './actionTypes.js'
 export const sendInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     
     const firebase = getFirebase()
-    const goodFirebase = data.firebaseGood
     const firestore = getFirestore()
-    const inviteId = data.user;
+    const inviteId = data;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.SEND_INVITE_START })
     try {
-        
-
-        //try passing in other firebase
-        // console.log(goodFirebase)
         const newRequest = {
             friendId: userId,
-            friendFirst: goodFirebase.profile.firstName,
-            friendLast: goodFirebase.profile.lastName, 
+            friendFirst: getState().firebase.profile.firstName,
+            friendLast: getState().firebase.profile.lastName, 
             friendEmail: getState().firebase.auth.email, 
-            friendPhone: goodFirebase.profile.phone, 
+            friendPhone: getState().firebase.profile.phone, 
         }
 
-        // console.log(newRequest)
-        console.log(inviteId)
         const res = await firestore
             .collection('friends')
             .doc(inviteId)
             .get();
-        
-        console.log(!res.data())
-
+            
         if (!res.data() || !res.data().requests) {
             firestore
             .collection('friends')
@@ -39,9 +30,10 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
             .set({
                 requests: [newRequest],
             });
-            
-        } else { 
+        } 
 
+        
+        else { 
             if(res.data().requests.indexOf(userId) === -1 && userId !== inviteId ){
                 firestore
                 .collection('friends')
@@ -63,7 +55,7 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
 export const acceptInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data;
+    const inviteId = data.friendId;
     const userId = getState().firebase.auth.uid;
 
     dispatch({ type: actions.ACCEPT_INVITE_START })
@@ -72,62 +64,72 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             .collection('friends')
             .doc(userId)
             .get();
+
         const resInvite = await firestore
             .collection('friends')
             .doc(inviteId)
             .get();
+
+        const newUser = {
+            friendId: userId,
+            friendFirst: getState().firebase.profile.firstName,
+            friendLast: getState().firebase.profile.lastName, 
+            friendEmail: getState().firebase.auth.email, 
+            friendPhone: getState().firebase.profile.phone, 
+        }
+
+        const newInvite = {
+            friendId: inviteId, 
+            friendFirst: data.friendFirst,
+            friendLast: data.friendLast,
+            friendEmail: data.friendEmail,
+            friendPhone: data.friendPhone,
+        }
             
-        const userPrevious = resUser.data().requests.filter(request => request !== inviteId);
+        const userPrevious = resUser.data().requests.filter(request => request.friendId !== inviteId);
+        
         if (!resUser.data() || !resUser.data().friends) {
-            console.log('resuser in here')
             firestore
             .collection('friends')
             .doc(userId)
             .set({
-                friends: [inviteId],
+                friends: [newInvite],
                 requests: userPrevious,
             });
-            
         } 
+
         else { 
-            console.log("resuser")
             if(resUser.data().friends.indexOf(inviteId) === -1 ){
                 firestore
                 .collection('friends')
                 .doc(userId)
                 .update({
-                    friends: [...resUser.data().friends, inviteId],
+                    friends: [...resUser.data().friends, newInvite],
                     requests: userPrevious,
                 });
             }
         }
 
-
         if (!resInvite.data() || !resInvite.data().friends) {
-            // console.log("resinvite in here")
             firestore
             .collection('friends')
             .doc(inviteId)
             .set({
-                friends: [userId],
+                friends: [newUser],
                 requests: [...resInvite.data().requests],
             });
-            
         } 
         
         else { 
-            // console.log("resinvite")
             if(resInvite.data().friends.indexOf(userId) === -1 ){
                 firestore
                 .collection('friends')
                 .doc(inviteId)
                 .update({
-                    friends: [...resInvite.data().friends, userId],
+                    friends: [...resInvite.data().friends, newUser],
                     requests: [...resInvite.data().requests],
                 });
             }
-            
-            // console.log("complete")
         }
 
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
@@ -150,7 +152,8 @@ export const deleteInvite = data => async (dispatch, getState, { getFirebase, ge
             .collection('friends')
             .doc(userId)
             .get();
-        const userPrevious = resUser.data().requests.filter(request => request !== inviteId);
+
+        const userPrevious = resUser.data().requests.filter(request => request.friendId !== inviteId);
         // console.log(userPrevious)
         firestore
             .collection('friends')
@@ -184,12 +187,14 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
             .collection('friends')
             .doc(inviteId)
             .get();
-        
+
+        console.log(resUser)
+
         // console.log(userPrevious)
         // console.log(invitePrevious)
         // console.log(!resUser.data() )
         if (resUser.data() ) {
-            const userPrevious = resUser.data().friends.filter(friend => friend !== inviteId);
+            const userPrevious = resUser.data().friends.filter(friend => friend.friendId !== inviteId);
             firestore
             .collection('friends')
             .doc(userId)
@@ -199,7 +204,7 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
         } 
         
         if (resInvite.data() ) {
-            const invitePrevious = resInvite.data().friends.filter(friend => friend !== userId);
+            const invitePrevious = resInvite.data().friends.filter(friend => friend.friendId !== userId);
             firestore
             .collection('friends')
             .doc(inviteId)

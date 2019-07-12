@@ -26,7 +26,7 @@ const Friends = ({users, friends, userId, hasRequested }) => {
     }
 
     else {
-        const friendKeys = Object.keys(friends).filter(user => user !== userId)
+        const requestKeys = Object.keys(friends[userId].requests)
 
         content = (
             <>
@@ -35,14 +35,21 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 <div className="friend" key={user}>
                     <Friend 
                         display={true} 
-                        friendId={user} 
-                        friendFirst={friends[user].firstName} 
-                        friendLast={friends[user].lastName} 
-                        friendEmail={friends[user].email} 
-                        friendPhone={friends[user].phone} 
+                        friendId={user.friendId} 
+                        friendFirst={user.friendFirst} 
+                        friendLast={user.friendLast} 
+                        friendEmail={user.friendEmail} 
+                        friendPhone={user.friendPhone} 
                     />
-                    <AcceptFriendButton friend={user}/>
-                    <DeleteInviteButton friend={user}/>
+                    <AcceptFriendButton friend={{
+                        friendId: user.friendId,
+                        friendFirst: user.friendFirst,
+                        friendLast: user.friendLast,
+                        friendEmail: user.friendEmail,
+                        friendPhone: user.friendPhone,
+                    }}
+                    />
+                    <DeleteInviteButton friend={user.friendId}/>
                 </div>
                 )}
             </>
@@ -65,8 +72,15 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 <h1>Your Friends</h1>
                 {friends[userId].friends.map(user =>
                 <div className="friend" key={user}>
-                    <Friend display={true} friend={user} />
-                    <DeleteFriendButton friend={user}/>
+                    <Friend 
+                        display={true} 
+                        friendId={user.friendId} 
+                        friendFirst={user.friendFirst} 
+                        friendLast={user.friendLast} 
+                        friendEmail={user.friendEmail} 
+                        friendPhone={user.friendPhone} 
+                    />
+                    <DeleteFriendButton friend={user.friendId}/>
                 </div>
                 )}
             </>

@@ -48,7 +48,7 @@ const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, 
                 friendEmail={users[user].email} 
                 friendPhone={users[user].phone} 
               />
-              <AddFriendButton friend={{firebaseGood, user}}/>
+              <AddFriendButton friend={user}/>
           </div>
         )}
         
