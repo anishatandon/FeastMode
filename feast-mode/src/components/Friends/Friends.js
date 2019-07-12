@@ -31,9 +31,23 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 <h1>Friend Requests</h1>
                 {friends[userId].requests.map(user =>
                 <div className="friend" key={user}>
-                    <Friend display={true} friend={user} />
-                    <AcceptFriendButton friend={user}/>
-                    <DeleteInviteButton friend={user}/>
+                    <Friend 
+                        display={true} 
+                        friendId={user.friendId} 
+                        friendFirst={user.friendFirst} 
+                        friendLast={user.friendLast} 
+                        friendEmail={user.friendEmail} 
+                        friendPhone={user.friendPhone} 
+                    />
+                    <AcceptFriendButton friend={{
+                        friendId: user.friendId,
+                        friendFirst: user.friendFirst,
+                        friendLast: user.friendLast,
+                        friendEmail: user.friendEmail,
+                        friendPhone: user.friendPhone,
+                    }}
+                    />
+                    <DeleteInviteButton friend={user.friendId}/>
                 </div>
                 )}
             </>
@@ -56,8 +70,15 @@ const Friends = ({users, friends, userId, hasRequested }) => {
                 <h1>Your Friends</h1>
                 {friends[userId].friends.map(user =>
                 <div className="friend" key={user}>
-                    <Friend display={true} friend={user} />
-                    <DeleteFriendButton friend={user}/>
+                    <Friend 
+                        display={true} 
+                        friendId={user.friendId} 
+                        friendFirst={user.friendFirst} 
+                        friendLast={user.friendLast} 
+                        friendEmail={user.friendEmail} 
+                        friendPhone={user.friendPhone} 
+                    />
+                    <DeleteFriendButton friend={user.friendId}/>
                 </div>
                 )}
             </>

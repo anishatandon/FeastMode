@@ -11,6 +11,11 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             .auth()
             .createUserWithEmailAndPassword(data.email, data.passwordOne)
 
+        await firestore.collection('friends').doc(res.user.uid).set({
+            friends: [],
+            requests: [],
+        });
+
         // Send verification email
         const user = firebase.auth().currentUser;
         await user.sendEmailVerification();
@@ -113,7 +118,8 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
             secCode: data.secCode,
             creditCardType: data.creditCardType,
             apps: data.apps, 
-            // picture: data.picture, 
+            file: data.file,
+            url: data.url,
         })
 
         if (data.passwordOne.length > 0) {

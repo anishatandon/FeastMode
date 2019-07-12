@@ -11,14 +11,14 @@ import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
 
 
-const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
+const AddFriends = ({firebaseGood, addFriend, users, userId, allFriends, close, opened, hasRequested }) => {
   const [isOpened, setisOpened] = useState(false);
 
   // console.log("wh")
   let content;
   
   if(!users) {
-    console.log("if")
+    // console.log("if")
     content = (
       <Loader />
     );
@@ -31,7 +31,13 @@ const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasReq
   }
 
   else {
-    const userKeys = Object.keys(users).filter(user => user !== userId)
+    let userKeys = Object.keys(users).filter(user => user !== userId)
+    let friendKeys = allFriends[userId].friends
+    if(friendKeys && friendKeys.length !== 0)
+    {
+      friendKeys = friendKeys.map(user => user.friendId)
+      userKeys = userKeys.filter(key => friendKeys.indexOf(key) === -1)
+    }
   
     content = (
       <div>
@@ -89,10 +95,10 @@ const AddFriends = ({addFriend, users, userId, allFriends, close, opened, hasReq
 }
 
 const mapStateToProps = ({ firebase, firestore, app }) => ({
-  firebase,
+  firebaseGood: firebase,
   userId: firebase.auth.uid,
   users: firestore.data.users,
-  allFriends: firestore.data.users,
+  allFriends: firestore.data.friends,
   hasRequested: firestore.status.requested,
 })
 
