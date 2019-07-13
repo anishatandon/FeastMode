@@ -25,28 +25,28 @@ const initialState = {
 export default (state = initialState, {type, payload}) => {
     switch (type) {
         
-        case actions.ACCEPT_INVITE_START:
+        case actions.SEND_INVITE_START:
             return { ...state,
                 sendInvite: { ...state.sendInvite, loading: true }, };
 
-        case actions.ACCEPT_INVITE_FAIL:
+        case actions.SEND_INVITE_FAIL:
             return { ...state,
                 sendInvite: { ...state.sendInvite, loading: false, error: payload }, };
 
-        case actions.ACCEPT_INVITE_SUCCESS:
+        case actions.SEND_INVITE_SUCCESS:
             return { ...state,
                 sendInvite: { ...state.sendInvite, loading: false, error: false }, };
         
 
-        case actions.SEND_INVITE_START:
+        case actions.ACCEPT_INVITE_START:
             return { ...state,
                 acceptInvite: { ...state.acceptInvite, loading: true }, };
 
-        case actions.SEND_INVITE_FAIL:
+        case actions.ACCEPT_INVITE_FAIL:
             return { ...state,
                 acceptInvite: { ...state.acceptInvite, loading: false, error: payload }, };
 
-        case actions.SEND_INVITE_SUCCESS:
+        case actions.ACCEPT_INVITE_SUCCESS:
             return { ...state,
                 acceptInvite: { ...state.acceptInvite, loading: false, error: false }, };
 

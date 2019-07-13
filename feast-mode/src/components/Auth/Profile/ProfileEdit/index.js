@@ -6,6 +6,8 @@ import ProfileEditForm from './ProfileEditForm.js'
 import { FormWrapper } from '../../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../../style/FormUI/Heading.js'
 
+import ImageUpload from "../ImageUpload.js"
+
 const EditProfileWrapper = styled(FormWrapper)`
     max-width: 60rem;
     padding: 6rem 3rem;
@@ -25,6 +27,7 @@ const ProfileEdit = () => {
 
             <EditProfileWrapper>
                 <Heading size = "h1"> Edit Your Profile </Heading> 
+                <ImageUpload />
                 <ProfileEditForm />
             </EditProfileWrapper>
         </Wrapper>
