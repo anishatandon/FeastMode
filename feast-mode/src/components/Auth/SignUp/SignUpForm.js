@@ -47,6 +47,8 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
         expDate: "",
         secCode: "",
         apps: { postmates: false, grubhub: false, doordash: false, ubereats: false },
+        avatar: "",
+        avatarURL: "",
       }}
       validationSchema={SignUpSchema}
       onSubmit={async (values, { setSubmitting }) => {
