@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import AppWindow from './AppWindow.js'
 import Carousel from './Carousel/Carousel.js'
 
+const API_URL = 'https://api-proxy.ilistarosales.now.sh/dominos';
+
 const Home = ({ firebase, apps }) => {
+  const [store, setStore] = useState('')
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(response => response.json)
+      .then(data =>
+        setStore(data))
+  })
+
   if (!firebase.profile.isLoaded) return null
   const userApps = Object.keys(apps).filter(app => apps[app])
   const appWindows = userApps.map(app => <AppWindow name = {app} />)
    
-  return <Carousel>{ appWindows }</Carousel>
+  return (
+    <>
+    <Carousel>{ appWindows }</Carousel>
+    {store}
+    </>
+  )
 }
 
 const mapStateToProps = ({ firebase }) => ({
