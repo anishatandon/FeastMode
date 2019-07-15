@@ -10,10 +10,26 @@ const app = express()
 app.use(morgan("tiny"))
 app.use(cors())
 
+
+
+const ezPizzaAPI = require('ez-pizza-api');
+const cityRegionOrPostalCode = 'Denver, CO, 80202';
+const streetAddress = '1280 Grant St';
+let storeResult;
+(async () => {
+    storeResult = await ezPizzaAPI
+    .getNearestDeliveryStore(cityRegionOrPostalCode, streetAddress);
+})();
+
+
+
+
+
 app.get("/dominos", (req, res) => {
-    fetch(`${API_URL}&key=${process.env.GOOGLE_API_KEY}`)
+    fetch(`${API_URL}/store/${storeResult.StoreId}/menu?lang=en&structured=true`)
         .then(response => response.json())
         .then(json => {
+            
             res.json(json)
         })
         .catch(err => {
@@ -21,11 +37,13 @@ app.get("/dominos", (req, res) => {
         })
 })
 
+
 function notFound(req, res, next) {
     res.status(404)
     const error = new Error("Not Found")
     next(error)
 }
+
 
 function errorHandler(error, req, res, next) {
     res.status(res.statusCode || 500)
@@ -33,6 +51,7 @@ function errorHandler(error, req, res, next) {
         message: error.message
     })
 }
+
 
 app.use(notFound)
 app.use(errorHandler)
