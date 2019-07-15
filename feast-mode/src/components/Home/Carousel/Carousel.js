@@ -121,10 +121,12 @@ class Carousel extends Component {
             </CarouselSlot>
           ))}
         </CarouselContainer>
-        <ButtonWrapper>
-          <div onClick = {() => this.prevSlide()}> <FontAwesomeIcon icon = {faChevronCircleLeft} size = "5x" color = "#2C3E50" /> </div>
-          <div onClick = {() => this.nextSlide()}> <FontAwesomeIcon icon = {faChevronCircleRight} size = "5x" color = "#2C3E50"/> </div>
-        </ButtonWrapper>
+        { children.length > 1 && 
+          <ButtonWrapper>
+            <div onClick = {() => this.prevSlide()}> <FontAwesomeIcon icon = {faChevronCircleLeft} size = "5x" color = "#2C3E50" /> </div>
+            <div onClick = {() => this.nextSlide()}> <FontAwesomeIcon icon = {faChevronCircleRight} size = "5x" color = "#2C3E50"/> </div>
+          </ButtonWrapper>
+        }
       </Wrapper>
       
       </>
