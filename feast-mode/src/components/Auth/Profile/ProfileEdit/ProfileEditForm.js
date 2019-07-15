@@ -10,7 +10,7 @@ import styled from 'styled-components'
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
 import Dropdown from './Dropdown.js'
-// import ImageUpload from './ImageUpload.js';
+import ImageUpload from "../ImageUpload.js"
 
 // Images
 import postmates from '../../../../images/postmates.jpg';
