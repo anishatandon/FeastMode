@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 
 import AppWindow from './AppWindow.js'
 import Carousel from './Carousel/Carousel.js'
@@ -10,11 +9,7 @@ const Home = ({ firebase, apps }) => {
   const userApps = Object.keys(apps).filter(app => apps[app])
   const appWindows = userApps.map(app => <AppWindow name = {app} />)
    
-  return (
-    <>
-    <Carousel>{ appWindows }</Carousel>
-    </>
-  )
+  return <Carousel>{ appWindows }</Carousel>
 }
 
 const mapStateToProps = ({ firebase }) => ({

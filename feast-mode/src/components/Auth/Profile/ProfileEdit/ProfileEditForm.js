@@ -4,13 +4,10 @@ import { Formik, Field } from 'formik'
 import * as actions from '../../../../backend/store/actions'
 import Cards from 'react-credit-cards'
 import styled from 'styled-components'
-// import FileUploader from "react-firebase-file-uploader"
-// import * as firebase from "firebase";
 
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
 import Dropdown from './Dropdown.js'
-// import ImageUpload from './ImageUpload.js';
 
 // Images
 import postmates from '../../../../images/postmates.jpg';

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,10 +12,10 @@ const Wrapper = styled.div`
   opacity: ${({ opened }) => (opened ? '1' : '0')};
   visibility: ${({ opened }) => (opened ? 'visible' : 'hidden')};
   transition: all 0.1s;
-`;
+`
 
 const Backdrop = ({ opened, close }) => {
-  return <Wrapper onClick={close} opened={opened} />;
-};
+  return <Wrapper onClick=  {close} opened = {opened} />;
+}
 
-export default Backdrop;
+export default Backdrop

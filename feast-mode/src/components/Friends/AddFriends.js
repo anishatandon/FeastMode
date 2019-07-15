@@ -13,16 +13,11 @@ import './AddFriends.css';
 
 const AddFriends = ({ users, userId, allFriends }) => {
   const [isOpened, setisOpened] = useState(false);
-
+  if(!users || !allFriends) return null
+  
   let content;
   
-  if(!users) {
-    content = (
-      <Loader />
-    );
-  }
-  
-  else if( users.length === 0 ) {
+  if( users.length === 0 ) {
     content = (
       <p>There are no users!</p>
     )
@@ -52,7 +47,7 @@ const AddFriends = ({ users, userId, allFriends }) => {
                 friendEmail={users[user].email} 
                 friendPhone={users[user].phone} 
               />
-              <AddFriendButton friend={user}/>
+              <AddFriendButton friend = {user}/>
           </div>
         )}
         
@@ -65,8 +60,8 @@ const AddFriends = ({ users, userId, allFriends }) => {
     <Button color="main" contain onClick={() => setisOpened(true)}>
       Add Friends
     </Button>
-    <Modal opened={isOpened} close={() => setisOpened(false)}>
-      <Button color="main" contain onClick={() => setisOpened(false)}>
+    <Modal opened = {isOpened} close = {() => setisOpened(false)}>
+      <Button color = "main" contain onClick = {() => setisOpened(false)}>
         Done
       </Button >
       <div className = "friends-change"> 
