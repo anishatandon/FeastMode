@@ -117,9 +117,7 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
             expDate: data.expDate,
             secCode: data.secCode,
             creditCardType: data.creditCardType,
-            apps: data.apps, 
-            file: data.file,
-            url: data.url,
+            apps: data.apps,
         })
 
         if (data.passwordOne.length > 0) {

@@ -32,18 +32,6 @@ const Wrapper = styled.div`
 
 const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => {
     const [focused, setFocused] = useState("")
-    const [avatar, setAvatar] = useState("")
-    const [avatarURL, setAvatarURL] = useState("")
-
-    // const handleUploadSuccess = filename => {
-    //     setAvatar(filename);
-    //     firebase
-    //         .storage()
-    //         .ref("images")
-    //         .child(filename)
-    //         .getDownloadURL()
-    //         .then(url => setAvatarURL(url));
-    // }
 
     useEffect(() => {
         return () => {
@@ -68,8 +56,6 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                 secCode: firebase.profile.secCode,
                 creditCardType: firebase.profile.creditCardType,
                 apps: firebase.profile.apps,
-                file: avatar,
-                url: avatarURL,
             }}
             validationSchema = {ProfileEditSchema}
             onSubmit = {async (values, { resetForm, setSubmitting }) => {
@@ -80,17 +66,6 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
         >
             {({ values, isValid, isSubmitting }) => (
                 <StyledForm>
-                    {/* <div className="compensate-input text-input">
-                            <label >Profile Picture</label>
-                            {avatarURL && <img src={avatarURL} />}
-                            <FileUploader
-                                accept="image/*"
-                                name="avatar"
-                                randomizeFilename
-                                storageRef={firebase.storage().ref("images")}
-                                onUploadSuccess={handleUploadSuccess}
-                            />
-                    </div> */}
                     <Dropdown title = "Personal information">
                         <AlignedWrapper>
                             <Field name = "firstName" type = "text" component = {TextInput} label = "First Name"/>
