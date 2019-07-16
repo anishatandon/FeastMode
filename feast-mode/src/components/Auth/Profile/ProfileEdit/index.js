@@ -5,7 +5,7 @@ import { ProfileDeleteLink } from '../../../../style/FormUI/Links.js'
 import ProfileEditForm from './ProfileEditForm.js'
 import { FormWrapper } from '../../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../../style/FormUI/Heading.js'
-
+import DeleteProfile from './DeleteProfile.js'
 import ImageUpload from "../ImageUpload.js" // this is fake news
 
 const EditProfileWrapper = styled(FormWrapper)`
@@ -24,7 +24,7 @@ const ProfileEdit = () => {
     return (
         <Wrapper> 
             {/* <ProfileDeleteLink /> */}
-
+            <DeleteProfile />
             <EditProfileWrapper>
                 <Heading size = "h1"> Edit Your Profile </Heading> 
                 <ImageUpload /> 

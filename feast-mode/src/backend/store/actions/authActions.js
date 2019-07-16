@@ -135,20 +135,32 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
 }
 
 
-// export const deleteProfile = () => async (dispatch, getState, { getFirebase, getFirestore }) => {
-//     const firebase = getFirebase()
-//     const firestore = getFirestore()
-//     dispatch({ type: actions.PROFILE_EDIT_START })
-//     try {
-//         const user = firebase.auth().currentUser
-//         const {uid: userId, email: userEmail} = getState().firebase.auth
-        
-//         dispatch({ type: actions.PROFILE_EDIT_SUCCESS }) 
+export const deleteProfile = () => async (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase()
+    const firestore = getFirestore()
+    dispatch({ type: actions.DELETE_PROFILE_START })
+    try {
+        const {uid: userId, email: userEmail} = getState().firebase.auth
+        const user = firebase.auth().currentUser
 
-//     } catch(err) {
-//         dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: err.message })
-//     }
-// }
+        // const allFriends = await firestore.collection('friends')
+
+        // console.log(allFriends)
+
+
+
+        // await firestore.collections('friends').doc(userId).delete();
+        // await firestore.collection('users').doc(userId).delete();
+        // user.delete();
+
+
+        
+        dispatch({ type: actions.DELETE_PROFILE_SUCCESS }) 
+
+    } catch(err) {
+        dispatch({ type: actions.DELETE_PROFILE_FAIL, payload: err.message })
+    }
+}
 
 
 
@@ -158,8 +170,7 @@ export const updateImageUrl = data => async (dispatch, getState, { getFirebase, 
     const firestore = getFirestore()
     dispatch({ type: actions.PFP_EDIT_START })
     try {
-        const user = firebase.auth().currentUser
-        const {uid: userId, email: userEmail} = getState().firebase.auth
+        const {uid: userId} = getState().firebase.auth
 
         await firestore.collection("users").doc(userId).update({
             imageUrl: data
