@@ -11,3 +11,5 @@ export const ADD_FRIENDS = '/add_friends';
 export const DISPLAY_FRIENDS = '/display_friends';
 export const PICK_FOOD = '/pick_food';
 export const MENU = '/menu'
+
+export const TWILIO = '/twilio'

@@ -17,6 +17,7 @@ import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 import MenuItems from './Food/Menu/MenuItems.js'
+import Twilio from '../server_twilio/src/App.js'
 
 import '../style/Backdrop.css'
 import '../style/EmailVerification.css'
@@ -69,6 +70,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Route exact path={ROUTES.MENU} component={MenuItems} />
+            <Route exact path={ROUTES.TWILIO} component={Twilio} />
             <Redirect to={ROUTES.HOME} />
           </Switch>
           
