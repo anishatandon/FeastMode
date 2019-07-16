@@ -23,32 +23,7 @@ async function getStoresNearAddress(
         fetch(`${API_URL}/store-locator?type=${orderType}&c=${cityRegionOrPostalCode}&s=${streetAddress}`)
             .then(response => response.json())
             .then(json => {
-                res.json(json)
-            })
-    });
-    return response.json();
-}
-
-async function getNearestDeliveryStore(
-    cityRegionOrPostalCode = '',
-    streetAddress = '',
-  ) {
-    const storesResult = await getStoresNearAddress(
-      orderType = 'Delivery',
-      cityRegionOrPostalCode,
-      streetAddress,
-    );
-    return storesResult.Stores.find(store => store.AllowDeliveryOrders);
-}
-
-const storeResult = getNearestDeliveryStore(cityRegionOrPostalCode, streetAddress)
-
-async function getStoreInfo(storeId) {
-    const response = await app.get("/dominos", (req, res) => {
-        fetch(`${API_URL}/store/${storeId}/profile`)
-            .then(response => response.json())
-            .then(json => {
-                res.json(json)
+                res.json(json.Stores)
             })
     });
     return response.json();
@@ -66,8 +41,8 @@ function errorHandler(error, req, res, next) {
         message: error.message
     })
 }
-console.log(getStoresNearAddress(orderType, cityRegionOrPostalCode, streetAddress))
-// getStoreInfo(6204)
+
+getStoresNearAddress(orderType, cityRegionOrPostalCode, streetAddress)
 app.use(notFound)
 app.use(errorHandler)
 
