@@ -17,7 +17,14 @@ const initialState = {
     profileEdit: {
         error: null,
         loading: false,
-    }
+    },
+
+    pfpEdit: {
+        error: null,
+        loading: false,
+    },
+
+    
 }
 
 export default (state = initialState, {type, payload}) => {
@@ -69,6 +76,11 @@ export default (state = initialState, {type, payload}) => {
                     loading: false, 
                     error: null,
                 },
+                pfpEdit: {
+                    ...state.pfpEdit, 
+                    loading: false, 
+                    error: null,
+                },
             } 
 
         case actions.VERIFY_START:
@@ -106,6 +118,24 @@ export default (state = initialState, {type, payload}) => {
                 ...state, 
                 profileEdit: { ...state.profileEdit, loading: false, error: payload }
         }
+        case actions.PFP_EDIT_START:
+            return {
+                ...state, 
+                pfpEdit: { ...state.pfpEdit, loading: true, error: null }
+            }
+
+        case actions.PFP_EDIT_SUCCESS:
+            return {
+                ...state, 
+                pfpEdit: { ...state.pfpEdit, loading: false, error: false }
+        }
+
+        case actions.PFP_EDIT_FAIL:
+            return {
+                ...state, 
+                pfpEdit: { ...state.pfpEdit, loading: false, error: payload }
+        }
+
         default:
             return state
     }

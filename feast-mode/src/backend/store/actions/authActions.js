@@ -1,5 +1,7 @@
 import * as actions from './actionTypes.js'
 import { useReducer } from 'react';
+import { database, storage } from 'firebase';
+import { rejects } from 'assert';
 
 // SignUp action
 export const signUp = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -31,6 +33,7 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             expDate: data.expDate,
             secCode: data.secCode,
             apps: data.apps,
+            imageUrl: "https://firebasestorage.googleapis.com/v0/b/feast-mode.appspot.com/o/images%2Fuser.png?alt=media&token=0465572a-6147-4017-8589-cd9b17e54f04",
         });
 
         dispatch({ type: actions.AUTH_SUCCESS });
@@ -108,7 +111,8 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
             await user.updateEmail(data.email) 
         }
 
-        await firestore.collection("users").doc(userId).set({
+        await firestore.collection("users").doc(userId).update({
+
             firstName: data.firstName,
             lastName: data.lastName,
             username: data.username,
@@ -130,19 +134,42 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
     }
 }
 
-// // Edit profile PICTURE action
-// export const editProfilePicture = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
+
+// export const deleteProfile = () => async (dispatch, getState, { getFirebase, getFirestore }) => {
 //     const firebase = getFirebase()
 //     const firestore = getFirestore()
 //     dispatch({ type: actions.PROFILE_EDIT_START })
 //     try {
-//         const {uid: userId} = getState().firebase.auth
-//         await firestore.collection("users").doc(userId).set({
-//             file: data.file,
-//             url: data.url,
-//         })
+//         const user = firebase.auth().currentUser
+//         const {uid: userId, email: userEmail} = getState().firebase.auth
+        
 //         dispatch({ type: actions.PROFILE_EDIT_SUCCESS }) 
+
 //     } catch(err) {
 //         dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: err.message })
 //     }
 // }
+
+
+
+// Update profile picture url
+export const updateImageUrl = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase()
+    const firestore = getFirestore()
+    dispatch({ type: actions.PFP_EDIT_START })
+    try {
+        const user = firebase.auth().currentUser
+        const {uid: userId, email: userEmail} = getState().firebase.auth
+
+        await firestore.collection("users").doc(userId).update({
+            imageUrl: data
+        })
+
+        dispatch({ type: actions.PFP_EDIT_SUCCESS }) 
+
+    } catch(err) {
+        dispatch({ type: actions.PFP_EDIT_FAIL, payload: err.message })
+    }
+}
+
+

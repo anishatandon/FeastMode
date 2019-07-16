@@ -11,6 +11,10 @@ import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
 
 
+import * as ROUTES from '../../constants/routes'
+import { NavLink } from 'react-router-dom'
+
+
 const AddFriends = ({ users, userId, allFriends }) => {
   const [isOpened, setisOpened] = useState(false);
   if(!users || !allFriends) return null
@@ -69,6 +73,7 @@ const AddFriends = ({ users, userId, allFriends }) => {
       {content}
       </div>
     </Modal>
+    {/* <NavLink to = {ROUTES.TWILIO}><Button> twilio -> </Button></NavLink> TWILIO LINK HIDE FOR NOW */}
     </>
   )
 }
