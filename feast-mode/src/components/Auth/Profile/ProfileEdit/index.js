@@ -22,8 +22,7 @@ const Wrapper = styled.div`
 
 const ProfileEdit = () => {
     return (
-        <Wrapper> 
-            {/* <ProfileDeleteLink /> */}
+        <Wrapper>
 
             <EditProfileWrapper>
                 <Heading size = "h1"> Edit Your Profile </Heading> 
@@ -31,6 +30,7 @@ const ProfileEdit = () => {
                 <ProfileEditForm />
             </EditProfileWrapper>
             <ProfileDeleteLink />
+            
         </Wrapper>
     )
 }

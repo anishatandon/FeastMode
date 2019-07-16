@@ -22,7 +22,7 @@ const InviteFriends = ({ userId, allFriends }) => {
             <div>
               {
                 friendKeys.map(user => 
-                  
+                <>
                 <div className="friend" key = {user.friendId}>
                 
                     <Friend 
@@ -34,6 +34,8 @@ const InviteFriends = ({ userId, allFriends }) => {
                       friendPhone={user.friendPhone} 
                     />
                 </div>
+                <Button contain> INVITE </Button>
+                </>
               )}
             </div>
           )

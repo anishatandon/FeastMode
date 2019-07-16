@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import dominos from '../../images/dominos.png'
+import pokeDot from '../../images/Poke_Dot.jpg'
+import starbucks from '../../images/Starbucks.png'
 
 import Heading from '../../style/FormUI/Heading'
 import Button from '../../style/FormUI/Buttons'
@@ -28,15 +30,15 @@ const Img = styled.img`
     height: 100%;
 `
 
-const AppWindow = ({ name }) => {
-    let source = dominos
-    let appName = "Dominos"
+const AppWindow = ({ name, index }) => {
+    let source = [dominos, pokeDot, starbucks]
+    let appName = ["Domino's", "Poke Dot", "Starbucks"]
 
     return (
         <StyledAppWindow>
-            <ImgWrapper><Img src = {source} alt = {name}  /></ImgWrapper>
+            <ImgWrapper><Img src = {source[index]} alt = {name}  /></ImgWrapper>
             <div>
-                <Heading noMargin size = "h2">{ appName }</Heading>
+                <Heading noMargin size = "h2">{ appName[index] }</Heading>
                 <NavLink to = {ROUTES.MENU}><Button> Order Now! </Button></NavLink>
             </div>
         </StyledAppWindow>

@@ -6,9 +6,9 @@ class SMSForm extends Component {
     super(props);
 
     this.greeting = "Hey, there! "
-    this.username = 'alexandra_is_cool' // get username from firebase somehow
+    this.username = 'Alexandra' // get username from firebase somehow
     this.closing = " has invited you to join their group order. \n\nClick here to open FeastMode and join the feast: "
-    this.url = '[insert url here]' // unique url that links back to FeastMode app (and the order specifically)
+    this.url = 'https://feast-mode/145fdj7&hfdk/alexandra' // unique url that links back to FeastMode app (and the order specifically)
 
     this.state = {
       message: {

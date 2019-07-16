@@ -17,7 +17,7 @@ import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 import Menu from './Food/Menu/index.js'
-import Twilio from '../server_twilio/src/App.js'
+import Twilio from '../backend/server_twilio/src/App.js'
 
 import '../style/Backdrop.css'
 import '../style/EmailVerification.css'
