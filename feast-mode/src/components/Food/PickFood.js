@@ -11,7 +11,7 @@ const API_URL = 'https://order.dominos.com/power';
 
     // Get a full list of stores near an address
     const storesResult = async () => {
-        const response = await fetch(`${API_URL}/store-locator?type=${ezPizzaAPI.orderTypes.Carryout}&c=${cityRegionOrPostalCode}&s=${streetAddress}`);
+        const response = await fetch(`${API_URL}`);///store-locator?type=${ezPizzaAPI.orderTypes.Carryout}&c=${cityRegionOrPostalCode}&s=${streetAddress}`);
         return response.json()
     }
     console.log(storesResult)

@@ -1,100 +1,84 @@
 import React, { Component, useEffect, useState } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 // import { Formik, Field } from 'formik'
-// import * as actions from '../../../../backend/store/actions'
-
-import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
-// import * as actions from '../../../../backend/store/actions'
+
+import * as actions from '../../../backend/store/actions'
+import firebase from "../../../backend/Firebase/Firebase";
+import { storage } from 'firebase';
+import Button from '../../../style/FormUI/Buttons.js'
+import defaultImage from '../../../images/user.png'
+import styled from 'styled-components'
+
 // import editProfilePicture from '../../../backend/store/actions/authActions.js'
 
+const StyledImage = styled.img`
+    border-radius: 50%; 
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+`
 
-class ImageUpload extends Component {
-    state = {
+const ImageUpload = ({user, updateImageUrl, profile, cleanUp, error, loading}) => {
+    
+    if( !profile || !profile.imageUrl){
+        return null
+    }
+
+    let state = {
         avatar: "",
-        avatarURL: ""
+        avatarURL: profile.imageUrl,
+        updateImageUrl: updateImageUrl,
     };
 
-    handleUploadSuccess = filename => {
-        this.setState({ avatar: filename});
-        firebase
-            .storage()
-            .ref("images")
+    const handleUploadSuccess = filename => {
+        state.avatar = filename;
+        storage()
+            .ref("images/")
             .child(filename)
             .getDownloadURL()
-            .then(url => this.setState({ avatarURL: url }));
-    };
-
-    render() {
-        return (
-            <div>
-                <form>
-                    <label >Profile Picture:</label>
-                    {this.state.avatarURL && <img src={this.state.avatarURL} />}
-                    <FileUploader
-                        accept="image/*"
-                        name="avatar"
-                        randomizeFilename
-                        storageRef={firebase.storage().ref("images")}
-                        onUploadSuccess={this.handleUploadSuccess}
-                    />
-                </form>
-            </div>
-        );
+            .then( url => {
+                console.log(url)
+                state.avatarURL = url
+                updateImageUrl(state.avatarURL)
+            }
+         );
+        
     }
+
+    return(
+        <div>
+            <form>
+                <label>
+                    {state.avatarURL && <StyledImage src={state.avatarURL}/>}
+                    <FileUploader
+                    hidden
+                    accept="image/*"
+                    name="avatar"
+                    randomizeFilename
+                    storageRef={storage().ref("images")}
+                    onUploadSuccess={handleUploadSuccess}
+                />
+                </label>
+            </form>
+        </div>
+    )
 }
 
 
-// class ImageUpload2 extends Component {
-//     state = {
-//         avatar: "",
-//         avatarURL: ""
-//     };
+const mapStateToProps = ({ auth, firebase }) => ({
+    profile: firebase.profile,
+    loading: auth.loading,
+    error: auth.error,
+})
 
-//     handleUploadSuccess = filename => {
-//         this.setState({ avatar: filename});
-//         firebase
-//             .storage()
-//             .ref("images")
-//             .child(filename)
-//             .getDownloadURL()
-//             .then(url => this.setState({ avatarURL: url }));
-//     };
+const mapDispatchToProps = {
+    updateImageUrl: actions.updateImageUrl,
+    cleanUp: actions.clean,
+}
 
-//     handleSubmit = () => {async (values, { resetForm, setSubmitting }) => {
-//         await editProfilePicture(values)
-//         resetForm()
-//         setSubmitting(false)
-//     }}
-
-//     render() {
-//         return (
-//             <div>
-//                 <form>
-//                     <label >Profile Picture:</label>
-//                     {this.state.avatarURL && <img src={this.state.avatarURL} />}
-//                     <FileUploader
-//                         accept="image/*"
-//                         name="avatar"
-//                         randomizeFilename
-//                         storageRef={firebase.storage().ref("images")}
-//                         onUploadSuccess={this.handleUploadSuccess}
-//                     />
-//                     <button onSubmit={this.handleSubmit}>Upload all the things</button>
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
-// const mapStateToProps = ({ firebase, auth }) => ({
-//     firebase,
-//     loading: auth.profileEdit.loading,
-//     error: auth.profileEdit.error
-// })
-// const mapDispatchToProps = {
-//     editProfilePicture: actions.editProfilePicture,
-//     cleanUp: actions.clean,
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ImageUpload)
-export default ImageUpload;
+export default connect(mapStateToProps, mapDispatchToProps)(ImageUpload);

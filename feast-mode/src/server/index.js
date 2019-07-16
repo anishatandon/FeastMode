@@ -10,33 +10,49 @@ const app = express()
 app.use(morgan("tiny"))
 app.use(cors())
 
+const cityRegionOrPostalCode = 'Claremont, CA, 91711';
+const streetAddress = ''
+const orderType = 'Delivery'
 
+async function getStoresNearAddress(
+    orderType,
+    cityRegionOrPostalCode = '',
+    streetAddress = '',
+  ) {
+    const response = await app.get("/dominos", (req, res) => {
+        fetch(`${API_URL}/store-locator?type=${orderType}&c=${cityRegionOrPostalCode}&s=${streetAddress}`)
+            .then(response => response.json())
+            .then(json => {
+                res.json(json.Stores)
+            })
+    });
+    return response.json();
+}
 
-const ezPizzaAPI = require('ez-pizza-api');
-const cityRegionOrPostalCode = 'Denver, CO, 80202';
-const streetAddress = '1280 Grant St';
-let storeResult;
-(async () => {
-    storeResult = await ezPizzaAPI
-    .getNearestDeliveryStore(cityRegionOrPostalCode, streetAddress);
-})();
+async function getNearestDeliveryStore(
+    cityRegionOrPostalCode = '',
+    streetAddress = '',
+  ) {
+    const storesResult = await getStoresNearAddress(
+      orderType = 'Delivery',
+      cityRegionOrPostalCode,
+      streetAddress,
+    );
+    return storesResult.Stores.find(store => store.AllowDeliveryOrders);
+}
 
+const storeResult = getNearestDeliveryStore(cityRegionOrPostalCode, streetAddress)
 
-
-
-
-app.get("/dominos", (req, res) => {
-    fetch(`${API_URL}/store/${storeResult.StoreId}/menu?lang=en&structured=true`)
-        .then(response => response.json())
-        .then(json => {
-            
-            res.json(json)
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
-
+async function getStoreInfo(storeId) {
+    const response = await app.get("/dominos", (req, res) => {
+        fetch(`${API_URL}/store/${storeId}/profile`)
+            .then(response => response.json())
+            .then(json => {
+                res.json(json)
+            })
+    });
+    return response.json();
+}
 
 function notFound(req, res, next) {
     res.status(404)
@@ -44,15 +60,14 @@ function notFound(req, res, next) {
     next(error)
 }
 
-
 function errorHandler(error, req, res, next) {
     res.status(res.statusCode || 500)
     res.json({
         message: error.message
     })
 }
-
-
+console.log(getStoresNearAddress(orderType, cityRegionOrPostalCode, streetAddress))
+// getStoreInfo(6204)
 app.use(notFound)
 app.use(errorHandler)
 

@@ -16,7 +16,7 @@ const AddFriends = ({ users, userId, allFriends }) => {
 
   let content;
   
-  if(!users) {
+  if(!users || !allFriends) {
     content = (
       <Loader />
     );
