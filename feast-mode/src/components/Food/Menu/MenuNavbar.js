@@ -1,43 +1,53 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import MenuNavItem from './MenuNavItem.js'
+import InviteFriends from './InviteFriends.js'
+import Button from '../../../style/FormUI/Buttons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const FixedWrapper = styled.header`
-    position: relative;
-    background-color: var(--color-white);
+    position: sticky;
+    z-index: 10;
+    top: 8rem;
     width: 100%;
-    height: 6rem;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--color-border);
+    background-color: var(--color-white);
+    margin-bottom: 3rem;
 `
 const Ul = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 60%;
+`
+const Li = styled.li`
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-title);
+    text-transform: uppercase;
 `
 
 const MenuNavbar = () => {
-    const [activeFood, setActiveFood] = useState(true)
-    const [activeDrink, setActiveDrink] = useState(false)
-
-    const handleFoodClick = () => {
-        setActiveFood(true)
-        setActiveDrink(false)
-        console.log("foodClick")
-    }
-    
-    const handleDrinkClick = () => {
-        setActiveDrink(true)
-        setActiveFood(false)
-        console.log("drinkClick")
-    }
-
     return(
         <FixedWrapper>
             <Ul>
-                <MenuNavItem onClick = {handleFoodClick} active = {activeFood}> Food </MenuNavItem>
-                <MenuNavItem onClick = {handleDrinkClick} active = {activeDrink}> Drinks </MenuNavItem>
+                
+                {/* <Li> Searchbar </Li> */}
+                <Li><InviteFriends/></Li>
+                <Li> Deliver to: &nbsp; 524 E Foothill Blvd </Li>
+                <Li>
+                    <Button> <FontAwesomeIcon icon = {faShoppingCart} color = "white"/> &nbsp; | &nbsp; 0 ITEMS </Button>
+                </Li>
+                
             </Ul>
         </FixedWrapper>
     )

@@ -16,7 +16,7 @@ import Navbar from './Navigation'
 import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
-import MenuItems from './Food/Menu/MenuItems.js'
+import MenuItems from './Food/Menu/index.js'
 
 import '../style/Backdrop.css'
 import '../style/EmailVerification.css'
@@ -33,7 +33,7 @@ export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" || path === "/menu" ? 'var(--color-background)' : 'var(--color-white)'};
+  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
 `
 
 const App = ({ loggedIn, emailVerified, location }) => {
