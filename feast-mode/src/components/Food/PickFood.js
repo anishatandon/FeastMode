@@ -1,7 +1,6 @@
 import React from 'react'
 import RestaurantWindow from './RestaurantWindow.js'
 import Carousel from '../Home/Carousel/Carousel.js'
-import Heading from '../../style/FormUI/Heading'
 
 const PickFood = () => {
     const featured = ["dominos"]

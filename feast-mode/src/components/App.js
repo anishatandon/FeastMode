@@ -16,7 +16,8 @@ import Navbar from './Navigation'
 import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
-import MenuItems from './Food/Menu/MenuItems.js'
+import MenuItems from './Food/Menu/index.js'
+import Twilio from '../server_twilio/src/App.js'
 
 import '../style/Backdrop.css'
 import '../style/EmailVerification.css'
@@ -33,7 +34,7 @@ export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" || path === "/menu" ? 'var(--color-background)' : 'var(--color-white)'};
+  background-color: ${({ loggedIn, path }) => !loggedIn || path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
 `
 
 const App = ({ loggedIn, emailVerified, location }) => {
@@ -69,6 +70,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Route exact path={ROUTES.MENU} component={MenuItems} />
+            <Route exact path={ROUTES.TWILIO} component={Twilio} />
             <Redirect to={ROUTES.HOME} />
           </Switch>
           

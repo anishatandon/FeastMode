@@ -7,10 +7,13 @@ const StyledButton = styled.button`
   padding: 1.2rem 5rem;
   border-radius: 2rem;
   font-size: 1.3rem;
-  color: var(--color-white);
+  color: ${({ color }) => {
+    if (color === 'white') return 'var(--color-title)'
+    else return 'var(--color-white)'
+  }};
   font-weight: 700;
   background-color: ${({ color }) => {
-    if (color === 'red') return 'red'
+    if (color === 'white') return 'var(--color-white)'
     else return 'var(--color-main)'
   }};
   margin: 2rem 0 1.5rem 0;

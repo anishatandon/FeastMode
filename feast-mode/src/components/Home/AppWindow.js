@@ -16,8 +16,7 @@ const StyledAppWindow = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    padding: 50px;
+    padding: 5rem;
 
     > * {
         padding: 2rem;
@@ -42,7 +41,7 @@ const AppWindow = ({ name }) => {
 
     return (
         <StyledAppWindow>
-            <ImgWrapper><Img src = {source} alt = {name}  /></ImgWrapper>
+            <ImgWrapper><Img src = {source} alt = {name} /></ImgWrapper>
             <div>
                 <Heading noMargin size = "h2">{ appName }</Heading>
                 <NavLink to = {ROUTES.PICK_FOOD}><Button> Order Now! </Button></NavLink>

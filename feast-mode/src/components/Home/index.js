@@ -4,17 +4,7 @@ import { connect } from 'react-redux'
 import AppWindow from './AppWindow.js'
 import Carousel from './Carousel/Carousel.js'
 
-const API_URL = 'https://api-proxy.ilistarosales.now.sh/dominos';
-
 const Home = ({ firebase, apps }) => {
-  const [store, setStore] = useState('')
-
-  useEffect(() => {
-    fetch(API_URL)
-      .then(response => response.json)
-      .then(data =>
-        setStore(data))
-  })
 
   if (!firebase.profile.isLoaded) return null
   const userApps = Object.keys(apps).filter(app => apps[app])
@@ -23,7 +13,7 @@ const Home = ({ firebase, apps }) => {
   return (
     <>
     <Carousel>{ appWindows }</Carousel>
-    {store}
+    {/* {store} */}
     </>
   )
 }

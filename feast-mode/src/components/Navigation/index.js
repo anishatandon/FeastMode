@@ -6,7 +6,7 @@ import NavItems from './NavItems.js'
 const FixedWrapper = styled.header`
     position: fixed;
     z-index: 2;
-    background-color: ${({ path }) => path === "/profile_edit" || path === "/email_verification"  || path === "/menu" ? 'var(--color-background)' : 'var(--color-white)'};
+    background-color: ${({ path }) => path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
     padding: 0rem 2rem;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@ const FixedWrapper = styled.header`
 `
 const Container = styled.div`
     width: 100%;
-    max-width: 140rem;
+    max-width: 180rem;
     margin: 0 auto;
     height: 100%;
 `
