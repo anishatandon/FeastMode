@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
@@ -25,13 +25,20 @@ const Img = styled.img`
     height: 100%;
 `
 
-const MenuItem = ({ name, picture, description, price }) => {
+const MenuItem = ({ name, picture, description, price}) => {
+    const [amount, setAmount] = useState(0);
+    const handleClick = () => {
+        setAmount(amount + 1)
+        console.log(amount)
+    }
+
     return (
-        <ItemWrapper>
+        <ItemWrapper onClick={handleClick}>
             <Info>
                 <Heading noMargin left bold size = "h3"> {name} </Heading>
                 <Heading noMargin left size = "h4"> {description} </Heading>
                 <Heading noMargin left bold size = "h4" color = "main"> {price} </Heading>
+                <Heading noMargin left bold size = "h4" color = "main"> Amount: {amount} </Heading>
             </Info>
             <ImgWrapper><Img src = {picture} alt = {name}/></ImgWrapper>
             

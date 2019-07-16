@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import InviteFriends from './InviteFriends.js'
-import Button from '../../../style/FormUI/Buttons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import InviteFriends from './InviteFriends.js';
+import ShoppingCart from './ShoppingCart.js';
 
 const FixedWrapper = styled.header`
     position: sticky;
@@ -36,7 +34,7 @@ const Li = styled.li`
     text-transform: uppercase;
 `
 
-const MenuNavbar = () => {
+const MenuNavbar = ({count}) => {
     return(
         <FixedWrapper>
             <Ul>
@@ -45,7 +43,7 @@ const MenuNavbar = () => {
                 <Li><InviteFriends/></Li>
                 <Li> Deliver to: &nbsp; 524 E Foothill Blvd </Li>
                 <Li>
-                    <Button> <FontAwesomeIcon icon = {faShoppingCart} color = "white"/> &nbsp; | &nbsp; 0 ITEMS </Button>
+                    <ShoppingCart count={count}/>
                 </Li>
                 
             </Ul>

@@ -38,14 +38,21 @@ const PopularWrapper = styled.div`
     grid-row-gap: 5%;
 `
 
+
 const Menu = () => {
-    const menu = menuData.map(item => <MenuItem key = {item.id} name = {item.name} picture = {item.src} description = {item.description} price = {item.price}/>)
+    const [count, setCount] = useState(0);
+    const handleClick = () => {
+        setCount(count+1)
+    }
+    const menu = menuData.map(item => <MenuItem key = {item.id} name = {item.name} picture = {item.src} description = {item.description} price = {item.price} onClick={handleClick}/>)
     const [modalOpened, setModalOpened] = useState(false);
+    
+    
 
     return (
         <Wrapper>
             <HeaderImg src = {Header} alt = "Dominos"/>
-            <MenuNavbar />
+            <MenuNavbar count={count}/>
             <Content>
                 <Heading noMargin left bold size = "h1"> Domino's Pizza </Heading>
                 <Heading left size = "h4"> From humble beginnings as a single pizza restaurant in 1960, Domino’s has become today’s
@@ -54,10 +61,9 @@ const Menu = () => {
                 <Title>
                     <Heading noMargin left bold size = "h2"> <FontAwesomeIcon icon = {faHeart} color = "#2C3E50" size = "1x"/> &nbsp; Popular </Heading>
                 </Title>
-                <PopularWrapper>
+                <PopularWrapper onClick={handleClick}>
                     {menu}
                 </PopularWrapper>
-                
             </Content>
         </Wrapper>
         
