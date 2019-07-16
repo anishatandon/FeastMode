@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 
 import { ProfileDeleteLink } from '../../../../style/FormUI/Links.js'
@@ -6,7 +6,7 @@ import ProfileEditForm from './ProfileEditForm.js'
 import { FormWrapper } from '../../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../../style/FormUI/Heading.js'
 
-import ImageUpload from "../ImageUpload.js"
+import ImageUpload from "../ImageUpload.js" // this is fake news
 
 const EditProfileWrapper = styled(FormWrapper)`
     max-width: 60rem;
@@ -23,13 +23,14 @@ const Wrapper = styled.div`
 const ProfileEdit = () => {
     return (
         <Wrapper> 
-            <ProfileDeleteLink />
+            {/* <ProfileDeleteLink /> */}
 
             <EditProfileWrapper>
                 <Heading size = "h1"> Edit Your Profile </Heading> 
-                <ImageUpload />
+                <ImageUpload /> 
                 <ProfileEditForm />
             </EditProfileWrapper>
+            <ProfileDeleteLink />
         </Wrapper>
     )
 }
