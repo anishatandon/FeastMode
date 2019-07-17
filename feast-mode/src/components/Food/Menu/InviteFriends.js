@@ -41,16 +41,14 @@ const InviteFriends = ({ userId, allFriends }) => {
   
   return (
     <>
-    <Button color="main" contain onClick={() => setisOpened(true)}>
+    <Button contain onClick={() => setisOpened(true)}>
         <FontAwesomeIcon icon = {faUsers} color = "white"/> &nbsp; | &nbsp; INVITE FRIENDS 
     </Button>
     <Modal opened = {isOpened} close = {() => setisOpened(false)}>
-      <Button color = "main" contain onClick = {() => setisOpened(false)}>
-        Done
-      </Button >
+      <Button contain onClick = {() => setisOpened(false)}> Done </Button >
       <div className = "friends-change"> 
-      <h1> All Users </h1>
-      {content}
+        <h1> Choose Your Friends </h1>
+        {content}
       </div>
     </Modal>
     </>

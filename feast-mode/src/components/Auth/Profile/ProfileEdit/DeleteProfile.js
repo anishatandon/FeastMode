@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import {firestoreConnect} from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom'
 import * as actions from '../../../../backend/store/actions'
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import styled from 'styled-components'
-// import * as ROUTES from '../../../../constants/routes'
+import * as ROUTES from '../../../../constants/routes'
+
 
 const UnderLink = styled(NavLink)`
     text-transform: uppercase;
@@ -20,15 +23,16 @@ const DeleteLink = styled(UnderLink)`
     text-transform: capitalize;
 `
 
-const DeleteProfile = ({deleteProfile}) => {
+const DeleteProfile = ({deleteProfile, users}) => {
     const onClick = () => {
-        deleteProfile();
+        const keys = Object.keys(users)
+        deleteProfile(keys);
     }
 
     return (
         <div>
-            {/* <span> No longer want FeastMode? </span>
-            <DeleteLink onClick={onClick}> Delete Profile </DeleteLink> */}
+            <span> No longer want FeastMode? </span>
+            <button  onClick={onClick}> Delete Profile </button>
         </div>
     )
 }
@@ -36,9 +40,10 @@ const DeleteProfile = ({deleteProfile}) => {
 
 
 
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth, firestore }) => ({
     loading: auth.loading,
     error: auth.error,
+    users: firestore.data.users,
 })
 
 const mapDispatchToProps = {
@@ -46,4 +51,7 @@ const mapDispatchToProps = {
     cleanUp: actions.clean,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteProfile)
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect(props => ["users/"]),
+  )(DeleteProfile)

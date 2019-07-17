@@ -30,7 +30,7 @@ const ProfileEdit = () => {
                 <ImageUpload /> 
                 <ProfileEditForm />
             </EditProfileWrapper>
-            <ProfileDeleteLink />
+            {/* <ProfileDeleteLink /> */}
         </Wrapper>
     )
 }

@@ -38,7 +38,7 @@ const PopularWrapper = styled.div`
     grid-row-gap: 5%;
 `
 
-const MenuItems = () => {
+const Menu = () => {
     const menu = menuData.map(item => <MenuItem key = {item.id} name = {item.name} picture = {item.src} description = {item.description} price = {item.price}/>)
     const [modalOpened, setModalOpened] = useState(false);
 
@@ -64,4 +64,4 @@ const MenuItems = () => {
     )
 }
 
-export default MenuItems
+export default Menu

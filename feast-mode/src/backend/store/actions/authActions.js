@@ -43,6 +43,7 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
     }
 }
 
+
 // LogOut action
 export const logOut = () => async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
@@ -53,6 +54,7 @@ export const logOut = () => async (dispatch, getState, { getFirebase }) => {
         console.log(err.message)
     }
 }
+
 
 // SignIn action
 export const logIn = data => async (dispatch, getState, { getFirebase }) => {
@@ -67,10 +69,12 @@ export const logIn = data => async (dispatch, getState, { getFirebase }) => {
     }
 }
 
+
 // Clean up error messages action
 export const clean = () => ({
     type: actions.CLEAN_UP,
 })
+
 
 // Send recover password action
 export const recoverPassword = data => async (dispatch, getState, {getFirebase}) => {
@@ -84,6 +88,7 @@ export const recoverPassword = data => async (dispatch, getState, {getFirebase})
         dispatch({type: actions.RECOVERY_FAIL, payload: err.message});
     }
 }
+
 
 // Verify email action
 export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => {
@@ -99,10 +104,12 @@ export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => 
     }
 }
 
+
 // Edit profile action
 export const editProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
+
     dispatch({ type: actions.PROFILE_EDIT_START })
     try {
         const user = firebase.auth().currentUser
@@ -135,25 +142,42 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
 }
 
 
-export const deleteProfile = () => async (dispatch, getState, { getFirebase, getFirestore }) => {
+export const deleteProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
+
     dispatch({ type: actions.DELETE_PROFILE_START })
     try {
         const {uid: userId, email: userEmail} = getState().firebase.auth
         const user = firebase.auth().currentUser
 
-        // const allFriends = await firestore.collection('friends')
+        data.map(id => async () => {
+            const res = await firestore.collection('friends').doc(id).get();
+            // if(res)
+            // {
+            //     const requests = res.data().requests
+            //     const friends = res.data().friends
 
-        // console.log(allFriends)
+            //     if( requests && requests.length !== 0 )
+            //     {
+            //         requests = requests.filter(user => user.friendId == userId)
+            //     }
 
+            //     if( friends && friends.length !== 0)
+            //     {
+            //         friends = friends.filter(user => user.friendId == userId)
+            //     }
 
+            //     await firestore.collection('friends').doc(id).set({
+            //         friends: friends,
+            //         requests: requests,
+            //     })
+            // }
+        })
 
-        // await firestore.collections('friends').doc(userId).delete();
+        // firestore.collection('friends').doc(userId).delete();
         // await firestore.collection('users').doc(userId).delete();
         // user.delete();
-
-
         
         dispatch({ type: actions.DELETE_PROFILE_SUCCESS }) 
 
@@ -161,7 +185,6 @@ export const deleteProfile = () => async (dispatch, getState, { getFirebase, get
         dispatch({ type: actions.DELETE_PROFILE_FAIL, payload: err.message })
     }
 }
-
 
 
 // Update profile picture url

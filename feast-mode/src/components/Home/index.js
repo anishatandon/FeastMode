@@ -8,14 +8,9 @@ const Home = ({ firebase, apps }) => {
 
   if (!firebase.profile.isLoaded) return null
   const userApps = Object.keys(apps).filter(app => apps[app])
-  const appWindows = userApps.map(app => <AppWindow name = {app} />)
+  const appWindows = userApps.map(app => <AppWindow key={app} name = {app} />)
    
-  return (
-    <>
-    <Carousel>{ appWindows }</Carousel>
-    {/* {store} */}
-    </>
-  )
+  return <Carousel>{ appWindows }</Carousel>
 }
 
 const mapStateToProps = ({ firebase }) => ({
