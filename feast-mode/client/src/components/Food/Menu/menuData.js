@@ -38,7 +38,6 @@ export const menuData = [
         src: pacificVeggie,
         description: "Feta Cheese, Roasted Red Peppers, Black Olives, and Provolone",
         price: "$7.95",
-
     },
     {
         id: 4,
@@ -46,7 +45,6 @@ export const menuData = [
         src: extravaganzza,
         description: "Ham, Italian Sausage, Beef, Pepperoni, and Black Olives",
         price: "$7.95",
-
     },
     {
         id: 5,
@@ -54,6 +52,5 @@ export const menuData = [
         src: mushrooms,
         description: "Mushrooms, Bacon, and Provolone ",
         price: "$7.95",
-
     }
 ]

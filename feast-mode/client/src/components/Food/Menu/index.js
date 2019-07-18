@@ -40,38 +40,63 @@ const PopularWrapper = styled.div`
 
 
 const Menu = () => {
-    const [count, setCount] = useState(0);
-    const handleClick = () => {
-        setCount(count+1)
+    const [amount, setAmount] = useState(0);
+
+    const handleClickAdd = () => {
+        setAmount(amount + 1)
     }
-    const menu = menuData.map(item => <MenuItem key = {item.id} name = {item.name} picture = {item.src} description = {item.description} price = {item.price} onClick={handleClick}/>)
+
+    const handleClickMinus = () => {
+        if (amount > 0){
+        setAmount(amount - 1)
+        }
+    }
+
+    const getItemInfo = (name) => {
+        return(name)
+    }
+
+    const menu = menuData.map(item =>
+        <MenuItem
+            key={item.id} 
+            name={item.name} 
+            picture={item.src} 
+            description={item.description} 
+            price={item.price} 
+            handleClickAdd={handleClickAdd} 
+            handleClickMinus={handleClickMinus} 
+            myAmount={item.amount} 
+            getItemInfo ={getItemInfo}
+            />)
+
     const [modalOpened, setModalOpened] = useState(false);
-    
+
     fetch(`/dominos`, {
-          accept: 'application/json',
-        }).then(response => response.json())
-          .then(data => {console.log(data)}
-    )
+        accept: 'application/json',
+    }).then(response => response.json())
+        .then(data => { console.log(data) }
+        )
 
     return (
         <Wrapper>
-            <HeaderImg src = {Header} alt = "Dominos"/>
-            <MenuNavbar count={count}/>
+            <HeaderImg src={Header} alt="Dominos" />
+            <MenuNavbar amount={amount}/>
             <Content>
-                <Heading noMargin left bold size = "h1"> Domino's Pizza </Heading>
-                <Heading left size = "h4"> From humble beginnings as a single pizza restaurant in 1960, Domino’s has become today’s
+                <Heading noMargin left bold size="h1"> Domino's Pizza </Heading>
+                <Heading left size="h4"> From humble beginnings as a single pizza restaurant in 1960, Domino’s has become today’s
                     recognized world leader in pizza delivery. At Domino’s we’re all about pizza — and from the day our doors opened,
                     we have dedicated ourselves to making and delivering delicious food with high-quality ingredients. </Heading>
                 <Title>
-                    <Heading noMargin left bold size = "h2"> <FontAwesomeIcon icon = {faHeart} color = "#2C3E50" size = "1x"/> &nbsp; Popular </Heading>
+                    <Heading noMargin left bold size="h2"> <FontAwesomeIcon icon={faHeart} color="#2C3E50" size="1x" /> &nbsp; Popular </Heading>
                 </Title>
-                <PopularWrapper onClick={handleClick}>
+                <PopularWrapper>
                     {menu}
+                    {console.log("menu", menu)}
                 </PopularWrapper>
             </Content>
         </Wrapper>
 
-        
+
     )
 }
 
