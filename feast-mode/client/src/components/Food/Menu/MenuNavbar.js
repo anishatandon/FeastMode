@@ -34,7 +34,7 @@ const Li = styled.li`
     text-transform: uppercase;
 `
 
-const MenuNavbar = ({amount}) => {
+const MenuNavbar = ({amount, name, price, quantity}) => {
     return(
         <FixedWrapper>
             <Ul>
@@ -43,7 +43,7 @@ const MenuNavbar = ({amount}) => {
                 <Li><InviteFriends/></Li>
                 <Li> Deliver to: &nbsp; 524 E Foothill Blvd </Li>
                 <Li>
-                    <ShoppingCart amount={amount}/>
+                    <ShoppingCart amount={amount} name={name} price={price} quantity={quantity}/>
                 </Li>
                 
             </Ul>

@@ -8,15 +8,18 @@ import Friend from '../../Friends/Friend.js'
 import Button from '../../../style/FormUI/Buttons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../../Auth/Profile/ProfileEdit/Dropdown';
 
 
-const ShoppingCart = ({amount}) => {
+const ShoppingCart = ({amount, name, price, quantity}) => {
     return(
         <>
         <Dropdown title = "Items"> 
             <h2> pizza </h2>
-            <FontAwesomeIcon icon = {faShoppingCart} color = "navy"/> &nbsp; | &nbsp; {amount} ITEMS 
+            <p>{name}, {price}, {quantity+1}</p>
+            <FontAwesomeIcon icon = {faDollarSign} color = "orange"/> &nbsp; | &nbsp; {amount} TOTAL COST
+            <FontAwesomeIcon icon = {faShoppingCart} color = "orange"/> &nbsp; | &nbsp; {amount} ITEMS 
         </Dropdown > 
       </>
     )

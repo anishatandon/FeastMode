@@ -27,12 +27,10 @@ const Img = styled.img`
     height: 100%;
 `
 
-const MenuItem = ({ name, picture, description, price, handleClickAdd, handleClickMinus, getItemInfo}) => {
-    // maybe we need to pass amount down too
+const MenuItem = ({ name, picture, description, price, handleClickAdd, handleClickMinus, getItemName, getItemPrice, getItemQuantity}) => {
     const [amount, setAmount] = useState(0);
     const [disabled, setDisabled] = useState(false)
     const [isTrue, setisTrue] = useState(true)
-
 
     const handleLocalAdd = () => {
         setAmount(amount + 1)
@@ -59,7 +57,7 @@ const MenuItem = ({ name, picture, description, price, handleClickAdd, handleCli
                 <AlignedWrapper>
                     <button onClick={() => { handleClickMinus(); handleLocalMinus();}}>-</button>
                     <Heading noMargin left bold size = "h4" color = "main"> {amount} </Heading>
-                    <button onClick={() => { handleClickAdd(); handleLocalAdd(); getItemInfo(name)}}>+</button>
+                    <button onClick={() => { handleClickAdd(); handleLocalAdd(); getItemName(name); getItemPrice(price); getItemQuantity(amount);}}>+</button>
                 </AlignedWrapper>
             </Info>
             <ImgWrapper><Img src = {picture} alt = {name}/></ImgWrapper>
