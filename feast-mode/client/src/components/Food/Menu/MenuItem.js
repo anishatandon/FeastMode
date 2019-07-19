@@ -36,7 +36,6 @@ const MenuItem = ({ name, picture, description, price, handleClickAdd, handleCli
 
     const handleLocalAdd = () => {
         setAmount(amount + 1)
-        console.log(amount)
     }
 
     const handleLocalMinus = () => {
@@ -47,7 +46,6 @@ const MenuItem = ({ name, picture, description, price, handleClickAdd, handleCli
         else{
             setDisabled(true)
         }
-        console.log(amount)
     }
 
     return (

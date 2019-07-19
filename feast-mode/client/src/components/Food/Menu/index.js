@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import MenuNavbar from './MenuNavbar.js'
 import MenuItem from './MenuItem.js'
+import { App } from '../Dominos.js'
 import { menuData } from './menuData.js'
 import Header from '../../../images/Dominos_Pizza2.jpg'
 import Heading from '../../../style/FormUI/Heading'
@@ -38,7 +39,6 @@ const PopularWrapper = styled.div`
     grid-row-gap: 5%;
 `
 
-
 const Menu = () => {
     const [amount, setAmount] = useState(0);
 
@@ -71,16 +71,11 @@ const Menu = () => {
 
     const [modalOpened, setModalOpened] = useState(false);
 
-    fetch(`/dominos`, {
-        accept: 'application/json',
-    }).then(response => response.json())
-        .then(data => { console.log(data) }
-        )
-
     return (
         <Wrapper>
             <HeaderImg src={Header} alt="Dominos" />
             <MenuNavbar amount={amount}/>
+            <App />
             <Content>
                 <Heading noMargin left bold size="h1"> Domino's Pizza </Heading>
                 <Heading left size="h4"> From humble beginnings as a single pizza restaurant in 1960, Domino’s has become today’s
@@ -91,7 +86,6 @@ const Menu = () => {
                 </Title>
                 <PopularWrapper>
                     {menu}
-                    {console.log("menu", menu)}
                 </PopularWrapper>
             </Content>
         </Wrapper>
