@@ -16,9 +16,8 @@ const ShoppingCart = ({amount, name, price, quantity}) => {
     return(
         <>
         <Dropdown title = "Items"> 
-            <h2> pizza </h2>
-            <p>{name}, {price}, {quantity+1}</p>
-            <FontAwesomeIcon icon = {faDollarSign} color = "orange"/> &nbsp; | &nbsp; {amount} TOTAL COST
+            <p>{name}, ${price} ({quantity+1})</p>
+            <FontAwesomeIcon icon = {faDollarSign} color = "orange"/> &nbsp; | &nbsp; TOTAL COST: ${price*(quantity+1)}
             <FontAwesomeIcon icon = {faShoppingCart} color = "orange"/> &nbsp; | &nbsp; {amount} ITEMS 
         </Dropdown > 
       </>
