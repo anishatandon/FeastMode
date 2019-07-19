@@ -1,12 +1,12 @@
 import React from 'react'
-import Map from './Map.js'
+import MapContainer from './MapContainer.js'
 
 
 
 
 const DisplayMap = () => {
     return(
-        <Map />
+        <MapContainer />
     )
 }
 

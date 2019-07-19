@@ -23,37 +23,34 @@ export const menuData = [
         name: "Ultimate Pepperoni",
         src: pepperoni,
         description: "Pepperoni, Red Sauce, Provolone, and Mozarella",
-        price: "$7.95",
+        price: 7.95,
     },
     {
         id: 2,
         name: "Spinach & Feta",
         src: spinachFeta,
         description: "Feta Cheese, Alfredo Sauce, Diced Tomatoes, and Arugula",
-        price: "$7.95",
+        price: 7.95,
     },
     {
         id: 3,
         name: "Pacific Veggie",
         src: pacificVeggie,
         description: "Feta Cheese, Roasted Red Peppers, Black Olives, and Provolone",
-        price: "$7.95",
-
+        price: 7.95,
     },
     {
         id: 4,
         name: "Extravaganzza",
         src: extravaganzza,
         description: "Ham, Italian Sausage, Beef, Pepperoni, and Black Olives",
-        price: "$7.95",
-
+        price: 7.95,
     },
     {
         id: 5,
         name: "Mushrooms",
         src: mushrooms,
         description: "Mushrooms, Bacon, and Provolone ",
-        price: "$7.95",
-
+        price: 7.95,
     }
 ]
