@@ -10,17 +10,35 @@ const app = express()
 app.use(morgan("tiny"))
 app.use(cors())
 
-const cityRegionOrPostalCode = 'Claremont, CA, 91711';
-const streetAddress = ''
-const orderType = 'Delivery'
-
 app.get("/dominos", (req, res) => {
-    fetch(`${API_URL}/store-locator?type=${orderType}&c=${cityRegionOrPostalCode}&s=${streetAddress}`)
+    fetch(`${API_URL}/store-locator?type=${req.query.type}&c=${req.query.c}&s=${req.query.s}`)
         .then(response => response.json())
         .then(json => {
             res.json(json.Stores)
         })
-});
+})
+
+app.get("/store_menu", (req, res) => {
+    fetch(`${API_URL}/store/${req.query.id}/menu?lang=en&structured=true`)
+        .then(response => response.json())
+        .then(json => {
+            res.json(json)
+        })
+})
+
+app.get("/order", (req, res) => {
+    fetch(`${API_URL}/${req.query.endpoint}`, {
+      headers: {
+        'content-type': 'application/json; charset=UTF-8',
+      },
+      body: req.query.order,
+      method: 'POST',
+    })
+        .then(response => response.json())
+        .then(json => {
+            res.json(json)
+        })
+})
 
 function notFound(req, res, next) {
     res.status(404)

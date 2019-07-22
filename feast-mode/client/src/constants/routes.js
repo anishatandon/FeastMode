@@ -12,4 +12,5 @@ export const DISPLAY_FRIENDS = '/display_friends';
 export const PICK_FOOD = '/pick_food';
 export const MENU = '/menu'
 
+export const MAP = '/map'
 export const TWILIO = '/twilio'

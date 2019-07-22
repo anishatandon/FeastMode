@@ -17,6 +17,7 @@ import EmailVerification from './Auth/EmailVerification'
 import DisplayFriends from './Friends/Friends'
 import PickFood from './Food/PickFood'
 import Menu from './Food/Menu/index.js'
+import DisplayMap from './Location/index.js'
 // import Twilio from '../backend/server_twilio/src/App.js'
 
 import '../style/Backdrop.css'
@@ -70,6 +71,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />
             <Route exact path={ROUTES.PICK_FOOD} component={PickFood} />
             <Route exact path={ROUTES.MENU} component={Menu} />
+            <Route exact path={ROUTES.MAP} component={DisplayMap} />
             {/* <Route exact path={ROUTES.TWILIO} component={Twilio} /> */}
             <Redirect to={ROUTES.HOME} />
           </Switch>

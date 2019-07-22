@@ -24,6 +24,11 @@ const initialState = {
         loading: false,
     },
 
+    deleteProfile: {
+        error: null,
+        loading: false,
+    },
+
     
 }
 
@@ -81,6 +86,11 @@ export default (state = initialState, {type, payload}) => {
                     loading: false, 
                     error: null,
                 },
+                deleteProfile: {
+                    ...state.deleteProfile, 
+                    loading: false, 
+                    error: null,
+                },
             } 
 
         case actions.VERIFY_START:
@@ -118,6 +128,25 @@ export default (state = initialState, {type, payload}) => {
                 ...state, 
                 profileEdit: { ...state.profileEdit, loading: false, error: payload }
         }
+
+        case actions.DELETE_PROFILE_START:
+                return {
+                    ...state, 
+                    deleteProfile: { ...state.deleteProfile, loading: true, error: null }
+                }
+    
+            case actions.DELETE_PROFILE_SUCCESS:
+                return {
+                    ...state, 
+                    deleteProfile: { ...state.deleteProfile, loading: false, error: false }
+            }
+    
+            case actions.DELETE_PROFILE_FAIL:
+                return {
+                    ...state, 
+                    deleteProfile: { ...state.deleteProfile, loading: false, error: payload }
+            }
+
         case actions.PFP_EDIT_START:
             return {
                 ...state, 

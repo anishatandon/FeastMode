@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import MenuNavbar from './MenuNavbar.js'
 import MenuItem from './MenuItem.js'
+import { App } from '../Dominos.js'
 import { menuData } from './menuData.js'
 import Header from '../../../images/Dominos_Pizza2.jpg'
 import Heading from '../../../style/FormUI/Heading'
@@ -37,7 +38,6 @@ const PopularWrapper = styled.div`
     grid-column-gap: 2%;
     grid-row-gap: 5%;
 `
-
 
 const Menu = () => {
     const [amount, setAmount] = useState(0);
@@ -85,11 +85,7 @@ const Menu = () => {
             getItemQuantity={getItemQuantity}
             />)
 
-    fetch(`/dominos`, {
-        accept: 'application/json',
-    }).then(response => response.json())
-        .then(data => { console.log(data) }
-        )
+    const [modalOpened, setModalOpened] = useState(false);
 
     return (
         <Wrapper>
