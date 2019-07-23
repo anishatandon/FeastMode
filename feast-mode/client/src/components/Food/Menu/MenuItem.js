@@ -3,8 +3,7 @@ import styled from 'styled-components'
 
 import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../style/FormUI/Heading.js'
-import Button from '../../../style/FormUI/Buttons.js'
-import { StyledForm, AlignedWrapper } from '../../../style/FormUI/FormWrappers.js'
+import { AlignedWrapper } from '../../../style/FormUI/FormWrappers.js'
 
 const ItemWrapper = styled(FormWrapper)`
     box-shadow: none;
@@ -30,7 +29,6 @@ const Img = styled.img`
 const MenuItem = ({ name, picture, description, price, handleClickAdd, handleClickMinus, getItemName, getItemPrice, getItemQuantity}) => {
     const [amount, setAmount] = useState(0);
     const [disabled, setDisabled] = useState(false)
-    const [isTrue, setisTrue] = useState(true)
 
     const handleLocalAdd = () => {
         setAmount(amount + 1)

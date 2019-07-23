@@ -7,7 +7,7 @@ import NavItems from './NavItems.js'
 const FixedWrapper = styled.header`
   position: fixed;
   z-index: 3;
-  background-color: ${({ path }) => path == "/profile_edit" ? 'var(--color-background)' : 'var(--color-white)'};
+  background-color: ${({ path }) => path === "/profile_edit" ? 'var(--color-background)' : 'var(--color-white)'};
   padding: 0rem 2rem;
   top: 0;
   left: 0;

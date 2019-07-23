@@ -8,7 +8,6 @@ import styled from 'styled-components'
 // Components
 import { ProfileEditSchema } from '../ProfileSchemas.js'
 import Dropdown from './Dropdown.js'
-import ImageUpload from "../ImageUpload.js"
 
 // Images
 import postmates from '../../../../images/postmates.jpg';
@@ -101,22 +100,22 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                             <ul className = "checkbox-input">
                                 <li>
                                 <Field name = "apps.postmates" type = "checkbox" id = "Postmates" checked = {values.apps.postmates}/>
-                                <label for = "Postmates"> <img src = {postmates} /> </label>
+                                <label for = "Postmates"> <img src = {postmates} alt = "Postmates"/> </label>
                                 </li>
 
                                 <li>
                                 <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub" checked = {values.apps.grubhub}/>
-                                <label for = "GrubHub"> <img src = {grubhub} /> </label>
+                                <label for = "GrubHub"> <img src = {grubhub} alt = "GrubHub"/> </label>
                                 </li>
 
                                 <li>
                                 <Field name = "apps.doordash" type = "checkbox" id = "DoorDash" checked = {values.apps.doordash}/>
-                                <label for = "DoorDash"> <img src = {doordash} /> </label>
+                                <label for = "DoorDash"> <img src = {doordash} alt = "DoorDash"/> </label>
                                 </li>
 
                                 <li>
                                 <Field name = "apps.ubereats" type = "checkbox" id = "UberEats" checked = {values.apps.ubereats}/>
-                                <label for = "UberEats"> <img src = {ubereats} /> </label>
+                                <label for = "UberEats"> <img src = {ubereats} alt = "UberEats"/> </label>
                                 </li>
                             </ul>
                         </Wrapper>

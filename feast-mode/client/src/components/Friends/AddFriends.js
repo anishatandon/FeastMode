@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import { compose } from 'redux';
 
 import Friend from './Friend';
 import AddFriendButton from './Buttons/AddFriendButton';
-import Loader from '../Loader/index.js';
 import Modal from '../Modal/Modal'
 import Button from '../../style/FormUI/Buttons'
 import './AddFriends.css';
-
-
-import * as ROUTES from '../../constants/routes'
-import { NavLink } from 'react-router-dom'
 
 
 const AddFriends = ({ users, userId, allFriends }) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 
-import { ProfileDeleteLink } from '../../../../style/FormUI/Links.js'
 import ProfileEditForm from './ProfileEditForm.js'
 import { FormWrapper } from '../../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../../style/FormUI/Heading.js'

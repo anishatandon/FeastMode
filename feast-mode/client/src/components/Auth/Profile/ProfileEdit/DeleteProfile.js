@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {firestoreConnect} from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom'
 import * as actions from '../../../../backend/store/actions'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import styled from 'styled-components'
-import * as ROUTES from '../../../../constants/routes'
-
 
 const UnderLink = styled(NavLink)`
     text-transform: uppercase;
@@ -32,13 +30,10 @@ const DeleteProfile = ({deleteProfile, users}) => {
     return (
         <div>
             <span> No longer want FeastMode? </span>
-            <button  onClick={onClick}> Delete Profile </button>
+            <button  onClick = {onClick}> Delete Profile </button>
         </div>
     )
 }
-
-
-
 
 const mapStateToProps = ({ auth, firestore }) => ({
     loading: auth.loading,

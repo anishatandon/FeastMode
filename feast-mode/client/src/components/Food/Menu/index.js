@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import MenuNavbar from './MenuNavbar.js'
 import MenuItem from './MenuItem.js'
-import { App } from '../Dominos.js'
 import { menuData } from './menuData.js'
 import Header from '../../../images/Dominos_Pizza2.jpg'
 import Heading from '../../../style/FormUI/Heading'
@@ -83,9 +82,9 @@ const Menu = () => {
             getItemName={getItemName}
             getItemPrice={getItemPrice}
             getItemQuantity={getItemQuantity}
-            />)
+        />
+    )
 
-    const [modalOpened, setModalOpened] = useState(false);
 
     return (
         <Wrapper>

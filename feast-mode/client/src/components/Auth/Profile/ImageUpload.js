@@ -1,13 +1,10 @@
-import React, { Component, useEffect, useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 // import { Formik, Field } from 'formik'
 import FileUploader from "react-firebase-file-uploader";
 
 import * as actions from '../../../backend/store/actions'
-import firebase from "../../../backend/Firebase/Firebase";
 import { storage } from 'firebase';
-import Button from '../../../style/FormUI/Buttons.js'
-import defaultImage from '../../../images/user.png'
 import styled from 'styled-components'
 
 // import editProfilePicture from '../../../backend/store/actions/authActions.js'

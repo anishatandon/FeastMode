@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node server-dominos.js",
-    "client": "node start-client.js",
+    "server": "node server/server-dominos.js",
+    "client": "node server/start-client.js",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dominos": "^2.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "google-maps-react": "^2.0.2",
@@ -21,8 +22,8 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1",
-    "react-native-maps": "^0.25.0",
-    "react-google-maps": "^9.4.5"
+    "react-google-maps": "^9.4.5",
+    "react-native-maps": "^0.25.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.1"

@@ -10,7 +10,6 @@ import { StyledForm, AlignedWrapper } from '../../../style/FormUI/FormWrappers.j
 import Button from '../../../style/FormUI/Buttons.js'
 import { TextInput, Label } from '../../../style/FormUI/Inputs.js'
 import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
-import { getCreditCardType } from '../CreditCard.js'
 
 import postmates from '../../../images/postmates.jpg';
 import doordash from '../../../images/doordash.jpg'
