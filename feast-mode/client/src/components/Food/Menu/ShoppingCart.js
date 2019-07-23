@@ -12,7 +12,10 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../../Auth/Profile/ProfileEdit/Dropdown';
 
 
+
+
 const ShoppingCart = ({amount, name, price, quantity}) => {
+  
     return(
         <>
         <Dropdown title = "Items"> 

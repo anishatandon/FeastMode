@@ -142,8 +142,8 @@ async function priceOrder(order) {
   const pricedOrder = await priceOrder(orderValid)
   console.log(order)
   console.log(pricedOrder)
-  const amount = pricedOrder.Order.Amounts.Customer // get total amount for order
-  console.log(amount)
+  // const amount = pricedOrder.Order.Amounts.Customer // get total amount for order
+  // console.log(amount)
 })()
 
 export const App = () => {

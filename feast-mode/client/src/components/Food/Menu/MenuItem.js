@@ -53,7 +53,7 @@ const MenuItem = ({ name, picture, description, price, handleClickAdd, handleCli
                 <Heading noMargin left size = "h4"> {description} </Heading>
                 <Heading noMargin left bold size = "h4" color = "main"> ${price} </Heading>
                 <AlignedWrapper>
-                    <button onClick={() => { handleClickMinus(); handleLocalMinus();}}>-</button>
+                    <button onClick={() => { handleClickMinus(); handleLocalMinus(); getItemQuantity(amount);}}>-</button>
                     <Heading noMargin left bold size = "h4" color = "main"> {amount} </Heading>
                     <button onClick={() => { handleClickAdd(); handleLocalAdd(); getItemName(name); getItemPrice(price); getItemQuantity(amount);}}>+</button>
                 </AlignedWrapper>

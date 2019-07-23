@@ -15,10 +15,7 @@ const initialState = {
         error: null,
         loading: false,
     },
-    deleteFriend: {
-        error: null,
-        loading: false,
-    },
+
 
 }
 
@@ -63,18 +60,6 @@ export default (state = initialState, {type, payload}) => {
             return { ...state,
                 deleteInvite: { ...state.deleteInvite, loading: false, error: false }, };
 
-        case actions.DELETE_FRIEND_START:
-            return { ...state,
-                deleteFriend: { ...state.deleteFriend, loading: true }, };
-
-        case actions.DELETE_FRIEND_FAIL:
-            return { ...state,
-                deleteFriend: { ...state.deleteFriend, loading: false, error: payload }, };
-
-        case actions.DELETE_FRIEND_SUCCESS:
-            return { ...state,
-                deleteFriend: { ...state.deleteFriend, loading: false, error: false }, };
-
                 
         case actions.CLEAN_UP:
             return { 
@@ -96,11 +81,7 @@ export default (state = initialState, {type, payload}) => {
                     loading: false, 
                     error: null,
                 },
-                deleteFriend: {
-                    ...state.deleteFriend, 
-                    loading: false, 
-                    error: null,
-                },
+
             };
 
         default:
