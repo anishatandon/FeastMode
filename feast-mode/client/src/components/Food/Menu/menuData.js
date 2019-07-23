@@ -4,19 +4,6 @@ import pacificVeggie from '../../../images/Pizzas/Mediterranean.jpg'
 import extravaganzza from '../../../images/Pizzas/Meat_Lover.jpg'
 import mushrooms from '../../../images/Pizzas/Mushrooms.jpg'
 
-
-
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {firestoreConnect} from 'react-redux-firebase';
-import { compose } from 'redux';
-
-import Modal from '../../Modal/Modal'
-import Friend from '../../Friends/Friend.js'
-import Button from '../../../style/FormUI/Buttons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
-
 export const menuData = [
     {
         id: 1,

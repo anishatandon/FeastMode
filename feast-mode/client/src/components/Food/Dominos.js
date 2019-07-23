@@ -135,9 +135,7 @@ async function priceOrder(order) {
     },
   }
 
-  console.log(order)
   const orderValid = await validateOrder(order)
-  console.log(order)
   console.log(orderValid)
   order.Order.OrderID = orderValid.Order.OrderID // get the generated orderID from the response
   console.log(order.Order.OrderID)
@@ -149,5 +147,5 @@ async function priceOrder(order) {
 })()
 
 export const App = () => {
-    return <div> Hello World </div>
+  return <div> Hello World </div>
 }

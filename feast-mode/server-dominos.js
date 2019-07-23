@@ -26,13 +26,11 @@ app.get("/store_menu", (req, res) => {
         })
 })
 
-app.get("/order", (req, res) => {
-    fetch(`${API_URL}/${req.query.endpoint}`, {
-      headers: {
-        'content-type': 'application/json; charset=UTF-8',
-      },
-      body: req.query.order,
-      method: 'POST',
+app.get("/order", async (req, res) => {
+    await fetch(`${API_URL}/${req.query.endpoint}`, {
+        method: 'post',
+        body: req.query.order,
+        headers: { 'content-type': 'application/json; charset=UTF-8' },
     })
         .then(response => response.json())
         .then(json => {
