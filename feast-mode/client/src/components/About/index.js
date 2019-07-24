@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Alexandra from "./Alexandra.jpg"
-import Ignacio from "./Ignacio.jpeg"
-import Cher from "./Cher.jpeg"
+import Alexandra from "../../images/Alexandra.jpg"
+import Ignacio from "../../images/Ignacio.jpeg"
+import Cher from "../../images/Cher.jpeg"
 import logo from '../../images/logo.png'
 
 // Style for the logo

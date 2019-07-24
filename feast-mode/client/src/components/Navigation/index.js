@@ -7,7 +7,6 @@ const FixedWrapper = styled.header`
     position: fixed;
     z-index: 2;
     background-color: ${({ path }) => path === "/profile_edit" || path === "/email_verification" ? 'var(--color-background)' : 'var(--color-white)'};
-    padding: 0rem 2rem;
     top: 0;
     left: 0;
     width: 100%;
@@ -18,7 +17,7 @@ const FixedWrapper = styled.header`
     }
 `
 const Container = styled.div`
-    width: 100%;
+    width: 60%;
     max-width: 180rem;
     margin: 0 auto;
     height: 100%;

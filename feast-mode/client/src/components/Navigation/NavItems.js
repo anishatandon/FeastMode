@@ -23,11 +23,11 @@ const NavItems = ({ mobile, clicked, emailVerified }) => {
         links = (
             <Ul mobile = {mobile}>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.HOME}> Home </NavItem>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PROFILE_EDIT}> Edit Profile </NavItem>
+                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.PROFILE}> Profile </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.DISPLAY_FRIENDS}> Friends </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.ABOUT}> About </NavItem>
                 <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.LOG_OUT}> Log Out </NavItem>
-                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.MAP}> Map </NavItem>
+                <NavItem mobile = {mobile} clicked = {clicked} link = {ROUTES.MAP} last> Map </NavItem>
             </Ul>
         )
     } else {

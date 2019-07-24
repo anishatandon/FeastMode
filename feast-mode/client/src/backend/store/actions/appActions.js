@@ -1,9 +1,6 @@
 import * as actions from './actionTypes.js'
 
-
 export const sendInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
-    
-    const firebase = getFirebase()
     const firestore = getFirestore()
     const inviteId = data;
     const userId = getState().firebase.auth.uid;
@@ -55,23 +52,14 @@ export const sendInvite = data => async (dispatch, getState, { getFirebase, getF
 
 
 export const acceptInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
     const firestore = getFirestore()
-    const inviteId = data.friendId;
-    const userId = getState().firebase.auth.uid;
-
+    const inviteId = data.friendId
+    const userId = getState().firebase.auth.uid
     dispatch({ type: actions.ACCEPT_INVITE_START })
+
     try {
-        const resUser = await firestore
-            .collection('friends')
-            .doc(userId)
-            .get();
-
-        const resInvite = await firestore
-            .collection('friends')
-            .doc(inviteId)
-            .get();
-
+        const resUser = await firestore.collection('friends').doc(userId).get()
+        const resInvite = await firestore.collection('friends').doc(inviteId).get()
         const newUser = {
             friendId: userId,
             friendFirst: getState().firebase.profile.firstName,
@@ -79,7 +67,6 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             friendEmail: getState().firebase.auth.email, 
             friendPhone: getState().firebase.profile.phone, 
         }
-
         const newInvite = {
             friendId: inviteId, 
             friendFirst: data.friendFirst,
@@ -87,8 +74,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             friendEmail: data.friendEmail,
             friendPhone: data.friendPhone,
         }
-            
-        const userPrevious = resUser.data().requests.filter(request => request.friendId !== inviteId);
+        const userPrevious = resUser.data().requests.filter(request => request.friendId !== inviteId)
         
         if (!resUser.data() || !resUser.data().friends) {
             firestore
@@ -97,10 +83,8 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             .set({
                 friends: [newInvite],
                 requests: userPrevious,
-            });
-        } 
-
-        else { 
+            })
+        } else { 
             if(resUser.data().friends.indexOf(inviteId) === -1 ){
                 firestore
                 .collection('friends')
@@ -108,7 +92,7 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 .update({
                     friends: [...resUser.data().friends, newInvite],
                     requests: userPrevious,
-                });
+                })
             }
         }
 
@@ -119,10 +103,8 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
             .set({
                 friends: [newUser],
                 requests: [...resInvite.data().requests],
-            });
-        } 
-        
-        else { 
+            })
+        } else { 
             if(resInvite.data().friends.indexOf(userId) === -1 ){
                 firestore
                 .collection('friends')
@@ -130,10 +112,9 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
                 .update({
                     friends: [...resInvite.data().friends, newUser],
                     requests: [...resInvite.data().requests],
-                });
+                })
             }
         }
-
         dispatch({ type: actions.SEND_INVITE_SUCCESS }) 
 
     } catch(err) {
@@ -143,27 +124,21 @@ export const acceptInvite = data => async (dispatch, getState, { getFirebase, ge
 
 
 export const deleteInvite = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
     const firestore = getFirestore()
     const inviteId = data;
     const userId = getState().firebase.auth.uid;
-
     dispatch({ type: actions.DELETE_INVITE_START })
-    try {
-        const resUser = await firestore
-            .collection('friends')
-            .doc(userId)
-            .get();
 
+    try {
+        const resUser = await firestore.collection('friends').doc(userId).get();
         const userPrevious = resUser.data().requests.filter(request => request.friendId !== inviteId);
-        // console.log(userPrevious)
+
         firestore
             .collection('friends')
             .doc(userId)
             .update({
                 requests: userPrevious,
             });
-        // console.log("past")
         dispatch({ type: actions.DELETE_INVITE_SUCCESS }) 
 
     } catch(err) {
@@ -173,28 +148,15 @@ export const deleteInvite = data => async (dispatch, getState, { getFirebase, ge
 
 
 export const deleteFriend = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
     const firestore = getFirestore()
     const inviteId = data;
     const userId = getState().firebase.auth.uid;
-
     dispatch({ type: actions.DELETE_FRIEND_START })
+
     try {
+        const resUser = await firestore.collection('friends').doc(userId).get();
+        const resInvite = await firestore.collection('friends').doc(inviteId).get();
 
-        const resUser = await firestore
-            .collection('friends')
-            .doc(userId)
-            .get();
-        const resInvite = await firestore
-            .collection('friends')
-            .doc(inviteId)
-            .get();
-
-        console.log(resUser)
-
-        // console.log(userPrevious)
-        // console.log(invitePrevious)
-        // console.log(!resUser.data() )
         if (resUser.data() ) {
             const userPrevious = resUser.data().friends.filter(friend => friend.friendId !== inviteId);
             firestore
@@ -214,7 +176,6 @@ export const deleteFriend = data => async (dispatch, getState, { getFirebase, ge
                 friends: invitePrevious,
             });
         } 
-
         dispatch({ type: actions.DELETE_FRIEND_SUCCESS }) 
 
     } catch(err) {

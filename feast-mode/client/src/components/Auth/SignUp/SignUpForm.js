@@ -33,7 +33,7 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
 
   return (
     <Formik
-      initialValues={{
+      initialValues = {{
         firstName: "",
         lastName: "",
         username: "",
@@ -46,11 +46,9 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
         expDate: "",
         secCode: "",
         apps: { postmates: false, grubhub: false, doordash: false, ubereats: false },
-        avatar: "",
-        avatarURL: "",
       }}
-      validationSchema={SignUpSchema}
-      onSubmit={async (values, { setSubmitting }) => {
+      validationSchema = {SignUpSchema}
+      onSubmit = {async (values, { setSubmitting }) => {
         await signUp(values)
         setSubmitting(false)
       }}
@@ -59,54 +57,54 @@ const SignUpForm = ({ signUp, cleanUp, error, loading }) => {
         <StyledForm>
 
           <AlignedWrapper>
-            <Field name="firstName" type="text" required component={TextInput} label="First Name" onClick={() => setFocused("name")} />
-            <Field name="lastName" type="text" required component={TextInput} label="Last Name" onClick={() => setFocused("name")} />
+            <Field name = "firstName" type = "text" required component = {TextInput} label = "First Name" onClick = {() => setFocused("name")} />
+            <Field name = "lastName" type = "text" required component = {TextInput} label = "Last Name" onClick = {() => setFocused("name")} />
           </AlignedWrapper>
 
-          <Field name="username" type="text" required component={TextInput} label="Username" />
-          <Field name="email" type="email" required component={TextInput} label="Email" />
-          <Field name="phone" type="text" required component={TextInput} label="Phone" />
+          <Field name = "username" type = "text" required component = {TextInput} label = "Username" />
+          <Field name = "email" type = "email" required component = {TextInput} label = "Email" />
+          <Field name = "phone" type = "text" required component = {TextInput} label = "Phone" />
 
           <AlignedWrapper>
-            <Field name="passwordOne" type="password" required component={TextInput} label="Password" />
-            <Field name="passwordTwo" type="password" required component={TextInput} label="Confirm Password" />
+            <Field name = "passwordOne" type = "password" required component = {TextInput} label = "Password" />
+            <Field name = "passwordTwo" type = "password" required component = {TextInput} label = "Confirm Password" />
           </AlignedWrapper>
 
           <Cards
-            number={values.creditCard}
-            name={values.firstName + " " + values.lastName}
-            expiry={values.expDate}
-            cvc={values.secCode}
-            focused={focused}
+            number = {values.creditCard}
+            name = {values.firstName + " " + values.lastName}
+            expiry = {values.expDate}
+            cvc = {values.secCode}
+            focused = {focused}
           />
 
-          <Field name="creditCard" type="text" required component={TextInput} label="Card Number" onClick={() => setFocused("number")} />
+          <Field name = "creditCard" type = "text" required component = {TextInput} label = "Card Number" onClick = {() => setFocused("number")} />
           <AlignedWrapper>
-            <Field name="expDate" type="text" required component={TextInput} label="Expiration Date" onClick={() => setFocused("expiry")} />
-            <Field name="secCode" type="text" required component={TextInput} label="Security Code" onClick={() => setFocused("cvc")} />
+            <Field name = "expDate" type = "text" required component = {TextInput} label = "Expiration Date" onClick = {() => setFocused("expiry")} />
+            <Field name = "secCode" type = "text" required component = {TextInput} label = "Security Code" onClick = {() => setFocused("cvc")} />
           </AlignedWrapper>
 
           <Label> What apps do you have? </Label>
           <Wrapper>
             <ul className="checkbox-input">
               <li>
-                <Field name="apps.postmates" type="checkbox" id="Postmates" />
-                <label for="Postmates"> <img src={postmates} /> </label>
+                <Field name = "apps.postmates" type = "checkbox" id = "Postmates" />
+                <label for = "Postmates"> <img src = {postmates} alt = "Postmates" /> </label>
               </li>
 
               <li>
-                <Field name="apps.grubhub" type="checkbox" id="GrubHub" />
-                <label for="GrubHub"> <img src={grubhub} /> </label>
+                <Field name = "apps.grubhub" type = "checkbox" id = "GrubHub" />
+                <label for = "GrubHub"> <img src = {grubhub} alt = "GrubHub" /> </label>
               </li>
 
               <li>
-                <Field name="apps.doordash" type="checkbox" id="DoorDash" />
-                <label for="DoorDash"> <img src={doordash} /> </label>
+                <Field name = "apps.doordash" type = "checkbox" id = "DoorDash" />
+                <label for = "DoorDash"> <img src = {doordash} alt = "DoorDash" /> </label>
               </li>
 
               <li>
-                <Field name="apps.ubereats" type="checkbox" id="UberEats" />
-                <label for="UberEats"> <img src={ubereats} /> </label>
+                <Field name = "apps.ubereats" type = "checkbox" id = "UberEats" />
+                <label for = "UberEats"> <img src = {ubereats} alt = "UberEats" /> </label>
               </li>
             </ul>
           </Wrapper>

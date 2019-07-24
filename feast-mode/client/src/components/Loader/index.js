@@ -7,6 +7,7 @@ const LoaderWrapper = styled.main`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--color-white);
 `
 const Ring = styled.main`
     display: inline-block;

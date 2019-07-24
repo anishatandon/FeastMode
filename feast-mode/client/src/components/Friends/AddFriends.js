@@ -7,7 +7,7 @@ import Friend from './Friend';
 import AddFriendButton from './Buttons/AddFriendButton';
 import Modal from '../Modal/Modal'
 import Button from '../../style/FormUI/Buttons'
-import './AddFriends.css';
+import '../../style/AddFriends.css';
 
 
 const AddFriends = ({ users, userId, allFriends }) => {

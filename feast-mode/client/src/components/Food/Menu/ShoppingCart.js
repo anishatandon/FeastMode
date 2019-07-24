@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
-import Dropdown from '../../Auth/Profile/ProfileEdit/Dropdown';
+import Dropdown from '../../Profile/ProfileEdit/Dropdown';
 
 
 const ShoppingCart = ({amount, name, price, quantity}) => {

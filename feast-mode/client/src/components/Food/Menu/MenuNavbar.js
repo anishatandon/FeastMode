@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import InviteFriends from './InviteFriends.js';
+import InviteFriends from '../Invite/index.js';
 import ShoppingCart from './ShoppingCart.js';
 
 const FixedWrapper = styled.header`

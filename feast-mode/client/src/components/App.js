@@ -9,13 +9,14 @@ import SignUp from './Auth/SignUp'
 import LogOut from './Auth/LogOut'
 import Home from './Home'
 import SideDrawer from './Navigation/SideDrawer.js'
-import PasswordReset from './Auth/Profile/PasswordReset.js'
-import ProfileEdit from './Auth/Profile/ProfileEdit/index.js'
+import PasswordReset from './Profile/PasswordReset.js'
+import Profile from './Profile/index.js'
+import ProfileEdit from './Profile/ProfileEdit/index.js'
 import About from './About'
 import Navbar from './Navigation'
 import EmailVerification from './Auth/EmailVerification'
-import DisplayFriends from './Friends/Friends'
-import PickFood from './Food/PickFood'
+import DisplayFriends from './Friends'
+import PickFood from './Food/Restaurants'
 import Menu from './Food/Menu/index.js'
 import DisplayMap from './Location/index.js'
 // import Twilio from '../backend/server_twilio/src/App.js'
@@ -66,6 +67,7 @@ const App = ({ loggedIn, emailVerified, location }) => {
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
             <Route exact path={ROUTES.SIDEDRAWER} component={SideDrawer} />
+            <Route exact path={ROUTES.PROFILE} component={Profile}/>
             <Route exact path={ROUTES.PROFILE_EDIT} component={ProfileEdit}/>
             <Route exact path={ROUTES.ABOUT} component={About} />
             <Route exact path={ROUTES.DISPLAY_FRIENDS} component={DisplayFriends} />

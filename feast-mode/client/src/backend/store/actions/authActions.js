@@ -1,13 +1,12 @@
 import * as actions from './actionTypes.js'
-import { useReducer } from 'react';
-import { database, storage } from 'firebase';
-import { rejects } from 'assert';
+import { storage } from 'firebase'
 
 // SignUp action
 export const signUp = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
     dispatch({ type: actions.AUTH_START })
+
     try {
         const res = await firebase
             .auth()
@@ -16,7 +15,7 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
         await firestore.collection('friends').doc(res.user.uid).set({
             friends: [],
             requests: [],
-        });
+        })
 
         // Send verification email
         const user = firebase.auth().currentUser;
@@ -33,10 +32,10 @@ export const signUp = data => async (dispatch, getState, { getFirebase, getFires
             expDate: data.expDate,
             secCode: data.secCode,
             apps: data.apps,
-            imageUrl: "https://firebasestorage.googleapis.com/v0/b/feast-mode.appspot.com/o/images%2Fuser.png?alt=media&token=0465572a-6147-4017-8589-cd9b17e54f04",
-        });
+            image: ["https://firebasestorage.googleapis.com/v0/b/feast-mode.appspot.com/o/images%2Fuser.png?alt=media&token=0465572a-6147-4017-8589-cd9b17e54f04", "user.png"]
+        })
 
-        dispatch({ type: actions.AUTH_SUCCESS });
+        dispatch({ type: actions.AUTH_SUCCESS })
 
     } catch(err) {
         dispatch({ type: actions.AUTH_FAIL, payload: err.message })
@@ -60,6 +59,7 @@ export const logOut = () => async (dispatch, getState, { getFirebase }) => {
 export const logIn = data => async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
     dispatch({ type: actions.AUTH_START })
+
     try {
         await firebase.auth().signInWithEmailAndPassword(data.email, data.password)
         dispatch({ type: actions.AUTH_SUCCESS })
@@ -78,14 +78,15 @@ export const clean = () => ({
 
 // Send recover password action
 export const recoverPassword = data => async (dispatch, getState, {getFirebase}) => {
-    const firebase = getFirebase();
-    dispatch({type: actions.RECOVERY_START});
+    const firebase = getFirebase()
+    dispatch({type: actions.RECOVERY_START})
+
     try{
-        await firebase.auth().sendPasswordResetEmail(data.email);
-        dispatch({type: actions.RECOVERY_SUCCESS});
+        await firebase.auth().sendPasswordResetEmail(data.email)
+        dispatch({type: actions.RECOVERY_SUCCESS})
 
     } catch(err) {
-        dispatch({type: actions.RECOVERY_FAIL, payload: err.message});
+        dispatch({type: actions.RECOVERY_FAIL, payload: err.message})
     }
 }
 
@@ -94,6 +95,7 @@ export const recoverPassword = data => async (dispatch, getState, {getFirebase})
 export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
     dispatch({ type: actions.VERIFY_START })
+    
     try {
         const user = firebase.auth().currentUser
         await user.sendEmailVerification()
@@ -109,8 +111,8 @@ export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => 
 export const editProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-
     dispatch({ type: actions.PROFILE_EDIT_START })
+
     try {
         const user = firebase.auth().currentUser
         const {uid: userId, email: userEmail} = getState().firebase.auth
@@ -119,7 +121,6 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
         }
 
         await firestore.collection("users").doc(userId).update({
-
             firstName: data.firstName,
             lastName: data.lastName,
             username: data.username,
@@ -145,20 +146,18 @@ export const editProfile = data => async (dispatch, getState, { getFirebase, get
 export const deleteProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-
     dispatch({ type: actions.DELETE_PROFILE_START })
+
     try {
         const {uid: userId, email: userEmail} = getState().firebase.auth
         const user = firebase.auth().currentUser
 
         const allFriends = await firestore.collection('friends')
 
-
-
         data.map(id => async () => {
             allFriends.doc(id).set({
-                friends: firestore.collection('friends').doc(id).get().data().requests.filter(user => user.friendId == userId),
-                requests: firestore.collection('friends').doc(id).get().data().friends.filter(user => user.friendId == userId),
+                friends: firestore.collection('friends').doc(id).get().data().requests.filter(user => user.friendId === userId),
+                requests: firestore.collection('friends').doc(id).get().data().friends.filter(user => user.friendId === userId),
             })
             // const res = await firestore.collection('friends').doc(id).get();
 
@@ -200,23 +199,25 @@ export const deleteProfile = data => async (dispatch, getState, { getFirebase, g
 }
 
 
-// Update profile picture url
+// Update profile picture action
 export const updateImageUrl = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
     const firestore = getFirestore()
     dispatch({ type: actions.PFP_EDIT_START })
+
     try {
         const {uid: userId} = getState().firebase.auth
+        const image = data.oldAvatar
+
+        if (image !== "user.png") {
+            storage().ref("images/").child(image).delete()
+        }
 
         await firestore.collection("users").doc(userId).update({
-            imageUrl: data
+            image: [data.avatarURL, data.avatar]
         })
-
         dispatch({ type: actions.PFP_EDIT_SUCCESS }) 
 
     } catch(err) {
         dispatch({ type: actions.PFP_EDIT_FAIL, payload: err.message })
     }
 }
-
-
