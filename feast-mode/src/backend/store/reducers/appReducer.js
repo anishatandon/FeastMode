@@ -25,55 +25,55 @@ const initialState = {
 export default (state = initialState, {type, payload}) => {
     switch (type) {
         
-        case actions.ACCEPT_INVITE_START:
-            return { ...state,
-                updateFriends: { ...state.sendInvite, loading: true }, };
-
-        case actions.ACCEPT_INVITE_FAIL:
-            return { ...state,
-                updateFriends: { ...state.sendInvite, loading: false, error: payload }, };
-
-        case actions.ACCEPT_INVITE_SUCCESS:
-            return { ...state,
-                updateFriends: { ...state.sendInvite, loading: false, error: false }, };
-        
-
         case actions.SEND_INVITE_START:
             return { ...state,
-                updateFriends: { ...state.acceptInvite, loading: true }, };
+                sendInvite: { ...state.sendInvite, loading: true }, };
 
         case actions.SEND_INVITE_FAIL:
             return { ...state,
-                updateFriends: { ...state.acceptInvite, loading: false, error: payload }, };
+                sendInvite: { ...state.sendInvite, loading: false, error: payload }, };
 
         case actions.SEND_INVITE_SUCCESS:
             return { ...state,
-                updateFriends: { ...state.acceptInvite, loading: false, error: false }, };
+                sendInvite: { ...state.sendInvite, loading: false, error: false }, };
+        
+
+        case actions.ACCEPT_INVITE_START:
+            return { ...state,
+                acceptInvite: { ...state.acceptInvite, loading: true }, };
+
+        case actions.ACCEPT_INVITE_FAIL:
+            return { ...state,
+                acceptInvite: { ...state.acceptInvite, loading: false, error: payload }, };
+
+        case actions.ACCEPT_INVITE_SUCCESS:
+            return { ...state,
+                acceptInvite: { ...state.acceptInvite, loading: false, error: false }, };
 
 
         case actions.DELETE_INVITE_START:
             return { ...state,
-                updateFriends: { ...state.deleteInvite, loading: true }, };
+                deleteInvite: { ...state.deleteInvite, loading: true }, };
 
         case actions.DELETE_INVITE_FAIL:
             return { ...state,
-                updateFriends: { ...state.deleteInvite, loading: false, error: payload }, };
+                deleteInvite: { ...state.deleteInvite, loading: false, error: payload }, };
 
         case actions.DELETE_INVITE_SUCCESS:
             return { ...state,
-                updateFriends: { ...state.deleteInvite, loading: false, error: false }, };
+                deleteInvite: { ...state.deleteInvite, loading: false, error: false }, };
 
         case actions.DELETE_FRIEND_START:
             return { ...state,
-                updateFriends: { ...state.deleteFriend, loading: true }, };
+                deleteFriend: { ...state.deleteFriend, loading: true }, };
 
         case actions.DELETE_FRIEND_FAIL:
             return { ...state,
-                updateFriends: { ...state.deleteFriend, loading: false, error: payload }, };
+                deleteFriend: { ...state.deleteFriend, loading: false, error: payload }, };
 
         case actions.DELETE_FRIEND_SUCCESS:
             return { ...state,
-                updateFriends: { ...state.deleteFriend, loading: false, error: false }, };
+                deleteFriend: { ...state.deleteFriend, loading: false, error: false }, };
 
                 
         case actions.CLEAN_UP:

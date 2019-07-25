@@ -3,25 +3,15 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import AppWindow from './AppWindow.js'
-import Heading from '../../style/FormUI/Heading.js'
 import Carousel from './Carousel/Carousel.js'
-
-const Item = styled.div`
-  background: darkorange;
-  text-align: center;
-  padding: 50px;
-  color: white;
-`
 
 const Home = ({ firebase, apps }) => {
   if (!firebase.profile.isLoaded) return null
-
   const userApps = Object.keys(apps).filter(app => apps[app])
-  const appWindows = userApps.map(app => <Item><AppWindow name = {app} /></Item>)
+  const appWindows = userApps.map(app => <AppWindow name = {app} />)
    
   return (
     <>
-    <Heading size = "h1"> Pick your App </Heading>
     <Carousel>{ appWindows }</Carousel>
     </>
   )

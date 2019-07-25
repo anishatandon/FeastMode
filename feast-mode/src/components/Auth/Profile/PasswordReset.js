@@ -2,14 +2,13 @@ import React, { useEffect } from 'react'
 import { Field, Formik } from 'formik'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-
 import * as actions from '../../../backend/store/actions'
+
 import { PasswordResetSchema } from './ProfileSchemas.js'
 
-import { StyledForm } from '../../../style/FormUI/FormWrappers.js'
+import { StyledForm, FormWrapper } from '../../../style/FormUI/FormWrappers.js'
 import { TextInput } from '../../../style/FormUI/Inputs.js'
 import { Message } from '../../../style/FormUI/Message.js'
-import { FormWrapper } from '../../../style/FormUI/FormWrappers.js'
 import Heading from '../../../style/FormUI/Heading.js'
 import Button from '../../../style/FormUI/Buttons.js'
 
@@ -59,7 +58,7 @@ const PasswordResetForm = ({ sendEmail, loading, error, cleanUp }) => {
               <Message error show = {error}>{ error }</Message>
             </PasswordResetMessageWrapper>
             <PasswordResetMessageWrapper>
-              <Message success show = {error === false}> Email sent successfully </Message>
+              <Message success show = {error === false}> Email sent successfully! </Message>
             </PasswordResetMessageWrapper>
 
           </StyledForm>

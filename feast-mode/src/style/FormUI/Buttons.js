@@ -28,6 +28,22 @@ const StyledButton = styled.button`
     background-color: var(--color-mainLight);
   }
 `
+const StyledDropdownButton = styled.button`
+  font-family: FontAwesome;
+  content: '\f107';
+  font-size: 28px;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  color: #434B67;
+  pointer-events: none;
+`
+
+export const DropdownButton = ({ ...rest }) => {
+  return (
+    <StyledDropdownButton {...rest} />
+  )
+}
 
 const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
   return (

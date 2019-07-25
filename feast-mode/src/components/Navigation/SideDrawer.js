@@ -6,9 +6,9 @@ import NavItems from './NavItems.js'
 
 const FixedWrapper = styled.header`
   position: fixed;
-  background-color: var(--color-white);
+  z-index: 2;
+  background-color: ${({ path }) => path == "/profile_edit" ? 'var(--color-background)' : 'var(--color-white)'};
   padding: 0rem 2rem;
-  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,7 +27,8 @@ const Wrapper = styled.div`
   align-items: center;
 `
 const Menu = styled.div`
-  position: fixed;
+  position: absolute;
+  z-index: 2;
   width: 100%;
   left: 0;
   top: 0;
@@ -47,11 +48,11 @@ const Menu = styled.div`
   }
 `
 
-const SideDrawer = () => {
+const SideDrawer = ({ path }) => {
   const [isOpened, setIsOpened] = useState(false)
   return (
     <>
-      <FixedWrapper>
+      <FixedWrapper path = {path}>
         <Wrapper>
           <SideDrawerToggleButton opened = {isOpened} clicked = {() => setIsOpened(!isOpened)} />
         </Wrapper>
