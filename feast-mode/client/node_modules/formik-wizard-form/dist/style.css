@@ -1,0 +1,85 @@
+.react-formik-wizard__step-tabs__tab-list > li.is-active:before, .react-formik-wizard__step-tabs__tab-list > li.is-active ~ li:before {
+  content: counter(stepNum);
+  font-family: inherit;
+  font-weight: 700; }
+
+.react-formik-wizard__step-tabs__tab-list > li.is-active:after, .react-formik-wizard__step-tabs__tab-list > li.is-active ~ li:after {
+  background-color: #dbdbdb; }
+
+.react-formik-wizard__step-tabs {
+  padding: 10px; }
+  .react-formik-wizard__step-tabs__tab-list {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding-left: 0; }
+    .react-formik-wizard__step-tabs__tab-list > li {
+      counter-increment: stepNum;
+      text-align: center;
+      display: table-cell;
+      position: relative;
+      color: #ff8a24;
+      z-index: 1; }
+      .react-formik-wizard__step-tabs__tab-list > li:before {
+        content: '\f00c';
+        content: '\2713;';
+        content: '\10003';
+        content: '\10004';
+        content: '\2713';
+        display: block;
+        margin: 0 auto 4px;
+        background-color: #fff;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-weight: bold;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ff8a24;
+        border-radius: 50%; }
+      .react-formik-wizard__step-tabs__tab-list > li:after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: #ff8a24;
+        position: absolute;
+        top: 18px;
+        left: 50%;
+        z-index: -1; }
+      .react-formik-wizard__step-tabs__tab-list > li:last-child:after {
+        display: none; }
+      .react-formik-wizard__step-tabs__tab-list > li.is-active:before {
+        background-color: #fff;
+        border-color: #ff8a24; }
+      .react-formik-wizard__step-tabs__tab-list > li.is-active ~ li {
+        color: #000; }
+        .react-formik-wizard__step-tabs__tab-list > li.is-active ~ li:before {
+          background-color: #dbdbdb;
+          border-color: #dbdbdb; }
+
+.react-formik-wizard__page {
+  padding: 10px; }
+
+.react-formik-wizard__footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px; }
+  .react-formik-wizard__footer__button {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #fff;
+    font-size: 14px;
+    background: #ff8a24;
+    border-color: #ff8a24;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    cursor: pointer; }
+    .react-formik-wizard__footer__button:hover {
+      background: #f27c2e;
+      text-decoration: none; }
+    .react-formik-wizard__footer__button[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed; }

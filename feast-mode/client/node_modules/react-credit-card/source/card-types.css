@@ -1,0 +1,34 @@
+
+.react-credit-card--unknown{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.react-credit-card--unknown .react-credit-card__logo {
+    visibility: hidden;
+}
+
+.react-credit-card--dankort .react-credit-card__front,
+.react-credit-card--dankort .react-credit-card__back{
+  background: #0055C7;
+}
+
+.react-credit-card--discover .react-credit-card__front,
+.react-credit-card--discover .react-credit-card__back{
+  background: #86B8CF;
+}
+
+.react-credit-card--mastercard .react-credit-card__front,
+.react-credit-card--mastercard .react-credit-card__back{
+  background: #0061A8;
+}
+
+.react-credit-card--visa .react-credit-card__front,
+.react-credit-card--visa .react-credit-card__back{
+  background: #191278;
+}
+
+.react-credit-card--amex .react-credit-card__front,
+.react-credit-card--amex .react-credit-card__back{
+  background-color: #108168;
+}
