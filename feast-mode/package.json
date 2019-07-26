@@ -17,6 +17,7 @@
     "dominos": "^2.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
     "haversine": "^1.1.1",
     "morgan": "^1.9.1",
