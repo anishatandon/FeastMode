@@ -13,6 +13,7 @@ const FixedWrapper = styled.header`
     display: flex;
     justify-content: center;
     border-bottom: 2px solid var(--color-border);
+    background-color: var(--color-white);
     margin-bottom: 3rem;
 `
 const Container = styled.div`

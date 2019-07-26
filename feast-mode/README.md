@@ -1,2 +1,0 @@
-# FeastMode
-venmo + food delivery 
