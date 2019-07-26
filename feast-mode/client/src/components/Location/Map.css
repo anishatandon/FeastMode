@@ -1,0 +1,10 @@
+.map {
+    width: 100vw;
+    height: 30vh;
+}
+
+#autocomplete {
+    width: 100vw;
+    height: 4rem;
+    font-size: 2em;
+}
