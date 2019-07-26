@@ -19,6 +19,7 @@ import ubereats from '../../../images/ubereats.jpeg';
 import { StyledForm, AlignedWrapper } from '../../../style/FormUI/FormWrappers.js'
 import { TextInput, Label } from '../../../style/FormUI/Inputs.js'
 import Button from '../../../style/FormUI/Buttons.js'
+import Heading from '../../../style/FormUI/Heading.js'
 import { Message, MessageWrapper } from '../../../style/FormUI/Message.js'
 
 const Wrapper = styled.div`
@@ -63,7 +64,7 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
         >
             {({ values, isValid, isSubmitting }) => (
                 <StyledForm>
-                    <Dropdown title = "Personal information">
+                    <Heading noMargin left bold size = "h3"> Personal Information </Heading>
                         <AlignedWrapper>
                             <Field name = "firstName" type = "text" component = {TextInput} label = "First Name"/>
                             <Field name = "lastName" type = "text" component = {TextInput} label = "Last Name"/>
@@ -77,7 +78,6 @@ const ProfileEditForm = ({ firebase, error, loading, cleanUp, editProfile }) => 
                             <Field name = "passwordOne" type = "password" component = {TextInput} label = "Password"/>
                             <Field name = "passwordTwo" type = "password" component = {TextInput} label = "Confirm Password"/>
                         </AlignedWrapper>
-                    </Dropdown>
 
                     <Dropdown title = "Credit Card Information">
                         <Cards

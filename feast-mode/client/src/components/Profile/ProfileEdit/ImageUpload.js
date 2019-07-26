@@ -8,21 +8,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
 
 const ImageForm = styled.form`
-    margin-bottom: 1rem;
-    width: 74%;
     display: flex;
-    align-items: center;
+
+    div, label {
+        position: relative;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        z-index: 2;
+        background-color: var(--color-title);
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+    }
 
     label {
-        opacity: 0;
-        transition: all 0.3s;
-        cursor: pointer
+        cursor: pointer;
+        top: 60%;
+        left: 60%;
     }
 
     div {
-        opacity: 0;
-        transition: all 0.3s;
         cursor: ${props => props.allowDelete && "pointer"};
+        top: 35%;
+        right: 10%;
     }
 
     :hover div, :hover label {
@@ -42,13 +53,14 @@ const ImageForm = styled.form`
     }
 `
 const StyledImage = styled.img`
+    position: relative;
+    z-index: 1;
     border-radius: 50%; 
     align-items: center;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25rem;
-    height: 25rem;
+    top: -6rem;
+    width: 18rem;
+    height: 18rem;
     object-fit: cover;
     transition: all 0.3s;
 `
@@ -93,7 +105,7 @@ const ImageUpload = ({ updateImageUrl, profile }) => {
     return (
         <ImageForm allowDelete = {allowDelete}>
             <label>
-                <FontAwesomeIcon icon = {faCloudUploadAlt} size = "4x" color = "#ff870C" />
+                <FontAwesomeIcon icon = {faCloudUploadAlt} size = "2x" color = "white" />
                 <FileUploader
                     hidden
                     accept = "image/*"
@@ -104,7 +116,7 @@ const ImageUpload = ({ updateImageUrl, profile }) => {
                 />
             </label>
             {state.avatarURL && <StyledImage src = {state.avatarURL}/>}
-            <div onClick = {handleDelete}> <FontAwesomeIcon icon = {faTrashAlt} size = "4x" color = "#ff870C"/> </div>
+            <div onClick = {handleDelete}> <FontAwesomeIcon icon = {faTrashAlt} size = "2x" color = "white"/> </div>
         </ImageForm>
     )
 }

@@ -1,0 +1,82 @@
+.sms-form {
+  text-align: left;
+  padding: 16px;
+  margin-top: 20px;
+  color: #2C3E50;
+
+  /* Items perfectly centered in box */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sms-form-box {
+  overflow: auto; /* Control screen resizing */
+  position: relative;
+  background-color: white;
+  padding: 30px 0px 30px 0px; /* Padding around content */
+
+  /* Items perfectly centered in box */
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+
+  margin: 3% 41%; /* Box dimensions */
+
+  /* Shadow effect  */
+  border: 1px solid #efefef;
+  box-shadow:
+      0 1px 5px rgba(0,0,0,0.15),
+      0 10px 0 -5px #eee;
+}
+
+.sms-form label {
+  display: block;
+  color: #2C3E50;
+  margin-left: 11px;
+  font-size: 20px;
+}
+.sms-form input[type=tel],
+.sms-form textarea {
+    font-size: 15px;
+    color: #2C3E50;
+    /* padding-left: 8px; */
+    outline: none;
+    display: block;
+
+    /* Box design */
+    margin: 7px auto 30px auto; /* the auto left and right centers it */
+    width:  100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: white;
+    background-color: #F4F6F6;
+
+    /* Transitions */
+    transition: border 0.5s, border-bottom 0.5s, background-color 0.5s;
+}
+/* .sms-form div {
+  margin-bottom: 8px;
+} */
+.sms-form button {
+  background:#2C3E50;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 14px 5px 14px;
+  margin: 0px 0px 25px 0px;
+  width: 100%;
+
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  color: white;
+
+  /* Transitions */
+  transition: background-color 0.10s;
+}
+.sms-form.error {
+  outline: 2px solid #ff9933;
+}
