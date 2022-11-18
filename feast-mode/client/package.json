@@ -39,7 +39,7 @@
     "react-redux": "^5.1.1",
     "react-redux-firebase": "^2.2.6",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-firebase": "^0.3.3",
