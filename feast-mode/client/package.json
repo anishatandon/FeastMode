@@ -14,7 +14,7 @@
     "card-react": "^1.2.7",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ez-pizza-api": "^1.0.2",
     "firebase": "^6.3.0",
     "formik": "^1.5.8",
